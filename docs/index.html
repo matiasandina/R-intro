@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="primeros-pasos.html">
+
+<link rel="next" href="introduccion.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -194,205 +194,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduccion" class="section level1">
-<h1><span class="header-section-number">Capítulo 1</span> Introducción</h1>
-<p>La organización de este libro esta fuertemente vinculada al análisis de datos. En general, el análisis suele presentarse en tres etapas: Lectura, modelado y comunicación de resultados.</p>
-<p><code>Lectura &gt; Modelado &gt; Comunicación</code></p>
-<p>En lo que resta de este capítulo, vamos a transitar parte de la organización y contenido del libro, las convenciones que vamos a utilizar y los requisitos para obtener los programas necesarios. El contenido a desarrollar es de nivel básico. Sugiero que los usuarios que ya hayan instalado R o se sientan cómodos con la instalación de programas y sistema de archivos se salteen lo siguiente.</p>
-<div id="terminos" class="section level2">
-<h2><span class="header-section-number">1.1</span> Términos</h2>
-<p>Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En la siguiente tabla pueden encontrar una guía:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Término en inglés</th>
-<th align="left">Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">CRAN</td>
-<td align="left">Colección de paquetes en CRAN (Comprehensive R Archive Network)</td>
-</tr>
-<tr class="even">
-<td align="left">dataset</td>
-<td align="left">set de datos</td>
-</tr>
-<tr class="odd">
-<td align="left">Software</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">working directory</td>
-<td align="left">Directorio desde donde R está trabajando en la sesión (getwd())</td>
-</tr>
-</tbody>
-</table>
-<p>Un caso especial son los nombres nativos de objetos o propiedades de R. Estos términos aparecerán normalmente <code>resaltados en el texto</code>. Un ejemplo son las tablas que vamos a usar para acceder a datos, llamadas <code>data.frame</code>. Por ahora, no es necesario preocuparse al respecto, las piezas del rompecabezas se van a unir luego.</p>
+<div id="header">
+<h1 class="title">Introducción a estadística con R</h1>
+<h4 class="author"><em>Matias Andina</em></h4>
+<h4 class="date"><em>2018-07-26</em></h4>
 </div>
-<div id="donde-encontrar-ayuda" class="section level2">
-<h2><span class="header-section-number">1.2</span> Dónde encontrar ayuda</h2>
-<p>Una gran forma de resolver los problemas que tenemos cuando escribimos código es goolgear el problema exacto. R normalmente nos mostrará errores de la forma:</p>
-<pre><code>## Error: error message here</code></pre>
-<p>Copiar y pegar el error particular es de gran ayuda. Existen diversos foros especializados. Afortunadamente existe material en español (aunque es limitado). Un gran sitio para empezar es:</p>
-<p><strong>StackOverflow</strong> en español! <a href="https://es.stackoverflow.com/" class="uri">https://es.stackoverflow.com/</a></p>
-</div>
-<div id="sistema-operativo" class="section level2">
-<h2><span class="header-section-number">1.3</span> Sistema Operativo</h2>
-<p>Afortunadamente, vivimos en un mundo con diversidad de sistemas operativos. R es compatible con <em>Windows</em>, <em>Mac OS</em> y <em>Linux</em>. Este libro está escrito utilizando <em>Windows 10</em> por lo que es posible que algunos ejemplos funcionen distinto en otros sistemas operativos. Haré mis mayores esfuerzos para asegurar compatibilidad entre distintos sistemas.</p>
-</div>
-<div id="directorios" class="section level2">
-<h2><span class="header-section-number">1.4</span> Directorios</h2>
-<p>Los directorios son direcciones en nuestra computadora. Para que nuestra computadora localice un archivo o un programa, estos tienen una dirección en el disco duro. Normalmente el sistema de archivos es jerárquico, con secuencias de contenedores. Por ende, los directorios son también conocidos como <em>carpetas</em> o <em>ficheros</em>. Por ejemplo, en mi sistema, los archivos de R se encuentra en este directorio <code>C:\Program Files\R\R-3.4.0</code>. Todos los archivos contenidos en esa carpeta serán localizados a partir de esa dirección (y el nombre del archivo). Es importante entender que siempre contaremos con un <em>working directory</em> o directorio en el que estamos trabajando. Este directorio funciona como todos los demás, funcionando como un atajo.</p>
-</div>
-<div id="traduccion-de-contenido" class="section level2">
-<h2><span class="header-section-number">1.5</span> Traducción de contenido</h2>
-<p>Una parte del material de referencia en este libro está en inglés. Para aquellos lectores que encuentren muy dificultoso el idioma, aconsejo intentar la traducción del material usando el traductor de <a href="translate.google.com">Google</a> o, si el navegador lo permite, habilitar la traducción de manera directa sobre el contenido.</p>
-</div>
-<div id="r" class="section level2">
-<h2><span class="header-section-number">1.6</span> R</h2>
-<p>Un lenguaje de programación es una serie de reglas que están diseñadas para realizar procesos en una computadora.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> R es un lenguaje de programación. En ese sentido, no se diferencia de ningún otro (ej. C, Python). A su vez, como todo lenguaje, el set de reglas es particular y lleva tiempo incorporarlo. La mejor forma de naturalizarse con un idioma es hablarlo y, fundamentalmente en este caso, leerlo y escribirlo! Afortunadamente, el dominio de un idioma facilita el dominio de otro(s).</p>
-<p>R nació en 1993 en Auckland. Sin embargo, su origen puede rastrearse hasta un lenguaje previo llamado S, creado por John Chambers y colaboradores en <em>Bell Laboratories</em> durante la década de 1970.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Actualmente, la diversidad de proyectos que pueden abarcarse en R es altísima, desde hacer análisis de estadística pura hasta escribir libros, como éste.</p>
-<p>En este libro voy a usar mayoritariamente R para hablar del lenguaje. Una excepción es la instalación del programa en sí mismo (ver Instalar R).</p>
-<p>El copyright del software R es mantenido por la fundación R ( <a href="(https://www.r-project.org/foundation/)">R Foundation</a> ) bajo una licencia pública <a href="https://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License version 2.0</a>. Algunas traducciones <em>no oficiales</em> de la licencia pueden encontrarse <a href="https://www.gnu.org/licenses/translations.html">aquí</a>.</p>
-<p>La fundación R es una organización sin fines de lucro que trabaja en pos del interés público. Fue fundada por los miembros del <em>R Development Core Team</em> para proveer. Sus objetivos son:</p>
-<ul>
-<li>Proveer apoyo al proyecto R y otras innovaciones en estadística computacional.</li>
-<li>Asegurar su continuo desarollo, así como también el desarrollo de futuras innovaciones en software estadístico.</li>
-<li>Proveer un punto de referencia para individuos, instituciones y empresas que deseen interactuar con la comunidad de desarrollo de R.</li>
-<li>Mantener y administrar el copyright del software R y su documentación.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></li>
-</ul>
-<p>Podemos pensar a R estando dividido en dos marcos conceptuales:</p>
-<ol style="list-style-type: decimal">
-<li>El sistema de “base” R descargado desde CRAN.</li>
-<li>El conjunto de paquetes externos que agregan funcionalidad.</li>
-</ol>
-<p>En la siguientes secciones realizaremos la descarga e instalación de R. En el próximo capítulo trabajaremos con agregar funcionalidad utilizando paquetes externos.</p>
-</div>
-<div id="instalar-r" class="section level2">
-<h2><span class="header-section-number">1.7</span> Instalar R</h2>
-<p>Para instalar R debemos dirigirnos a la colección de paquetes en CRAN (del inglés, Comprehensive R Archive Network). CRAN es un repositorio global donde se puede acceder al software y a los paquetes que la comunidad produce. Veremos pronto que R provee limitada funcionalidad de base y los paquetes son una parte fundamental del uso diario.</p>
-<ol style="list-style-type: decimal">
-<li>La instalación comienza entrando en <code>https://cran.r-project.org/</code></li>
-<li>Seleccionar el link correcto de descarga. El link depende del sistema operativo.</li>
-</ol>
-<div class="figure">
-<img src="img/CRAN_download.png" alt="Links para descargar R en CRAN" />
-<p class="caption">Links para descargar R en CRAN</p>
-</div>
-<ol style="list-style-type: decimal">
-<li>Hacer clic en <em>Install R for the first time</em> (instalar R por primera vez).</li>
-</ol>
-<div class="figure">
-<img src="img/Windows_First.png" alt="Instalar por primera vez" />
-<p class="caption">Instalar por primera vez</p>
-</div>
-<ol style="list-style-type: decimal">
-<li>Hacer clic en <em>Download R 3.4.3 for Windows</em> para descargar el ejecutable. Al momento de escribir este libro la versión 3.4.3 es la última disponible en CRAN.</li>
-</ol>
-<div class="figure">
-<img src="img/Windows_download.png" alt="Descargar" />
-<p class="caption">Descargar</p>
-</div>
-<ol style="list-style-type: decimal">
-<li>Instalar desde el <code>.exe</code> (El cuádro de dialogo permite seleccionar idioma español).</li>
-</ol>
-<div id="terminal-de-r" class="section level3">
-<h3><span class="header-section-number">1.7.1</span> Terminal de R</h3>
-<p>Si fantaseamos con escribir desde un terminal, es posible ejecutar R de ese modo. En mi caso, el acceso al terminal se encuentra en <code>C:\Program Files\R\R-3.4.0\bin</code> y la aplicación es <code>Rterm</code>. Como pueden ver, estoy utilizando una versión desactualizada, <code>R version 3.4.0 (2017-04-21) -- &quot;You Stupid Darkness&quot;</code>.</p>
-<div class="figure">
-<img src="img/R_term.PNG" alt="Terminal de R en mi sistema" />
-<p class="caption">Terminal de R en mi sistema</p>
-</div>
-</div>
-<div id="interfaz-grafica" class="section level3">
-<h3><span class="header-section-number">1.7.2</span> Interfaz gráfica</h3>
-<p>Si bien el terminal (o <em>consola</em>) es seductor, en muchas ocasiones es conveniente tener una interfaz gráfica. Podemos acceder a la interfaz <code>RGui</code> desde <code>C:\Program Files\R\R-3.4.0\bin\i386</code> o directamente si hemos creado un acceso directo en el escritorio durante nuestra instalación. La interfaz gráfica se ve de este modo:</p>
-<div class="figure">
-<img src="img/RGui.PNG" alt="Interfaz Gráfica de R" />
-<p class="caption">Interfaz Gráfica de R</p>
-</div>
-<p>Como podemos ver, la interfaz permite acceso a mayores opciones pero, en esencia, se asemeja al terminal. Afortunadamente, existe una versión ampliamente mejorada de esta experiencia, se llama Rstudio (ver Instalar Rstudio). Rstudio es la interfaz gráfica que utilizaremos en este libro.</p>
-</div>
-</div>
-<div id="instalar-rstudio" class="section level2">
-<h2><span class="header-section-number">1.8</span> Instalar Rstudio</h2>
-<p>Rstudio es un software que integra una serie de herramientas gráficas y variabilidad de opciones a R. De este modo, ganamos versatilidad y comodidad en el uso. En el día a día, abrir Rstudio es, a fines prácticos, abrir R. Para instalar Rstudio, podemos seguir los siguientes pasos:</p>
-<ol style="list-style-type: decimal">
-<li>Ir a <code>https://www.rstudio.com/products/rstudio/download/</code></li>
-<li>Hacer clic en Descargar software.</li>
-<li>Seleccionar la version compatible con el sistema operativo.</li>
-<li>Instalar desde el <code>.exe</code> descargado.</li>
-</ol>
-<div class="figure">
-<img src="img/Rstudio_download.PNG" alt="Descargar Rstudio" />
-<p class="caption">Descargar Rstudio</p>
-</div>
-<div id="la-experiencia" class="section level3">
-<h3><span class="header-section-number">1.8.1</span> La experiencia</h3>
-<p>Al abrir Rstudio nos encontraremos con un programa que tiene principalmente dos áreas, una de entrada (consola) y una de salida (exploradores):</p>
-<div class="figure">
-<img src="img/Rstudio_open.PNG" alt="Rstudio al abrir" />
-<p class="caption">Rstudio al abrir</p>
-</div>
-<p>Podemos hacer un intento rápido para graficar el histograma de una distribución Normal con media 0 y desvío estándar 1. Puedes copiar y pegar el siguiente código en la consola.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
-ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
-<span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
-     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
-<p><img src="01-Introduccion_files/figure-html/hist_ejemplo-1.png" width="672" /></p>
-<p>En la ventana de Rstudio se vería así:</p>
-<div class="figure">
-<img src="img/Rstudio_hist.png" alt="Así se ve en Rstudio" />
-<p class="caption">Así se ve en Rstudio</p>
-</div>
-<p>Normalmente usaremos Rstudio con 4 zonas principales:</p>
-<ul>
-<li>Editor de scripts.</li>
-<li>Terminal o consola.</li>
-<li>Explorador de entorno e historial.</li>
-<li>Explorador de archivos y gráficos.</li>
-</ul>
-<div class="figure">
-<img src="img/Rstudio_script.PNG" alt="Rstudio al iniciar un script" />
-<p class="caption">Rstudio al iniciar un script</p>
-</div>
-<p>En los próximos capítulos ahondaremos en la funcionalidad de cada uno.</p>
-</div>
-<div id="preferencias" class="section level3">
-<h3><span class="header-section-number">1.8.2</span> Preferencias</h3>
-<p>Rstudio permite personalizar la <em>experiencia R</em> de modo de obtener virtualmente infinitas combinaciones. Para mayor información visitar la página de <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">Rstudio</a></p>
-</div>
-</div>
-<div id="resumen" class="section level2">
-<h2><span class="header-section-number">1.9</span> Resumen</h2>
-<ul>
-<li>La organización del análisis estadístico procede <code>Lectura &gt; Modelado &gt; Comunicación</code></li>
-<li>R es un lenguaje de programación orientado a objetos que permite realizar las tres etapas.</li>
-<li>El software R es de dedistribución gratuita y con funcionalidad dividida en:</li>
-<li><em>Base R</em>.</li>
-<li>Paquetes externos descargados de un repositorio.<br />
-</li>
-<li>Rstudio es una interfaz gráfica gratuita que permite trabajar con R.</li>
-</ul>
-
-</div>
-</div>
-<div class="footnotes">
+<div id="prefacio" class="section level1 unnumbered">
+<h1>Prefacio</h1>
+<p>R es quizás el lenguaje más desarrollado para realizar análisis exploratorios de datos y estadística. Debido a que posee una naturaleza dinámica, gratuita, <em>open-source</em>, y una comunidad que trabaja activamente en incrementar las posibilidades del lenguage, es un candidato natural para ser utilizado tanto en academia como en ámbitos profesionales.</p>
+<p>Creo que no exajero al decir que aprender R cambió mi vida, me abrió los ojos a un mundo de posibilidades que continúo explorando. Escribo porque tengo deseo de devolver lo que la comunidad de R me ha regalado. Escribo en español porque es mi idioma nativo y porque siento que puedo contribuir a reducir la barrera del lenguaje inglés, que complica el aprendizaje de cualquier lenguaje de programación.</p>
+<p>Escribiendo este libro me di cuenta de que no es trivial encontrar material de referencia en relación a R (o estadística) enteramente en español. Mi objetivo principal es abrir la puerta, facilitar que hispanohablantes aprendan R. La curva de aprendizaje es empinada, aconsejo abrocharse el cinturón de seguridad y abrazar el camino. Este libro es un experimento e invita a la experimentación. Adelante.</p>
 <hr />
-<ol start="1">
-<li id="fn1"><p>Mayor descripción en lenguajes de programación <a href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n">aquí</a>.<a href="introduccion.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Historia e información sobre <a href="introduccion.html#r">R</a>(<a href="https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)">https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)</a>. Para aquellos curiosos que tienen una consola a mano y se aventuran al inglés: <code>contributors()</code><a href="introduccion.html#fnref2">↩</a></p></li>
-<li id="fn3"><p>La traducción es de mi autoría, la información original en inglés puede encontrarse <a href="https://www.r-project.org/foundation/">aquí</a>.<a href="introduccion.html#fnref3">↩</a></p></li>
-</ol>
+<p>Este libro está en construcción y planeo continuar actualizándolo con el tiempo.</p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="primeros-pasos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+<a href="introduccion.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

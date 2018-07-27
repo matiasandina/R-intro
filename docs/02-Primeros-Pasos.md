@@ -276,7 +276,9 @@ lapply(muchos_paquetes, function(x) require(x, character.only = T))
 
 Volveremos sobre este ejemplo en el futuro cuando veamos la utilidad de las funciones de tipo `apply`.
 
+## Recursos
 
+* Un buen manual en español [aquí](https://bookdown.org/jboscomendoza/r-principiantes/)
 
 [^tidylink]: La página oficial de **tidyverse** y los paquetes que contiene está en ingles [aquí](https://www.tidyverse.org/packages/) 
 [^recomendacion]: Notar los espacios antes y despues del operador `<-`. Esto es intencional y es aconsejable como *buenas prácticas* a la hora de escribir. Cuando tenemos muchas líneas de código es más agradable a la vista y facilita la lectura.
