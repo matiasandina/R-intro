@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introducción a estadística con R</title>
+  <meta name="description" content="Introducción a estadística con R">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introducción a estadística con R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://matiasandina.netlify.com/ /" />
+  
+  
+  <meta name="github-repo" content="matiasandina/R-intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introducción a estadística con R" />
+  
+  
+  
+
+<meta name="author" content="Matias Andina">
+
+
+<meta name="date" content="2018-07-25">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="introduccion.html">
+<link rel="next" href="leer-datos.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a estadística R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="prefacio.html"><a href="prefacio.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#terminos"><i class="fa fa-check"></i><b>1.1</b> Términos</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#donde-encontrar-ayuda"><i class="fa fa-check"></i><b>1.2</b> Dónde encontrar ayuda</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#sistema-operativo"><i class="fa fa-check"></i><b>1.3</b> Sistema Operativo</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#directorios"><i class="fa fa-check"></i><b>1.4</b> Directorios</a></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#traduccion-de-contenido"><i class="fa fa-check"></i><b>1.5</b> Traducción de contenido</a></li>
+<li class="chapter" data-level="1.6" data-path="introduccion.html"><a href="introduccion.html#r"><i class="fa fa-check"></i><b>1.6</b> R</a></li>
+<li class="chapter" data-level="1.7" data-path="introduccion.html"><a href="introduccion.html#instalar-r"><i class="fa fa-check"></i><b>1.7</b> Instalar R</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduccion.html"><a href="introduccion.html#terminal-de-r"><i class="fa fa-check"></i><b>1.7.1</b> Terminal de R</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduccion.html"><a href="introduccion.html#interfaz-grafica"><i class="fa fa-check"></i><b>1.7.2</b> Interfaz gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduccion.html"><a href="introduccion.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.8</b> Instalar Rstudio</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduccion.html"><a href="introduccion.html#la-experiencia"><i class="fa fa-check"></i><b>1.8.1</b> La experiencia</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduccion.html"><a href="introduccion.html#preferencias"><i class="fa fa-check"></i><b>1.8.2</b> Preferencias</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduccion.html"><a href="introduccion.html#resumen"><i class="fa fa-check"></i><b>1.9</b> Resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros Pasos</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#ejecutar-codigo"><i class="fa fa-check"></i><b>2.1</b> Ejecutar código</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#crear-objetos"><i class="fa fa-check"></i><b>2.2</b> Crear Objetos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#el-operador--"><i class="fa fa-check"></i><b>2.2.1</b> El operador <code>&lt;-</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#clases-de-objetos-en-r"><i class="fa fa-check"></i><b>2.3</b> Clases de objetos en R</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-pasos.html"><a href="primeros-pasos.html#errores-comunes"><i class="fa fa-check"></i><b>2.4</b> Errores comunes</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-pasos.html"><a href="primeros-pasos.html#instalar-y-cargar-paquetes"><i class="fa fa-check"></i><b>2.5</b> Instalar y cargar paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leer-datos.html"><a href="leer-datos.html"><i class="fa fa-check"></i><b>3</b> Leer Datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="leer-datos.html"><a href="leer-datos.html#datasets-de-base"><i class="fa fa-check"></i><b>3.1</b> Datasets de base</a></li>
+<li class="chapter" data-level="3.2" data-path="leer-datos.html"><a href="leer-datos.html#importar-datos-de-manera-manual"><i class="fa fa-check"></i><b>3.2</b> Importar datos de manera manual</a></li>
+<li class="chapter" data-level="3.3" data-path="leer-datos.html"><a href="leer-datos.html#archivos-de-texto"><i class="fa fa-check"></i><b>3.3</b> Archivos de texto</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="leer-datos.html"><a href="leer-datos.html#importar-multiples-archivos-de-texto"><i class="fa fa-check"></i><b>3.3.1</b> Importar múltiples archivos de texto</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="leer-datos.html"><a href="leer-datos.html#otros-formatos"><i class="fa fa-check"></i><b>3.4</b> Otros formatos</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="leer-datos.html"><a href="leer-datos.html#sas"><i class="fa fa-check"></i><b>3.4.1</b> SAS</a></li>
+<li class="chapter" data-level="3.4.2" data-path="leer-datos.html"><a href="leer-datos.html#spss"><i class="fa fa-check"></i><b>3.4.2</b> SPSS</a></li>
+<li class="chapter" data-level="3.4.3" data-path="leer-datos.html"><a href="leer-datos.html#excel"><i class="fa fa-check"></i><b>3.4.3</b> Excel</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html"><i class="fa fa-check"></i><b>4</b> Exploración de Datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#graficos-de-base"><i class="fa fa-check"></i><b>4.1</b> Gráficos de base</a></li>
+<li class="chapter" data-level="4.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#ggplot2"><i class="fa fa-check"></i><b>4.2</b> ggplot2</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#entendiendo-aes"><i class="fa fa-check"></i><b>4.2.1</b> Entendiendo <code>aes()</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-geom"><i class="fa fa-check"></i><b>4.2.2</b> Explorando <code>geom</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-facet_wrap"><i class="fa fa-check"></i><b>4.2.3</b> Explorando <code>facet_wrap</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#cowplot"><i class="fa fa-check"></i><b>4.2.4</b> Cowplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#caso-de-estudio"><i class="fa fa-check"></i><b>4.3</b> Caso de estudio</a></li>
+<li class="chapter" data-level="4.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#resumen-1"><i class="fa fa-check"></i><b>4.4</b> Resumen</a></li>
+<li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
+<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.5.1</b> Supuestos</a></li>
+<li class="chapter" data-level="5.5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.5.2</b> Análisis de supuestos en R</a></li>
+<li class="chapter" data-level="5.5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.5.3</b> Visualizando residuos en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.6</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.7</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.8</b> Resumen</a></li>
+<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-1"><i class="fa fa-check"></i><b>5.9</b> Recursos</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a estadística con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="primeros-pasos" class="section level1">
+<h1><span class="header-section-number">Capítulo 2</span> Primeros Pasos</h1>
+<p>Como se mencionó en el capítulo anterior, R contiene funcionalidad limitada de base. Por eso, una vez instalados los requisitos mínimos, debemos comenzar a instalar aquellos paquetes útiles. Los paquetes son grupos de funciones útiles, que pueden usarse de forma repetida y reproducible entre usuarios. En particular, recomiendo fuertemente instalar <strong>tidyverse</strong>, un compendio de paquetes para hacer manejo y visualización de datos.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<div id="ejecutar-codigo" class="section level2">
+<h2><span class="header-section-number">2.1</span> Ejecutar código</h2>
+<p>Ejecutar (o correr) código en R puede realizarse desde la consola o desde el editor de scrips. En el editor, podemos seleccionar las líneas de código y presionar <code>Ctr+Enter</code> para que las líneas seleccionadas se ejecuten.</p>
+</div>
+<div id="crear-objetos" class="section level2">
+<h2><span class="header-section-number">2.2</span> Crear Objetos</h2>
+<p>R es un lenguaje orientado a objetos. Los objetos pueden ser usados para guardar valores y pueden modificarse (mediante <em>funciones</em>) como por ejemplo sumar dos objetos o calcular la media.</p>
+<div id="el-operador--" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> El operador <code>&lt;-</code></h3>
+<p>Para crear objetos <em>asignamos</em> (con el operador <code>&lt;-</code>) valores a una variable. Por ejemplo, creemos un vector <code>x</code> que vaya de 1 a 10.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Crear un vector en secuencia de 1 a 10</span>
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+<span class="co"># Ver el vector</span>
+x</code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>En general, podemos pensarlo de este modo:</p>
+<p><code>nombre_del_objeto &lt;- valor_del_objeto</code><a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
+<p>Las operaciones algebráicas con R siguen reglas matemáticas y son aplicadas a los elementos del vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sumar </span>
+x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Multiplicar </span>
+
+x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Operaciones combinadas</span>
+
+(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="fl">1.5</span></code></pre></div>
+<pre><code>##  [1]  1.333333  3.333333  6.666667 11.333333 17.333333 24.666667 33.333333
+##  [8] 43.333333 54.666667 67.333333</code></pre>
+</div>
+</div>
+<div id="clases-de-objetos-en-r" class="section level2">
+<h2><span class="header-section-number">2.3</span> Clases de objetos en R</h2>
+<p>Hasta ahora, nuestro objeto <code>x</code> es un simple vector de 1 dimensión y es de tipo entero o <code>integer</code> (puedes verificarlo con <code>class(x)</code> en la consola). La riqueza de R radica en la posibilidad de trabajar con distintas clases de objetos.</p>
+<p>R tiene cinco clases básicas de vectores:</p>
+<ul>
+<li>character (letras)</li>
+<li>numeric (números reales)</li>
+<li>integer (números enteros)</li>
+<li>complex (números complejos)</li>
+<li>logical (verdadero/falso o <code>True/False</code>)</li>
+</ul>
+<p>Lo más importante es que los vectores sólo pueden contener elementos de la misma clase. Por ejemplo, no es posible tener un vector de la siguiente forma: <code>c(1, &quot;perro&quot;, FALSE, &quot;gato&quot;, 1.5)</code> pero sí es posible tenerlo de esta forma: <code>c(&quot;1&quot;, &quot;perro&quot;, &quot;FALSE&quot;, &quot;gato&quot;, &quot;1.5&quot;)</code>. En este caso, aunque bastante inconveniente, todos los elementos son de tipo <code>character</code>. R automaticamente fuerza el resultado para no obtener errores (en un proceso llamado coerción). En nuestro ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Crear un vector con problemas de clases</span>
+prueba &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;perro&quot;</span>, <span class="ot">FALSE</span>, <span class="st">&quot;gato&quot;</span>, <span class="fl">1.5</span>)
+<span class="co"># Ver el vector</span>
+prueba</code></pre></div>
+<pre><code>## [1] &quot;1&quot;     &quot;perro&quot; &quot;FALSE&quot; &quot;gato&quot;  &quot;1.5&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Clase del vector</span>
+<span class="kw">class</span>(prueba)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Un problema de la coerción de datos es que no es posible para todos los casos. Allí, R agrega <code>NA</code>. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Transformar nuestro vector a numérico</span>
+<span class="kw">as.numeric</span>(prueba)</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] 1.0  NA  NA  NA 1.5</code></pre>
+<p>Los <code>NAs</code> (del inglés <em>not available</em>) son datos faltantes. Nuestros datos reales pueden contener <code>NA</code> y normalmente es muy útil tenerlos en cuenta. Para chequear si un vector contiene <code>NA</code> podemos usar la funcion <code>is.na()</code>, por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Nuestro vector previo</span>
+prueba_num &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(prueba)</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Chequeamos si tiene NA</span>
+<span class="kw">is.na</span>(prueba_num)</code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<p>Podemos tener <code>NA</code> de tipo <code>character</code>, cuando un vector de tipo <code>character</code> tiene espacios vacíos. Por ejemplo,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Nuestro vector previo</span>
+vector_palabra &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lo esencial es&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;a los ojos&quot;</span>)
+<span class="co"># Chequeamos si tiene NA</span>
+<span class="kw">is.na</span>(vector_palabra)</code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
+<p>Además, podemos contar con vectores que contienen palabras y guardan un orden de niveles como los factores (<code>factor</code>). Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creemos un factor con niveles</span>
+grupo_altura &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;mediano&quot;</span>, <span class="st">&quot;pequeño&quot;</span>, <span class="st">&quot;grande&quot;</span>, <span class="st">&quot;muy grande&quot;</span>),
+                       <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;pequeño&quot;</span>, <span class="st">&quot;mediano&quot;</span>, <span class="st">&quot;grande&quot;</span>, <span class="st">&quot;muy grande&quot;</span>))
+
+<span class="co"># Veamos el factor</span>
+grupo_altura</code></pre></div>
+<pre><code>## [1] mediano    pequeño    grande     muy grande
+## Levels: pequeño mediano grande muy grande</code></pre>
+<p>Una situación en la que nos importa el orden es al graficar los datos. Si no tenemos el grupo como <code>character</code> (o como <code>factor</code> con orden incorrecto), obtendremos un gráfico cuyo eje <code>x</code> está ordenado alfabéticamente en vez de tener el orden correcto.</p>
+<p>Finalmente, vectores vacíos (<code>NULL</code>) nos permiten hacer ciertas operaciones más complejas (ver más adelante).</p>
+<p>Otras clases de objetos incluyen listas (<code>list</code>), matrices (<code>matrix</code>), tablas de datos (<code>data.frame</code>) y modelos (por ejemplo <code>lm</code> para modelos lineales). Las distintas clases de objetos irán apareciendo a lo largo del texto.</p>
+</div>
+<div id="errores-comunes" class="section level2">
+<h2><span class="header-section-number">2.4</span> Errores comunes</h2>
+<p>La curva de aprendizaje de R es inclinada. La barrera del lenguaje es real. Por ejemplo, supongamos que queremos ordenar nuestro vector <code>x</code> de modo descendente (de 10 a 1). Para ello sería muy conveniente saber que <em>sort</em> es la forma de decir <em>ordenar</em> en inglés. Luego, los programadores probablemente incluyeron una función <code>sort()</code>.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Usamos decreasing=T para marcar orden descendente </span>
+<span class="kw">sort</span>(x, <span class="dt">decreasing=</span>T)</code></pre></div>
+<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
+<p>Además de la barrera del lenguaje, es muy común realizar errores de tipeo. La realidad es que no podemos enojarnos con la máquina cuando ocurren, su trabajo es ser exacta, no leernos la mente <code>:)</code>. Veamos un ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Tengamos la palabra &#39;perro&#39; en un objeto</span>
+palabra &lt;-<span class="st"> &quot;perro&quot;</span>
+
+<span class="co"># Hagamos una lista de palabras</span>
+palabras &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;hola&#39;</span>, <span class="st">&#39;como&#39;</span>,<span class="st">&#39;estas&#39;</span>,<span class="st">&#39;?&#39;</span>)</code></pre></div>
+<p>Un error común será pedir <code>palabra</code> cuando queremos <code>palabras</code> y vice versa. Además, tendremos problemas de longitud (1 vs 4) que pueden romper el código o provocar errores inesperados. Estos problemas surgen cuando usamos dIsTinTaS FoRmAs De EsCrIbIR. R es sensible a cambios de mayúsculas, por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Pidamos palabra de nuevo</span>
+Palabra</code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;Palabra&#39; not found</code></pre>
+<p>El error indica que no tenemos <code>Palabra</code> en el entorno, lo cual es cierto! Cuando manejamos muchos objetos, estos errores tienden a pasar desapercibidos y provocar dolores de cabeza. Estos errores son muy comunes cuando nombramos mal los objetos o hacemos abuso de copiar y pegar. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">variable1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+variable2 &lt;-<span class="st"> </span>variable1 <span class="op">+</span><span class="st"> </span><span class="dv">5</span> 
+variable3 &lt;-<span class="st"> </span>variable1 <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="co"># Error! era variable2 pero no me di cuenta</span>
+
+<span class="co"># La confusión se propaga de manera silenciosa!!!!</span>
+variable4 &lt;-<span class="st"> </span>variable1 <span class="op">*</span><span class="st"> </span>variable2 <span class="op">*</span><span class="st"> </span>variable3</code></pre></div>
+<p>Nombrar objetos es difícil! Aunque conlleve nombres más largos, recomiendo nombrar los objetos de la forma más descriptiva posible<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>. Recuerden que su futuro ser (aquél que quiera usar el código unos meses después de haberlo escrito) no tendrá la menor idea de cómo llamó a las variables.Por ejemplo,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Mala práctica</span>
+<span class="co"># Nombrando con única letra</span>
+A &lt;-<span class="st"> </span><span class="dv">5</span>
+B &lt;-<span class="st"> </span><span class="fl">9.8</span>
+
+C &lt;-<span class="st"> </span>A <span class="op">*</span><span class="st"> </span>B 
+
+<span class="co"># Mejor</span>
+<span class="co"># (sin acentos)</span>
+masa &lt;-<span class="st"> </span><span class="dv">5</span>
+aceleracion &lt;-<span class="st"> </span><span class="fl">9.8</span>
+
+fuerza &lt;-<span class="st"> </span>masa <span class="op">*</span><span class="st"> </span>aceleracion</code></pre></div>
+<p>Un caso muy particular es el de los caracteres protegidos por R. Por ejemplo, <code>c</code> (operación para concatenar objetos), <code>t</code> (operación para transponer), <code>T</code> (atajo para el concepto lógico verdadero o <code>TRUE</code>) o <code>pi</code> (constante <span class="math inline">\(\pi\)</span>), entre otros. Utilizar estos valores crea inconvenientes con las funciones nativas del sistema (le creamos a R el conflicto entre tranponer un objeto o utilizar el objeto <code>t</code>). Una ventaja de tener idioma nativo distinto de inglés es que nos permite llamar a los objetos en castellano sin crear conflicto con las funciones del sistema (por ejemplo, podemos crear el objeto <code>VERDADERO</code> sin remordimientos).</p>
+<p>Parte de realizar progresos con el lenguage (y con nuestro deseado análisis de datos) es lograr dialogar en los términos que R entiende.</p>
+<blockquote>
+<p>Es completamente normal sentirse frustrado con R. Adelante!</p>
+</blockquote>
+</div>
+<div id="instalar-y-cargar-paquetes" class="section level2">
+<h2><span class="header-section-number">2.5</span> Instalar y cargar paquetes</h2>
+<p>Para instalar paquetes desde CRAN podemos correr:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>En este caso, la última versión de <strong>tidyverse</strong> (la última versión de los paquetes que lo conforman) será incorporadas a nuestra librería de paquetes. Instalar paquetes debe hacerse únicamente la primera vez. A partir de ahí, debemos indicarle a R que deseamos que esas funciones estén disponibles al iniciar el programa. La función <code>library()</code> es la que utilizamos para cargar paquetes, por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>Para cargar múltiples paquetes a la misma vez, es posible realizar una lista de paquetes y llamar a <code>library()</code> de manera recursiva.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">muchos_paquetes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;dplyr&#39;</span>, <span class="st">&#39;tidyr&#39;</span>, <span class="st">&#39;maptools&#39;</span>)
+
+<span class="kw">lapply</span>(muchos_paquetes, <span class="cf">function</span>(x) <span class="kw">require</span>(x, <span class="dt">character.only =</span> T))</code></pre></div>
+<p>Volveremos sobre este ejemplo en el futuro cuando veamos la utilidad de las funciones de tipo <code>apply</code>.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>La página oficial de <strong>tidyverse</strong> y los paquetes que contiene está en ingles <a href="https://www.tidyverse.org/packages/">aquí</a><a href="primeros-pasos.html#fnref4">↩</a></p></li>
+<li id="fn5"><p>Notar los espacios antes y despues del operador <code>&lt;-</code>. Esto es intencional y es aconsejable como <em>buenas prácticas</em> a la hora de escribir. Cuando tenemos muchas líneas de código es más agradable a la vista y facilita la lectura.<a href="primeros-pasos.html#fnref5">↩</a></p></li>
+<li id="fn6"><p>Si bien la barrera es real, no debemos entrar en pánico. Siempre intenten en Google (búsqueda o traductor) para entender las funciones.<a href="primeros-pasos.html#fnref6">↩</a></p></li>
+<li id="fn7"><p>Muchas veces yo caigo en la tentación y nombro gráficos con una sola letra (o letra y numero) <code>p1, p2, ...</code>.<a href="primeros-pasos.html#fnref7">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduccion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="leer-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

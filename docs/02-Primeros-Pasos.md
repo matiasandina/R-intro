@@ -1,0 +1,284 @@
+# Primeros Pasos
+
+Como se mencionó en el capítulo anterior, R contiene funcionalidad limitada de base. Por eso, una vez instalados los requisitos mínimos, debemos comenzar a instalar aquellos paquetes útiles. Los paquetes son grupos de funciones útiles, que pueden usarse de forma repetida y reproducible entre usuarios. En particular, recomiendo fuertemente instalar **tidyverse**, un compendio de paquetes para hacer manejo y visualización de datos [^tidylink].
+
+## Ejecutar código
+
+Ejecutar (o correr) código en R puede realizarse desde la consola o desde el editor de scrips. En el editor, podemos seleccionar las líneas de código y presionar `Ctr+Enter` para que las líneas seleccionadas se ejecuten.
+
+## Crear Objetos
+
+R es un lenguaje orientado a objetos. Los objetos pueden ser usados para guardar valores y pueden modificarse (mediante *funciones*) como por ejemplo sumar dos objetos o calcular la media. 
+
+### El operador `<-`
+
+Para crear objetos *asignamos* (con el operador `<-`) valores a una variable. Por ejemplo, creemos un vector `x` que vaya de 1 a 10.
+
+
+```r
+# Crear un vector en secuencia de 1 a 10
+x <- 1:10
+# Ver el vector
+x
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+En general, podemos pensarlo de este modo:
+
+`nombre_del_objeto <- valor_del_objeto`[^recomendacion]
+
+Las operaciones algebráicas con R siguen reglas matemáticas y son aplicadas a los elementos del vector.
+
+
+```r
+# Sumar 
+x + 1
+```
+
+```
+##  [1]  2  3  4  5  6  7  8  9 10 11
+```
+
+```r
+# Multiplicar 
+
+x * 2
+```
+
+```
+##  [1]  2  4  6  8 10 12 14 16 18 20
+```
+
+```r
+# Operaciones combinadas
+
+(x^2 + 1) / 1.5
+```
+
+```
+##  [1]  1.333333  3.333333  6.666667 11.333333 17.333333 24.666667 33.333333
+##  [8] 43.333333 54.666667 67.333333
+```
+
+
+## Clases de objetos en R
+
+Hasta ahora, nuestro objeto `x` es un simple vector de 1 dimensión y es de tipo entero o `integer` (puedes verificarlo con `class(x)` en la consola). La riqueza de R radica en la posibilidad de trabajar con distintas clases de objetos.
+
+R tiene cinco clases básicas de vectores:  
+
+* character (letras)
+* numeric (números reales)
+* integer (números enteros)
+* complex (números complejos)
+* logical (verdadero/falso o `True/False`)
+
+Lo más importante es que los vectores sólo pueden contener elementos de la misma clase. Por ejemplo, no es posible tener un vector de la siguiente forma: `c(1, "perro", FALSE, "gato", 1.5)` pero sí es posible tenerlo de esta forma: `c("1", "perro", "FALSE", "gato", "1.5")`. En este caso, aunque bastante inconveniente, todos los elementos son de tipo `character`. R  automaticamente fuerza el resultado para no obtener errores (en un proceso llamado coerción). En nuestro ejemplo:
+
+
+```r
+# Crear un vector con problemas de clases
+prueba <- c(1, "perro", FALSE, "gato", 1.5)
+# Ver el vector
+prueba
+```
+
+```
+## [1] "1"     "perro" "FALSE" "gato"  "1.5"
+```
+
+```r
+# Clase del vector
+class(prueba)
+```
+
+```
+## [1] "character"
+```
+
+Un problema de la coerción de datos es que no es posible para todos los casos. Allí, R agrega `NA`. Por ejemplo:
+
+
+```r
+# Transformar nuestro vector a numérico
+as.numeric(prueba)
+```
+
+```
+## Warning: NAs introduced by coercion
+```
+
+```
+## [1] 1.0  NA  NA  NA 1.5
+```
+
+Los `NAs` (del inglés *not available*) son datos faltantes. Nuestros datos reales pueden contener `NA` y normalmente es muy útil tenerlos en cuenta. Para chequear si un vector contiene `NA` podemos usar la funcion `is.na()`, por ejemplo:
+
+
+```r
+# Nuestro vector previo
+prueba_num <- as.numeric(prueba)
+```
+
+```
+## Warning: NAs introduced by coercion
+```
+
+```r
+# Chequeamos si tiene NA
+is.na(prueba_num)
+```
+
+```
+## [1] FALSE  TRUE  TRUE  TRUE FALSE
+```
+
+Podemos tener `NA` de tipo `character`, cuando un vector de tipo `character` tiene espacios vacíos. Por ejemplo,
+
+
+```r
+# Nuestro vector previo
+vector_palabra <- c("Lo esencial es", NA, "a los ojos")
+# Chequeamos si tiene NA
+is.na(vector_palabra)
+```
+
+```
+## [1] FALSE  TRUE FALSE
+```
+
+Además, podemos contar con vectores que contienen palabras y guardan un orden de niveles como los factores (`factor`). Por ejemplo:
+
+
+```r
+# Creemos un factor con niveles
+grupo_altura <- factor(c("mediano", "pequeño", "grande", "muy grande"),
+                       levels=c("pequeño", "mediano", "grande", "muy grande"))
+
+# Veamos el factor
+grupo_altura
+```
+
+```
+## [1] mediano    pequeño    grande     muy grande
+## Levels: pequeño mediano grande muy grande
+```
+
+Una situación en la que nos importa el orden es al graficar los datos. Si no tenemos el grupo como `character`  (o como `factor` con orden incorrecto), obtendremos un gráfico cuyo eje `x` está ordenado alfabéticamente en vez de tener el orden correcto.  
+
+Finalmente, vectores vacíos (`NULL`) nos permiten hacer ciertas operaciones más complejas (ver más adelante).  
+
+Otras clases de objetos incluyen listas (`list`), matrices (`matrix`), tablas de datos (`data.frame`) y modelos (por ejemplo `lm` para modelos lineales). Las distintas clases de objetos irán apareciendo a lo largo del texto.
+
+## Errores comunes
+
+La curva de aprendizaje de R es inclinada. La barrera del lenguaje es real. Por ejemplo, supongamos que queremos ordenar nuestro vector `x` de modo descendente (de 10 a 1). Para ello sería muy conveniente saber que *sort* es la forma de decir *ordenar* en inglés. Luego, los programadores probablemente incluyeron una función `sort()`.[^referencias-esp]
+
+
+```r
+# Usamos decreasing=T para marcar orden descendente 
+sort(x, decreasing=T)
+```
+
+```
+##  [1] 10  9  8  7  6  5  4  3  2  1
+```
+
+Además de la barrera del lenguaje, es muy común realizar errores de tipeo. La realidad es que no podemos enojarnos con la máquina cuando ocurren, su trabajo es ser exacta, no leernos la mente `:)`. Veamos un ejemplo:
+
+
+```r
+# Tengamos la palabra 'perro' en un objeto
+palabra <- "perro"
+
+# Hagamos una lista de palabras
+palabras <- c('hola', 'como','estas','?')
+```
+
+Un error común será pedir `palabra` cuando queremos `palabras` y vice versa. Además, tendremos problemas de longitud (1 vs 4) que pueden romper el código o provocar errores inesperados. Estos problemas surgen cuando usamos dIsTinTaS FoRmAs De EsCrIbIR. R es sensible a cambios de mayúsculas, por ejemplo:   
+
+
+```r
+# Pidamos palabra de nuevo
+Palabra
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'Palabra' not found
+```
+
+
+El error indica que no tenemos `Palabra` en el entorno, lo cual es cierto! Cuando manejamos muchos objetos, estos errores tienden a pasar desapercibidos y provocar dolores de cabeza. Estos errores son muy comunes cuando nombramos mal los objetos o hacemos abuso de copiar y pegar. Por ejemplo:
+
+
+```r
+variable1 <- 1:10
+variable2 <- variable1 + 5 
+variable3 <- variable1 + 5 # Error! era variable2 pero no me di cuenta
+
+# La confusión se propaga de manera silenciosa!!!!
+variable4 <- variable1 * variable2 * variable3
+```
+
+Nombrar objetos es difícil! Aunque conlleve nombres más largos, recomiendo nombrar los objetos de la forma más descriptiva posible[^tentacion]. Recuerden que su futuro ser (aquél que quiera usar el código unos meses después de haberlo escrito) no tendrá la menor idea de cómo llamó a las variables.Por ejemplo,
+
+
+```r
+# Mala práctica
+# Nombrando con única letra
+A <- 5
+B <- 9.8
+
+C <- A * B 
+
+# Mejor
+# (sin acentos)
+masa <- 5
+aceleracion <- 9.8
+
+fuerza <- masa * aceleracion
+```
+
+Un caso muy particular es el de los caracteres protegidos por R. Por ejemplo, `c` (operación para concatenar objetos), `t` (operación para transponer), `T` (atajo para el concepto lógico verdadero o `TRUE`) o  `pi` (constante $\pi$), entre otros. Utilizar estos valores crea inconvenientes con las funciones nativas del sistema (le creamos a R el conflicto entre tranponer un objeto o utilizar el objeto `t`). Una ventaja de tener idioma nativo distinto de inglés es que nos permite llamar a los objetos en castellano sin crear conflicto con las funciones del sistema (por ejemplo, podemos crear el objeto `VERDADERO` sin remordimientos). 
+
+Parte de realizar progresos con el lenguage (y con nuestro deseado análisis de datos) es lograr dialogar en los términos que R entiende.
+
+> Es completamente normal sentirse frustrado con R. Adelante!
+
+## Instalar y cargar paquetes
+
+Para instalar paquetes desde CRAN podemos correr:  
+
+
+```r
+install.packages("tidyverse")
+```
+
+En este caso, la última versión de **tidyverse** (la última versión de los paquetes que lo conforman) será incorporadas a nuestra librería de paquetes. Instalar paquetes debe hacerse únicamente la primera vez. A partir de ahí, debemos indicarle a R que deseamos que esas funciones estén disponibles al iniciar el programa. La función `library()` es la que utilizamos para cargar paquetes, por ejemplo:  
+
+
+
+```r
+library(tidyverse)
+```
+
+Para cargar múltiples paquetes a la misma vez, es posible realizar una lista de paquetes y llamar a `library()` de manera recursiva.
+
+
+```r
+muchos_paquetes <- c('ggplot2', 'dplyr', 'tidyr', 'maptools')
+
+lapply(muchos_paquetes, function(x) require(x, character.only = T))
+```
+
+Volveremos sobre este ejemplo en el futuro cuando veamos la utilidad de las funciones de tipo `apply`.
+
+
+
+[^tidylink]: La página oficial de **tidyverse** y los paquetes que contiene está en ingles [aquí](https://www.tidyverse.org/packages/) 
+[^recomendacion]: Notar los espacios antes y despues del operador `<-`. Esto es intencional y es aconsejable como *buenas prácticas* a la hora de escribir. Cuando tenemos muchas líneas de código es más agradable a la vista y facilita la lectura.
+[^referencias-esp]: Si bien la barrera es real, no debemos entrar en pánico. Siempre intenten en Google (búsqueda o traductor) para entender las funciones.
+[^tentacion]: Muchas veces yo caigo en la tentación y nombro gráficos con una sola letra (o letra y numero) `p1, p2, ...`. 

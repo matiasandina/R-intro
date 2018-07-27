@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introducción a estadística con R</title>
+  <meta name="description" content="Introducción a estadística con R">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introducción a estadística con R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://matiasandina.netlify.com/ /" />
+  
+  
+  <meta name="github-repo" content="matiasandina/R-intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introducción a estadística con R" />
+  
+  
+  
+
+<meta name="author" content="Matias Andina">
+
+
+<meta name="date" content="2018-07-25">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="leer-datos.html">
+<link rel="next" href="modelos-lineales.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a estadística R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="prefacio.html"><a href="prefacio.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#terminos"><i class="fa fa-check"></i><b>1.1</b> Términos</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#donde-encontrar-ayuda"><i class="fa fa-check"></i><b>1.2</b> Dónde encontrar ayuda</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#sistema-operativo"><i class="fa fa-check"></i><b>1.3</b> Sistema Operativo</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#directorios"><i class="fa fa-check"></i><b>1.4</b> Directorios</a></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#traduccion-de-contenido"><i class="fa fa-check"></i><b>1.5</b> Traducción de contenido</a></li>
+<li class="chapter" data-level="1.6" data-path="introduccion.html"><a href="introduccion.html#r"><i class="fa fa-check"></i><b>1.6</b> R</a></li>
+<li class="chapter" data-level="1.7" data-path="introduccion.html"><a href="introduccion.html#instalar-r"><i class="fa fa-check"></i><b>1.7</b> Instalar R</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduccion.html"><a href="introduccion.html#terminal-de-r"><i class="fa fa-check"></i><b>1.7.1</b> Terminal de R</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduccion.html"><a href="introduccion.html#interfaz-grafica"><i class="fa fa-check"></i><b>1.7.2</b> Interfaz gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduccion.html"><a href="introduccion.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.8</b> Instalar Rstudio</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduccion.html"><a href="introduccion.html#la-experiencia"><i class="fa fa-check"></i><b>1.8.1</b> La experiencia</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduccion.html"><a href="introduccion.html#preferencias"><i class="fa fa-check"></i><b>1.8.2</b> Preferencias</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduccion.html"><a href="introduccion.html#resumen"><i class="fa fa-check"></i><b>1.9</b> Resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros Pasos</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#ejecutar-codigo"><i class="fa fa-check"></i><b>2.1</b> Ejecutar código</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#crear-objetos"><i class="fa fa-check"></i><b>2.2</b> Crear Objetos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#el-operador--"><i class="fa fa-check"></i><b>2.2.1</b> El operador <code>&lt;-</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#clases-de-objetos-en-r"><i class="fa fa-check"></i><b>2.3</b> Clases de objetos en R</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-pasos.html"><a href="primeros-pasos.html#errores-comunes"><i class="fa fa-check"></i><b>2.4</b> Errores comunes</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-pasos.html"><a href="primeros-pasos.html#instalar-y-cargar-paquetes"><i class="fa fa-check"></i><b>2.5</b> Instalar y cargar paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leer-datos.html"><a href="leer-datos.html"><i class="fa fa-check"></i><b>3</b> Leer Datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="leer-datos.html"><a href="leer-datos.html#datasets-de-base"><i class="fa fa-check"></i><b>3.1</b> Datasets de base</a></li>
+<li class="chapter" data-level="3.2" data-path="leer-datos.html"><a href="leer-datos.html#importar-datos-de-manera-manual"><i class="fa fa-check"></i><b>3.2</b> Importar datos de manera manual</a></li>
+<li class="chapter" data-level="3.3" data-path="leer-datos.html"><a href="leer-datos.html#archivos-de-texto"><i class="fa fa-check"></i><b>3.3</b> Archivos de texto</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="leer-datos.html"><a href="leer-datos.html#importar-multiples-archivos-de-texto"><i class="fa fa-check"></i><b>3.3.1</b> Importar múltiples archivos de texto</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="leer-datos.html"><a href="leer-datos.html#otros-formatos"><i class="fa fa-check"></i><b>3.4</b> Otros formatos</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="leer-datos.html"><a href="leer-datos.html#sas"><i class="fa fa-check"></i><b>3.4.1</b> SAS</a></li>
+<li class="chapter" data-level="3.4.2" data-path="leer-datos.html"><a href="leer-datos.html#spss"><i class="fa fa-check"></i><b>3.4.2</b> SPSS</a></li>
+<li class="chapter" data-level="3.4.3" data-path="leer-datos.html"><a href="leer-datos.html#excel"><i class="fa fa-check"></i><b>3.4.3</b> Excel</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html"><i class="fa fa-check"></i><b>4</b> Exploración de Datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#graficos-de-base"><i class="fa fa-check"></i><b>4.1</b> Gráficos de base</a></li>
+<li class="chapter" data-level="4.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#ggplot2"><i class="fa fa-check"></i><b>4.2</b> ggplot2</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#entendiendo-aes"><i class="fa fa-check"></i><b>4.2.1</b> Entendiendo <code>aes()</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-geom"><i class="fa fa-check"></i><b>4.2.2</b> Explorando <code>geom</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-facet_wrap"><i class="fa fa-check"></i><b>4.2.3</b> Explorando <code>facet_wrap</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#cowplot"><i class="fa fa-check"></i><b>4.2.4</b> Cowplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#caso-de-estudio"><i class="fa fa-check"></i><b>4.3</b> Caso de estudio</a></li>
+<li class="chapter" data-level="4.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#resumen-1"><i class="fa fa-check"></i><b>4.4</b> Resumen</a></li>
+<li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
+<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.5.1</b> Supuestos</a></li>
+<li class="chapter" data-level="5.5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.5.2</b> Análisis de supuestos en R</a></li>
+<li class="chapter" data-level="5.5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.5.3</b> Visualizando residuos en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.6</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.7</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.8</b> Resumen</a></li>
+<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-1"><i class="fa fa-check"></i><b>5.9</b> Recursos</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a estadística con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploracion-de-datos" class="section level1">
+<h1><span class="header-section-number">Capítulo 4</span> Exploración de Datos</h1>
+<p>Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica.</p>
+<div id="graficos-de-base" class="section level2">
+<h2><span class="header-section-number">4.1</span> Gráficos de base</h2>
+<p>R posee funcionalidad gráfica de base. Con relativa facilidad podemos hacer una gráfica de dos variables (por ejemplo, una hipotética variable respuesta en el tiempo).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tiempo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+respuesta &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>))  
+
+<span class="kw">plot</span>(tiempo,respuesta,
+     <span class="dt">type=</span><span class="st">&#39;b&#39;</span>,
+     <span class="dt">pch=</span><span class="dv">19</span>,
+     <span class="dt">col=</span><span class="st">&quot;black&quot;</span>,
+     <span class="dt">main =</span> <span class="st">&quot;Respuesta vs tiempo&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Respuesta&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>)</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Esta funcionalidad no está limitada a gráficos de puntos y líneas. Por ejemplo, el histograma que figura en el principio del libro fue realizado con la función <code>hist()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
+<span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
+     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Los gráficos de base son geniales para explorar modelos ya que aceptan objetos de tipo <code>lm</code> (ver siguientes capítulos). Si bien es posible realizar gráficos muy bonitos con la funcionalidad de base, incluso gráficas de calidad para publicación impresa, es cierto que la gramática no es sencilla de recordar (o requiere demasiada previsión) y, en muchos casos, es limitada.</p>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">4.2</span> ggplot2</h2>
+<p>Una forma más intuitiva de construir gráficas es utilizar <em>capas</em>. El paquete <code>ggplot2</code> pertenece al <code>tidyverse</code> y es el más utilizado para realizar gráficas de alta calidad en R. A lo largo de la explicación utilizaré el dataset <strong>iris</strong>, que contiene medidas de las ojas de tres especies de plantas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris)</code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Veamos cómo se construye capa por capa un gráfico utilizando <code>ggplot2</code> y los datos de <code>iris</code>. Para entender cómo funciona, es importante entender el argumento <code>aes()</code>, que permite indicar qué pondremos en los ejes <em>XY</em> y además permite . Veamos el ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span>iris,
+       <span class="kw">aes</span>(Sepal.Length, Petal.Length))</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Este gráfico contiene los ejes que especificamos pero no contiene los datos. Para dibujarlos, debemos decirle a <code>ggplot</code> cómo hacerlo (por ejemplo, puntos).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Al parecer, los datos presentan una estructura de asociación entre el largo de los sépalos y el de los pétalos (a mayor largo de sépalos, mayor largo de pétalos). Este dataset contiene un factor <em>Species</em> con tres niveles, <em>setosa</em>, <em>versicolor</em>, <em>virginica</em>. Fácilmente podemos ver si las distintas especies presentan distintas asociaciones. Una forma rápida de visualizarlo es coloreando los puntos según el nivel del factor <em>Species</em>. En <code>ggplot2</code> usamos <code>color = Species</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal (“lm”) en <code>geom_smooth(method = &quot;lm&quot;)</code>. Es clave notar que <code>geom_smooth()</code> posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Como pueden apreciar, incorporar la gramática de <code>ggplot2</code> permite realizar visualizaciones más complejas con menor esfuerzo. La riqueza de este grupo de funciones esta en la gran variedad de funciones <code>geom</code> que podemos incorporar. A lo largo de el libro veremos varias de ellas.</p>
+<div id="entendiendo-aes" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Entendiendo <code>aes()</code></h3>
+<p>En ggplot, <code>aes()</code> hace referencia al contenido estético del gráfico (del ingles <em>aesthetics</em>). Es decir, la función le dará indicios a ggplot2 sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que <code>aes()</code> crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar <code>aes()</code> al llamado de <code>ggplot()</code> estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar <code>aes()</code> en la capa correspondiente. Esto puede parecer confuso, las siguientes líneas de código generan un gráfico que se ve idéntico al que realizamos previamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species)) <span class="co"># Notar diferencia! aes() aparece en geom_point()</span></code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Sin embargo, podemos ver la diferencia al intentar repetir el gráfico con línea de tendencia.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>En este caso <code>geom_smooth()</code> no recibe la orden de agrupar segun <code>Species</code>, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos del primer gráfico de negro a magenta:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Primer gráfico, izquierda</span>
+
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>()
+
+<span class="co"># Intento 1</span>
+
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>()
+
+<span class="co"># Intento 2</span>
+
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="explorando-geom" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Explorando <code>geom</code></h3>
+<p>Los distintas funciones <code>geom</code> nos permiten obtener resultados gráficos distintos, aunque utilicemos los mismos datos. Analicemos el largo de los sépalos por especie.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Gráfico de puntos</span>
+p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>()
+
+<span class="co"># Gráfico de puntos con ruido en el eje horizontal</span>
+p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>)
+
+<span class="co"># Boxplot</span>
+
+p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_boxplot</span>()
+
+<span class="co"># Violin </span>
+p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_violin</span>()
+
+<span class="co"># Combinando boxplot y violin</span>
+
+p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">color=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;black&quot;</span>,
+                    <span class="dt">lwd=</span><span class="fl">0.8</span>, <span class="dt">width=</span><span class="fl">0.2</span> )
+
+<span class="co"># Grafico de barras con medias + SEM</span>
+
+p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,
+                   <span class="dt">width=</span><span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,
+                   <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">width=</span><span class="fl">0.5</span>)</code></pre></div>
+<div class="figure"><span id="fig:six-plot-figure"></span>
+<img src="04-Exploración_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="672" />
+<p class="caption">
+Figure 4.1: Varias formas de mostrar los mismos datos.
+</p>
+</div>
+<p>Este es un pequeño ejemplo de como los distintos <code>geoms</code> participan en la creación de gráficos. En <strong>A</strong> es difícil ver que los puntos están superpuestos, por eso en <strong>B</strong> usamos <code>geom_jitter()</code>, que da una buena idea de la distribución de los datos. Para resumir la información, es común utilizar gráficos de cajas o tipo violín (<strong>C,D</strong>). Notar que la combinación de <code>geoms</code> en capas permite fácilmente mezclar ambos gráficos (<strong>E</strong>). Al combinarlos, hemos cambiado cuestiones estéticas dentro de las capas para incrementar el contraste. Finalmente, otra forma común de hacer un resumen de datos es un gráfico de barras de tipo media ± SEM (<strong>E</strong>).</p>
+</div>
+<div id="explorando-facet_wrap" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Explorando <code>facet_wrap</code></h3>
+<p>En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar <code>facets</code> para separar las gráficas en distintas ventanas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Este comportamiento es súmamente útil cuando tenemos más de una variable categórica o cuando deseamos utilizar el color para simbolizar otra variable. Por ejemplo, quizás nos interesa evaluar cómo varía el ancho de los pétalos en las distintas plantas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>Petal.Width))<span class="op">+</span>
+<span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
+<p><img src="04-Exploración_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>En este último gráfico hemos podido representar con claridad variaciones en la longitud de pétalos y sépalos, el ancho de los pétalos y una variable categórica de tres niveles. Los datos indican que las plantas con menor longitud de pétalos y sépalos también poseen pétalos más angostos. Efectivamente, explotar los recursos de <code>ggplot2</code> nos permite generar poderosas herramientas de análisis y comunicación estadística.</p>
+</div>
+<div id="cowplot" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Cowplot</h3>
+<p>Los gráficos realizados en la sección previa (<a href="exploracion-de-datos.html#explorando-geom">4.2.2</a>) muestran gráficos individuales que fueron <em>acomodados</em> distintos paneles. Para realizar esto, se ha utilizando el paquete <code>cowplot</code>. A continuación se muestra el código para realizar figura <a href="exploracion-de-datos.html#fig:six-plot-figure">4.1</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2,p3,p4,p5,p6, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
+</div>
+</div>
+<div id="caso-de-estudio" class="section level2">
+<h2><span class="header-section-number">4.3</span> Caso de estudio</h2>
+<p>El primer objetivo de un análisis exploratorio debe ser ganar entendimiento cualitativo de la naturaleza de los datos (tendencia central, distribución y estructura de correlación). Esto puede lograrse utilizando tablas de resumen, sin embargo, en mi opinión el análisis gráfico es superior.</p>
+<p><code>ELEGIR Y REALIZAR CASO DE ESTUDIO DE ANALISIS GRAFICO</code></p>
+</div>
+<div id="resumen-1" class="section level2">
+<h2><span class="header-section-number">4.4</span> Resumen</h2>
+<p>En este capítulo no he realizando una descripción exhaustiva sobre análisis gráfico, mi idea fue brindar ejemplos de las posibilidades para exploración de datos, principalmente con <code>ggplot2</code>.</p>
+<ul>
+<li>Uno de los mayores beneficios de R es la plataforma gráfica, principalmente <code>ggplot2</code>.</li>
+<li><code>ggplot2</code> está basada en una gramática que permite incorporar capas a los gráficos.</li>
+<li>Las capas son agregadas una encima de la otra segun los <code>aes()</code> y <code>geoms</code> que se utilicen.</li>
+<li>Tanto <code>ggplot2</code> como paquetes accesorios permiten realizar gráficos de paneles de alta calidad.</li>
+<li>Utilizar combinaciones de capas permite representar con claridad más dimensiones en un gráfico.</li>
+</ul>
+</div>
+<div id="recursos" class="section level2">
+<h2><span class="header-section-number">4.5</span> Recursos</h2>
+<p>El material sobre visualización de datos es virtualmente infinito. Recomiendo fuertemente los siguientes textos:</p>
+<ul>
+<li><a href="https://ggplot2.tidyverse.org/">ggplot2 online</a></li>
+<li><a href="http://socviz.co/">Data Visualization-Kieran Healy</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="leer-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-lineales.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introducción a estadística con R</title>
+  <meta name="description" content="Introducción a estadística con R">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introducción a estadística con R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://matiasandina.netlify.com/ /" />
+  
+  
+  <meta name="github-repo" content="matiasandina/R-intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introducción a estadística con R" />
+  
+  
+  
+
+<meta name="author" content="Matias Andina">
+
+
+<meta name="date" content="2018-07-25">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="prefacio.html">
+<link rel="next" href="primeros-pasos.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a estadística R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="prefacio.html"><a href="prefacio.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#terminos"><i class="fa fa-check"></i><b>1.1</b> Términos</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#donde-encontrar-ayuda"><i class="fa fa-check"></i><b>1.2</b> Dónde encontrar ayuda</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#sistema-operativo"><i class="fa fa-check"></i><b>1.3</b> Sistema Operativo</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#directorios"><i class="fa fa-check"></i><b>1.4</b> Directorios</a></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#traduccion-de-contenido"><i class="fa fa-check"></i><b>1.5</b> Traducción de contenido</a></li>
+<li class="chapter" data-level="1.6" data-path="introduccion.html"><a href="introduccion.html#r"><i class="fa fa-check"></i><b>1.6</b> R</a></li>
+<li class="chapter" data-level="1.7" data-path="introduccion.html"><a href="introduccion.html#instalar-r"><i class="fa fa-check"></i><b>1.7</b> Instalar R</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduccion.html"><a href="introduccion.html#terminal-de-r"><i class="fa fa-check"></i><b>1.7.1</b> Terminal de R</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduccion.html"><a href="introduccion.html#interfaz-grafica"><i class="fa fa-check"></i><b>1.7.2</b> Interfaz gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduccion.html"><a href="introduccion.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.8</b> Instalar Rstudio</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduccion.html"><a href="introduccion.html#la-experiencia"><i class="fa fa-check"></i><b>1.8.1</b> La experiencia</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduccion.html"><a href="introduccion.html#preferencias"><i class="fa fa-check"></i><b>1.8.2</b> Preferencias</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduccion.html"><a href="introduccion.html#resumen"><i class="fa fa-check"></i><b>1.9</b> Resumen</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros Pasos</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#ejecutar-codigo"><i class="fa fa-check"></i><b>2.1</b> Ejecutar código</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#crear-objetos"><i class="fa fa-check"></i><b>2.2</b> Crear Objetos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#el-operador--"><i class="fa fa-check"></i><b>2.2.1</b> El operador <code>&lt;-</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#clases-de-objetos-en-r"><i class="fa fa-check"></i><b>2.3</b> Clases de objetos en R</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-pasos.html"><a href="primeros-pasos.html#errores-comunes"><i class="fa fa-check"></i><b>2.4</b> Errores comunes</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-pasos.html"><a href="primeros-pasos.html#instalar-y-cargar-paquetes"><i class="fa fa-check"></i><b>2.5</b> Instalar y cargar paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leer-datos.html"><a href="leer-datos.html"><i class="fa fa-check"></i><b>3</b> Leer Datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="leer-datos.html"><a href="leer-datos.html#datasets-de-base"><i class="fa fa-check"></i><b>3.1</b> Datasets de base</a></li>
+<li class="chapter" data-level="3.2" data-path="leer-datos.html"><a href="leer-datos.html#importar-datos-de-manera-manual"><i class="fa fa-check"></i><b>3.2</b> Importar datos de manera manual</a></li>
+<li class="chapter" data-level="3.3" data-path="leer-datos.html"><a href="leer-datos.html#archivos-de-texto"><i class="fa fa-check"></i><b>3.3</b> Archivos de texto</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="leer-datos.html"><a href="leer-datos.html#importar-multiples-archivos-de-texto"><i class="fa fa-check"></i><b>3.3.1</b> Importar múltiples archivos de texto</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="leer-datos.html"><a href="leer-datos.html#otros-formatos"><i class="fa fa-check"></i><b>3.4</b> Otros formatos</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="leer-datos.html"><a href="leer-datos.html#sas"><i class="fa fa-check"></i><b>3.4.1</b> SAS</a></li>
+<li class="chapter" data-level="3.4.2" data-path="leer-datos.html"><a href="leer-datos.html#spss"><i class="fa fa-check"></i><b>3.4.2</b> SPSS</a></li>
+<li class="chapter" data-level="3.4.3" data-path="leer-datos.html"><a href="leer-datos.html#excel"><i class="fa fa-check"></i><b>3.4.3</b> Excel</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html"><i class="fa fa-check"></i><b>4</b> Exploración de Datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#graficos-de-base"><i class="fa fa-check"></i><b>4.1</b> Gráficos de base</a></li>
+<li class="chapter" data-level="4.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#ggplot2"><i class="fa fa-check"></i><b>4.2</b> ggplot2</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#entendiendo-aes"><i class="fa fa-check"></i><b>4.2.1</b> Entendiendo <code>aes()</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-geom"><i class="fa fa-check"></i><b>4.2.2</b> Explorando <code>geom</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-facet_wrap"><i class="fa fa-check"></i><b>4.2.3</b> Explorando <code>facet_wrap</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#cowplot"><i class="fa fa-check"></i><b>4.2.4</b> Cowplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#caso-de-estudio"><i class="fa fa-check"></i><b>4.3</b> Caso de estudio</a></li>
+<li class="chapter" data-level="4.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#resumen-1"><i class="fa fa-check"></i><b>4.4</b> Resumen</a></li>
+<li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
+<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.5.1</b> Supuestos</a></li>
+<li class="chapter" data-level="5.5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.5.2</b> Análisis de supuestos en R</a></li>
+<li class="chapter" data-level="5.5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.5.3</b> Visualizando residuos en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.6</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.7</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.8</b> Resumen</a></li>
+<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-1"><i class="fa fa-check"></i><b>5.9</b> Recursos</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a estadística con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduccion" class="section level1">
+<h1><span class="header-section-number">Capítulo 1</span> Introducción</h1>
+<p>La organización de este libro esta fuertemente vinculada al análisis de datos. En general, el análisis suele presentarse en tres etapas: Lectura, modelado y comunicación de resultados.</p>
+<p><code>Lectura &gt; Modelado &gt; Comunicación</code></p>
+<p>En lo que resta de este capítulo, vamos a transitar parte de la organización y contenido del libro, las convenciones que vamos a utilizar y los requisitos para obtener los programas necesarios. El contenido a desarrollar es de nivel básico. Sugiero que los usuarios que ya hayan instalado R o se sientan cómodos con la instalación de programas y sistema de archivos se salteen lo siguiente.</p>
+<div id="terminos" class="section level2">
+<h2><span class="header-section-number">1.1</span> Términos</h2>
+<p>Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En la siguiente tabla pueden encontrar una guía:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Término en inglés</th>
+<th align="left">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CRAN</td>
+<td align="left">Colección de paquetes en CRAN (Comprehensive R Archive Network)</td>
+</tr>
+<tr class="even">
+<td align="left">dataset</td>
+<td align="left">set de datos</td>
+</tr>
+<tr class="odd">
+<td align="left">Software</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">working directory</td>
+<td align="left">Directorio desde donde R está trabajando en la sesión (getwd())</td>
+</tr>
+</tbody>
+</table>
+<p>Un caso especial son los nombres nativos de objetos o propiedades de R. Estos términos aparecerán normalmente <code>resaltados en el texto</code>. Un ejemplo son las tablas que vamos a usar para acceder a datos, llamadas <code>data.frame</code>. Por ahora, no es necesario preocuparse al respecto, las piezas del rompecabezas se van a unir luego.</p>
+</div>
+<div id="donde-encontrar-ayuda" class="section level2">
+<h2><span class="header-section-number">1.2</span> Dónde encontrar ayuda</h2>
+<p>Una gran forma de resolver los problemas que tenemos cuando escribimos código es goolgear el problema exacto. R normalmente nos mostrará errores de la forma:</p>
+<pre><code>## Error: error message here</code></pre>
+<p>Copiar y pegar el error particular es de gran ayuda. Existen diversos foros especializados. Afortunadamente existe material en español (aunque es limitado). Un gran sitio para empezar es:</p>
+<p><strong>StackOverflow</strong> en español! <a href="https://es.stackoverflow.com/" class="uri">https://es.stackoverflow.com/</a></p>
+</div>
+<div id="sistema-operativo" class="section level2">
+<h2><span class="header-section-number">1.3</span> Sistema Operativo</h2>
+<p>Afortunadamente, vivimos en un mundo con diversidad de sistemas operativos. R es compatible con <em>Windows</em>, <em>Mac OS</em> y <em>Linux</em>. Este libro está escrito utilizando <em>Windows 10</em> por lo que es posible que algunos ejemplos funcionen distinto en otros sistemas operativos. Haré mis mayores esfuerzos para asegurar compatibilidad entre distintos sistemas.</p>
+</div>
+<div id="directorios" class="section level2">
+<h2><span class="header-section-number">1.4</span> Directorios</h2>
+<p>Los directorios son direcciones en nuestra computadora. Para que nuestra computadora localice un archivo o un programa, estos tienen una dirección en el disco duro. Normalmente el sistema de archivos es jerárquico, con secuencias de contenedores. Por ende, los directorios son también conocidos como <em>carpetas</em> o <em>ficheros</em>. Por ejemplo, en mi sistema, los archivos de R se encuentra en este directorio <code>C:\Program Files\R\R-3.4.0</code>. Todos los archivos contenidos en esa carpeta serán localizados a partir de esa dirección (y el nombre del archivo). Es importante entender que siempre contaremos con un <em>working directory</em> o directorio en el que estamos trabajando. Este directorio funciona como todos los demás, funcionando como un atajo.</p>
+</div>
+<div id="traduccion-de-contenido" class="section level2">
+<h2><span class="header-section-number">1.5</span> Traducción de contenido</h2>
+<p>Una parte del material de referencia en este libro está en inglés. Para aquellos lectores que encuentren muy dificultoso el idioma, aconsejo intentar la traducción del material usando el traductor de <a href="translate.google.com">Google</a> o, si el navegador lo permite, habilitar la traducción de manera directa sobre el contenido.</p>
+</div>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">1.6</span> R</h2>
+<p>Un lenguaje de programación es una serie de reglas que están diseñadas para realizar procesos en una computadora.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> R es un lenguaje de programación. En ese sentido, no se diferencia de ningún otro (ej. C, Python). A su vez, como todo lenguaje, el set de reglas es particular y lleva tiempo incorporarlo. La mejor forma de naturalizarse con un idioma es hablarlo y, fundamentalmente en este caso, leerlo y escribirlo! Afortunadamente, el dominio de un idioma facilita el dominio de otro(s).</p>
+<p>R nació en 1993 en Auckland. Sin embargo, su origen puede rastrearse hasta un lenguaje previo llamado S, creado por John Chambers y colaboradores en <em>Bell Laboratories</em> durante la década de 1970.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Actualmente, la diversidad de proyectos que pueden abarcarse en R es altísima, desde hacer análisis de estadística pura hasta escribir libros, como éste.</p>
+<p>En este libro voy a usar mayoritariamente R para hablar del lenguaje. Una excepción es la instalación del programa en sí mismo (ver Instalar R).</p>
+<p>El copyright del software R es mantenido por la fundación R ( <a href="(https://www.r-project.org/foundation/)">R Foundation</a> ) bajo una licencia pública <a href="https://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License version 2.0</a>. Algunas traducciones <em>no oficiales</em> de la licencia pueden encontrarse <a href="https://www.gnu.org/licenses/translations.html">aquí</a>.</p>
+<p>La fundación R es una organización sin fines de lucro que trabaja en pos del interés público. Fue fundada por los miembros del <em>R Development Core Team</em> para proveer. Sus objetivos son:</p>
+<ul>
+<li>Proveer apoyo al proyecto R y otras innovaciones en estadística computacional.</li>
+<li>Asegurar su continuo desarollo, así como también el desarrollo de futuras innovaciones en software estadístico.</li>
+<li>Proveer un punto de referencia para individuos, instituciones y empresas que deseen interactuar con la comunidad de desarrollo de R.</li>
+<li>Mantener y administrar el copyright del software R y su documentación.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></li>
+</ul>
+<p>Podemos pensar a R estando dividido en dos marcos conceptuales:</p>
+<ol style="list-style-type: decimal">
+<li>El sistema de “base” R descargado desde CRAN.</li>
+<li>El conjunto de paquetes externos que agregan funcionalidad.</li>
+</ol>
+<p>En la siguientes secciones realizaremos la descarga e instalación de R. En el próximo capítulo trabajaremos con agregar funcionalidad utilizando paquetes externos.</p>
+</div>
+<div id="instalar-r" class="section level2">
+<h2><span class="header-section-number">1.7</span> Instalar R</h2>
+<p>Para instalar R debemos dirigirnos a la colección de paquetes en CRAN (del inglés, Comprehensive R Archive Network). CRAN es un repositorio global donde se puede acceder al software y a los paquetes que la comunidad produce. Veremos pronto que R provee limitada funcionalidad de base y los paquetes son una parte fundamental del uso diario.</p>
+<ol style="list-style-type: decimal">
+<li>La instalación comienza entrando en <code>https://cran.r-project.org/</code></li>
+<li>Seleccionar el link correcto de descarga. El link depende del sistema operativo.</li>
+</ol>
+<div class="figure">
+<img src="img/CRAN_download.png" alt="Links para descargar R en CRAN" />
+<p class="caption">Links para descargar R en CRAN</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Hacer clic en <em>Install R for the first time</em> (instalar R por primera vez).</li>
+</ol>
+<div class="figure">
+<img src="img/Windows_First.png" alt="Instalar por primera vez" />
+<p class="caption">Instalar por primera vez</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Hacer clic en <em>Download R 3.4.3 for Windows</em> para descargar el ejecutable. Al momento de escribir este libro la versión 3.4.3 es la última disponible en CRAN.</li>
+</ol>
+<div class="figure">
+<img src="img/Windows_download.png" alt="Descargar" />
+<p class="caption">Descargar</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Instalar desde el <code>.exe</code> (El cuádro de dialogo permite seleccionar idioma español).</li>
+</ol>
+<div id="terminal-de-r" class="section level3">
+<h3><span class="header-section-number">1.7.1</span> Terminal de R</h3>
+<p>Si fantaseamos con escribir desde un terminal, es posible ejecutar R de ese modo. En mi caso, el acceso al terminal se encuentra en <code>C:\Program Files\R\R-3.4.0\bin</code> y la aplicación es <code>Rterm</code>. Como pueden ver, estoy utilizando una versión desactualizada, <code>R version 3.4.0 (2017-04-21) -- &quot;You Stupid Darkness&quot;</code>.</p>
+<div class="figure">
+<img src="img/R_term.PNG" alt="Terminal de R en mi sistema" />
+<p class="caption">Terminal de R en mi sistema</p>
+</div>
+</div>
+<div id="interfaz-grafica" class="section level3">
+<h3><span class="header-section-number">1.7.2</span> Interfaz gráfica</h3>
+<p>Si bien el terminal (o <em>consola</em>) es seductor, en muchas ocasiones es conveniente tener una interfaz gráfica. Podemos acceder a la interfaz <code>RGui</code> desde <code>C:\Program Files\R\R-3.4.0\bin\i386</code> o directamente si hemos creado un acceso directo en el escritorio durante nuestra instalación. La interfaz gráfica se ve de este modo:</p>
+<div class="figure">
+<img src="img/RGui.PNG" alt="Interfaz Gráfica de R" />
+<p class="caption">Interfaz Gráfica de R</p>
+</div>
+<p>Como podemos ver, la interfaz permite acceso a mayores opciones pero, en esencia, se asemeja al terminal. Afortunadamente, existe una versión ampliamente mejorada de esta experiencia, se llama Rstudio (ver Instalar Rstudio). Rstudio es la interfaz gráfica que utilizaremos en este libro.</p>
+</div>
+</div>
+<div id="instalar-rstudio" class="section level2">
+<h2><span class="header-section-number">1.8</span> Instalar Rstudio</h2>
+<p>Rstudio es un software que integra una serie de herramientas gráficas y variabilidad de opciones a R. De este modo, ganamos versatilidad y comodidad en el uso. En el día a día, abrir Rstudio es, a fines prácticos, abrir R. Para instalar Rstudio, podemos seguir los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li>Ir a <code>https://www.rstudio.com/products/rstudio/download/</code></li>
+<li>Hacer clic en Descargar software.</li>
+<li>Seleccionar la version compatible con el sistema operativo.</li>
+<li>Instalar desde el <code>.exe</code> descargado.</li>
+</ol>
+<div class="figure">
+<img src="img/Rstudio_download.PNG" alt="Descargar Rstudio" />
+<p class="caption">Descargar Rstudio</p>
+</div>
+<div id="la-experiencia" class="section level3">
+<h3><span class="header-section-number">1.8.1</span> La experiencia</h3>
+<p>Al abrir Rstudio nos encontraremos con un programa que tiene principalmente dos áreas, una de entrada (consola) y una de salida (exploradores):</p>
+<div class="figure">
+<img src="img/Rstudio_open.PNG" alt="Rstudio al abrir" />
+<p class="caption">Rstudio al abrir</p>
+</div>
+<p>Podemos hacer un intento rápido para graficar el histograma de una distribución Normal con media 0 y desvío estándar 1. Puedes copiar y pegar el siguiente código en la consola.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
+<span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
+     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
+<p><img src="01-Introduccion_files/figure-html/hist_ejemplo-1.png" width="672" /></p>
+<p>En la ventana de Rstudio se vería así:</p>
+<div class="figure">
+<img src="img/Rstudio_hist.png" alt="Así se ve en Rstudio" />
+<p class="caption">Así se ve en Rstudio</p>
+</div>
+<p>Normalmente usaremos Rstudio con 4 zonas principales:</p>
+<ul>
+<li>Editor de scripts.</li>
+<li>Terminal o consola.</li>
+<li>Explorador de entorno e historial.</li>
+<li>Explorador de archivos y gráficos.</li>
+</ul>
+<div class="figure">
+<img src="img/Rstudio_script.PNG" alt="Rstudio al iniciar un script" />
+<p class="caption">Rstudio al iniciar un script</p>
+</div>
+<p>En los próximos capítulos ahondaremos en la funcionalidad de cada uno.</p>
+</div>
+<div id="preferencias" class="section level3">
+<h3><span class="header-section-number">1.8.2</span> Preferencias</h3>
+<p>Rstudio permite personalizar la <em>experiencia R</em> de modo de obtener virtualmente infinitas combinaciones. Para mayor información visitar la página de <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">Rstudio</a></p>
+</div>
+</div>
+<div id="resumen" class="section level2">
+<h2><span class="header-section-number">1.9</span> Resumen</h2>
+<ul>
+<li>La organización del análisis estadístico procede <code>Lectura &gt; Modelado &gt; Comunicación</code></li>
+<li>R es un lenguaje de programación orientado a objetos que permite realizar las tres etapas.</li>
+<li>El software R es de dedistribución gratuita y con funcionalidad dividida en:</li>
+<li><em>Base R</em>.</li>
+<li>Paquetes externos descargados de un repositorio.<br />
+</li>
+<li>Rstudio es una interfaz gráfica gratuita que permite trabajar con R.</li>
+</ul>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Mayor descripción en lenguajes de programación <a href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n">aquí</a>.<a href="introduccion.html#fnref1">↩</a></p></li>
+<li id="fn2"><p>Historia e información sobre <a href="introduccion.html#r">R</a>(<a href="https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)">https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)</a>. Para aquellos curiosos que tienen una consola a mano y se aventuran al inglés: <code>contributors()</code><a href="introduccion.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>La traducción es de mi autoría, la información original en inglés puede encontrarse <a href="https://www.r-project.org/foundation/">aquí</a>.<a href="introduccion.html#fnref3">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="prefacio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="primeros-pasos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
