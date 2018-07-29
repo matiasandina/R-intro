@@ -266,7 +266,7 @@ modelo_chocolate$residuals
 ```
 
 
-### Supuestos
+## Supuestos
 
 Cuando construimos modelos de este tipo, asumimos ciertas cosas. Los supuestos principales en este caso son:
 
@@ -275,15 +275,15 @@ Cuando construimos modelos de este tipo, asumimos ciertas cosas. Los supuestos p
 * Homocedasticidad.
 * Los residuos son normales.
 
-#### Error en $x$
+### Error en $x$
 
 La minimización de distancias se realiza únicamente sobre el componente $y$. De esto se desprende el supuesto de que el componente $x$ no tiene error asociado. Experimentalmente, esto es imposible (no es posible pesar exactamente 20.00 gr de chocolate). Sin embargo, en la gran mayoría de los casos, un error relativo pequeño en este componente, como por ejemplo el porcentaje de error de nuestra balanza, no afecta el análisis.   
 
-#### Independencia
+### Independencia
 
 Los valores que obtenemos de cada unidad experimental deben ser independientes. Esto significa que los valores obtenidos de una unidad experimental no afectan los valores obtenidos por otra. Formalmente, $cov(y_i,y_j) = 0 \ \ \forall \ \ i\neq j$.
 
-#### Homocedasticidad.
+### Homocedasticidad.
 
 Podemos pensar a cada uno de los valores que obtuvimos para una dosis como una subpoblación. En este modelo, la media de cada una de estas subpoblaciones está dada por la ecuación de esperanza (ver Ecuación \@ref(eq:esperanza)). Para cada subpoblación asumimos una distribución normal alrededor de $E(y_i)$ con idéntica varianza ($\sigma^2$). Formalmente:
 
@@ -294,7 +294,7 @@ Podemos pensar a cada uno de los valores que obtuvimos para una dosis como una s
 
 Este supuesto no es trivial y veremos cómo detectar su cumplimiento a partir del análisis de residuos. 
 
-#### Normalidad de residuos
+### Normalidad de residuos
 
 Este modelo tiene como supuesto que los residuos se distribuyen de manera normal. En general, utilizaremos gráficos de diagnóstico, que son importantes para evaluar los supuestos.
 
@@ -349,7 +349,7 @@ Vemos que aquellos puntos que están muy alejados en $x$ tienen gran influencia 
 
 
 
-### Análisis de supuestos en R
+## Análisis de supuestos en R
 
 Podemos explorar el ajuste y analizar el cumplimiento de supuestos en R utilizando la función `plot`, que maneja bien objetos `lm`.
 
@@ -364,11 +364,9 @@ plot(modelo_chocolate)
 <img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 
-#### Cuando los residuos no son normales
+### Cuando los residuos no son normales
 
-¿Qué hacemos cuando los residuos no son normales?
-
-### Visualizando residuos en R
+## Visualizando residuos en R
 
 Este modelo asume que los errores están normalmente distribuidos alrededor de la esperanza. Formalmente, pedimos $\mathcal{E}_i \sim \  \mathcal{N}(\mu,\,\sigma^{2})$ donde $\mu=0$ y $\sigma^{2} \approx cte$. 
 

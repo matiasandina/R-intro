@@ -15,7 +15,8 @@ Término en inglés   Descripción
 ------------------  ----------------------------------------------------------------
 CRAN                Colección de paquetes en CRAN (Comprehensive R Archive Network) 
 dataset             set de datos                                                    
-Software                                                                            
+render              generación de contenido multimedia                              
+software            programa                                                        
 working directory   Directorio desde donde R está trabajando en la sesión (getwd()) 
 
 Un caso especial son los nombres nativos de objetos o propiedades de R. Estos términos aparecerán normalmente `resaltados en el texto`. Un ejemplo son las tablas que vamos a usar para acceder a datos, llamadas `data.frame`. Por ahora, no es necesario preocuparse al respecto, las piezas del rompecabezas se van a unir luego. 
