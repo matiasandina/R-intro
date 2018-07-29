@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introducción a estadística con R</title>
+  <meta name="description" content="Este libro introduce conceptos de estadística utilizando R. Está principalmente orientado a estudiantes que deseen aplicar e incrementar sus conocimientos estadísticos usando un lenguaje de programación. Sin embargo, aquellos usuarios que tengan algo de experiencia con R y quieran aventurarse a aumentar sus conocimientos estadísticos pueden encontrar utilidad en los capítulos más avanzados.">
+  <meta name="generator" content="bookdown <!--bookdown:version--> and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introducción a estadística con R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://matiasandina.netlify.com/ /" />
+  
+  <meta property="og:description" content="Este libro introduce conceptos de estadística utilizando R. Está principalmente orientado a estudiantes que deseen aplicar e incrementar sus conocimientos estadísticos usando un lenguaje de programación. Sin embargo, aquellos usuarios que tengan algo de experiencia con R y quieran aventurarse a aumentar sus conocimientos estadísticos pueden encontrar utilidad en los capítulos más avanzados." />
+  <meta name="github-repo" content="matiasandina/R-intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introducción a estadística con R" />
+  
+  <meta name="twitter:description" content="Este libro introduce conceptos de estadística utilizando R. Está principalmente orientado a estudiantes que deseen aplicar e incrementar sus conocimientos estadísticos usando un lenguaje de programación. Sin embargo, aquellos usuarios que tengan algo de experiencia con R y quieran aventurarse a aumentar sus conocimientos estadísticos pueden encontrar utilidad en los capítulos más avanzados." />
+  
+
+<meta name="author" content="Matias Andina">
+
+
+<meta name="date" content="2018-07-28">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+<!--bookdown:title:start-->
+<div id="header">
+<h1 class="title">Introducción a estadística con R</h1>
+<h4 class="author"><em>Matias Andina</em></h4>
+<h4 class="date"><em>2018-07-28</em></h4>
+</div>
+<!--bookdown:title:end-->
+
+<!--bookdown:toc:start-->
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+<!--bookdown:toc2:start-->
+<ul>
+<li><a href="#prefacio">Prefacio</a></li>
+<li><a href="#introduccion"><span class="toc-section-number">1</span> Introducción</a><ul>
+<li><a href="#terminos"><span class="toc-section-number">1.1</span> Términos</a></li>
+<li><a href="#donde-encontrar-ayuda"><span class="toc-section-number">1.2</span> Dónde encontrar ayuda</a></li>
+<li><a href="#sistema-operativo"><span class="toc-section-number">1.3</span> Sistema Operativo</a></li>
+<li><a href="#directorios"><span class="toc-section-number">1.4</span> Directorios</a></li>
+<li><a href="#traduccion-de-contenido"><span class="toc-section-number">1.5</span> Traducción de contenido</a></li>
+<li><a href="#r"><span class="toc-section-number">1.6</span> R</a></li>
+<li><a href="#instalar-r"><span class="toc-section-number">1.7</span> Instalar R</a><ul>
+<li><a href="#terminal-de-r"><span class="toc-section-number">1.7.1</span> Terminal de R</a></li>
+<li><a href="#interfaz-grafica"><span class="toc-section-number">1.7.2</span> Interfaz gráfica</a></li>
+</ul></li>
+<li><a href="#instalar-rstudio"><span class="toc-section-number">1.8</span> Instalar Rstudio</a><ul>
+<li><a href="#la-experiencia"><span class="toc-section-number">1.8.1</span> La experiencia</a></li>
+<li><a href="#preferencias"><span class="toc-section-number">1.8.2</span> Preferencias</a></li>
+</ul></li>
+<li><a href="#resumen"><span class="toc-section-number">1.9</span> Resumen</a></li>
+</ul></li>
+<li><a href="#primeros-pasos"><span class="toc-section-number">2</span> Primeros Pasos</a><ul>
+<li><a href="#ejecutar-codigo"><span class="toc-section-number">2.1</span> Ejecutar código</a></li>
+<li><a href="#crear-objetos"><span class="toc-section-number">2.2</span> Crear Objetos</a><ul>
+<li><a href="#el-operador--"><span class="toc-section-number">2.2.1</span> El operador <code>&lt;-</code></a></li>
+</ul></li>
+<li><a href="#clases-de-objetos-en-r"><span class="toc-section-number">2.3</span> Clases de objetos en R</a></li>
+<li><a href="#errores-comunes"><span class="toc-section-number">2.4</span> Errores comunes</a></li>
+<li><a href="#instalar-y-cargar-paquetes"><span class="toc-section-number">2.5</span> Instalar y cargar paquetes</a></li>
+<li><a href="#recursos"><span class="toc-section-number">2.6</span> Recursos</a></li>
+</ul></li>
+<li><a href="#leer-datos"><span class="toc-section-number">3</span> Leer Datos</a><ul>
+<li><a href="#datasets-de-base"><span class="toc-section-number">3.1</span> Datasets de base</a></li>
+<li><a href="#importar-datos-de-manera-manual"><span class="toc-section-number">3.2</span> Importar datos de manera manual</a></li>
+<li><a href="#archivos-de-texto"><span class="toc-section-number">3.3</span> Archivos de texto</a><ul>
+<li><a href="#importar-multiples-archivos-de-texto"><span class="toc-section-number">3.3.1</span> Importar múltiples archivos de texto</a></li>
+</ul></li>
+<li><a href="#otros-formatos"><span class="toc-section-number">3.4</span> Otros formatos</a><ul>
+<li><a href="#sas"><span class="toc-section-number">3.4.1</span> SAS</a></li>
+<li><a href="#spss"><span class="toc-section-number">3.4.2</span> SPSS</a></li>
+<li><a href="#excel"><span class="toc-section-number">3.4.3</span> Excel</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#exploracion-de-datos"><span class="toc-section-number">4</span> Exploración de Datos</a><ul>
+<li><a href="#graficos-de-base"><span class="toc-section-number">4.1</span> Gráficos de base</a></li>
+<li><a href="#ggplot2"><span class="toc-section-number">4.2</span> ggplot2</a><ul>
+<li><a href="#entendiendo-aes"><span class="toc-section-number">4.2.1</span> Entendiendo <code>aes()</code></a></li>
+<li><a href="#explorando-geom"><span class="toc-section-number">4.2.2</span> Explorando <code>geom</code></a></li>
+<li><a href="#explorando-facet_wrap"><span class="toc-section-number">4.2.3</span> Explorando <code>facet_wrap</code></a></li>
+<li><a href="#cowplot"><span class="toc-section-number">4.2.4</span> Cowplot</a></li>
+</ul></li>
+<li><a href="#caso-de-estudio"><span class="toc-section-number">4.3</span> Caso de estudio</a></li>
+<li><a href="#resumen-1"><span class="toc-section-number">4.4</span> Resumen</a></li>
+<li><a href="#recursos-1"><span class="toc-section-number">4.5</span> Recursos</a></li>
+</ul></li>
+<li><a href="#modelos-lineales"><span class="toc-section-number">5</span> Modelos Lineales</a><ul>
+<li><a href="#que-es-un-modelo-lineal"><span class="toc-section-number">5.1</span> ¿Qué es un modelo lineal?</a></li>
+<li><a href="#modelos-estadisticos"><span class="toc-section-number">5.2</span> Modelos estadísticos</a><ul>
+<li><a href="#simulando-datos-en-r"><span class="toc-section-number">5.2.1</span> Simulando datos en R</a></li>
+</ul></li>
+<li><a href="#esperanza"><span class="toc-section-number">5.3</span> Esperanza</a></li>
+<li><a href="#estimacion-del-modelo"><span class="toc-section-number">5.4</span> Estimación del modelo</a><ul>
+<li><a href="#entendiendo-la-estimacion-con-graficos"><span class="toc-section-number">5.4.1</span> Entendiendo la estimación con gráficos</a></li>
+</ul></li>
+<li><a href="#modelo-en-r"><span class="toc-section-number">5.5</span> Modelo en R</a></li>
+<li><a href="#supuestos"><span class="toc-section-number">5.6</span> Supuestos</a><ul>
+<li><a href="#error-en-x"><span class="toc-section-number">5.6.1</span> Error en <span class="math inline">\(x\)</span></a></li>
+<li><a href="#independencia"><span class="toc-section-number">5.6.2</span> Independencia</a></li>
+<li><a href="#homocedasticidad."><span class="toc-section-number">5.6.3</span> Homocedasticidad.</a></li>
+<li><a href="#normalidad-de-residuos"><span class="toc-section-number">5.6.4</span> Normalidad de residuos</a></li>
+</ul></li>
+<li><a href="#analisis-de-supuestos-en-r"><span class="toc-section-number">5.7</span> Análisis de supuestos en R</a><ul>
+<li><a href="#cuando-los-residuos-no-son-normales"><span class="toc-section-number">5.7.1</span> Cuando los residuos no son normales</a></li>
+</ul></li>
+<li><a href="#visualizando-residuos-en-r"><span class="toc-section-number">5.8</span> Visualizando residuos en R</a></li>
+<li><a href="#descomponiendo-variabilidad"><span class="toc-section-number">5.9</span> Descomponiendo variabilidad</a></li>
+<li><a href="#por-que-hacer-una-regresion"><span class="toc-section-number">5.10</span> ¿Por qué hacer una regresión?</a></li>
+<li><a href="#resumen-2"><span class="toc-section-number">5.11</span> Resumen</a></li>
+<li><a href="#recursos-2"><span class="toc-section-number">5.12</span> Recursos</a></li>
+</ul></li>
+<li><a href="#comunicacion"><span class="toc-section-number">6</span> Comunicación</a><ul>
+<li><a href="#ciencia-reproducible"><span class="toc-section-number">6.1</span> Ciencia reproducible</a></li>
+<li><a href="#graficos"><span class="toc-section-number">6.2</span> Gráficos</a></li>
+<li><a href="#rmarkdown"><span class="toc-section-number">6.3</span> RMarkdown</a></li>
+<li><a href="#texto"><span class="toc-section-number">6.4</span> Texto</a></li>
+<li><a href="#separando-lineas-y-parrafos"><span class="toc-section-number">6.5</span> Separando líneas y párrafos</a></li>
+<li><a href="#trozos-de-codigo"><span class="toc-section-number">6.6</span> Trozos de código</a></li>
+<li><a href="#links-e-imagenes"><span class="toc-section-number">6.7</span> Links e imágenes</a></li>
+<li><a href="#encabezado-yaml"><span class="toc-section-number">6.8</span> Encabezado YAML</a></li>
+<li><a href="#otros-proyectos-con-rstudio"><span class="toc-section-number">6.9</span> Otros proyectos con RStudio</a></li>
+<li><a href="#notas"><span class="toc-section-number">6.10</span> Notas</a></li>
+<li><a href="#recursos-3"><span class="toc-section-number">6.11</span> Recursos</a></li>
+</ul></li>
+<li><a href="#agradecimientos">Agradecimientos</a></li>
+</ul>
+<!--bookdown:toc2:end-->
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a estadística con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:toc:end-->
+<!--bookdown:body:start-->
+<div id="prefacio" class="section level1 unnumbered">
+<h1>Prefacio</h1>
+<p>R es quizás el lenguaje más desarrollado para realizar análisis exploratorios de datos y estadística. Debido a que posee una naturaleza dinámica, gratuita, <em>open-source</em>, y una comunidad que trabaja activamente en incrementar las posibilidades del lenguage, es un candidato natural para ser utilizado tanto en academia como en ámbitos profesionales.</p>
+<p>Creo que no exajero al decir que aprender R cambió mi vida, me abrió los ojos a un mundo de posibilidades que continúo explorando. Escribo porque tengo deseo de devolver lo que la comunidad de R me ha regalado. Escribo en español porque es mi idioma nativo y porque siento que puedo contribuir a reducir la barrera del lenguaje inglés, que complica el aprendizaje de cualquier lenguaje de programación.</p>
+<p>Escribiendo este libro me di cuenta de que no es trivial encontrar material de referencia en relación a R (o estadística) enteramente en español. Mi objetivo principal es abrir la puerta, facilitar que hispanohablantes aprendan R. La curva de aprendizaje es empinada, aconsejo abrocharse el cinturón de seguridad y abrazar el camino. Este libro es un experimento e invita a la experimentación. Adelante.</p>
+<hr />
+<p>Este libro está en construcción y planeo continuar actualizándolo con el tiempo.</p>
+<!--chapter:end:index.Rmd-->
+</div>
+<div id="introduccion" class="section level1">
+<h1><span class="header-section-number">1</span> Introducción</h1>
+<p>La organización de este libro esta fuertemente vinculada al análisis de datos. En general, el análisis suele presentarse en tres etapas: Lectura, modelado y comunicación de resultados.</p>
+<p><code>Lectura &gt; Modelado &gt; Comunicación</code></p>
+<p>En lo que resta de este capítulo, vamos a transitar parte de la organización y contenido del libro, las convenciones que vamos a utilizar y los requisitos para obtener los programas necesarios. El contenido a desarrollar es de nivel básico. Sugiero que los usuarios que ya hayan instalado R o se sientan cómodos con la instalación de programas y sistema de archivos se salteen lo siguiente.</p>
+<div id="terminos" class="section level2">
+<h2><span class="header-section-number">1.1</span> Términos</h2>
+<p>Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En la siguiente tabla pueden encontrar una guía:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Término en inglés</th>
+<th align="left">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CRAN</td>
+<td align="left">Colección de paquetes en CRAN (Comprehensive R Archive Network)</td>
+</tr>
+<tr class="even">
+<td align="left">dataset</td>
+<td align="left">set de datos</td>
+</tr>
+<tr class="odd">
+<td align="left">render</td>
+<td align="left">generación de contenido multimedia</td>
+</tr>
+<tr class="even">
+<td align="left">software</td>
+<td align="left">programa</td>
+</tr>
+<tr class="odd">
+<td align="left">working directory</td>
+<td align="left">Directorio desde donde R está trabajando en la sesión (getwd())</td>
+</tr>
+</tbody>
+</table>
+<p>Un caso especial son los nombres nativos de objetos o propiedades de R. Estos términos aparecerán normalmente <code>resaltados en el texto</code>. Un ejemplo son las tablas que vamos a usar para acceder a datos, llamadas <code>data.frame</code>. Por ahora, no es necesario preocuparse al respecto, las piezas del rompecabezas se van a unir luego.</p>
+</div>
+<div id="donde-encontrar-ayuda" class="section level2">
+<h2><span class="header-section-number">1.2</span> Dónde encontrar ayuda</h2>
+<p>Una gran forma de resolver los problemas que tenemos cuando escribimos código es goolgear el problema exacto. R normalmente nos mostrará errores de la forma:</p>
+<pre><code>## Error: error message here</code></pre>
+<p>Copiar y pegar el error particular es de gran ayuda. Existen diversos foros especializados. Afortunadamente existe material en español (aunque es limitado). Un gran sitio para empezar es:</p>
+<p><strong>StackOverflow</strong> en español! <a href="https://es.stackoverflow.com/" class="uri">https://es.stackoverflow.com/</a></p>
+</div>
+<div id="sistema-operativo" class="section level2">
+<h2><span class="header-section-number">1.3</span> Sistema Operativo</h2>
+<p>Afortunadamente, vivimos en un mundo con diversidad de sistemas operativos. R es compatible con <em>Windows</em>, <em>Mac OS</em> y <em>Linux</em>. Este libro está escrito utilizando <em>Windows 10</em> por lo que es posible que algunos ejemplos funcionen distinto en otros sistemas operativos. Haré mis mayores esfuerzos para asegurar compatibilidad entre distintos sistemas.</p>
+</div>
+<div id="directorios" class="section level2">
+<h2><span class="header-section-number">1.4</span> Directorios</h2>
+<p>Los directorios son direcciones en nuestra computadora. Para que nuestra computadora localice un archivo o un programa, estos tienen una dirección en el disco duro. Normalmente el sistema de archivos es jerárquico, con secuencias de contenedores. Por ende, los directorios son también conocidos como <em>carpetas</em> o <em>ficheros</em>. Por ejemplo, en mi sistema, los archivos de R se encuentra en este directorio <code>C:\Program Files\R\R-3.4.0</code>. Todos los archivos contenidos en esa carpeta serán localizados a partir de esa dirección (y el nombre del archivo). Es importante entender que siempre contaremos con un <em>working directory</em> o directorio en el que estamos trabajando. Este directorio funciona como todos los demás, funcionando como un atajo.</p>
+</div>
+<div id="traduccion-de-contenido" class="section level2">
+<h2><span class="header-section-number">1.5</span> Traducción de contenido</h2>
+<p>Una parte del material de referencia en este libro está en inglés. Para aquellos lectores que encuentren muy dificultoso el idioma, aconsejo intentar la traducción del material usando el traductor de <a href="translate.google.com">Google</a> o, si el navegador lo permite, habilitar la traducción de manera directa sobre el contenido.</p>
+</div>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">1.6</span> R</h2>
+<p>Un lenguaje de programación es una serie de reglas que están diseñadas para realizar procesos en una computadora.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> R es un lenguaje de programación. En ese sentido, no se diferencia de ningún otro (ej. C, Python). A su vez, como todo lenguaje, el set de reglas es particular y lleva tiempo incorporarlo. La mejor forma de naturalizarse con un idioma es hablarlo y, fundamentalmente en este caso, leerlo y escribirlo! Afortunadamente, el dominio de un idioma facilita el dominio de otro(s).</p>
+<p>R nació en 1993 en Auckland. Sin embargo, su origen puede rastrearse hasta un lenguaje previo llamado S, creado por John Chambers y colaboradores en <em>Bell Laboratories</em> durante la década de 1970.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Actualmente, la diversidad de proyectos que pueden abarcarse en R es altísima, desde hacer análisis de estadística pura hasta escribir libros, como éste.</p>
+<p>En este libro voy a usar mayoritariamente R para hablar del lenguaje. Una excepción es la instalación del programa en sí mismo (ver Instalar R).</p>
+<p>El copyright del software R es mantenido por la fundación R ( <a href="(https://www.r-project.org/foundation/)">R Foundation</a> ) bajo una licencia pública <a href="https://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License version 2.0</a>. Algunas traducciones <em>no oficiales</em> de la licencia pueden encontrarse <a href="https://www.gnu.org/licenses/translations.html">aquí</a>.</p>
+<p>La fundación R es una organización sin fines de lucro que trabaja en pos del interés público. Fue fundada por los miembros del <em>R Development Core Team</em> para proveer. Sus objetivos son:</p>
+<ul>
+<li>Proveer apoyo al proyecto R y otras innovaciones en estadística computacional.</li>
+<li>Asegurar su continuo desarollo, así como también el desarrollo de futuras innovaciones en software estadístico.</li>
+<li>Proveer un punto de referencia para individuos, instituciones y empresas que deseen interactuar con la comunidad de desarrollo de R.</li>
+<li>Mantener y administrar el copyright del software R y su documentación.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></li>
+</ul>
+<p>Podemos pensar a R estando dividido en dos marcos conceptuales:</p>
+<ol style="list-style-type: decimal">
+<li>El sistema de “base” R descargado desde CRAN.</li>
+<li>El conjunto de paquetes externos que agregan funcionalidad.</li>
+</ol>
+<p>En la siguientes secciones realizaremos la descarga e instalación de R. En el próximo capítulo trabajaremos con agregar funcionalidad utilizando paquetes externos.</p>
+</div>
+<div id="instalar-r" class="section level2">
+<h2><span class="header-section-number">1.7</span> Instalar R</h2>
+<p>Para instalar R debemos dirigirnos a la colección de paquetes en CRAN (del inglés, Comprehensive R Archive Network). CRAN es un repositorio global donde se puede acceder al software y a los paquetes que la comunidad produce. Veremos pronto que R provee limitada funcionalidad de base y los paquetes son una parte fundamental del uso diario.</p>
+<ol style="list-style-type: decimal">
+<li>La instalación comienza entrando en <code>https://cran.r-project.org/</code></li>
+<li>Seleccionar el link correcto de descarga. El link depende del sistema operativo.</li>
+</ol>
+<div class="figure">
+<img src="img/CRAN_download.png" alt="Links para descargar R en CRAN" />
+<p class="caption">Links para descargar R en CRAN</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Hacer clic en <em>Install R for the first time</em> (instalar R por primera vez).</li>
+</ol>
+<div class="figure">
+<img src="img/Windows_First.png" alt="Instalar por primera vez" />
+<p class="caption">Instalar por primera vez</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Hacer clic en <em>Download R 3.4.3 for Windows</em> para descargar el ejecutable. Al momento de escribir este libro la versión 3.4.3 es la última disponible en CRAN.</li>
+</ol>
+<div class="figure">
+<img src="img/Windows_download.png" alt="Descargar" />
+<p class="caption">Descargar</p>
+</div>
+<ol start="5" style="list-style-type: decimal">
+<li>Instalar desde el <code>.exe</code> (El cuádro de dialogo permite seleccionar idioma español).</li>
+</ol>
+<div id="terminal-de-r" class="section level3">
+<h3><span class="header-section-number">1.7.1</span> Terminal de R</h3>
+<p>Si fantaseamos con escribir desde un terminal, es posible ejecutar R de ese modo. En mi caso, el acceso al terminal se encuentra en <code>C:\Program Files\R\R-3.4.0\bin</code> y la aplicación es <code>Rterm</code>. Como pueden ver, estoy utilizando una versión desactualizada, <code>R version 3.4.0 (2017-04-21) -- &quot;You Stupid Darkness&quot;</code>.</p>
+<div class="figure">
+<img src="img/R_term.PNG" alt="Terminal de R en mi sistema" />
+<p class="caption">Terminal de R en mi sistema</p>
+</div>
+</div>
+<div id="interfaz-grafica" class="section level3">
+<h3><span class="header-section-number">1.7.2</span> Interfaz gráfica</h3>
+<p>Si bien el terminal (o <em>consola</em>) es seductor, en muchas ocasiones es conveniente tener una interfaz gráfica. Podemos acceder a la interfaz <code>RGui</code> desde <code>C:\Program Files\R\R-3.4.0\bin\i386</code> o directamente si hemos creado un acceso directo en el escritorio durante nuestra instalación. La interfaz gráfica se ve de este modo:</p>
+<div class="figure">
+<img src="img/RGui.PNG" alt="Interfaz Gráfica de R" />
+<p class="caption">Interfaz Gráfica de R</p>
+</div>
+<p>Como podemos ver, la interfaz permite acceso a mayores opciones pero, en esencia, se asemeja al terminal. Afortunadamente, existe una versión ampliamente mejorada de esta experiencia, se llama Rstudio (ver Instalar Rstudio). Rstudio es la interfaz gráfica que utilizaremos en este libro.</p>
+</div>
+</div>
+<div id="instalar-rstudio" class="section level2">
+<h2><span class="header-section-number">1.8</span> Instalar Rstudio</h2>
+<p>Rstudio es un software que integra una serie de herramientas gráficas y variabilidad de opciones a R. De este modo, ganamos versatilidad y comodidad en el uso. En el día a día, abrir Rstudio es, a fines prácticos, abrir R. Para instalar Rstudio, podemos seguir los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li>Ir a <code>https://www.rstudio.com/products/rstudio/download/</code></li>
+<li>Hacer clic en Descargar software.</li>
+<li>Seleccionar la version compatible con el sistema operativo.</li>
+<li>Instalar desde el <code>.exe</code> descargado.</li>
+</ol>
+<div class="figure">
+<img src="img/Rstudio_download.PNG" alt="Descargar Rstudio" />
+<p class="caption">Descargar Rstudio</p>
+</div>
+<div id="la-experiencia" class="section level3">
+<h3><span class="header-section-number">1.8.1</span> La experiencia</h3>
+<p>Al abrir Rstudio nos encontraremos con un programa que tiene principalmente dos áreas, una de entrada (consola) y una de salida (exploradores):</p>
+<div class="figure">
+<img src="img/Rstudio_open.PNG" alt="Rstudio al abrir" />
+<p class="caption">Rstudio al abrir</p>
+</div>
+<p>Podemos hacer un intento rápido para graficar el histograma de una distribución Normal con media 0 y desvío estándar 1. Puedes copiar y pegar el siguiente código en la consola.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
+<span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
+     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
+<p><img src="01-Introduccion_files/figure-html/hist_ejemplo-1.png" width="672" /></p>
+<p>En la ventana de Rstudio se vería así:</p>
+<div class="figure">
+<img src="img/Rstudio_hist.png" alt="Así se ve en Rstudio" />
+<p class="caption">Así se ve en Rstudio</p>
+</div>
+<p>Normalmente usaremos Rstudio con 4 zonas principales:</p>
+<ul>
+<li>Editor de scripts.</li>
+<li>Terminal o consola.</li>
+<li>Explorador de entorno e historial.</li>
+<li>Explorador de archivos y gráficos.</li>
+</ul>
+<div class="figure">
+<img src="img/Rstudio_script.PNG" alt="Rstudio al iniciar un script" />
+<p class="caption">Rstudio al iniciar un script</p>
+</div>
+<p>En los próximos capítulos ahondaremos en la funcionalidad de cada uno.</p>
+</div>
+<div id="preferencias" class="section level3">
+<h3><span class="header-section-number">1.8.2</span> Preferencias</h3>
+<p>Rstudio permite personalizar la <em>experiencia R</em> de modo de obtener virtualmente infinitas combinaciones. Para mayor información visitar la página de <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">Rstudio</a></p>
+</div>
+</div>
+<div id="resumen" class="section level2">
+<h2><span class="header-section-number">1.9</span> Resumen</h2>
+<ul>
+<li>La organización del análisis estadístico procede <code>Lectura &gt; Modelado &gt; Comunicación</code></li>
+<li>R es un lenguaje de programación orientado a objetos que permite realizar las tres etapas.</li>
+<li>El software R es de dedistribución gratuita y con funcionalidad dividida en:
+<ul>
+<li>Base R.</li>
+<li>Paquetes externos descargados de un repositorio.<br />
+</li>
+</ul></li>
+<li>Rstudio es una interfaz gráfica gratuita que permite trabajar con R.</li>
+</ul>
+<!--chapter:end:01-Introduccion.Rmd-->
+</div>
+</div>
+<div id="primeros-pasos" class="section level1">
+<h1><span class="header-section-number">2</span> Primeros Pasos</h1>
+<p>Como se mencionó en el capítulo anterior, R contiene funcionalidad limitada de base. Por eso, una vez instalados los requisitos mínimos, debemos comenzar a instalar aquellos paquetes útiles. Los paquetes son grupos de funciones útiles, que pueden usarse de forma repetida y reproducible entre usuarios. En particular, recomiendo fuertemente instalar <strong>tidyverse</strong>, un compendio de paquetes para hacer manejo y visualización de datos.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<div id="ejecutar-codigo" class="section level2">
+<h2><span class="header-section-number">2.1</span> Ejecutar código</h2>
+<p>Ejecutar (o correr) código en R puede realizarse desde la consola o desde el editor de scrips. En el editor, podemos seleccionar las líneas de código y presionar <code>Ctr+Enter</code> para que las líneas seleccionadas se ejecuten.</p>
+</div>
+<div id="crear-objetos" class="section level2">
+<h2><span class="header-section-number">2.2</span> Crear Objetos</h2>
+<p>R es un lenguaje orientado a objetos. Los objetos pueden ser usados para guardar valores y pueden modificarse (mediante <em>funciones</em>) como por ejemplo sumar dos objetos o calcular la media.</p>
+<div id="el-operador--" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> El operador <code>&lt;-</code></h3>
+<p>Para crear objetos <em>asignamos</em> (con el operador <code>&lt;-</code>) valores a una variable. Por ejemplo, creemos un vector <code>x</code> que vaya de 1 a 10.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Crear un vector en secuencia de 1 a 10</span>
+x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+<span class="co"># Ver el vector</span>
+x</code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>En general, podemos pensarlo de este modo:</p>
+<p><code>nombre_del_objeto &lt;- valor_del_objeto</code><a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
+<p>Las operaciones algebráicas con R siguen reglas matemáticas y son aplicadas a los elementos del vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sumar </span>
+x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Multiplicar </span>
+
+x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Operaciones combinadas</span>
+
+(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="fl">1.5</span></code></pre></div>
+<pre><code>##  [1]  1.333333  3.333333  6.666667 11.333333 17.333333 24.666667 33.333333
+##  [8] 43.333333 54.666667 67.333333</code></pre>
+</div>
+</div>
+<div id="clases-de-objetos-en-r" class="section level2">
+<h2><span class="header-section-number">2.3</span> Clases de objetos en R</h2>
+<p>Hasta ahora, nuestro objeto <code>x</code> es un simple vector de 1 dimensión y es de tipo entero o <code>integer</code> (puedes verificarlo con <code>class(x)</code> en la consola). La riqueza de R radica en la posibilidad de trabajar con distintas clases de objetos.</p>
+<p>R tiene cinco clases básicas de vectores:</p>
+<ul>
+<li>character (letras)</li>
+<li>numeric (números reales)</li>
+<li>integer (números enteros)</li>
+<li>complex (números complejos)</li>
+<li>logical (verdadero/falso o <code>True/False</code>)</li>
+</ul>
+<p>Lo más importante es que los vectores sólo pueden contener elementos de la misma clase. Por ejemplo, no es posible tener un vector de la siguiente forma: <code>c(1, &quot;perro&quot;, FALSE, &quot;gato&quot;, 1.5)</code> pero sí es posible tenerlo de esta forma: <code>c(&quot;1&quot;, &quot;perro&quot;, &quot;FALSE&quot;, &quot;gato&quot;, &quot;1.5&quot;)</code>. En este caso, aunque bastante inconveniente, todos los elementos son de tipo <code>character</code>. R automaticamente fuerza el resultado para no obtener errores (en un proceso llamado coerción). En nuestro ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Crear un vector con problemas de clases</span>
+prueba &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;perro&quot;</span>, <span class="ot">FALSE</span>, <span class="st">&quot;gato&quot;</span>, <span class="fl">1.5</span>)
+<span class="co"># Ver el vector</span>
+prueba</code></pre></div>
+<pre><code>## [1] &quot;1&quot;     &quot;perro&quot; &quot;FALSE&quot; &quot;gato&quot;  &quot;1.5&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Clase del vector</span>
+<span class="kw">class</span>(prueba)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Un problema de la coerción de datos es que no es posible para todos los casos. Allí, R agrega <code>NA</code>. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Transformar nuestro vector a numérico</span>
+<span class="kw">as.numeric</span>(prueba)</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] 1.0  NA  NA  NA 1.5</code></pre>
+<p>Los <code>NAs</code> (del inglés <em>not available</em>) son datos faltantes. Nuestros datos reales pueden contener <code>NA</code> y normalmente es muy útil tenerlos en cuenta. Para chequear si un vector contiene <code>NA</code> podemos usar la funcion <code>is.na()</code>, por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Nuestro vector previo</span>
+prueba_num &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(prueba)</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Chequeamos si tiene NA</span>
+<span class="kw">is.na</span>(prueba_num)</code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<p>Podemos tener <code>NA</code> de tipo <code>character</code>, cuando un vector de tipo <code>character</code> tiene espacios vacíos. Por ejemplo,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Nuestro vector previo</span>
+vector_palabra &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lo esencial es&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;a los ojos&quot;</span>)
+<span class="co"># Chequeamos si tiene NA</span>
+<span class="kw">is.na</span>(vector_palabra)</code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
+<p>Además, podemos contar con vectores que contienen palabras y guardan un orden de niveles como los factores (<code>factor</code>). Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creemos un factor con niveles</span>
+grupo_altura &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;mediano&quot;</span>, <span class="st">&quot;pequeño&quot;</span>, <span class="st">&quot;grande&quot;</span>, <span class="st">&quot;muy grande&quot;</span>),
+                       <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;pequeño&quot;</span>, <span class="st">&quot;mediano&quot;</span>, <span class="st">&quot;grande&quot;</span>, <span class="st">&quot;muy grande&quot;</span>))
+
+<span class="co"># Veamos el factor</span>
+grupo_altura</code></pre></div>
+<pre><code>## [1] mediano    pequeño    grande     muy grande
+## Levels: pequeño mediano grande muy grande</code></pre>
+<p>Una situación en la que nos importa el orden es al graficar los datos. Si no tenemos el grupo como <code>character</code> (o como <code>factor</code> con orden incorrecto), obtendremos un gráfico cuyo eje <code>x</code> está ordenado alfabéticamente en vez de tener el orden correcto.</p>
+<p>Finalmente, vectores vacíos (<code>NULL</code>) nos permiten hacer ciertas operaciones más complejas (ver más adelante).</p>
+<p>Otras clases de objetos incluyen listas (<code>list</code>), matrices (<code>matrix</code>), tablas de datos (<code>data.frame</code>) y modelos (por ejemplo <code>lm</code> para modelos lineales). Las distintas clases de objetos irán apareciendo a lo largo del texto.</p>
+</div>
+<div id="errores-comunes" class="section level2">
+<h2><span class="header-section-number">2.4</span> Errores comunes</h2>
+<p>La curva de aprendizaje de R es inclinada. La barrera del lenguaje es real. Por ejemplo, supongamos que queremos ordenar nuestro vector <code>x</code> de modo descendente (de 10 a 1). Para ello sería muy conveniente saber que <em>sort</em> es la forma de decir <em>ordenar</em> en inglés. Luego, los programadores probablemente incluyeron una función <code>sort()</code>.<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Usamos decreasing=T para marcar orden descendente </span>
+<span class="kw">sort</span>(x, <span class="dt">decreasing=</span>T)</code></pre></div>
+<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
+<p>Además de la barrera del lenguaje, es muy común realizar errores de tipeo. La realidad es que no podemos enojarnos con la máquina cuando ocurren, su trabajo es ser exacta, no leernos la mente <code>:)</code>. Veamos un ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Tengamos la palabra &#39;perro&#39; en un objeto</span>
+palabra &lt;-<span class="st"> &quot;perro&quot;</span>
+
+<span class="co"># Hagamos una lista de palabras</span>
+palabras &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;hola&#39;</span>, <span class="st">&#39;como&#39;</span>,<span class="st">&#39;estas&#39;</span>,<span class="st">&#39;?&#39;</span>)</code></pre></div>
+<p>Un error común será pedir <code>palabra</code> cuando queremos <code>palabras</code> y vice versa. Además, tendremos problemas de longitud (1 vs 4) que pueden romper el código o provocar errores inesperados. Estos problemas surgen cuando usamos dIsTinTaS FoRmAs De EsCrIbIR. R es sensible a cambios de mayúsculas, por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Pidamos palabra de nuevo</span>
+Palabra</code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;Palabra&#39; not found</code></pre>
+<p>El error indica que no tenemos <code>Palabra</code> en el entorno, lo cual es cierto! Cuando manejamos muchos objetos, estos errores tienden a pasar desapercibidos y provocar dolores de cabeza. Estos errores son muy comunes cuando nombramos mal los objetos o hacemos abuso de copiar y pegar. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">variable1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+variable2 &lt;-<span class="st"> </span>variable1 <span class="op">+</span><span class="st"> </span><span class="dv">5</span> 
+variable3 &lt;-<span class="st"> </span>variable1 <span class="op">+</span><span class="st"> </span><span class="dv">5</span> <span class="co"># Error! era variable2 pero no me di cuenta</span>
+
+<span class="co"># La confusión se propaga de manera silenciosa!!!!</span>
+variable4 &lt;-<span class="st"> </span>variable1 <span class="op">*</span><span class="st"> </span>variable2 <span class="op">*</span><span class="st"> </span>variable3</code></pre></div>
+<p>Nombrar objetos es difícil! Aunque conlleve nombres más largos, recomiendo nombrar los objetos de la forma más descriptiva posible<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>. Recuerden que su futuro ser (aquél que quiera usar el código unos meses después de haberlo escrito) no tendrá la menor idea de cómo llamó a las variables.Por ejemplo,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Mala práctica</span>
+<span class="co"># Nombrando con única letra</span>
+A &lt;-<span class="st"> </span><span class="dv">5</span>
+B &lt;-<span class="st"> </span><span class="fl">9.8</span>
+
+C &lt;-<span class="st"> </span>A <span class="op">*</span><span class="st"> </span>B 
+
+<span class="co"># Mejor</span>
+<span class="co"># (sin acentos)</span>
+masa &lt;-<span class="st"> </span><span class="dv">5</span>
+aceleracion &lt;-<span class="st"> </span><span class="fl">9.8</span>
+
+fuerza &lt;-<span class="st"> </span>masa <span class="op">*</span><span class="st"> </span>aceleracion</code></pre></div>
+<p>Un caso muy particular es el de los caracteres protegidos por R. Por ejemplo, <code>c</code> (operación para concatenar objetos), <code>t</code> (operación para transponer), <code>T</code> (atajo para el concepto lógico verdadero o <code>TRUE</code>) o <code>pi</code> (constante <span class="math inline">\(\pi\)</span>), entre otros. Utilizar estos valores crea inconvenientes con las funciones nativas del sistema (le creamos a R el conflicto entre tranponer un objeto o utilizar el objeto <code>t</code>). Una ventaja de tener idioma nativo distinto de inglés es que nos permite llamar a los objetos en castellano sin crear conflicto con las funciones del sistema (por ejemplo, podemos crear el objeto <code>VERDADERO</code> sin remordimientos).</p>
+<p>Parte de realizar progresos con el lenguage (y con nuestro deseado análisis de datos) es lograr dialogar en los términos que R entiende.</p>
+<blockquote>
+<p>Es completamente normal sentirse frustrado con R. Adelante!</p>
+</blockquote>
+</div>
+<div id="instalar-y-cargar-paquetes" class="section level2">
+<h2><span class="header-section-number">2.5</span> Instalar y cargar paquetes</h2>
+<p>Para instalar paquetes desde CRAN podemos correr:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>En este caso, la última versión de <strong>tidyverse</strong> (la última versión de los paquetes que lo conforman) será incorporadas a nuestra librería de paquetes. Instalar paquetes debe hacerse únicamente la primera vez. A partir de ahí, debemos indicarle a R que deseamos que esas funciones estén disponibles al iniciar el programa. La función <code>library()</code> es la que utilizamos para cargar paquetes, por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>Para cargar múltiples paquetes a la misma vez, es posible realizar una lista de paquetes y llamar a <code>library()</code> de manera recursiva.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">muchos_paquetes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;dplyr&#39;</span>, <span class="st">&#39;tidyr&#39;</span>, <span class="st">&#39;maptools&#39;</span>)
+
+<span class="kw">lapply</span>(muchos_paquetes, <span class="cf">function</span>(x) <span class="kw">require</span>(x, <span class="dt">character.only =</span> T))</code></pre></div>
+<p>Volveremos sobre este ejemplo en el futuro cuando veamos la utilidad de las funciones de tipo <code>apply</code>.</p>
+</div>
+<div id="recursos" class="section level2">
+<h2><span class="header-section-number">2.6</span> Recursos</h2>
+<ul>
+<li>Un buen manual en español <a href="https://bookdown.org/jboscomendoza/r-principiantes/">aquí</a></li>
+</ul>
+<!--chapter:end:02-Primeros-Pasos.Rmd-->
+</div>
+</div>
+<div id="leer-datos" class="section level1">
+<h1><span class="header-section-number">3</span> Leer Datos</h1>
+<p>En este capítulo vamos a focalizarnos en las diversas formas de entrar datos a R.</p>
+<div id="datasets-de-base" class="section level2">
+<h2><span class="header-section-number">3.1</span> Datasets de base</h2>
+<p>R contiene datasets que pueden ser utilizados directamente. Para dar un vistazo a los paquetes</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paquetes &lt;-<span class="st"> </span><span class="kw">library</span>(<span class="dt">help =</span> <span class="st">&quot;datasets&quot;</span>)
+<span class="kw">head</span>(paquetes<span class="op">$</span>info[[<span class="dv">2</span>]])</code></pre></div>
+<pre><code>## [1] &quot;AirPassengers           Monthly Airline Passenger Numbers 1949-1960&quot;   
+## [2] &quot;BJsales                 Sales Data with Leading Indicator&quot;             
+## [3] &quot;BOD                     Biochemical Oxygen Demand&quot;                     
+## [4] &quot;CO2                     Carbon Dioxide Uptake in Grass Plants&quot;         
+## [5] &quot;ChickWeight             Weight versus age of chicks on different diets&quot;
+## [6] &quot;DNase                   Elisa assay of DNase&quot;</code></pre>
+<p>Para ver la lista completa con toda la información, entrar <code>paquetes</code> en la consola nos abrirá una ventana. Utilizar datos que vienen con la instalación R nos facilitará avanzar hacia modelado y comunicación. Por ejemplo, en muchas ocasiones utilizaremos el dataset <code>iris</code>, que contiene información sobre la longitud de pétalos y sépalos en tres plantas distintas.</p>
+<p>Si bien importar datos es crucial, recomiendo que los usuarios menos experimentados continuen con el siguiente capítulo.</p>
+<p>A continuación se darán detalles más específicos para importar datos a R.</p>
+</div>
+<div id="importar-datos-de-manera-manual" class="section level2">
+<h2><span class="header-section-number">3.2</span> Importar datos de manera manual</h2>
+<p>Rstudio posee una pestaña en donde tenemos el <em>Entorno</em> y un botón que nos permite importar datasets (ver figura). Desaconsejo utilizar esta pestaña de manera recurrente debido a que es de poca utilidad para leer archivos grandes. Además, aprender a importar archivos usando código nos permite leer múltiples archivos con gran velocidad, tarea prácticamente imposible si utilizamos los cuadros de diálogo.</p>
+<div class="figure">
+<img src="img/manual_import_01.PNG" alt="Importar manualmente" />
+<p class="caption">Importar manualmente</p>
+</div>
+<p>Luego recibiremos la posibilidad de seleccionar el archivo y modificar parámetros en sendos cuadros de diálogo.</p>
+</div>
+<div id="archivos-de-texto" class="section level2">
+<h2><span class="header-section-number">3.3</span> Archivos de texto</h2>
+<p>La gran ventaja de mantener archivos de texto (por ejemplo, <code>.csv</code> o <code>.txt</code>) es que una enorme cantidad de software es capaz de leerlos y no están ligados a un sistema operativo. Estos archivos son normalmente livianos y es fácil mantenerlos como <em>sólo lectura</em>, es decir, archivos en los que no cambiamos la información, sólo accedemos a ella. Si nuestros datos están guardados en un archivo de texto de sólo lectura, es menos probable que ocurra corrupción de datos o que, con el paso del tiempo, los mismos no puedan abrirse porque el software se ha discontinuado.</p>
+<p>R tiene funciones genéricas para abrir este tipo de archivos en una tabla como <code>read.table(...)</code>. Esta función presume pocas cosas en la estructura de datos, por lo que permite especificar un montón de parámetros y nos brinda variabilidad (ver <code>help(read.table)</code>). Sin embargo, en general conocemos la estructura de nuestros datos (por ejemplo, la primera fila es el título de las columnas o es un archivo separado por comas). Por lo tanto, usaremos llamadas del estilo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&#39;nombre_de_archivo.csv&#39;</span>)</code></pre></div>
+<div id="importar-multiples-archivos-de-texto" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Importar múltiples archivos de texto</h3>
+<p>Normalmente tendremos múltiples archivos de texto, probablemente llamados de manera seriada en una carpeta dentro de nuestro working directory (por ejemplo, tendremos <code>resultados/sujeto001.csv</code>, <code>resultados/sujeto002.csv</code>, … <code>resultados/sujeto154.csv</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Obtener lista de archivos dentro de la carpeta &#39;resultados&#39;</span>
+
+lista_nombres &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&#39;resultados&#39;</span>)
+
+<span class="co"># leer todos los archivos en una nueva lista</span>
+
+lista_archivos &lt;-<span class="st"> </span><span class="kw">lapply</span>(lista_nombres, <span class="kw">read.csv</span>())</code></pre></div>
+<p>Esta estrategia nos ahorra tener que escribir 154 llamadas a <code>read.csv()</code> con el nombre de archivo correcto. También facilita el acceso a todas las tablas en un único objeto, la lista <code>lista_archivos</code>.</p>
+</div>
+</div>
+<div id="otros-formatos" class="section level2">
+<h2><span class="header-section-number">3.4</span> Otros formatos</h2>
+<div id="sas" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> SAS</h3>
+<p>Si jugaron con los cuadros de diálogo para importar datos de forma manual, probablemente se toparon con el paquete <code>haven</code>, por ejemplo podemos leer desde SAS usando:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
+dataset &lt;-<span class="st"> </span><span class="kw">read_sas</span>(...)</code></pre></div>
+<p>También es posible usar <code>foreign</code> y la función <code>read.ssd()</code>.</p>
+</div>
+<div id="spss" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> SPSS</h3>
+<p>R puede leer datos directamente de spss:</p>
+<ul>
+<li>El paquete <code>foreign</code> contiene la función <code>read.spss()</code>.</li>
+<li>El paquete <code>haven</code> y la función <code>read_spss()</code>.</li>
+</ul>
+</div>
+<div id="excel" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Excel</h3>
+<p>En algún momento tendremos que leer datos en la forma <code>.xls</code> o <code>.xlsx</code>. Existen distintos paquetes que permiten realizar la tarea, por ejemplo:</p>
+<ul>
+<li><code>readxl</code> contiene la función <code>read_excel()</code>, entre otras.</li>
+<li><code>xlsx</code> contiene la función <code>read.xlsx()</code>, entre otras.</li>
+</ul>
+<!--chapter:end:03-Leer-Datos.Rmd-->
+</div>
+</div>
+</div>
+<div id="exploracion-de-datos" class="section level1">
+<h1><span class="header-section-number">4</span> Exploración de Datos</h1>
+<p>Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica.</p>
+<div id="graficos-de-base" class="section level2">
+<h2><span class="header-section-number">4.1</span> Gráficos de base</h2>
+<p>R posee funcionalidad gráfica de base. Con relativa facilidad podemos hacer una gráfica de dos variables (por ejemplo, una hipotética variable respuesta en el tiempo).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tiempo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+respuesta &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>))  
+
+<span class="kw">plot</span>(tiempo,respuesta,
+     <span class="dt">type=</span><span class="st">&#39;b&#39;</span>,
+     <span class="dt">pch=</span><span class="dv">19</span>,
+     <span class="dt">col=</span><span class="st">&quot;black&quot;</span>,
+     <span class="dt">main =</span> <span class="st">&quot;Respuesta vs tiempo&quot;</span>,
+     <span class="dt">ylab =</span> <span class="st">&quot;Respuesta&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>)</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Esta funcionalidad no está limitada a gráficos de puntos y líneas. Por ejemplo, el histograma que figura en el principio del libro fue realizado con la función <code>hist()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
+<span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
+     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Los gráficos de base son geniales para explorar modelos ya que aceptan objetos de tipo <code>lm</code> (ver siguientes capítulos). Si bien es posible realizar gráficos muy bonitos con la funcionalidad de base, incluso gráficas de calidad para publicación impresa, es cierto que la gramática no es sencilla de recordar (o requiere demasiada previsión) y, en muchos casos, es limitada.</p>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">4.2</span> ggplot2</h2>
+<p>Una forma más intuitiva de construir gráficas es utilizar <em>capas</em>. El paquete <code>ggplot2</code> pertenece al <code>tidyverse</code> y es el más utilizado para realizar gráficas de alta calidad en R. A lo largo de la explicación utilizaré el dataset <strong>iris</strong>, que contiene medidas de las ojas de tres especies de plantas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris)</code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Veamos cómo se construye capa por capa un gráfico utilizando <code>ggplot2</code> y los datos de <code>iris</code>. Para entender cómo funciona, es importante entender el argumento <code>aes()</code>, que permite indicar qué pondremos en los ejes <em>XY</em> y además permite . Veamos el ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span>iris,
+       <span class="kw">aes</span>(Sepal.Length, Petal.Length))</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Este gráfico contiene los ejes que especificamos pero no contiene los datos. Para dibujarlos, debemos decirle a <code>ggplot</code> cómo hacerlo (por ejemplo, puntos).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Al parecer, los datos presentan una estructura de asociación entre el largo de los sépalos y el de los pétalos (a mayor largo de sépalos, mayor largo de pétalos). Este dataset contiene un factor <em>Species</em> con tres niveles, <em>setosa</em>, <em>versicolor</em>, <em>virginica</em>. Fácilmente podemos ver si las distintas especies presentan distintas asociaciones. Una forma rápida de visualizarlo es coloreando los puntos según el nivel del factor <em>Species</em>. En <code>ggplot2</code> usamos <code>color = Species</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal (“lm”) en <code>geom_smooth(method = &quot;lm&quot;)</code>. Es clave notar que <code>geom_smooth()</code> posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Como pueden apreciar, incorporar la gramática de <code>ggplot2</code> permite realizar visualizaciones más complejas con menor esfuerzo. La riqueza de este grupo de funciones esta en la gran variedad de funciones <code>geom</code> que podemos incorporar. A lo largo de el libro veremos varias de ellas.</p>
+<div id="entendiendo-aes" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Entendiendo <code>aes()</code></h3>
+<p>En ggplot, <code>aes()</code> hace referencia al contenido estético del gráfico (del ingles <em>aesthetics</em>). Es decir, la función le dará indicios a ggplot2 sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que <code>aes()</code> crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar <code>aes()</code> al llamado de <code>ggplot()</code> estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar <code>aes()</code> en la capa correspondiente. Esto puede parecer confuso, las siguientes líneas de código generan un gráfico que se ve idéntico al que realizamos previamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species)) <span class="co"># Notar diferencia! aes() aparece en geom_point()</span></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Sin embargo, podemos ver la diferencia al intentar repetir el gráfico con línea de tendencia.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>En este caso <code>geom_smooth()</code> no recibe la orden de agrupar segun <code>Species</code>, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos del primer gráfico de negro a magenta:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Primer gráfico, izquierda</span>
+
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>()
+
+<span class="co"># Intento 1</span>
+
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>()
+
+<span class="co"># Intento 2</span>
+
+<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="explorando-geom" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Explorando <code>geom</code></h3>
+<p>Los distintas funciones <code>geom</code> nos permiten obtener resultados gráficos distintos, aunque utilicemos los mismos datos. Analicemos el largo de los sépalos por especie.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Gráfico de puntos</span>
+p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>()
+
+<span class="co"># Gráfico de puntos con ruido en el eje horizontal</span>
+p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>)
+
+<span class="co"># Boxplot</span>
+
+p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_boxplot</span>()
+
+<span class="co"># Violin </span>
+p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_violin</span>()
+
+<span class="co"># Combinando boxplot y violin</span>
+
+p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">color=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;black&quot;</span>,
+                    <span class="dt">lwd=</span><span class="fl">0.8</span>, <span class="dt">width=</span><span class="fl">0.2</span> )
+
+<span class="co"># Grafico de barras con medias + SEM</span>
+
+p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,
+                   <span class="dt">width=</span><span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,
+                   <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">width=</span><span class="fl">0.5</span>)</code></pre></div>
+<div class="figure">
+<img src="04-Exploracion_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="672" />
+<p class="caption">
+(#fig:six-plot-figure)Varias formas de mostrar los mismos datos.
+</p>
+</div>
+<p>Este es un pequeño ejemplo de como los distintos <code>geoms</code> participan en la creación de gráficos. En <strong>A</strong> es difícil ver que los puntos están superpuestos, por eso en <strong>B</strong> usamos <code>geom_jitter()</code>, que da una buena idea de la distribución de los datos. Para resumir la información, es común utilizar gráficos de cajas o tipo violín (<strong>C,D</strong>). Notar que la combinación de <code>geoms</code> en capas permite fácilmente mezclar ambos gráficos (<strong>E</strong>). Al combinarlos, hemos cambiado cuestiones estéticas dentro de las capas para incrementar el contraste. Finalmente, otra forma común de hacer un resumen de datos es un gráfico de barras de tipo media ± SEM (<strong>E</strong>).</p>
+</div>
+<div id="explorando-facet_wrap" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Explorando <code>facet_wrap</code></h3>
+<p>En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar <code>facets</code> para separar las gráficas en distintas ventanas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Este comportamiento es súmamente útil cuando tenemos más de una variable categórica o cuando deseamos utilizar el color para simbolizar otra variable. Por ejemplo, quizás nos interesa evaluar cómo varía el ancho de los pétalos en las distintas plantas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>Petal.Width))<span class="op">+</span>
+<span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>En este último gráfico hemos podido representar con claridad variaciones en la longitud de pétalos y sépalos, el ancho de los pétalos y una variable categórica de tres niveles. Los datos indican que las plantas con menor longitud de pétalos y sépalos también poseen pétalos más angostos. Efectivamente, explotar los recursos de <code>ggplot2</code> nos permite generar poderosas herramientas de análisis y comunicación estadística.</p>
+</div>
+<div id="cowplot" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Cowplot</h3>
+<p>Los gráficos realizados en la sección previa (@ref(explorando-geom)) muestran gráficos individuales que fueron <em>acomodados</em> distintos paneles. Para realizar esto, se ha utilizando el paquete <code>cowplot</code>. A continuación se muestra el código para realizar figura @ref(fig:six-plot-figure)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2,p3,p4,p5,p6, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
+</div>
+</div>
+<div id="caso-de-estudio" class="section level2">
+<h2><span class="header-section-number">4.3</span> Caso de estudio</h2>
+<p>El primer objetivo de un análisis exploratorio debe ser ganar entendimiento cualitativo de la naturaleza de los datos (tendencia central, distribución y estructura de correlación). Esto puede lograrse utilizando tablas de resumen, sin embargo, en mi opinión el análisis gráfico es superior.</p>
+<p><code>ELEGIR Y REALIZAR CASO DE ESTUDIO DE ANALISIS GRAFICO</code></p>
+</div>
+<div id="resumen-1" class="section level2">
+<h2><span class="header-section-number">4.4</span> Resumen</h2>
+<p>En este capítulo no he realizando una descripción exhaustiva sobre análisis gráfico, mi idea fue brindar ejemplos de las posibilidades para exploración de datos, principalmente con <code>ggplot2</code>.</p>
+<ul>
+<li>Uno de los mayores beneficios de R es la plataforma gráfica, principalmente <code>ggplot2</code>.</li>
+<li><code>ggplot2</code> está basada en una gramática que permite incorporar capas a los gráficos.</li>
+<li>Las capas son agregadas una encima de la otra segun los <code>aes()</code> y <code>geoms</code> que se utilicen.</li>
+<li>Tanto <code>ggplot2</code> como paquetes accesorios permiten realizar gráficos de paneles de alta calidad.</li>
+<li>Utilizar combinaciones de capas permite representar con claridad más dimensiones en un gráfico.</li>
+</ul>
+</div>
+<div id="recursos-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> Recursos</h2>
+<p>El material sobre visualización de datos es virtualmente infinito. Recomiendo fuertemente los siguientes textos:</p>
+<ul>
+<li><a href="https://ggplot2.tidyverse.org/">ggplot2 online</a></li>
+<li><a href="http://socviz.co/">Data Visualization-Kieran Healy</a></li>
+</ul>
+<!--chapter:end:04-Exploracion.Rmd-->
+</div>
+</div>
+<div id="modelos-lineales" class="section level1">
+<h1><span class="header-section-number">5</span> Modelos Lineales</h1>
+<blockquote>
+<p>Esencialmente, todos los modelos son erróneos, pero algunos son útiles - George Box</p>
+</blockquote>
+<p>La realidad es multidimensional, compleja e incierta. Un modelo es una representación formal de un fenómeno, una reducción de dimensionalidad que posee utilidad práctica. Dicha representación normalmente puede ser condensada en una expresión matemática, una <em>fórmula</em>, que indica cómo una variable se relaciona con otra(s). Empíricamente, el paradigma se basa en estudiar la relación matemática entre variables aleatorias respuesta, con una distribución de probabilidades dada, y aquellas variables que la predicen, con el fin de explicar asociaciones entre variables y realizar inferencia. De modo muy general, podemos escribir:</p>
+<span class="math display">\[\begin{equation} 
+  y = f(x)  
+  (\#eq:general-fx)
+\end{equation}\]</span>
+<p>Donde <span class="math inline">\(y\)</span> es la variable que modelamos, <span class="math inline">\(f\)</span> es una función de una o múltiples variable(s) explicatoria(s).</p>
+<div id="que-es-un-modelo-lineal" class="section level2">
+<h2><span class="header-section-number">5.1</span> ¿Qué es un modelo lineal?</h2>
+<p>En este capítulo trabajaremos con modelos <em>lineales</em>. Un modelo lineal suele escribirse como:</p>
+<span class="math display">\[\begin{equation} 
+y = \beta_0 + \beta_1x_1 + \ ...\  + \beta_nx_n
+  (\#eq:general-glm)
+\end{equation}\]</span>
+<p>Donde <span class="math inline">\(x_{1..n}\)</span> representa cada variable predictora y <span class="math inline">\(\beta_{1..n}\)</span> representan los coeficientes (o parámetros) a estimar. El efecto de cada coeficiente (por ejemplo, <span class="math inline">\(\beta_3\)</span>) debe interpretarse como el cambio en <span class="math inline">\(y\)</span> dado por un cambio unitario en la variable predictora asociada a ese coeficiente (<span class="math inline">\(x_3\)</span>), siempre que las demás variables <span class="math inline">\(x\)</span> se mantengan constantes. Además, tenemos una ordenada al origen (o <span class="math inline">\(\beta_0\)</span>) que representa la media general.</p>
+<p>Este modelo es <em>lineal</em> porque está escrito como una combinación lineal de las preditoras y sus coeficientes. Por ejemplo, la ecuación de Michaelis-Menten<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a> es un modelo <em>no lineal</em>:</p>
+<span class="math display">\[\begin{equation} 
+
+V_{prod} = V_{max} * \frac{[S]}{K_m [S]}
+  (\#eq:michaelis-menten)
+\end{equation}\]</span>
+<p>Que podemos escribir en los términos usados en @ref(eq:general-glm) como:</p>
+<span class="math display">\[\begin{equation} 
+
+y = \beta_0 *\frac{x}{\beta_1 x}
+
+\end{equation}\]</span>
+</div>
+<div id="modelos-estadisticos" class="section level2">
+<h2><span class="header-section-number">5.2</span> Modelos estadísticos</h2>
+<p>Hasta ahora, los modelos estaban <em>determinados</em>, es decir, dados los valores de <span class="math inline">\(\beta, x\)</span>, los valores <span class="math inline">\(y\)</span> son únicos. En nuestro caso trabajaremos con modelos <em>estadísticos</em>, en donde cada valor que medimos en la vida real tiene asociado un <em>error</em>.</p>
+<span class="math display">\[\begin{equation} 
+y_i = \beta_0 + \beta_1x_{1i} + \ ...\  + \beta_nx_{ni} + \epsilon_i 
+  (\#eq:general-glm-estadist)
+\end{equation}\]</span>
+<p>Donde <span class="math inline">\(i\)</span> representa la observación obtenida de cada unidad experimental. Debido a que existen diferencias entre unidades experimentales, el valor de <span class="math inline">\(y_i\)</span> no será determinado por una combinación lineal de <span class="math inline">\(\beta x\)</span>, tendrá un error (<span class="math inline">\(\mathcal{E}_i\)</span>) asociado.</p>
+<div id="simulando-datos-en-r" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Simulando datos en R</h3>
+<p>Podemos crear un ejemplo para entender de dónde sale el error. Supongamos que podemos medir <em>felicidad</em> de manera cuantitativa, como una variable continua. Supongamos, además, que nuestro laboratorio quiere investigar cómo impactan distintas dosis de chocolate a la felicidad de los humanos. Para esto, tomamos una muestra de 100 voluntarios y los asignamos de manera aleatoria a 5 dosis de chocolate (20, 40, 60, 80, y 100 gramos).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Paquetes que vamos a usar</span>
+<span class="kw">library</span>(ggplot2)
+<span class="co"># Permite cambiar el aspecto de ggplot a algo parecido a base</span>
+<span class="kw">library</span>(ggthemes) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generar participantes</span>
+id &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
+<span class="co"># Generar dosis</span>
+dosis &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">20</span>), <span class="dv">20</span>))
+<span class="co"># Generar respuesta &quot;ideal&quot; </span>
+respuesta &lt;-<span class="st"> </span>dosis <span class="op">*</span><span class="st"> </span><span class="fl">2.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span>
+<span class="co"># Construir data.frame</span>
+datos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span>id,
+                    <span class="dt">dosis=</span>dosis,
+                    <span class="dt">respuesta=</span>respuesta)
+
+<span class="co"># Graficar</span>
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(dosis, respuesta))<span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
+<span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
+<span class="st">      </span><span class="kw">theme_base</span>()<span class="op">+</span>
+<span class="st">      </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))
+
+p</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>El modelo que construimos hasta ahora tiene valores determinados. Pero, en la realidad, esperamos variabilidad en la respuesta al chocolate entre individuos. Esta variabilidad existe porque los individuos no son réplicas exactas: cada cuerpo fue construido a partir de un genoma levemente distinto, con diferentes eventos en el desarrollo y la experiencia. Incluso podemos pensar en eventos aleatorios relacionados con la ingesta y digestión de el mismo trozo de chocolate! Por eso, si queremos trabajar con un modelo más realista deberíamos tener un gráfico como el siguiente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># semilla</span>
+<span class="kw">set.seed</span>(<span class="dv">444</span>)
+<span class="co"># Agregar ruido con distribucion normal (media 0, sd = 5)</span>
+datos<span class="op">$</span>respuesta &lt;-<span class="st"> </span>datos<span class="op">$</span>respuesta <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">5</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(dosis, respuesta))<span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)<span class="op">+</span>
+<span class="st">       </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
+<span class="st">       </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
+<span class="st">       </span><span class="kw">theme_base</span>()<span class="op">+</span>
+<span class="st">       </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))
+
+p</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>En este caso podemos ver claramente que para cada valor de dosis hemos registrado más de un valor de felicidad. La naturaleza de la pregunta cambia, debemos preguntarnos:</p>
+<ul>
+<li>¿Cuál es el valor <strong>esperado</strong> de felicidad para una dada dosis de chocolate?</li>
+<li>¿Cómo podemos estimarlo?</li>
+</ul>
+</div>
+</div>
+<div id="esperanza" class="section level2">
+<h2><span class="header-section-number">5.3</span> Esperanza</h2>
+<p>Lo que esperamos en este caso es registrar valores que estén distribuidos alrededor del valor de la media para cada concentración (ver @ref(eq:general-glm-estadist)). La esperanza va a estar dada por:</p>
+<span class="math display">\[\begin{equation} 
+E(Y_i) = \beta_0 + \beta_1 x_{1i}
+  (\#eq:esperanza)
+\end{equation}\]</span>
+<p>Donde <span class="math inline">\(E(Y_i)\)</span> es la esperanza del caso <span class="math inline">\(i\)</span> (también escrita como <span class="math inline">\(\mu_{Y|x_i}\)</span>), <span class="math inline">\(\beta_0\)</span> es el valor esperado para dosis cero (en este caso tiene sentido experimental pensar en participantes que no comieron chocolate), y <span class="math inline">\(\beta_1\)</span> es el incremento en la esperanza dado por un incremento unitario en la variable predictora (exactamente cuánto más feliz espero ser por gramo de chocolate!). Gráficamente, esperamos:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Graficar</span>
+p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="estimacion-del-modelo" class="section level2">
+<h2><span class="header-section-number">5.4</span> Estimación del modelo</h2>
+<p>En este caso, los parámetros de nuestro modelo se estiman por <em>cuadrados mínimos</em>, una forma acotada de decir que buscaremos aquella recta (combinación lineal de parámetros y predictoras) tal que se minimice la suma de las distancias entre los datos y los valores predichos.</p>
+<p>Formalmente, podemos calcular el error o <em>residuo</em>, para cada punto como la diferencia entre el valor observado (<span class="math inline">\(y_i\)</span>) y predicho por nuestro modelo (<span class="math inline">\(E(Y_i)\)</span>):</p>
+<span class="math display">\[\begin{equation} 
+e_i = y_i - E(Y_i)
+  (\#eq:residuo1)
+\end{equation}\]</span>
+<p>Un inconveniente de esta definición es el signo de los residuos. Como no deseamos que los resultados varíen si las observaciones están por encima o por debajo de la esperanza, podemos usar el cuadrado de los residuos para trabajar. Usando la Ecuación @ref(eq:esperanza) podemos expandir la Ecuación @ref(eq:residuo1) y plantear:</p>
+<span class="math display">\[\begin{equation} 
+\Sigma e_i^2 = \Sigma (y_i - E(Y_i))^2 = \Sigma (y_i - (b_0 + b_1 x))^2
+  (\#eq:residuo2)
+\end{equation}\]</span>
+<p>Si minimizamos <span class="math inline">\(\Sigma e_i^2\)</span> podemos obtener estimadores para <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> (denotados como <span class="math inline">\(b_0\)</span> y <span class="math inline">\(b_1\)</span>):</p>
+<span class="math display">\[\begin{equation} 
+b_1 = \frac{\Sigma (x_i - \bar{x})(y_i - \bar{y})}{\Sigma (x_i - \bar{x})^2} \\
+b_0 = \bar{y} - b_1 \bar{x}
+  (\#eq:parametros)
+\end{equation}\]</span>
+<p>Donde <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(\bar{y}\)</span> representan las respectivas medias en nuestra muestra.</p>
+<div id="entendiendo-la-estimacion-con-graficos" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Entendiendo la estimación con gráficos</h3>
+<p>Si pensamos a los residuos como distancias entre nuestra recta de predichos y las observaciones de la vida real, lo que la regresión hace es minimizar esas distancias (todas a la vez, por eso en la @ref(eq:residuo2) tenemos la sumatoria).</p>
+<p>Supongamos que una primera aproximación a estimar el valor de <span class="math inline">\(y\)</span> es olvidarse de la variación en <span class="math inline">\(x\)</span> por un instante y plantear una recta que contenga a la media global (<span class="math inline">\(\bar{y}\)</span>) como valor esperado para cualquier <span class="math inline">\(x\)</span> (equivalente a <span class="math inline">\(y_i = \beta_0 = \bar{y}\)</span>):</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>En este caso, vemos que los valores observados tienen una distancia grande a la media. Esto indica que <span class="math inline">\(x\)</span> efectivamente tiene un efecto sobre <span class="math inline">\(y\)</span>. Sin embargo, cerca del centro (alrededor del punto <span class="math inline">\((\bar{x},\bar{y})\)</span>), los residuos son pequeños. Intuitivamente, debemos cambiar la pendiente, pero, al rotar la recta, deberíamos hacerlo desde el punto <span class="math inline">\((\bar{x},\bar{y})\)</span>. Por ejemplo:</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Podemos ver que con esta acción hemos reducido los residuos y el ajuste es mejor. Naturalmente, es muy complicado encontrar gráficamente el par <span class="math inline">\(b_0, b_1\)</span> tal que la suma de las distancias sean <em>mínimas</em>. En la siguiente figura se muestra la gráfica de dicha recta. Apenas se se pueden apreciar los residuos, vemos que el ajuste es mucho mejor que nuestro primer intento con la media:</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+</div>
+<div id="modelo-en-r" class="section level2">
+<h2><span class="header-section-number">5.5</span> Modelo en R</h2>
+<p>Ya es hora de meternos de lleno en la práctica. Volvamos a nuestro modelo de felicidad y chocolate para realizar un ajuste lineal en R usando la función <code>lm</code>. Esta función requiere argumentos de tipo <code>formula</code>. En nuestro caso, queremos estudiar la relación entre la felicidad (<code>respuesta</code>) y la dosis de chocolate (<code>dosis</code>). Por ende, la fórmula que utilizaremos es <code>respuesta ~ dosis</code>, con <code>~</code> para dividir entre respuesta y predictoras:<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># crear modelo</span>
+modelo_chocolate &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data=</span>datos,
+                       respuesta <span class="op">~</span><span class="st"> </span>dosis)
+<span class="co"># Ver resultados del modelo</span>
+<span class="kw">summary</span>(modelo_chocolate)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = respuesta ~ dosis, data = datos)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -9.204 -3.696 -1.330  3.091 11.497 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  8.59279    1.15698   7.427 4.15e-11 ***
+## dosis        2.51659    0.01744 144.283  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.933 on 98 degrees of freedom
+## Multiple R-squared:  0.9953, Adjusted R-squared:  0.9953 
+## F-statistic: 2.082e+04 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>El llamado a <code>summary()</code> nos permite ver una gran cantidad de información. También recomiendo familiarizarse con el paquete <code>broom</code>, que nos permite extraer información estadística de los modelos. Aquí está la tabla con los estimadores:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Estimadores</span>
+broom<span class="op">::</span><span class="kw">tidy</span>(modelo_chocolate)</code></pre></div>
+<pre><code>##          term estimate  std.error  statistic       p.value
+## 1 (Intercept) 8.592791 1.15697854   7.426923  4.146133e-11
+## 2       dosis 2.516593 0.01744211 144.282604 5.934481e-116</code></pre>
+<p>Vemos claramente que el consumo de chocolate incrementa la felicidad (esperamos mayor un incremento en ~2.5 unidades de felicidad por cada gramo de chocolate!).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Herramientas de diagnóstico del ajuste</span>
+<span class="kw">t</span>(broom<span class="op">::</span><span class="kw">glance</span>(modelo_chocolate))</code></pre></div>
+<pre><code>##                         [,1]
+## r.squared       9.953145e-01
+## adj.r.squared   9.952667e-01
+## sigma           4.933373e+00
+## statistic       2.081747e+04
+## p.value        5.934481e-116
+## df              2.000000e+00
+## logLik         -3.004860e+02
+## AIC             6.069720e+02
+## BIC             6.147875e+02
+## deviance        2.385141e+03
+## df.residual     9.800000e+01</code></pre>
+<p>También podemos acceder a porciones del modelo por separado. Puedes intentar en tu consola los siguientes comandos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parametros</span>
+modelo_chocolate<span class="op">$</span>coefficients
+<span class="co"># predichos</span>
+modelo_chocolate<span class="op">$</span>fitted.values
+<span class="co"># residuos</span>
+modelo_chocolate<span class="op">$</span>residuals</code></pre></div>
+</div>
+<div id="supuestos" class="section level2">
+<h2><span class="header-section-number">5.6</span> Supuestos</h2>
+<p>Cuando construimos modelos de este tipo, asumimos ciertas cosas. Los supuestos principales en este caso son:</p>
+<ul>
+<li>Los valores de las predictoras no tienen error, son determinados por el investigador.</li>
+<li>Independencia entre observaciones.</li>
+<li>Homocedasticidad.</li>
+<li>Los residuos son normales.</li>
+</ul>
+<div id="error-en-x" class="section level3">
+<h3><span class="header-section-number">5.6.1</span> Error en <span class="math inline">\(x\)</span></h3>
+<p>La minimización de distancias se realiza únicamente sobre el componente <span class="math inline">\(y\)</span>. De esto se desprende el supuesto de que el componente <span class="math inline">\(x\)</span> no tiene error asociado. Experimentalmente, esto es imposible (no es posible pesar exactamente 20.00 gr de chocolate). Sin embargo, en la gran mayoría de los casos, un error relativo pequeño en este componente, como por ejemplo el porcentaje de error de nuestra balanza, no afecta el análisis.</p>
+</div>
+<div id="independencia" class="section level3">
+<h3><span class="header-section-number">5.6.2</span> Independencia</h3>
+<p>Los valores que obtenemos de cada unidad experimental deben ser independientes. Esto significa que los valores obtenidos de una unidad experimental no afectan los valores obtenidos por otra. Formalmente, <span class="math inline">\(cov(y_i,y_j) = 0 \ \ \forall \ \ i\neq j\)</span>.</p>
+</div>
+<div id="homocedasticidad." class="section level3">
+<h3><span class="header-section-number">5.6.3</span> Homocedasticidad.</h3>
+<p>Podemos pensar a cada uno de los valores que obtuvimos para una dosis como una subpoblación. En este modelo, la media de cada una de estas subpoblaciones está dada por la ecuación de esperanza (ver Ecuación @ref(eq:esperanza)). Para cada subpoblación asumimos una distribución normal alrededor de <span class="math inline">\(E(y_i)\)</span> con idéntica varianza (<span class="math inline">\(\sigma^2\)</span>). Formalmente:</p>
+<span class="math display">\[\begin{equation} 
+\sigma^{2}(Y_i|x_i) = \sigma^{2}(Y_j|x_j) = \sigma^2 \ \ \forall \ \ i\neq j
+  (\#eq:varianza-cte)
+\end{equation}\]</span>
+<p>Este supuesto no es trivial y veremos cómo detectar su cumplimiento a partir del análisis de residuos.</p>
+</div>
+<div id="normalidad-de-residuos" class="section level3">
+<h3><span class="header-section-number">5.6.4</span> Normalidad de residuos</h3>
+<p>Este modelo tiene como supuesto que los residuos se distribuyen de manera normal. En general, utilizaremos gráficos de diagnóstico, que son importantes para evaluar los supuestos.</p>
+<p><strong>Residuos vs Predichos (Residuals vs Fitted)</strong></p>
+<p>En este gráfico buscamos ver la dispersión respecto de la recta para cada valor predicho (cuánto se alejan de nuestro ajuste). Esperamos no observar ningún tipo de patrón en los residuos. Esperamos no ver datos atípicos (datos con residuos muy grandes).</p>
+<p><strong>Q-Q Plot</strong></p>
+<p>Este gráfico muestra cómo se acumulan los residuos respecto de los cuantiles teóricos de una distribución normal. Si la distribución de residuos es normal, los veremos cercanos a la recta. Desviaciones de la recta indican que la distribución de los residuos no es normal. Por ejemplo, en el siguiente gráfico muestro la comparación de residuos provenientes de una distribución Normal y una gamma en un Q-Q plot:</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/qqnorm-1.png" width="672" /></p>
+<p><strong>Residuos estandarizados vs Predichos</strong></p>
+<p>Este gráfico es similar al primero, pero los residuos están estandarizados. Esperamos no ver ningún patrón, con los residuos distribuidos normalmente alrededor de cero. En la siguiente figura muestro ejemplos de distintos gráficos de residuos vs predichos:</p>
+<p>En el primer caso veremos cómo son los gráficos <em>deseados</em> de residuos vs predichos. Tanto en <strong>A</strong> como en <strong>B</strong> tenemos residuos normales, la diferencia está en que para el modelo en <strong>B</strong> los predichos responden a niveles de un factor. Es importante mirar la dispersión de los residuos y que la variabilidad se mantiene constante a lo largo de todo el dominio. No hay reglas exactas para describir estos gráficos, se aprende mirando los patrones o, en este caso, la falta de ellos!</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/normal-resid-1.png" width="672" /></p>
+<p>En el segundo caso vemos problemas clásicos como los gráficos en forma de <em>cono</em>, predichos más altos tienen mayor variabilidad.</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/cone-resid-1.png" width="672" /></p>
+<p>Finalmente, dos casos distintos. En <strong>D</strong>, vemos residuos con un patrón de <span class="math inline">\(x^2\)</span>, indica que nuestro modelo lineal no sigue el patrón de distribución de los datos. En <strong>E</strong>, vemos cómo modifica un outlier un gráfico al gráfico de residuos mostrado en <strong>A</strong>.</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/rest-resid-1.png" width="672" /></p>
+<p><strong>Gráfico de puntos influyentes</strong></p>
+<p>Los puntos influyentes son aquellos con gran palanca o <em>leverage</em>. Formalmente, dada la matriz de diseño de nuestro modelo <span class="math inline">\(\mathbf{X}\)</span> y la matriz de proyección <span class="math inline">\(\mathbf{H}=\mathbf{X} \ (\mathbf{X}^{\mathsf{T}}\mathbf{X})^{-1} \ \mathbf {X} ^{\mathsf{T}}\)</span>, el leverage para la observación <span class="math inline">\(i\)</span> está definido como el elemento <span class="math inline">\(i\)</span> de la diagonal de la matriz <span class="math inline">\(\mathbf{H}\)</span> (<span class="math inline">\(h_{ii}=\mathbf{H}_{ii}\)</span>).</p>
+<p>Cuando tenemos pocas variables es fácil observarlos en el ajuste lineal.</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Vemos que aquellos puntos que están muy alejados en <span class="math inline">\(x\)</span> tienen gran influencia sobre el ajuste. En particular, si estos puntos no se alinean bien con el patrón general de los datos, pueden forzar el modelo hacia un ajuste erróneo. Es conveniente tener buena cobertura, es decir, tomar registros igualmente espaciados a lo largo del rango de <span class="math inline">\(x\)</span>, para prevenir este tipo de eventos. En este caso, el punto en cuestión tiene alto residuo y alto leverage:</p>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
+<div id="analisis-de-supuestos-en-r" class="section level2">
+<h2><span class="header-section-number">5.7</span> Análisis de supuestos en R</h2>
+<p>Podemos explorar el ajuste y analizar el cumplimiento de supuestos en R utilizando la función <code>plot</code>, que maneja bien objetos <code>lm</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Acomodamos las opciones gráficas para 4 gráficos en 2x2</span>
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
+<span class="co"># graficamos el ajuste</span>
+<span class="kw">plot</span>(modelo_chocolate)</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div id="cuando-los-residuos-no-son-normales" class="section level3">
+<h3><span class="header-section-number">5.7.1</span> Cuando los residuos no son normales</h3>
+</div>
+</div>
+<div id="visualizando-residuos-en-r" class="section level2">
+<h2><span class="header-section-number">5.8</span> Visualizando residuos en R</h2>
+<p>Este modelo asume que los errores están normalmente distribuidos alrededor de la esperanza. Formalmente, pedimos <span class="math inline">\(\mathcal{E}_i \sim \  \mathcal{N}(\mu,\,\sigma^{2})\)</span> donde <span class="math inline">\(\mu=0\)</span> y <span class="math inline">\(\sigma^{2} \approx cte\)</span>.</p>
+<p>En el <code>modelo_chocolate</code> este supuesto se cumple (lo armamos de ese modo<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>). En esta sección quiero explorar los residuos de los modelos lineales y brindar herramientas gráficas para conceptualizar mejor lo que la regresión está haciendo con nuestros datos.</p>
+<p>En esta sección voy a modificar los datos de chocolate para que el ajuste sea peor y permita visualizar los residuos mejor (básicamente agregamos ruido en dosis).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Agregar ruido en dosis creando nueva columna</span>
+datos<span class="op">$</span>nueva_dosis &lt;-<span class="st"> </span>datos<span class="op">$</span>dosis <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">10</span>,<span class="dv">10</span>)
+<span class="co"># Calcular el nuevo modelo</span>
+nuevo_modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> datos,
+                   respuesta<span class="op">~</span>nueva_dosis)
+<span class="co"># Guardar los predichos del modelo en datos</span>
+datos<span class="op">$</span>nuevo_pred &lt;-<span class="st"> </span>nuevo_modelo<span class="op">$</span>fitted.values
+<span class="co"># Guardar los residuos</span>
+datos<span class="op">$</span>residuos &lt;-<span class="st"> </span>nuevo_modelo<span class="op">$</span>residuals 
+<span class="co"># Veamos la data</span>
+fit_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span><span class="st">      </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_base</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)
+
+fit_plot</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>En este gráfico vemos que el ajuste sigue siendo bueno, pero hay mayor cantidad de puntos alejados de la recta. En vez de la recta de ajuste, usemos sólo los predichos.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Graficar</span>
+pre_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">  </span><span class="co"># Agregamos los predichos en una nueva capa!</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_base</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)
+pre_plot</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Como vemos, los predichos están alineados perfectamente en la regresión. Podemos agregar los residuos de la siguiente forma:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pre_plot <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),
+               <span class="dt">alpha=</span><span class="fl">0.5</span>)</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Lo que nuestra regresión está realizando es minimizar la suma de los residuos al cuadrado (ver Ecuación @ref(eq:residuo2)). Una herramienta para visualizar mejor los puntos con residuos grandes es graficarlos utilizando una escala de color.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
+<span class="st">  </span><span class="co">#Agregamos opción de color dentro del geom_point()</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> residuos))<span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),
+               <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_base</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="co"># Agregamos color segun los residuos</span>
+<span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))<span class="op">+</span>
+<span class="st">  </span><span class="co"># Sacamos la leyenda</span>
+<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="descomponiendo-variabilidad" class="section level2">
+<h2><span class="header-section-number">5.9</span> Descomponiendo variabilidad</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creamos un grafico base al que agregaremos varias capas</span>
+grafico_base &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta))<span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_base</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;media global&quot;</span>,
+             <span class="dt">x =</span> <span class="dv">30</span>, <span class="dt">y =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta) <span class="op">+</span><span class="st"> </span><span class="dv">15</span>,
+             <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)
+
+<span class="co"># Variacion respecto de la media global</span>
+variacion_total &lt;-<span class="st"> </span>grafico_base <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>nueva_dosis,
+                       <span class="dt">yend=</span><span class="kw">mean</span>(datos<span class="op">$</span>respuesta)),
+                       <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación total&quot;</span>)
+
+<span class="co"># Variacion no explicada</span>
+variacion_explicada &lt;-<span class="st"> </span>grafico_base<span class="op">+</span>
+<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">y =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta),
+                   <span class="dt">yend =</span> nuevo_pred), <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación explicada&quot;</span>)  
+
+
+<span class="co"># Variacion explicada por el modelo</span>
+variacion_no_explicada &lt;-<span class="st"> </span>grafico_base <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),
+               <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación no explicada&quot;</span>)  
+    
+
+<span class="co"># Los tres graficos juntos</span>
+cowplot<span class="op">::</span><span class="kw">plot_grid</span>(variacion_total, variacion_explicada, variacion_no_explicada)    </code></pre></div>
+<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="por-que-hacer-una-regresion" class="section level2">
+<h2><span class="header-section-number">5.10</span> ¿Por qué hacer una regresión?</h2>
+<p>Los objetivos de realizar un análisis de regresión pueden resumirse en:</p>
+<ol style="list-style-type: decimal">
+<li>Describir la relación funcional entre X e Y (rectilínea, polinomial, cuadrática, …)</li>
+<li>Determinar cuánta de la variación en Y puede ser explicada por la variación de X y cuánto permanece sin explicar.</li>
+<li>Estimar los parámetros del modelo.</li>
+<li>Hacer inferencia sobre los parámetros del modelo (mediante pruebas de hipótesis y cálculo de intervalos de confianza).</li>
+<li>Predecir nuevos valores de Y para valores específicos de X en el dominio estudiado (interpolación dentro del rango de la(s) variable(s) predictora(s)).</li>
+</ol>
+</div>
+<div id="resumen-2" class="section level2">
+<h2><span class="header-section-number">5.11</span> Resumen</h2>
+</div>
+<div id="recursos-2" class="section level2">
+<h2><span class="header-section-number">5.12</span> Recursos</h2>
+<ul>
+<li>Un gran ejemplo para visualizar residuos <a href="https://drsimonj.svbtle.com/visualising-residuals">aquí</a></li>
+<li>Una función que utiliza ggplot para crear gráficos de diagnóstico de modelos <a href="https://rpubs.com/therimalaya/43190">aquí</a></li>
+</ul>
+<!--chapter:end:05-Modelos_Lineales.Rmd-->
+</div>
+</div>
+<div id="comunicacion" class="section level1">
+<h1><span class="header-section-number">6</span> Comunicación</h1>
+<p>El trabajo estadístico no termina cuando entendemos la estructura de los datos. Nuestro trabajo estará incompleto a menos que logremos llevar aquello que destilamos de la evidencia a la combinación correcta de palabras e imagenes que logren recrear el mensaje en otra mente.</p>
+<p>La mayoría de los usos a continuación requieren cierta familiaridad con los sistemas de control de versiones (por ejemplo, GIT) y plataformas online basadas en dichos sistemas (por ejemplo, GitHub). Dicho material excede a la complejidad de este libro<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>.</p>
+<div id="ciencia-reproducible" class="section level2">
+<h2><span class="header-section-number">6.1</span> Ciencia reproducible</h2>
+</div>
+<div id="graficos" class="section level2">
+<h2><span class="header-section-number">6.2</span> Gráficos</h2>
+</div>
+<div id="rmarkdown" class="section level2">
+<h2><span class="header-section-number">6.3</span> RMarkdown</h2>
+<p>Markdown es un lenguage de marcado ligero que permite agregar marcajes sencillos al texto plano (<code>.md</code>), para convertirlo en un poderoso conjunto de operaciones que pueden exportarse a formatos de publicación profesional como <code>.html</code>, <code>.pdf</code> y <code>.tex</code><a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a>. <em>RMarkdown</em> es la implementación de Markdown dentro de Rstudio. RMarkdown posee toda la funcionalidad de Markdown y además permite introducir trozos de código.</p>
+<p>Los archivos de Rmarkdown son archivos de texto con extensión <code>.Rmd</code>. Podemos crearlo dentro de Rstudio desde el mismo menú con el que abrimos scripts.</p>
+<div class="figure">
+<img src="img/rmarkdown-01.png" alt="Abrir una ventana de Rmd" />
+<p class="caption">Abrir una ventana de Rmd</p>
+</div>
+<p>Al abrirlo, un navegador nos permitirá seleccionar opciones (como el título, autor, etc). No me centraré en esa ventana debido a que todas estas opciones pueden modificarse en el encabezado del nuevo archivo <code>.Rmd</code>.</p>
+</div>
+<div id="texto" class="section level2">
+<h2><span class="header-section-number">6.4</span> Texto</h2>
+<p>Markdown es un lenguaje que permite escribir de manera veloz, con muy pocas distracciones. La funcionalidad para editar la presentación de texto es limitada, pero es más que suficiente para el 99% de las cosas que necesitamos al escribir. Los siguientes ejemplos están ordenados segun cómo se escriben en Rmarkdown y cómo es el render.</p>
+<p><code>Lo esencial es *invisible* a los ojos.</code> <span class="math inline">\(\rightarrow\)</span> Lo esencial es <em>invisible</em> a los ojos.<br />
+<code>Lo esencial es **invisible** a los ojos.</code> <span class="math inline">\(\rightarrow\)</span> Lo esencial es <strong>invisible</strong> a los ojos. <code>Lo esencial es ~~in~~visible a los ojos.</code> <span class="math inline">\(\rightarrow\)</span> Lo esencial es <del>in</del>visible a los ojos.</p>
+<p>Si tienes familiaridad con <span class="math inline">\(\LaTeX\)</span> es posible utilizarlo para fórmulas matemáticas en línea con la frase que se está escribiendo. Por ejemplo, un supuesto de los modelos lineales generales es <span class="math inline">\(\mathcal{E}_i \sim \  \mathcal{N}(\mu,\,\sigma^{2})\)</span>. Utilzar <span class="math inline">\(\LaTeX\)</span> en RMarkdown es tan sencillo como englobar el código utilizando el símbolo <code>$</code>. Si queremos utilizar una ecuación, por ejemplo, utilizamos los entornos <code>\begin{equation}</code> y <code>\end{equation}</code> y escribimos sin necesidad de utilizar el símbolo <code>$</code>.</p>
+<p>Para utilizar resaltado tipo <code>código</code> en línea utilizamos palabras envueltas en <em>backticks</em> (<code>`</code>)<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>. Podemos utilizar código de R en la línea en la que estamos escribiendo de la forma <code>r</code>+<code>espacio</code>+<code>función deseada</code>. Por ejemplo, si combinamos con <span class="math inline">\(\LaTeX\)</span> y le preguntamos a R cuánto es <span class="math inline">\(\pi\)</span>, nos dará el resultado en la misma línea así: <span class="math inline">\(\pi\)</span> = 3.1415927<a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a>.</p>
+</div>
+<div id="separando-lineas-y-parrafos" class="section level2">
+<h2><span class="header-section-number">6.5</span> Separando líneas y párrafos</h2>
+<p>La belleza de Rmarkdown es que acomoda el texto y las figuras automáticamente, por lo que no debemos preocuparnos por el número de líneas y demás problemas que aparecen con un editor de texto tradicional. Sin embargo, en ciertas ocasiones realmente deseamos forzar un quiebre, un espacio extra. Para separar párrafos, basta con terminar la línea que se está escribiendo con dos espacios. Por ejemplo,</p>
+<p><em>No te des por vencido, ni aún vencido, no te sientas esclavo, ni aún esclavo;</em></p>
+<p>Puede transformarse en:</p>
+<p><em>No te des por vencido, ni aún vencido,</em><br />
+<em>no te sientas esclavo, ni aún esclavo;</em></p>
+<p>Si agregamos dos espacios entre las palabras deseadas<a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a>.</p>
+<p>Las listas de objetos son un caso puntual muy útil:</p>
+<pre><code># Listas no numeradas
+* item 1
+* item 2
++ sub-item
+* item 3
+    * sub-item
+    * sub-item
+</code></pre>
+<p>Se ve así:</p>
+<ul>
+<li>item 1</li>
+<li>item 2</li>
+<li>sub-item</li>
+<li>item 3
+<ul>
+<li>sub-item</li>
+<li>sub-item</li>
+</ul></li>
+</ul>
+<pre><code># Listas numeradas
+1. item 1
+1. item 2
+1. item 3
+    a) item 3a
+    a) item 3b</code></pre>
+<p>Se ve así:</p>
+<p>En las listas numeradas no debemos mantener la cuenta. Simplemente <code>1.</code> y escribimos lo que necesitamos, Markdown hace el resto!</p>
+<p>Otra posibilidad es utilizar texto resaltado. Para resaltar texto utilizamos el símbolo mayor (&gt;) seguido de un espacio. Esta opción no es recomendada para uso extensivo, pero puede resaltar una frase corta de un modo interesante. Por ejemplo,</p>
+<blockquote>
+<p>R es genial.</p>
+</blockquote>
+<p>Cuando terminamos una sección o deseamos una marca física entre párrafos, podemos usar 3 asteriscos (*).</p>
+<pre><code># Línea
+***</code></pre>
+<p>Se ve:</p>
+<hr />
+</div>
+<div id="trozos-de-codigo" class="section level2">
+<h2><span class="header-section-number">6.6</span> Trozos de código</h2>
+<p>En Rmarkdown podemos mezclar texto y código de R. La siguiente figura muestra cómo se ve en mi computadora:</p>
+<div class="figure">
+<img src="img/rmarkdown-code-chunk.png" alt="El párrafo previo en mi editor" />
+<p class="caption">El párrafo previo en mi editor</p>
+</div>
+<p>Cuando estos trozos se agregan al documento final, corren en la consola de R y el output se incluye en los resultados. Por ejemplo, el siguiente trozo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(cars)</code></pre></div>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+</div>
+<div id="links-e-imagenes" class="section level2">
+<h2><span class="header-section-number">6.7</span> Links e imágenes</h2>
+<p>Los links e imágenes pueden incluirse utilizando corchetes ([]) y paréntesis. Por ejemplo,</p>
+<pre><code># Imágenes
+![descripcion de mi imagen](link)
+# URLs
+[descripción de mi link](link)</code></pre>
+<p>El link puede ser un directorio dentro de nuestra computadora (<code>imagenes/vacaciones/.png</code>) o via <code>www</code> con un link externo, como <img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png" alt="el logo de Rstudio" /></p>
+</div>
+<div id="encabezado-yaml" class="section level2">
+<h2><span class="header-section-number">6.8</span> Encabezado YAML</h2>
+<p>Los encabezados son útiles para diversos archivos, ciertamente necesarios para la organización de documentos más complejos. Rmarkdown utiliza un encabezado conocido como YAML y tiene la siguiente forma:</p>
+<pre><code>--- 
+title: &quot;Un mundo feliz&quot;
+author: &quot;Aldous Huxley&quot;
+date: &quot;1932&quot;
+output: html_document
+---</code></pre>
+<p>Por ejemplo, el encabezado de este libro es el siguiente<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a>:</p>
+<pre><code>--- 
+title: &quot;Introducción a estadística con R&quot;
+author: &quot;Matias Andina&quot;
+date: &quot;2018-07-28&quot;
+site: bookdown::bookdown_site
+documentclass: book
+---
+</code></pre>
+<p>Notarán algunas variaciones, por ejemplo, en la fecha. El llamado a <code>Sys.Date()</code> permite que cada vez que este libro se compila, se use la fecha de sistema para el compilado., De este modo, no tengo que actualizarlo manualmente cada vez que edito el libro.</p>
+</div>
+<div id="otros-proyectos-con-rstudio" class="section level2">
+<h2><span class="header-section-number">6.9</span> Otros proyectos con RStudio</h2>
+<ul>
+<li>Presentaciones de diapositivas con Markdown y <code>R presentation</code>.</li>
+<li>Usando el paquete <code>blogdown</code>, Websites como <a href="http://matiasandina.netlify.com">este</a></li>
+<li>Usando el paquete <code>bookdown</code>, libros como éste (<a href="bookdown.org">y otros!</a>)</li>
+</ul>
+</div>
+<div id="notas" class="section level2">
+<h2><span class="header-section-number">6.10</span> Notas</h2>
+<p>Mucha tecnología cotidiana detrás de los servicios de publicación está principalmente desarrollada alrededor del idioma inglés. Problemas inesperados pueden aparecer incluso cuando hacemos todo bien utilizando R, Rstudio y Rmarkdown. Por ejemplo, mientras escribía este libro tuve un problema con el nombre de mis archivos que contenían tilde (por ejemplo, el archivo de este capítulo era “Comunicación.Rmd”). La inconveniente <code>ó</code> provocó que el link a ciertas imágenes del capítulo (<code>www. .../Comunicación/imagen-01.png</code>) no pudiera ser encontrado y dichas imágenes no aparecieran. La solición de compromiso es (como en muchas otras direcciones de internet) no utilizar caracteres que no existen en inglés (por ejemplo, la ñ, o palabras con tildes).</p>
+</div>
+<div id="recursos-3" class="section level2">
+<h2><span class="header-section-number">6.11</span> Recursos</h2>
+<ul>
+<li>Cheatsheet oficial de Rmarkdown en español por Rstudio <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-spanish.pdf">aquí</a></li>
+</ul>
+<!--chapter:end:06-Comunicacion.Rmd-->
+</div>
+</div>
+<div id="agradecimientos" class="section level1 unnumbered">
+<h1>Agradecimientos</h1>
+<!--chapter:end:09-Agradecimientos.Rmd-->
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Mayor descripción en lenguajes de programación <a href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n">aquí</a>.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Historia e información sobre R [aquí](<a href="https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)">https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)</a>. Para aquellos curiosos que tienen una consola a mano y se aventuran al inglés: <code>contributors()</code><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>La traducción es de mi autoría, la información original en inglés puede encontrarse <a href="https://www.r-project.org/foundation/">aquí</a>.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>La página oficial de <strong>tidyverse</strong> y los paquetes que contiene está en ingles <a href="https://www.tidyverse.org/packages/">aquí</a><a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>Notar los espacios antes y despues del operador <code>&lt;-</code>. Esto es intencional y es aconsejable como <em>buenas prácticas</em> a la hora de escribir. Cuando tenemos muchas líneas de código es más agradable a la vista y facilita la lectura.<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>Si bien la barrera es real, no debemos entrar en pánico. Siempre intenten en Google (búsqueda o traductor) para entender las funciones.<a href="#fnref6">↩</a></p></li>
+<li id="fn7"><p>Muchas veces yo caigo en la tentación y nombro gráficos con una sola letra (o letra y numero) <code>p1, p2, ...</code>.<a href="#fnref7">↩</a></p></li>
+<li id="fn8"><p>Más información en la cinética enzimática <a href="https://es.wikipedia.org/wiki/Cin%C3%A9tica_de_Michaelis-Menten">aquí</a>.<a href="#fnref8">↩</a></p></li>
+<li id="fn9"><p>Si no puedes localizar la tilde en tu teclado, prueba <code>ALT+126</code><a href="#fnref9">↩</a></p></li>
+<li id="fn10"><p>Cuando creamos el modelo, explícitamente definimos variación en y con la función <code>rnorm()</code>, con media 0 y sd. Para comprobar que el supuesto se cumple, puedes correr <code>mean(modelo_chocolate$residuals)</code> que dará como resultado un número muy pequeño, empíricamente cero. Además del qqplot, existen pruebas analíticas para normalidad: <code>shapiro.test(datos$residuos)</code> nos da un p&gt;0.05, que indica que no tenemos evidencias para decir que los residuos no siguen una distribución normal.<a href="#fnref10">↩</a></p></li>
+<li id="fn11"><p>Puedes aprender sobre GIT <a href="https://git-scm.com/book/es/v1/Empezando">aquí</a><a href="#fnref11">↩</a></p></li>
+<li id="fn12"><p>Puedes encontrar más información sobre Markdown<a href="es.wikipedia.org/markdown">aquí</a><a href="#fnref12">↩</a></p></li>
+<li id="fn13"><p>Los backtics son difícilies de encontrar en el teclado en español, puedes probar ALT+96.<a href="#fnref13">↩</a></p></li>
+<li id="fn14"><p>Para lograr esto el formato debe ser <code>$\pi$ = 3.1415927</code><a href="#fnref14">↩</a></p></li>
+<li id="fn15"><p>Normalmente suelo agregar un enter y escribir en la siguiente línea. Aunque no es necesrario, me ayuda a visualizar el render antes de tiempo.<a href="#fnref15">↩</a></p></li>
+<li id="fn16"><p>El encabezado que muestro es una porción que es comparable con un documento clásico. El encabezado real contiene ciertas especificaciones para que este libro pueda ser publicado online y entiendo que no aportan al ejemplo.<a href="#fnref16">↩</a></p></li>
+</ol>
+</div>
+<!--bookdown:body:end-->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+    </div>
+  </div>
+<!--bookdown:config-->
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

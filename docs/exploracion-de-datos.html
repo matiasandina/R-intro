@@ -174,6 +174,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.8</b> Resumen</a></li>
 <li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.9</b> Recursos</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
+<li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
+<li class="chapter" data-level="6.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>6.2</b> Gráficos</a></li>
+<li class="chapter" data-level="6.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>6.3</b> RMarkdown</a></li>
+<li class="chapter" data-level="6.4" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>6.4</b> Otros proyectos con RStudio</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -210,13 +216,13 @@ respuesta &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="d
      <span class="dt">main =</span> <span class="st">&quot;Respuesta vs tiempo&quot;</span>,
      <span class="dt">ylab =</span> <span class="st">&quot;Respuesta&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>)</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Esta funcionalidad no está limitada a gráficos de puntos y líneas. Por ejemplo, el histograma que figura en el principio del libro fue realizado con la función <code>hist()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
 ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
 <span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
      <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Los gráficos de base son geniales para explorar modelos ya que aceptan objetos de tipo <code>lm</code> (ver siguientes capítulos). Si bien es posible realizar gráficos muy bonitos con la funcionalidad de base, incluso gráficas de calidad para publicación impresa, es cierto que la gramática no es sencilla de recordar (o requiere demasiada previsión) y, en muchos casos, es limitada.</p>
 </div>
 <div id="ggplot2" class="section level2">
@@ -235,32 +241,32 @@ ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 
 <span class="kw">ggplot</span>(<span class="dt">data=</span>iris,
        <span class="kw">aes</span>(Sepal.Length, Petal.Length))</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Este gráfico contiene los ejes que especificamos pero no contiene los datos. Para dibujarlos, debemos decirle a <code>ggplot</code> cómo hacerlo (por ejemplo, puntos).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Al parecer, los datos presentan una estructura de asociación entre el largo de los sépalos y el de los pétalos (a mayor largo de sépalos, mayor largo de pétalos). Este dataset contiene un factor <em>Species</em> con tres niveles, <em>setosa</em>, <em>versicolor</em>, <em>virginica</em>. Fácilmente podemos ver si las distintas especies presentan distintas asociaciones. Una forma rápida de visualizarlo es coloreando los puntos según el nivel del factor <em>Species</em>. En <code>ggplot2</code> usamos <code>color = Species</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal (“lm”) en <code>geom_smooth(method = &quot;lm&quot;)</code>. Es clave notar que <code>geom_smooth()</code> posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Como pueden apreciar, incorporar la gramática de <code>ggplot2</code> permite realizar visualizaciones más complejas con menor esfuerzo. La riqueza de este grupo de funciones esta en la gran variedad de funciones <code>geom</code> que podemos incorporar. A lo largo de el libro veremos varias de ellas.</p>
 <div id="entendiendo-aes" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Entendiendo <code>aes()</code></h3>
 <p>En ggplot, <code>aes()</code> hace referencia al contenido estético del gráfico (del ingles <em>aesthetics</em>). Es decir, la función le dará indicios a ggplot2 sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que <code>aes()</code> crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar <code>aes()</code> al llamado de <code>ggplot()</code> estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar <code>aes()</code> en la capa correspondiente. Esto puede parecer confuso, las siguientes líneas de código generan un gráfico que se ve idéntico al que realizamos previamente:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species)) <span class="co"># Notar diferencia! aes() aparece en geom_point()</span></code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Sin embargo, podemos ver la diferencia al intentar repetir el gráfico con línea de tendencia.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>En este caso <code>geom_smooth()</code> no recibe la orden de agrupar segun <code>Species</code>, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos del primer gráfico de negro a magenta:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Primer gráfico, izquierda</span>
 
@@ -276,7 +282,7 @@ ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 
 <span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 <div id="explorando-geom" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Explorando <code>geom</code></h3>
@@ -313,7 +319,7 @@ p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span clas
 <span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,
                    <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">width=</span><span class="fl">0.5</span>)</code></pre></div>
 <div class="figure"><span id="fig:six-plot-figure"></span>
-<img src="04-Exploración_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="672" />
+<img src="04-Exploracion_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="672" />
 <p class="caption">
 Figure 4.1: Varias formas de mostrar los mismos datos.
 </p>
@@ -326,12 +332,12 @@ Figure 4.1: Varias formas de mostrar los mismos datos.
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Este comportamiento es súmamente útil cuando tenemos más de una variable categórica o cuando deseamos utilizar el color para simbolizar otra variable. Por ejemplo, quizás nos interesa evaluar cómo varía el ancho de los pétalos en las distintas plantas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
 <span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>Petal.Width))<span class="op">+</span>
 <span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
-<p><img src="04-Exploración_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>En este último gráfico hemos podido representar con claridad variaciones en la longitud de pétalos y sépalos, el ancho de los pétalos y una variable categórica de tres niveles. Los datos indican que las plantas con menor longitud de pétalos y sépalos también poseen pétalos más angostos. Efectivamente, explotar los recursos de <code>ggplot2</code> nos permite generar poderosas herramientas de análisis y comunicación estadística.</p>
 </div>
 <div id="cowplot" class="section level3">

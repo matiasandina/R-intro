@@ -1,5 +1,6 @@
 term,descr
-Software,
+software,programa
 CRAN,Colección de paquetes en CRAN (Comprehensive R Archive Network)
 dataset,set de datos
 working directory,Directorio desde donde R está trabajando en la sesión (getwd())
+render,generación de contenido multimedia

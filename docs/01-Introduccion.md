@@ -76,20 +76,23 @@ En la siguientes secciones realizaremos la descarga e instalación de R. En el p
 Para instalar R debemos dirigirnos a la colección de paquetes en CRAN (del inglés, Comprehensive R Archive Network). CRAN es un repositorio global donde se puede acceder al software y a los paquetes que la comunidad produce. Veremos pronto que R provee limitada funcionalidad de base y los paquetes son una parte fundamental del uso diario. 
 
 1. La instalación comienza entrando en `https://cran.r-project.org/` 
-1. Seleccionar el link correcto de descarga. El link depende del sistema operativo. 
+1. Seleccionar el link correcto de descarga. El link depende del sistema operativo.  
+
 
 ![Links para descargar R en CRAN](img/CRAN_download.png)
 
 
-1. Hacer clic en *Install R for the first time* (instalar R por primera vez).
+3. Hacer clic en *Install R for the first time* (instalar R por primera vez).  
+
 
 ![Instalar por primera vez](img/Windows_First.png)
 
-1. Hacer clic en *Download R 3.4.3 for Windows* para descargar el ejecutable. Al momento de escribir este libro la versión 3.4.3 es la última disponible en CRAN.
+4. Hacer clic en *Download R 3.4.3 for Windows* para descargar el ejecutable. Al momento de escribir este libro la versión 3.4.3 es la última disponible en CRAN.  
+
 
 ![Descargar](img/Windows_download.png)
 
-1. Instalar desde el `.exe` (El cuádro de dialogo permite seleccionar idioma español).
+5. Instalar desde el `.exe` (El cuádro de dialogo permite seleccionar idioma español).  
 
 
 ### Terminal de R
@@ -100,7 +103,8 @@ Si fantaseamos con escribir desde un terminal, es posible ejecutar R de ese modo
 
 ### Interfaz gráfica
 
-Si bien el terminal (o *consola*) es seductor, en muchas ocasiones es conveniente tener una interfaz gráfica. Podemos acceder a la interfaz `RGui` desde `C:\Program Files\R\R-3.4.0\bin\i386` o directamente si hemos creado un acceso directo en el escritorio durante nuestra instalación. La interfaz gráfica se ve de este modo:
+Si bien el terminal (o *consola*) es seductor, en muchas ocasiones es conveniente tener una interfaz gráfica. Podemos acceder a la interfaz `RGui` desde `C:\Program Files\R\R-3.4.0\bin\i386` o directamente si hemos creado un acceso directo en el escritorio durante nuestra instalación. La interfaz gráfica se ve de este modo:  
+
 
 ![Interfaz Gráfica de R](img/RGui.png)
 
@@ -161,13 +165,13 @@ Rstudio permite personalizar la *experiencia R* de modo de obtener virtualmente 
 * La organización del análisis estadístico procede `Lectura > Modelado > Comunicación`
 * R es un lenguaje de programación orientado a objetos que permite realizar las tres etapas.
 * El software R es de dedistribución gratuita y con funcionalidad dividida en:
-  * *Base R*.
-  * Paquetes externos descargados de un repositorio.  
+    * Base R.
+    * Paquetes externos descargados de un repositorio.  
 * Rstudio es una interfaz gráfica gratuita que permite trabajar con R.
 
 
 [^LenguajeWiki]: Mayor descripción en lenguajes de programación [aquí](https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n).
 
-[^RWiki]: Historia e información sobre [R](https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n). Para aquellos curiosos que tienen una consola a mano y se aventuran al inglés: `contributors()`
+[^RWiki]: Historia e información sobre R [aquí](https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n). Para aquellos curiosos que tienen una consola a mano y se aventuran al inglés: `contributors()`
 
 [^R_Fund]: La traducción es de mi autoría, la información original en inglés puede encontrarse [aquí](https://www.r-project.org/foundation/).
