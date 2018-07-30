@@ -571,6 +571,57 @@ ggplot(model, aes(.hat, .stdresid)) +
 ```
 
 
+Un caso famoso es el cuarteto de Anscombe, cuatro datasets muy particulares que poseen prácticamente idéntica estadística descriptiva. Sin embargo, al graficarlos, vemos que son muy distintos. En esta sección también aprovecho para construir una función con `ggplot2` que voy a usar repetidas veces para ahorrar trabajo.
+
+```{r anscombe}
+
+# Graficando con ggplot y gridExtra
+
+# Vamos a hacer 4 ggplots y ponerlos todos juntos con gridExtra
+# Esta funcion puede ser util para acortar los llamados de cada grafico
+
+my_plot <- function(dataset, x_data, y_data, dataset_name){
+  
+  plot1 <- ggplot(dataset,
+                  aes_string(x_data,y_data),
+                  environment = environment())+
+           geom_point(color='black',size=3, alpha=0.8)+
+           theme_base()+
+           theme(plot.background = element_rect(colour = NA))+
+           scale_x_continuous(breaks = seq(0, 20, 2))+
+           scale_y_continuous(breaks = seq(0, 12, 2))+
+           geom_abline(intercept = 3,
+                       slope = 0.5,
+                       color = "cornflowerblue")+
+           expand_limits(x = 0, y = 0) +
+           labs(title = dataset_name)  
+}
+
+# Crear los 4 graficos. 
+
+p1 <- my_plot(anscombe,"x1", "y1", "dataset1") 
+p2 <- my_plot(anscombe,"x2", "y2", "dataset2")
+p3 <- my_plot(anscombe,"x3", "y3", "dataset3")
+p4 <- my_plot(anscombe,"x4", "y4", "dataset4")
+
+# Ponerlos todos juntos con gridExtra
+gridExtra::grid.arrange(p1, p2, p3, p4, top = "Cuarteto de Anscombe")
+```
+
+
+Un caso extremo fue desarrollado hace poco por [Alberto Cairo](http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html) y luego llevado a R en forma de paquete (`datasauRus`), cuya página puedes encontrar [aquí](https://github.com/lockedata/datasauRus). Abajo muestro un ejemplo básico de estos datasets. El mensaje clave es:
+
+> Siempre graficar nuestros datos
+
+```{r, warning=F}
+library(datasauRus)
+ggplot(datasaurus_dozen,
+       aes(x=x, y=y, colour=dataset))+
+  geom_point()+
+  theme_void()+
+  theme(legend.position = "none")+
+  facet_wrap(~dataset, ncol=3)
+```
 
 
 ## Análisis de supuestos en R

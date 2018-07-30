@@ -36,7 +36,19 @@ Los gráficos de base son geniales para explorar modelos ya que aceptan objetos 
 
 ## ggplot2
 
-Una forma más intuitiva de construir gráficas es utilizar *capas*. El paquete `ggplot2` pertenece al `tidyverse` y es el más utilizado para realizar gráficas de alta calidad en R. A lo largo de la explicación utilizaré el dataset **iris**, que contiene medidas de las ojas de tres especies de plantas:
+Una forma más intuitiva de construir gráficas es utilizar *capas*. El paquete `ggplot2` pertenece al `tidyverse` y es el más utilizado para realizar gráficas de alta calidad en R.  
+
+El paquete se basa en una gramática de gráficos que puede ser entendida a partir de entender sus componentes[^estan-en-ingles]:
+
+* **Data** es aquél dataset que vamos a graficar, con toda la información pertinente para realizar el gráfico.  
+* **geoms** son representaciones para dibujar gráficos (puntos, líneas, cajas, entre otros).  
+* **Stats** son aquellas transformaciones estadísticas que le hagamos a los datos. Nos ayudan a hacer un resumen del dataset para visualizar mejor (por ejemplo, la media o la mediana son estadísticas de tendencia central).  
+* **Scales** nos ayudan a colorear (o escalar) la data según distintas variables. Dibujan los ejes y las leyendas.  
+* **Coordinate Systems** describe how geoms are mapped to the plane of the graphic.  
+* **Facets** nos permiten partir el dataset según factores para graficar en viñetas separadas.  
+* **Themes** son conjuntos de especificaciones gráficas que permiten controlar la apariencia general de todos los elementos que no son data (por ejemplo, el color del fondo o el ancho de los ejes).  
+
+A lo largo de la explicación utilizaré el dataset **iris**, que contiene medidas de las ojas de tres especies de plantas:
 
 ```{r}
 head(iris)
@@ -258,8 +270,228 @@ cowplot::plot_grid(p1,p2,p3,p4,p5,p6, labels = "AUTO")
 
 El primer objetivo de un análisis exploratorio debe ser ganar entendimiento cualitativo de la naturaleza de los datos (tendencia central, distribución y estructura de correlación). Esto puede lograrse utilizando tablas de resumen, sin embargo, en mi opinión el análisis gráfico es superior.  
 
-`ELEGIR Y REALIZAR CASO DE ESTUDIO DE ANALISIS GRAFICO`
+En este caso voy a mostrar un análisis exploratorio del dataset de Titanic, que puede ser obtenido desde CRAN.
 
+```{r, eval=FALSE}
+# Si es la primera vez,
+install.packages('titanic')
+```
+
+El dataset contiene información sobre el destino de los pasajeros del barco.
+
+```{r, results='hide', message= FALSE, warning=FALSE}
+# Paquete útil para reorganizar datos (parte de tidyverse)
+library(dplyr)
+# Cargamos el paquete titanic
+library(titanic)
+```
+
+Vamos a trabajar con el dataset llamado `titanic_train`. En este caso es útil conocer a las variables que estaremos manejando. Puedes acceder al nombre de las variables con el comando `names(titanic_train)`. Aquí hay una tabla con las descripciones de las variables.
+
+```{r, echo=F}
+
+metadata <- read.csv('data/titanic_metadata.csv')
+
+knitr::kable(metadata, 
+             col.names = c("Variable Inglés",
+                           "Descr. Español",
+                           "Tipo de variable",
+                           "Valores"))
+
+```
+
+Podemos utilizar la función `str()` para obtener una descripción rápida del tipo de datos que tenemos. Podemos ver que el dataset no necesariamente contiene las variables en las clases que queremos (por ejemplo, algunos factores están como `character`).  
+
+```{r}
+str(titanic_train)
+```
+
+Cambiemos un par de cosas.
+
+```{r}
+# Transformamos en factor
+titanic_train$Survived <- factor(titanic_train$Survived)
+# Transforamamos al castellano
+titanic_train$Sex <- ifelse(titanic_train$Sex == "male",
+                            "hombre",
+                            "mujer")
+# Transformamos una varibale con valor "" a NA
+titanic_train$Embarked <- ifelse(titanic_train$Embarked == "",
+                                 NA,
+                                 titanic_train$Embarked)
+```
+
+
+Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez.  
+
+```{r, warning=FALSE, message=FALSE}
+
+# Calculamos la supervivencia segun el factor Survived
+sobrev <- titanic_train %>%
+          group_by(Survived) %>%
+          count()
+
+# Supervivencia
+
+g1 <- ggplot(titanic_train, aes(Survived)) +
+  geom_bar()+
+  # Agregamos la cuenta de sobrevivientes
+  # Notar que debemos utilizar otro data.frame en data
+  # vamos a utilizar y=20 para posicionar los n cerca del eje x
+  geom_text(data = sobrev,
+            aes(Survived, y=25, label=n),
+            color="white")+
+  xlab("Supervivencia")+
+  ylab("Frecuencia")
+
+# Clase
+
+g2 <- ggplot(titanic_train,
+             aes(Pclass))+
+  geom_bar()+
+  xlab("Clase")+
+  ylab("Frecuencia")
+
+
+# Sexo
+
+g3 <- ggplot(titanic_train,
+             aes(Sex))+
+  geom_bar()+
+  xlab("Sexo")+
+  ylab("Frecuencia")
+
+# Lugar de embarque
+
+g4 <- ggplot(titanic_train,
+             aes(Embarked))+
+  geom_bar()+
+  xlab("Lugar embarque")+
+  ylab("Frecuencia")
+
+# Edad de los pasajeros
+
+g5 <- ggplot(titanic_train,
+             aes(Age))+
+  geom_histogram(binwidth = 5, color="white")+
+  xlab("Edad")+
+  ylab("Frecuencia")
+
+
+# Precio del ticket
+g6 <- ggplot(titanic_train,
+             aes(Fare))+
+  geom_density(fill="gray50")+
+  xlab("Precio Ticket")+
+  ylab("Frecuencia")
+
+
+# Todo junto!
+cowplot::plot_grid(g1,g2,g3,g4,g5,g6,
+                   labels="AUTO")
+
+```
+
+Estos gráficos son bastante típicos. En esta sección concentro nuestros esfuerzos en entender el dataset rápidamente. Es posible hacer gráficos que comuniquen mejor. Más adelante retomaremos desde este punto (ver Sección \@ref(graficos)).  
+
+Ahora vamos a centrarnos en entender relaciones entre más de una variable.
+
+```{r}
+ggplot(titanic_train, 
+       aes(Sex, Survived))+
+  # Coloreamos segun la interaccion entre los niveles de interes
+  geom_jitter(aes(color=interaction(factor(Sex), Survived)),
+              alpha=0.5)+
+  # Separamos por clase
+  facet_wrap(~Pclass)+
+  # Nombramos al eje
+  ylab("Supervivencia")+
+  # Agregamos un eje y descriptivo
+  scale_y_discrete(breaks=c("0","1"),
+        labels=c("No", "Sí"))+
+  # Sacamos la leyenda
+  theme(legend.position = "none")+
+  # mejoramos los colores
+  scale_color_brewer(palette = "Set2")+
+  # Titulo
+  ggtitle("Supervivencia por clase")
+```
+
+En el gráfico anterior podemos apreciar claramente que las mayores probabilidades de sobrevivir ocurrieron en las mujeres, principalmente en las clases altas.
+
+> Ejercicio: Calcular % sobrevivientes
+
+```{r, eval=FALSE}
+# Calcular el porcentaje segun la clase
+titanic_train %>%
+  # Agrupar por clase y sexo
+  # contar los sobrevivientes
+  # sumar el total de casos
+  # dividir por el total y expresar en porcentaje
+  
+```
+
+
+Podemos explorar cómo se relaciona la edad con la supervivencia. En el siguiente gráfico vemos que prácticamente no hay diferencias en supervivencia según las edades (quizás sí existen pequeñas diferencias para los niños menores de 10 años).  
+
+
+```{r, warning=FALSE, message=FALSE}
+
+ggplot(titanic_train,
+       aes(Survived, Age, fill=Survived))+
+  geom_violin()+
+  geom_boxplot(fill="black", color="white",
+               lwd=1.1, width=0.1)+
+  theme_bw()+
+  scale_fill_brewer(palette = "Set2")+
+  theme(legend.position = "none")+
+  xlab("Supervivencia")+
+  ylab("Edad (años)")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("No", "Sí"))+
+  # Rotamos los ejes!
+  coord_flip()
+  
+
+```
+
+> Ejercicio: Analizar sobrevivientes vs edad (por clase)
+
+
+```{r, eval=FALSE}
+# La base de este gráfico es la misma que la del anterior
+# Debemos cambiar el x a Pclass 
+# (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?
+ggplot(titanic_train,
+       aes(x= ..., Age, fill=...))+
+  # Resto de los componentes?
+```
+
+Veamos algunos componentes relacionados con el precio de los tickets. En general, podemos ver que, independientemente de la edad, el precio estaba por debajo de 50, con algunas notables excepciones en cero o por encima de 500 (**A**)!. También podemos ver que aquellos que pagaron más parecieran haber estado en el grupo de los sobrevivientes (**B**).
+
+
+```{r, warning=FALSE}
+
+# Edad vs Precio ticket
+p1 <- ggplot(titanic_train, aes(Age, Fare)) +
+  geom_point()+
+  xlab("Edad (años)")+
+  ylab("Precio ticket")
+
+p2 <- ggplot(titanic_train, aes(Survived, Fare)) +
+  geom_boxplot(aes(fill=Survived))+
+  xlab("Supervivencia")+
+  ylab("Precio ticket")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("No", "Sí"))+
+  theme(legend.position = "none")+
+  scale_fill_brewer(palette = "Set2")
+  
+
+cowplot::plot_grid(p1,p2, labels="AUTO")
+  
+
+```
 
 ## Resumen
 
@@ -277,3 +509,18 @@ El material sobre visualización de datos es virtualmente infinito. Recomiendo f
 
 * [ggplot2 online](https://ggplot2.tidyverse.org/)
 * [Data Visualization-Kieran Healy](http://socviz.co/)
+
+[^estan-en-ingles]: Estos fueron incluídos en inglés debido a que la función `ggplot2` los utilizará en inglés y traducciones directas serían en perjuicio del usuario.
+
+
+## Respuestas
+
+```{r, warning=FALSE, message=FALSE}
+# Calculando el porcentaje de sobrevivientes por clase y sexo
+titanic_train %>%
+  group_by(Pclass, Sex) %>%
+  count(Survived) %>%
+  mutate(total=sum(n),
+         porcentaje=n/total*100)
+
+```

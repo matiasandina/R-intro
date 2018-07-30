@@ -225,9 +225,11 @@ broom::tidy(modelo_chocolate)
 ```
 
 ```
-##          term estimate  std.error  statistic       p.value
-## 1 (Intercept) 8.592791 1.15697854   7.426923  4.146133e-11
-## 2       dosis 2.516593 0.01744211 144.282604 5.934481e-116
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic                         p.value
+##   <chr>          <dbl>     <dbl>     <dbl>                           <dbl>
+## 1 (Intercept)     8.59    1.16        7.43                       4.15e- 11
+## 2 dosis           2.52    0.0174    144                          5.93e-116
 ```
 
 Vemos claramente que el consumo de chocolate incrementa la felicidad (esperamos mayor un incremento en ~2.5 unidades de felicidad por cada gramo de chocolate!). 
@@ -239,7 +241,7 @@ t(broom::glance(modelo_chocolate))
 ```
 
 ```
-##                         [,1]
+##                        value
 ## r.squared       9.953145e-01
 ## adj.r.squared   9.952667e-01
 ## sigma           4.933373e+00
@@ -347,6 +349,62 @@ Vemos que aquellos puntos que están muy alejados en $x$ tienen gran influencia 
 <img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
+Un caso famoso es el cuarteto de Anscombe, cuatro datasets muy particulares que poseen prácticamente idéntica estadística descriptiva. Sin embargo, al graficarlos, vemos que son muy distintos. En esta sección también aprovecho para construir una función con `ggplot2` que voy a usar repetidas veces para ahorrar trabajo.
+
+
+```r
+# Graficando con ggplot y gridExtra
+
+# Vamos a hacer 4 ggplots y ponerlos todos juntos con gridExtra
+# Esta funcion puede ser util para acortar los llamados de cada grafico
+
+my_plot <- function(dataset, x_data, y_data, dataset_name){
+  
+  plot1 <- ggplot(dataset,
+                  aes_string(x_data,y_data),
+                  environment = environment())+
+           geom_point(color='black',size=3, alpha=0.8)+
+           theme_base()+
+           theme(plot.background = element_rect(colour = NA))+
+           scale_x_continuous(breaks = seq(0, 20, 2))+
+           scale_y_continuous(breaks = seq(0, 12, 2))+
+           geom_abline(intercept = 3,
+                       slope = 0.5,
+                       color = "cornflowerblue")+
+           expand_limits(x = 0, y = 0) +
+           labs(title = dataset_name)  
+}
+
+# Crear los 4 graficos. 
+
+p1 <- my_plot(anscombe,"x1", "y1", "dataset1") 
+p2 <- my_plot(anscombe,"x2", "y2", "dataset2")
+p3 <- my_plot(anscombe,"x3", "y3", "dataset3")
+p4 <- my_plot(anscombe,"x4", "y4", "dataset4")
+
+# Ponerlos todos juntos con gridExtra
+gridExtra::grid.arrange(p1, p2, p3, p4, top = "Cuarteto de Anscombe")
+```
+
+<img src="05-Modelos_Lineales_files/figure-html/anscombe-1.png" width="672" />
+
+
+Un caso extremo fue desarrollado hace poco por [Alberto Cairo](http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html) y luego llevado a R en forma de paquete (`datasauRus`), cuya página puedes encontrar [aquí](https://github.com/lockedata/datasauRus). Abajo muestro un ejemplo básico de estos datasets. El mensaje clave es:
+
+> Siempre graficar nuestros datos
+
+
+```r
+library(datasauRus)
+ggplot(datasaurus_dozen,
+       aes(x=x, y=y, colour=dataset))+
+  geom_point()+
+  theme_void()+
+  theme(legend.position = "none")+
+  facet_wrap(~dataset, ncol=3)
+```
+
+<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 
 ## Análisis de supuestos en R
@@ -361,7 +419,7 @@ par(mfrow = c(2, 2))
 plot(modelo_chocolate)
 ```
 
-<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 
 ### Cuando los residuos no son normales
@@ -397,7 +455,7 @@ fit_plot <- ggplot(datos, aes(nueva_dosis, respuesta))+
 fit_plot
 ```
 
-<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 En este gráfico vemos que el ajuste sigue siendo bueno, pero hay mayor cantidad de puntos alejados de la recta. En vez de la recta de ajuste, usemos sólo los predichos.
 
@@ -415,7 +473,7 @@ pre_plot <- ggplot(datos, aes(nueva_dosis, respuesta))+
 pre_plot
 ```
 
-<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 Como vemos, los predichos están alineados perfectamente en la regresión. Podemos agregar los residuos de la siguiente forma:
 
@@ -427,7 +485,7 @@ pre_plot +
                alpha=0.5)
 ```
 
-<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 
 Lo que nuestra regresión está realizando es minimizar la suma de los residuos al cuadrado (ver Ecuación \@ref(eq:residuo2)). Una herramienta para visualizar mejor los puntos con residuos grandes es graficarlos utilizando una escala de color.
@@ -450,7 +508,7 @@ ggplot(datos, aes(nueva_dosis, respuesta))+
   guides(color = FALSE)
 ```
 
-<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 
 ## Descomponiendo variabilidad
@@ -498,7 +556,7 @@ variacion_no_explicada <- grafico_base +
 cowplot::plot_grid(variacion_total, variacion_explicada, variacion_no_explicada)    
 ```
 
-<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 
 ## ¿Por qué hacer una regresión?

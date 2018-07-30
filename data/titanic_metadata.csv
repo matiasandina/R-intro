@@ -1,0 +1,11 @@
+Variable Inglés,Descr. Español,Tipo de variable,Valores
+survival,Supervicencia,dicotómica,"no, si (0, 1)"
+pclass,Clase,factor,"1, 2, 3"
+sex,Sexo,continua,0+
+Age,Edad en años,continua,0+
+sibsp,# de hermanos o esposas a bordo,continua,0+
+parch,# padres a bordo,continua,0+
+ticket,Número de ticket,caracter,[A-Z][0-9]
+fare,Valor del ticket,continua,0+
+cabin,Número de cabina,caracter,[A-Z][0-9]
+embarked,Puerto en donde embarcaron,factor,"Cherbourg (C), Queenstown (Q), Southampton (S)"

@@ -48,6 +48,21 @@ R tiene funciones genéricas para abrir este tipo de archivos en una tabla como 
 datos <- read.csv(file = 'nombre_de_archivo.csv')
 ```
 
+Es común que las computadoras en español utilicen el separador `;` en vez de `,` para archivos `.csv`. En ese caso, podemos especificar:
+
+
+```r
+datos <- read.csv(file = 'nombre_de_archivo.csv', sep = ';')
+```
+
+Un archivo separado por tabulaciones (`.txt`) puede leerse como:
+
+
+```r
+datos <- read.table(file = 'nombre_de_archivo.txt', sep = '\t')
+```
+
+
 ### Importar múltiples archivos de texto
 
 Normalmente tendremos múltiples archivos de texto, probablemente llamados de manera seriada en una carpeta dentro de nuestro working directory (por ejemplo, tendremos `resultados/sujeto001.csv`, `resultados/sujeto002.csv`, ... `resultados/sujeto154.csv`).
@@ -66,6 +81,16 @@ lista_archivos <- lapply(lista_nombres, read.csv())
 Esta estrategia nos ahorra tener que escribir 154 llamadas a `read.csv()` con el nombre de archivo correcto. También facilita el acceso a todas las tablas en un único objeto, la lista `lista_archivos`. 
 
 ## Otros formatos
+
+### Desde la web
+
+Es posible utilizar una URL para leer datos. Es necesario conocer la dirección directa al archivo de texto y su extensión.
+
+
+```r
+datos <- read.table("http://www.algunapagina.com/datos/nombre-archivo.txt")
+```
+
 
 ### SAS
 
