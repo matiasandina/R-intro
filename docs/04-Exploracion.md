@@ -209,11 +209,11 @@ p6 <- ggplot(iris, aes(Species, Sepal.Length)) +
 </div>
 
 
-Este es un pequeño ejemplo de como los distintos `geoms` participan en la creación de gráficos. En **A** es difícil ver que los puntos están superpuestos, por eso en **B** usamos `geom_jitter()`, que da una buena idea de la distribución de los datos. Para resumir la información, es común utilizar gráficos de cajas o tipo violín (**C,D**). Notar que la combinación de `geoms` en capas permite fácilmente mezclar ambos gráficos (**E**). Al combinarlos, hemos cambiado cuestiones estéticas dentro de las capas para incrementar el contraste. Finalmente, otra forma común de hacer un resumen de datos es un gráfico de barras de tipo media ± SEM (**E**).
+Este es un pequeño ejemplo de cómo los distintos `geoms` participan en la creación de gráficos. En **A** es difícil ver que los puntos están superpuestos, por eso en **B** usamos `geom_jitter()`, que da una buena idea de la distribución de los datos. Para resumir la información, es común utilizar gráficos de cajas o tipo violín (**C,D**). Notar que la combinación de `geoms` en capas permite fácilmente mezclar ambos gráficos (**E**). Al combinarlos, hemos cambiado cuestiones estéticas dentro de las capas para incrementar el contraste. Finalmente, otra forma común de hacer un resumen de datos es un gráfico de barras de tipo media ± SEM (**E**).
 
 ### Explorando `facet_wrap`
 
-En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar `facets` para separar las gráficas en distintas ventanas.
+En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar `facets` para separar las gráficas en distintas ventanas o viñetas.
 
 
 ```r
@@ -243,6 +243,9 @@ Los gráficos realizados en la sección previa (\@ref(explorando-geom)) muestran
 
 
 ```r
+# Si es la primera vez
+install.packages("cowplot")
+# Graficar en grilla
 cowplot::plot_grid(p1,p2,p3,p4,p5,p6, labels = "AUTO")
 ```
 
@@ -258,7 +261,7 @@ En este caso voy a mostrar un análisis exploratorio del dataset de Titanic, que
 install.packages('titanic')
 ```
 
-El dataset contiene información sobre el destino de los pasajeros del barco.
+El dataset contiene información sobre el destino de los pasajeros del barco. Carguemos los paquetes necesarios para trabajar.
 
 
 ```r
@@ -324,7 +327,7 @@ titanic_train$Embarked <- ifelse(titanic_train$Embarked == "",
 ```
 
 
-Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez.  
+Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión.  
 
 
 ```r
@@ -334,7 +337,7 @@ sobrev <- titanic_train %>%
           count()
 
 # Supervivencia
-
+# Cuál es el número de sobrevivientes?
 g1 <- ggplot(titanic_train, aes(Survived)) +
   geom_bar()+
   # Agregamos la cuenta de sobrevivientes
@@ -347,7 +350,7 @@ g1 <- ggplot(titanic_train, aes(Survived)) +
   ylab("Frecuencia")
 
 # Clase
-
+# Cuál es la cantidad de pasajeros en cada clase?
 g2 <- ggplot(titanic_train,
              aes(Pclass))+
   geom_bar()+
@@ -356,7 +359,7 @@ g2 <- ggplot(titanic_train,
 
 
 # Sexo
-
+# cuántos hombres y mujeres a bordo?
 g3 <- ggplot(titanic_train,
              aes(Sex))+
   geom_bar()+
@@ -364,7 +367,7 @@ g3 <- ggplot(titanic_train,
   ylab("Frecuencia")
 
 # Lugar de embarque
-
+# dónde (en qué puerto) subió la gente al barco?
 g4 <- ggplot(titanic_train,
              aes(Embarked))+
   geom_bar()+
@@ -372,7 +375,7 @@ g4 <- ggplot(titanic_train,
   ylab("Frecuencia")
 
 # Edad de los pasajeros
-
+# Cuál es la distribución de edades de los pasajeros?
 g5 <- ggplot(titanic_train,
              aes(Age))+
   geom_histogram(binwidth = 5, color="white")+
@@ -381,6 +384,7 @@ g5 <- ggplot(titanic_train,
 
 
 # Precio del ticket
+# Cuánto costaba subir al Titanic?
 g6 <- ggplot(titanic_train,
              aes(Fare))+
   geom_density(fill="gray50")+
@@ -388,7 +392,7 @@ g6 <- ggplot(titanic_train,
   ylab("Frecuencia")
 
 
-# Todo junto!
+# Graficar todo junto!
 cowplot::plot_grid(g1,g2,g3,g4,g5,g6,
                    labels="AUTO")
 ```
@@ -423,7 +427,7 @@ ggplot(titanic_train,
 
 <img src="04-Exploracion_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
-En el gráfico anterior podemos apreciar claramente que las mayores probabilidades de sobrevivir ocurrieron en las mujeres, principalmente en las clases altas.
+En el gráfico anterior podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo "hombre en tercera clase" la peor combinación. 
 
 > Ejercicio: Calcular % sobrevivientes
 
@@ -550,3 +554,19 @@ titanic_train %>%
 ## 11      3 mujer  0           72   144      50.0 
 ## 12      3 mujer  1           72   144      50.0
 ```
+
+
+
+```r
+# La base de este gráfico es la misma que la del anterior
+# Debemos cambiar el x a Pclass 
+# (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?
+ggplot(titanic_train,
+       aes(x= factor(Pclass), Age, fill=Survived))+
+  # Resto de los componentes? 
+  # (la principal es geom_violin(), el resto es estético)
+  geom_violin()
+```
+
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+

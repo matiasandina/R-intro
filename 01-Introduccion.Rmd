@@ -8,18 +8,7 @@ En lo que resta de este capítulo, vamos a transitar parte de la organización y
 
 ## Términos
 
-Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En la siguiente tabla pueden encontrar una guía:
-
-```{r tabla_convenciones, echo=F, warning=F}
-
-conv_df <- read.csv(file = 'data/tabla_convenciones.csv')
-conv_df <- dplyr::arrange(conv_df, term) 
-
-
-knitr::kable(conv_df, 
-             col.names = c("Término en inglés", "Descripción"))
-
-```
+Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En el anexo de este capítulo pueden encontrar una tabla con los términos técnicos.
 
 Un caso especial son los nombres nativos de objetos o propiedades de R. Estos términos aparecerán normalmente `resaltados en el texto`. Un ejemplo son las tablas que vamos a usar para acceder a datos, llamadas `data.frame`. Por ahora, no es necesario preocuparse al respecto, las piezas del rompecabezas se van a unir luego. 
 
@@ -171,6 +160,23 @@ Rstudio permite personalizar la *experiencia R* de modo de obtener virtualmente 
     * Base R.
     * Paquetes externos descargados de un repositorio.  
 * Rstudio es una interfaz gráfica gratuita que permite trabajar con R.
+
+
+## Anexo {-}
+
+La suguiente tabla muestra ciertos terminos que serán utilizados en inglés.
+
+```{r tabla_convenciones, echo=F, warning=F}
+
+conv_df <- read.csv(file = 'data/tabla_convenciones.csv')
+conv_df <- dplyr::arrange(conv_df, term) 
+
+
+knitr::kable(conv_df, 
+             col.names = c("Término en inglés", "Descripción"))
+
+```
+
 
 
 [^LenguajeWiki]: Mayor descripción en lenguajes de programación [aquí](https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n).

@@ -8,16 +8,7 @@ En lo que resta de este capítulo, vamos a transitar parte de la organización y
 
 ## Términos
 
-Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En la siguiente tabla pueden encontrar una guía:
-
-
-Término en inglés   Descripción                                                     
-------------------  ----------------------------------------------------------------
-CRAN                Colección de paquetes en CRAN (Comprehensive R Archive Network) 
-dataset             set de datos                                                    
-render              generación de contenido multimedia                              
-software            programa                                                        
-working directory   Directorio desde donde R está trabajando en la sesión (getwd()) 
+Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En el anexo de este capítulo pueden encontrar una tabla con los términos técnicos.
 
 Un caso especial son los nombres nativos de objetos o propiedades de R. Estos términos aparecerán normalmente `resaltados en el texto`. Un ejemplo son las tablas que vamos a usar para acceder a datos, llamadas `data.frame`. Por ahora, no es necesario preocuparse al respecto, las piezas del rompecabezas se van a unir luego. 
 
@@ -169,6 +160,21 @@ Rstudio permite personalizar la *experiencia R* de modo de obtener virtualmente 
     * Base R.
     * Paquetes externos descargados de un repositorio.  
 * Rstudio es una interfaz gráfica gratuita que permite trabajar con R.
+
+
+## Anexo {-}
+
+La suguiente tabla muestra ciertos terminos que serán utilizados en inglés.
+
+
+Término en inglés   Descripción                                                     
+------------------  ----------------------------------------------------------------
+CRAN                Colección de paquetes en CRAN (Comprehensive R Archive Network) 
+dataset             set de datos                                                    
+render              generación de contenido multimedia                              
+software            programa                                                        
+working directory   Directorio desde donde R está trabajando en la sesión (getwd()) 
+
 
 
 [^LenguajeWiki]: Mayor descripción en lenguajes de programación [aquí](https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n).

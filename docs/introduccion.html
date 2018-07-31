@@ -25,7 +25,7 @@
 <meta name="author" content="Matias Andina">
 
 
-<meta name="date" content="2018-07-29">
+<meta name="date" content="2018-07-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -120,6 +120,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.8.2" data-path="introduccion.html"><a href="introduccion.html#preferencias"><i class="fa fa-check"></i><b>1.8.2</b> Preferencias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.9" data-path="introduccion.html"><a href="introduccion.html#resumen"><i class="fa fa-check"></i><b>1.9</b> Resumen</a></li>
+<li class="chapter" data-level="" data-path="introduccion.html"><a href="introduccion.html#anexo"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros Pasos</a><ul>
 <li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#ejecutar-codigo"><i class="fa fa-check"></i><b>2.1</b> Ejecutar código</a></li>
@@ -181,6 +182,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.10</b> ¿Por qué hacer una regresión?</a></li>
 <li class="chapter" data-level="5.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.11</b> Resumen</a></li>
 <li class="chapter" data-level="5.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.12</b> Recursos</a></li>
+<li class="chapter" data-level="5.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>5.13</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="modelos-lineales.html"><a href="modelos-lineales.html#anexo-1"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
 <li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
@@ -224,37 +227,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>En lo que resta de este capítulo, vamos a transitar parte de la organización y contenido del libro, las convenciones que vamos a utilizar y los requisitos para obtener los programas necesarios. El contenido a desarrollar es de nivel básico. Sugiero que los usuarios que ya hayan instalado R o se sientan cómodos con la instalación de programas y sistema de archivos se salteen lo siguiente.</p>
 <div id="terminos" class="section level2">
 <h2><span class="header-section-number">1.1</span> Términos</h2>
-<p>Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En la siguiente tabla pueden encontrar una guía:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Término en inglés</th>
-<th align="left">Descripción</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">CRAN</td>
-<td align="left">Colección de paquetes en CRAN (Comprehensive R Archive Network)</td>
-</tr>
-<tr class="even">
-<td align="left">dataset</td>
-<td align="left">set de datos</td>
-</tr>
-<tr class="odd">
-<td align="left">render</td>
-<td align="left">generación de contenido multimedia</td>
-</tr>
-<tr class="even">
-<td align="left">software</td>
-<td align="left">programa</td>
-</tr>
-<tr class="odd">
-<td align="left">working directory</td>
-<td align="left">Directorio desde donde R está trabajando en la sesión (getwd())</td>
-</tr>
-</tbody>
-</table>
+<p>Existen ciertos términos en inglés que no poseen una traducción satisfactoria al español y serán utilizados inglés. La decisión es arbitraria, aunque intento mantenerme dentro de anglicismos aceptados, recomiendo tratarlos como términos técnicos. En el anexo de este capítulo pueden encontrar una tabla con los términos técnicos.</p>
 <p>Un caso especial son los nombres nativos de objetos o propiedades de R. Estos términos aparecerán normalmente <code>resaltados en el texto</code>. Un ejemplo son las tablas que vamos a usar para acceder a datos, llamadas <code>data.frame</code>. Por ahora, no es necesario preocuparse al respecto, las piezas del rompecabezas se van a unir luego.</p>
 </div>
 <div id="donde-encontrar-ayuda" class="section level2">
@@ -404,6 +377,40 @@ ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 </ul></li>
 <li>Rstudio es una interfaz gráfica gratuita que permite trabajar con R.</li>
 </ul>
+</div>
+<div id="anexo" class="section level2 unnumbered">
+<h2>Anexo</h2>
+<p>La suguiente tabla muestra ciertos terminos que serán utilizados en inglés.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Término en inglés</th>
+<th align="left">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CRAN</td>
+<td align="left">Colección de paquetes en CRAN (Comprehensive R Archive Network)</td>
+</tr>
+<tr class="even">
+<td align="left">dataset</td>
+<td align="left">set de datos</td>
+</tr>
+<tr class="odd">
+<td align="left">render</td>
+<td align="left">generación de contenido multimedia</td>
+</tr>
+<tr class="even">
+<td align="left">software</td>
+<td align="left">programa</td>
+</tr>
+<tr class="odd">
+<td align="left">working directory</td>
+<td align="left">Directorio desde donde R está trabajando en la sesión (getwd())</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>

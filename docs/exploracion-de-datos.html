@@ -25,7 +25,7 @@
 <meta name="author" content="Matias Andina">
 
 
-<meta name="date" content="2018-07-29">
+<meta name="date" content="2018-07-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -120,6 +120,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.8.2" data-path="introduccion.html"><a href="introduccion.html#preferencias"><i class="fa fa-check"></i><b>1.8.2</b> Preferencias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.9" data-path="introduccion.html"><a href="introduccion.html#resumen"><i class="fa fa-check"></i><b>1.9</b> Resumen</a></li>
+<li class="chapter" data-level="" data-path="introduccion.html"><a href="introduccion.html#anexo"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros Pasos</a><ul>
 <li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#ejecutar-codigo"><i class="fa fa-check"></i><b>2.1</b> Ejecutar código</a></li>
@@ -181,6 +182,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.10</b> ¿Por qué hacer una regresión?</a></li>
 <li class="chapter" data-level="5.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.11</b> Resumen</a></li>
 <li class="chapter" data-level="5.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.12</b> Recursos</a></li>
+<li class="chapter" data-level="5.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>5.13</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="modelos-lineales.html"><a href="modelos-lineales.html#anexo-1"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
 <li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
@@ -358,11 +361,11 @@ p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span clas
 Figure 4.1: Varias formas de mostrar los mismos datos.
 </p>
 </div>
-<p>Este es un pequeño ejemplo de como los distintos <code>geoms</code> participan en la creación de gráficos. En <strong>A</strong> es difícil ver que los puntos están superpuestos, por eso en <strong>B</strong> usamos <code>geom_jitter()</code>, que da una buena idea de la distribución de los datos. Para resumir la información, es común utilizar gráficos de cajas o tipo violín (<strong>C,D</strong>). Notar que la combinación de <code>geoms</code> en capas permite fácilmente mezclar ambos gráficos (<strong>E</strong>). Al combinarlos, hemos cambiado cuestiones estéticas dentro de las capas para incrementar el contraste. Finalmente, otra forma común de hacer un resumen de datos es un gráfico de barras de tipo media ± SEM (<strong>E</strong>).</p>
+<p>Este es un pequeño ejemplo de cómo los distintos <code>geoms</code> participan en la creación de gráficos. En <strong>A</strong> es difícil ver que los puntos están superpuestos, por eso en <strong>B</strong> usamos <code>geom_jitter()</code>, que da una buena idea de la distribución de los datos. Para resumir la información, es común utilizar gráficos de cajas o tipo violín (<strong>C,D</strong>). Notar que la combinación de <code>geoms</code> en capas permite fácilmente mezclar ambos gráficos (<strong>E</strong>). Al combinarlos, hemos cambiado cuestiones estéticas dentro de las capas para incrementar el contraste. Finalmente, otra forma común de hacer un resumen de datos es un gráfico de barras de tipo media ± SEM (<strong>E</strong>).</p>
 </div>
 <div id="explorando-facet_wrap" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Explorando <code>facet_wrap</code></h3>
-<p>En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar <code>facets</code> para separar las gráficas en distintas ventanas.</p>
+<p>En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar <code>facets</code> para separar las gráficas en distintas ventanas o viñetas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
@@ -377,7 +380,10 @@ Figure 4.1: Varias formas de mostrar los mismos datos.
 <div id="cowplot" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Cowplot</h3>
 <p>Los gráficos realizados en la sección previa (<a href="exploracion-de-datos.html#explorando-geom">4.2.2</a>) muestran gráficos individuales que fueron <em>acomodados</em> distintos paneles. Para realizar esto, se ha utilizando el paquete <code>cowplot</code>. A continuación se muestra el código para realizar figura <a href="exploracion-de-datos.html#fig:six-plot-figure">4.1</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2,p3,p4,p5,p6, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Si es la primera vez</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;cowplot&quot;</span>)
+<span class="co"># Graficar en grilla</span>
+cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2,p3,p4,p5,p6, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
 </div>
 </div>
 <div id="caso-de-estudio" class="section level2">
@@ -386,7 +392,7 @@ Figure 4.1: Varias formas de mostrar los mismos datos.
 <p>En este caso voy a mostrar un análisis exploratorio del dataset de Titanic, que puede ser obtenido desde CRAN.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Si es la primera vez,</span>
 <span class="kw">install.packages</span>(<span class="st">&#39;titanic&#39;</span>)</code></pre></div>
-<p>El dataset contiene información sobre el destino de los pasajeros del barco.</p>
+<p>El dataset contiene información sobre el destino de los pasajeros del barco. Carguemos los paquetes necesarios para trabajar.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Paquete útil para reorganizar datos (parte de tidyverse)</span>
 <span class="kw">library</span>(dplyr)
 <span class="co"># Cargamos el paquete titanic</span>
@@ -490,14 +496,14 @@ titanic_train<span class="op">$</span>Sex &lt;-<span class="st"> </span><span cl
 titanic_train<span class="op">$</span>Embarked &lt;-<span class="st"> </span><span class="kw">ifelse</span>(titanic_train<span class="op">$</span>Embarked <span class="op">==</span><span class="st"> &quot;&quot;</span>,
                                  <span class="ot">NA</span>,
                                  titanic_train<span class="op">$</span>Embarked)</code></pre></div>
-<p>Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez.</p>
+<p>Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculamos la supervivencia segun el factor Survived</span>
 sobrev &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span>
 <span class="st">          </span><span class="kw">group_by</span>(Survived) <span class="op">%&gt;%</span>
 <span class="st">          </span><span class="kw">count</span>()
 
 <span class="co"># Supervivencia</span>
-
+<span class="co"># Cuál es el número de sobrevivientes?</span>
 g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(Survived)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
 <span class="st">  </span><span class="co"># Agregamos la cuenta de sobrevivientes</span>
@@ -510,7 +516,7 @@ g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
 
 <span class="co"># Clase</span>
-
+<span class="co"># Cuál es la cantidad de pasajeros en cada clase?</span>
 g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
              <span class="kw">aes</span>(Pclass))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
@@ -519,7 +525,7 @@ g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
 
 
 <span class="co"># Sexo</span>
-
+<span class="co"># cuántos hombres y mujeres a bordo?</span>
 g3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
              <span class="kw">aes</span>(Sex))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
@@ -527,7 +533,7 @@ g3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
 
 <span class="co"># Lugar de embarque</span>
-
+<span class="co"># dónde (en qué puerto) subió la gente al barco?</span>
 g4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
              <span class="kw">aes</span>(Embarked))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
@@ -535,7 +541,7 @@ g4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
 
 <span class="co"># Edad de los pasajeros</span>
-
+<span class="co"># Cuál es la distribución de edades de los pasajeros?</span>
 g5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
              <span class="kw">aes</span>(Age))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>, <span class="dt">color=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span>
@@ -544,6 +550,7 @@ g5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
 
 
 <span class="co"># Precio del ticket</span>
+<span class="co"># Cuánto costaba subir al Titanic?</span>
 g6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
              <span class="kw">aes</span>(Fare))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;gray50&quot;</span>)<span class="op">+</span>
@@ -551,7 +558,7 @@ g6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
 
 
-<span class="co"># Todo junto!</span>
+<span class="co"># Graficar todo junto!</span>
 cowplot<span class="op">::</span><span class="kw">plot_grid</span>(g1,g2,g3,g4,g5,g6,
                    <span class="dt">labels=</span><span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
 <p><img src="04-Exploracion_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
@@ -576,7 +583,7 @@ cowplot<span class="op">::</span><span class="kw">plot_grid</span>(g1,g2,g3,g4,g
 <span class="st">  </span><span class="co"># Titulo</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Supervivencia por clase&quot;</span>)</code></pre></div>
 <p><img src="04-Exploracion_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<p>En el gráfico anterior podemos apreciar claramente que las mayores probabilidades de sobrevivir ocurrieron en las mujeres, principalmente en las clases altas.</p>
+<p>En el gráfico anterior podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo “hombre en tercera clase” la peor combinación.</p>
 <blockquote>
 <p>Ejercicio: Calcular % sobrevivientes</p>
 </blockquote>
@@ -674,6 +681,15 @@ titanic_train <span class="op">%&gt;%</span>
 ## 10      3 hombre 1           47   347      13.5 
 ## 11      3 mujer  0           72   144      50.0 
 ## 12      3 mujer  1           72   144      50.0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># La base de este gráfico es la misma que la del anterior</span>
+<span class="co"># Debemos cambiar el x a Pclass </span>
+<span class="co"># (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?</span>
+<span class="kw">ggplot</span>(titanic_train,
+       <span class="kw">aes</span>(<span class="dt">x=</span> <span class="kw">factor</span>(Pclass), Age, <span class="dt">fill=</span>Survived))<span class="op">+</span>
+<span class="st">  </span><span class="co"># Resto de los componentes? </span>
+<span class="st">  </span><span class="co"># (la principal es geom_violin(), el resto es estético)</span>
+<span class="st">  </span><span class="kw">geom_violin</span>()</code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 
 </div>
 </div>

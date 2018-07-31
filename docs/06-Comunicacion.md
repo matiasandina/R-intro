@@ -15,7 +15,7 @@ Aunque parezca extremo, existen casos documentados de este tipo.
 
 ## Gráficos
 
-En una sección anterior realizamos análisis exploratorios. Nuestro objetivo era entender los datos de manera rápida (ver Sección \@ref(caso-de-estudio)). Dichos análisis no se focalizaron en comunicar visualmente hacia un *externo* o *consumidor*. Retomemos el dataset del Titanic y hagamos un gráfico tipo *waffle* (también conocidos como gráficos tipo *tile* o azulejo).
+En un capítulo anterior realizamos análisis exploratorios. Como nuestro objetivo era entender los datos de manera rápida (ver Sección \@ref(caso-de-estudio)), dichos análisis no se focalizaron en comunicar visualmente hacia un *externo* o *consumidor*. Retomemos el dataset del Titanic y hagamos un gráfico tipo *waffle* (también conocidos como gráficos tipo *tile* o azulejo). 
 
 
 ```r
@@ -44,12 +44,47 @@ sobrev <- titanic_train %>%
 # Waffle plot
 waffle(sobrev, rows = 25, size = 1,
        colors = c("#1696d2", "#fdbf11"),
-       legend_pos = "bottom") +
+       legend_pos = "bottom")+
   labs(title = "Sobrevivientes del Titanic",
-      subtitle = "1 cuadrado == 1 persona")
+      subtitle = "1 cuadrado = 1 persona")
 ```
 
 <img src="06-Comunicacion_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+
+
+Este tipo de representaciones es común en los periódicos. Podemos recrear el gráfico por clase. 
+
+
+```r
+# Calculamos supervivencia por clase
+sobrev2 <- titanic_train %>%
+    group_by(Pclass, Survived) %>%
+    count() %>%
+    ungroup()%>%
+    mutate(Survived = ifelse(Survived==0,"No Sobrevivió", "Sobrevivió"))
+
+iron(
+waffle(filter(sobrev2, Pclass==1) %>% select(-Pclass),
+       rows = 10, size=1,
+       colors = c("#1696d2", "#fdbf11"),
+       legend_pos = "none")+
+  labs(title = "Sobrevivientes del Titanic por clase",
+      subtitle = "Primera clase"),
+waffle(filter(sobrev2, Pclass==2) %>% select(-Pclass),
+       rows = 10, size=1,
+       colors = c("#1696d2", "#fdbf11"),
+       legend_pos = "none")+
+  labs(subtitle = "Segunda clase"),
+waffle(filter(sobrev2, Pclass==3) %>% select(-Pclass),
+       rows = 10, size=1,
+       colors = c("#1696d2", "#fdbf11"),
+       xlab = "1 cuadrado = 1 persona",
+       legend_pos = "bottom")+
+  labs(subtitle = "Tercera clase")
+)
+```
+
+<img src="06-Comunicacion_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 
 ## RMarkdown
@@ -202,7 +237,7 @@ Por ejemplo, el encabezado de este libro es el siguiente[^encabezado]:
 --- 
 title: "Introducción a estadística con R"
 author: "Matias Andina"
-date: "2018-07-29"
+date: "2018-07-31"
 site: bookdown::bookdown_site
 documentclass: book
 ---

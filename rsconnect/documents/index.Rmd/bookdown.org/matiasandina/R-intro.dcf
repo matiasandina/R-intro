@@ -5,6 +5,6 @@ account: matiasandina
 server: bookdown.org
 hostUrl: https://bookdown.org/__api__
 appId: 1569
-bundleId: 6587
+bundleId: 6600
 url: https://bookdown.org/matiasandina/R-intro/
-when: 1532918808.04779
+when: 1533050530.48302
