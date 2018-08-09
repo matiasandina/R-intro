@@ -86,6 +86,8 @@ waffle(filter(sobrev2, Pclass==3) %>% select(-Pclass),
 
 <img src="06-Comunicacion_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
+En la sección \@ref(nz-profesional) observamos cómo podemos realizar un mapa con calidad de publicación.
+
 
 ## RMarkdown
 
@@ -237,7 +239,7 @@ Por ejemplo, el encabezado de este libro es el siguiente[^encabezado]:
 --- 
 title: "Introducción a estadística con R"
 author: "Matias Andina"
-date: "2018-07-31"
+date: "2018-08-08"
 site: bookdown::bookdown_site
 documentclass: book
 ---

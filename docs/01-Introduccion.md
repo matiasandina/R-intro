@@ -173,6 +173,7 @@ CRAN                Colección de paquetes en CRAN (Comprehensive R Archive Netw
 dataset             set de datos                                                    
 render              generación de contenido multimedia                              
 software            programa                                                        
+subset              subconjunto o porción                                           
 working directory   Directorio desde donde R está trabajando en la sesión (getwd()) 
 
 

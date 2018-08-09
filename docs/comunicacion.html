@@ -25,7 +25,7 @@
 <meta name="author" content="Matias Andina">
 
 
-<meta name="date" content="2018-07-31">
+<meta name="date" content="2018-08-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="modelos-lineales.html">
-<link rel="next" href="agradecimientos.html">
+<link rel="next" href="estadistica-espacial.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -199,6 +199,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>6.11</b> Notas</a></li>
 <li class="chapter" data-level="6.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-3"><i class="fa fa-check"></i><b>6.12</b> Recursos</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>7</b> Estadística Espacial</a><ul>
+<li class="chapter" data-level="7.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>7.1</b> Paquetes Geo-R</a></li>
+<li class="chapter" data-level="7.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo"><i class="fa fa-check"></i><b>7.2</b> Paquetes GEO</a></li>
+<li class="chapter" data-level="7.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>7.3</b> Trabajando con datos espaciales</a></li>
+<li class="chapter" data-level="7.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topological-relations"><i class="fa fa-check"></i><b>7.4</b> topological-relations</a></li>
+<li class="chapter" data-level="7.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>7.5</b> Nueva Zelanda</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>7.5.1</b> Cambiando colores con <code>style</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>7.6</b> Proyecciones</a></li>
+<li class="chapter" data-level="7.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>7.7</b> Mapas animados</a></li>
+<li class="chapter" data-level="7.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>7.8</b> Mapas interactivos</a></li>
+<li class="chapter" data-level="7.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>7.9</b> Resumen</a></li>
+<li class="chapter" data-level="7.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-4"><i class="fa fa-check"></i><b>7.10</b> Recursos</a></li>
+<li class="chapter" data-level="7.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>7.11</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-2"><i class="fa fa-check"></i>Anexo</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -289,6 +305,7 @@ sobrev2 &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</spa
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Tercera clase&quot;</span>)
 )</code></pre></div>
 <p><img src="06-Comunicacion_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>En la sección <a href="#nz-profesional"><strong>??</strong></a> observamos cómo podemos realizar un mapa con calidad de publicación.</p>
 </div>
 <div id="rmarkdown" class="section level2">
 <h2><span class="header-section-number">6.3</span> RMarkdown</h2>
@@ -405,7 +422,7 @@ output: html_document
 <pre><code>--- 
 title: &quot;Introducción a estadística con R&quot;
 author: &quot;Matias Andina&quot;
-date: &quot;2018-07-31&quot;
+date: &quot;2018-08-08&quot;
 site: bookdown::bookdown_site
 documentclass: book
 ---
@@ -454,7 +471,7 @@ documentclass: book
         </div>
       </div>
 <a href="modelos-lineales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="agradecimientos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estadistica-espacial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

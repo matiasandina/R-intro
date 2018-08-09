@@ -1,7 +1,7 @@
 --- 
 title: "Introducción a estadística con R"
 author: "Matias Andina"
-date: "2018-07-31"
+date: "2018-08-08"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]

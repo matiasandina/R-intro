@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Introducción a estadística con R</title>
+  <meta name="description" content="Este libro introduce conceptos de estadística utilizando R. Está principalmente orientado a estudiantes que deseen aplicar e incrementar sus conocimientos estadísticos usando un lenguaje de programación. Sin embargo, aquellos usuarios que tengan algo de experiencia con R y quieran aventurarse a aumentar sus conocimientos estadísticos pueden encontrar utilidad en los capítulos más avanzados.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Introducción a estadística con R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://matiasandina.netlify.com/ /" />
+  
+  <meta property="og:description" content="Este libro introduce conceptos de estadística utilizando R. Está principalmente orientado a estudiantes que deseen aplicar e incrementar sus conocimientos estadísticos usando un lenguaje de programación. Sin embargo, aquellos usuarios que tengan algo de experiencia con R y quieran aventurarse a aumentar sus conocimientos estadísticos pueden encontrar utilidad en los capítulos más avanzados." />
+  <meta name="github-repo" content="matiasandina/R-intro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introducción a estadística con R" />
+  
+  <meta name="twitter:description" content="Este libro introduce conceptos de estadística utilizando R. Está principalmente orientado a estudiantes que deseen aplicar e incrementar sus conocimientos estadísticos usando un lenguaje de programación. Sin embargo, aquellos usuarios que tengan algo de experiencia con R y quieran aventurarse a aumentar sus conocimientos estadísticos pueden encontrar utilidad en los capítulos más avanzados." />
+  
+
+<meta name="author" content="Matias Andina">
+
+
+<meta name="date" content="2018-08-08">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="comunicacion.html">
+<link rel="next" href="agradecimientos.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a estadística R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a></li>
+<li class="chapter" data-level="1" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>1</b> Introducción</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduccion.html"><a href="introduccion.html#terminos"><i class="fa fa-check"></i><b>1.1</b> Términos</a></li>
+<li class="chapter" data-level="1.2" data-path="introduccion.html"><a href="introduccion.html#donde-encontrar-ayuda"><i class="fa fa-check"></i><b>1.2</b> Dónde encontrar ayuda</a></li>
+<li class="chapter" data-level="1.3" data-path="introduccion.html"><a href="introduccion.html#sistema-operativo"><i class="fa fa-check"></i><b>1.3</b> Sistema Operativo</a></li>
+<li class="chapter" data-level="1.4" data-path="introduccion.html"><a href="introduccion.html#directorios"><i class="fa fa-check"></i><b>1.4</b> Directorios</a></li>
+<li class="chapter" data-level="1.5" data-path="introduccion.html"><a href="introduccion.html#traduccion-de-contenido"><i class="fa fa-check"></i><b>1.5</b> Traducción de contenido</a></li>
+<li class="chapter" data-level="1.6" data-path="introduccion.html"><a href="introduccion.html#r"><i class="fa fa-check"></i><b>1.6</b> R</a></li>
+<li class="chapter" data-level="1.7" data-path="introduccion.html"><a href="introduccion.html#instalar-r"><i class="fa fa-check"></i><b>1.7</b> Instalar R</a><ul>
+<li class="chapter" data-level="1.7.1" data-path="introduccion.html"><a href="introduccion.html#terminal-de-r"><i class="fa fa-check"></i><b>1.7.1</b> Terminal de R</a></li>
+<li class="chapter" data-level="1.7.2" data-path="introduccion.html"><a href="introduccion.html#interfaz-grafica"><i class="fa fa-check"></i><b>1.7.2</b> Interfaz gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="introduccion.html"><a href="introduccion.html#instalar-rstudio"><i class="fa fa-check"></i><b>1.8</b> Instalar Rstudio</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="introduccion.html"><a href="introduccion.html#la-experiencia"><i class="fa fa-check"></i><b>1.8.1</b> La experiencia</a></li>
+<li class="chapter" data-level="1.8.2" data-path="introduccion.html"><a href="introduccion.html#preferencias"><i class="fa fa-check"></i><b>1.8.2</b> Preferencias</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="introduccion.html"><a href="introduccion.html#resumen"><i class="fa fa-check"></i><b>1.9</b> Resumen</a></li>
+<li class="chapter" data-level="" data-path="introduccion.html"><a href="introduccion.html#anexo"><i class="fa fa-check"></i>Anexo</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros Pasos</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#ejecutar-codigo"><i class="fa fa-check"></i><b>2.1</b> Ejecutar código</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#crear-objetos"><i class="fa fa-check"></i><b>2.2</b> Crear Objetos</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#el-operador--"><i class="fa fa-check"></i><b>2.2.1</b> El operador <code>&lt;-</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#clases-de-objetos-en-r"><i class="fa fa-check"></i><b>2.3</b> Clases de objetos en R</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-pasos.html"><a href="primeros-pasos.html#errores-comunes"><i class="fa fa-check"></i><b>2.4</b> Errores comunes</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-pasos.html"><a href="primeros-pasos.html#instalar-y-cargar-paquetes"><i class="fa fa-check"></i><b>2.5</b> Instalar y cargar paquetes</a></li>
+<li class="chapter" data-level="2.6" data-path="primeros-pasos.html"><a href="primeros-pasos.html#recursos"><i class="fa fa-check"></i><b>2.6</b> Recursos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leer-datos.html"><a href="leer-datos.html"><i class="fa fa-check"></i><b>3</b> Leer Datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="leer-datos.html"><a href="leer-datos.html#datasets-de-base"><i class="fa fa-check"></i><b>3.1</b> Datasets de base</a></li>
+<li class="chapter" data-level="3.2" data-path="leer-datos.html"><a href="leer-datos.html#importar-datos-de-manera-manual"><i class="fa fa-check"></i><b>3.2</b> Importar datos de manera manual</a></li>
+<li class="chapter" data-level="3.3" data-path="leer-datos.html"><a href="leer-datos.html#archivos-de-texto"><i class="fa fa-check"></i><b>3.3</b> Archivos de texto</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="leer-datos.html"><a href="leer-datos.html#importar-multiples-archivos-de-texto"><i class="fa fa-check"></i><b>3.3.1</b> Importar múltiples archivos de texto</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="leer-datos.html"><a href="leer-datos.html#otros-formatos"><i class="fa fa-check"></i><b>3.4</b> Otros formatos</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="leer-datos.html"><a href="leer-datos.html#desde-la-web"><i class="fa fa-check"></i><b>3.4.1</b> Desde la web</a></li>
+<li class="chapter" data-level="3.4.2" data-path="leer-datos.html"><a href="leer-datos.html#sas"><i class="fa fa-check"></i><b>3.4.2</b> SAS</a></li>
+<li class="chapter" data-level="3.4.3" data-path="leer-datos.html"><a href="leer-datos.html#spss"><i class="fa fa-check"></i><b>3.4.3</b> SPSS</a></li>
+<li class="chapter" data-level="3.4.4" data-path="leer-datos.html"><a href="leer-datos.html#excel"><i class="fa fa-check"></i><b>3.4.4</b> Excel</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html"><i class="fa fa-check"></i><b>4</b> Exploración de Datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#graficos-de-base"><i class="fa fa-check"></i><b>4.1</b> Gráficos de base</a></li>
+<li class="chapter" data-level="4.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#ggplot2"><i class="fa fa-check"></i><b>4.2</b> ggplot2</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#entendiendo-aes"><i class="fa fa-check"></i><b>4.2.1</b> Entendiendo <code>aes()</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-geom"><i class="fa fa-check"></i><b>4.2.2</b> Explorando <code>geom</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#explorando-facet_wrap"><i class="fa fa-check"></i><b>4.2.3</b> Explorando <code>facet_wrap</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#cowplot"><i class="fa fa-check"></i><b>4.2.4</b> Cowplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#caso-de-estudio"><i class="fa fa-check"></i><b>4.3</b> Caso de estudio</a></li>
+<li class="chapter" data-level="4.4" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#resumen-1"><i class="fa fa-check"></i><b>4.4</b> Resumen</a></li>
+<li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos-1"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
+<li class="chapter" data-level="4.6" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#respuestas"><i class="fa fa-check"></i><b>4.6</b> Respuestas</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
+<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a></li>
+<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.6</b> Supuestos</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>5.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
+<li class="chapter" data-level="5.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>5.6.2</b> Independencia</a></li>
+<li class="chapter" data-level="5.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>5.6.3</b> Homocedasticidad.</a></li>
+<li class="chapter" data-level="5.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>5.6.4</b> Normalidad de residuos</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.7</b> Análisis de supuestos en R</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>5.7.1</b> Cuando los residuos no son normales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.8</b> Visualizando residuos en R</a></li>
+<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.9</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="5.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.10</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="5.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.11</b> Resumen</a></li>
+<li class="chapter" data-level="5.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.12</b> Recursos</a></li>
+<li class="chapter" data-level="5.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>5.13</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="modelos-lineales.html"><a href="modelos-lineales.html#anexo-1"><i class="fa fa-check"></i>Anexo</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
+<li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
+<li class="chapter" data-level="6.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>6.2</b> Gráficos</a></li>
+<li class="chapter" data-level="6.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>6.3</b> RMarkdown</a></li>
+<li class="chapter" data-level="6.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>6.4</b> Texto</a></li>
+<li class="chapter" data-level="6.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>6.5</b> Separando líneas y párrafos</a></li>
+<li class="chapter" data-level="6.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>6.6</b> Trozos de código</a></li>
+<li class="chapter" data-level="6.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>6.7</b> Links e imágenes</a></li>
+<li class="chapter" data-level="6.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>6.8</b> Encabezado</a></li>
+<li class="chapter" data-level="6.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>6.9</b> Knit</a></li>
+<li class="chapter" data-level="6.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>6.10</b> Otros proyectos con RStudio</a></li>
+<li class="chapter" data-level="6.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>6.11</b> Notas</a></li>
+<li class="chapter" data-level="6.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-3"><i class="fa fa-check"></i><b>6.12</b> Recursos</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>7</b> Estadística Espacial</a><ul>
+<li class="chapter" data-level="7.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>7.1</b> Paquetes Geo-R</a></li>
+<li class="chapter" data-level="7.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo"><i class="fa fa-check"></i><b>7.2</b> Paquetes GEO</a></li>
+<li class="chapter" data-level="7.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>7.3</b> Trabajando con datos espaciales</a></li>
+<li class="chapter" data-level="7.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topological-relations"><i class="fa fa-check"></i><b>7.4</b> topological-relations</a></li>
+<li class="chapter" data-level="7.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>7.5</b> Nueva Zelanda</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>7.5.1</b> Cambiando colores con <code>style</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>7.6</b> Proyecciones</a></li>
+<li class="chapter" data-level="7.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>7.7</b> Mapas animados</a></li>
+<li class="chapter" data-level="7.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>7.8</b> Mapas interactivos</a></li>
+<li class="chapter" data-level="7.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>7.9</b> Resumen</a></li>
+<li class="chapter" data-level="7.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-4"><i class="fa fa-check"></i><b>7.10</b> Recursos</a></li>
+<li class="chapter" data-level="7.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>7.11</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-2"><i class="fa fa-check"></i>Anexo</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i>Agradecimientos</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a estadística con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estadistica-espacial" class="section level1">
+<h1><span class="header-section-number">Capítulo 7</span> Estadística Espacial</h1>
+<p>En este capítulo exploraremos herramientas estadísticas y de visualización para análisis de superficie. Nos centraremos en la capacidad gráfica de diversos paquetes de R.</p>
+<div id="paquetes-geo-r" class="section level2">
+<h2><span class="header-section-number">7.1</span> Paquetes Geo-R</h2>
+<p>Históricamente, el análisis de datos geográficos se centró en el paquete <code>sp</code>, que ha sido el más utilizado para manejar datos espaciales.</p>
+<p>La funcionalidad gráfica generalmente vino acoplada al mismo <code>sp</code>. El paquete <code>sp</code> guarda información espacial como vértices de polígonos, sistemas de coordenadas y otros atributos en objetos de la clase <code>Spatial</code>. Aunque la funcionalidad gráfica del paquete <code>sp</code> usando <code>plot()</code> es limitada, desarrollos recientes de paquetes como <code>tmap</code>, <code>ggplot2</code>, <code>ggmap</code> y <code>leaflet</code> permiten una amplia variedad de visualizaciones estáticas e interactivas, que pueden ser incorporadas a documentos <code>.html</code> como la versión electrónica de este libro. El paquete <code>sf</code> es un desarrollo relativamente reciente construido a partir de <code>sp</code>.</p>
+</div>
+<div id="paquetes-geo" class="section level2">
+<h2><span class="header-section-number">7.2</span> Paquetes GEO</h2>
+<p>Vamos a instalar los paquetes que necesitamos para trabajar con data de tipo espacial.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;sf&quot;</span>)
+<span class="co"># tmap se toma su tiempo, instala muchas dependencias</span>
+<span class="co"># usamos el repositorio de CRAN en vez del de Rstudio</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;tmap&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;https://cloud.r-project.org&quot;</span>)</code></pre></div>
+<blockquote>
+<p>En Mac y Linux la instalación es más complicada, seguir instrucciones en: <a href="https://github.com/r-spatial/sf" class="uri">https://github.com/r-spatial/sf</a> y en <a href="https://github.com/mtennekes/tmap" class="uri">https://github.com/mtennekes/tmap</a></p>
+</blockquote>
+<p>Para facilitar que podamos trabajar con datasets abiertos, podemos cargar los datasets del paquete <code>spData</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;spData&quot;</span>)</code></pre></div>
+<p>Cargamos los paquetes que vamos a necesitar:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(sf)
+<span class="kw">library</span>(tmap)
+<span class="kw">library</span>(spData)</code></pre></div>
+</div>
+<div id="trabajando-con-datos-espaciales" class="section level2">
+<h2><span class="header-section-number">7.3</span> Trabajando con datos espaciales</h2>
+<p>Los datos geográficos pueden venir en base de vecotores localizados en un sistema de coordenadas de referencia. Un sitio puntual puede estar representado en longitud y latitud por un par coordenado (<span class="math inline">\((x,y)\)</span>). Además, es posible encontrar datos que también posean información sobre altitud. Los puntos pueden conectarse formando polígonos (por ejemplo, los bordes de una región).</p>
+<p>Una pequeña demostración del dataset <code>world</code> de <code>sf</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(world)</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>También podemos utilizar subsets del dataset <code>world</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(world[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>])</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Miremos el continente americano</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># subset</span>
+americano &lt;-<span class="st"> </span>world <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">filter</span>(region_un<span class="op">==</span><span class="st">&quot;Americas&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">select</span>(<span class="st">&quot;subregion&quot;</span>, <span class="st">&quot;lifeExp&quot;</span>)
+<span class="co"># Graficar</span>
+<span class="kw">plot</span>(americano)</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>El mismo resultado puede obtenerse usando base R (figura omitida).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Subset</span>
+americano &lt;-<span class="st"> </span>world[world<span class="op">$</span>region_un<span class="op">==</span><span class="st">&quot;Americas&quot;</span>,
+                   <span class="kw">c</span>(<span class="st">&quot;subregion&quot;</span>, <span class="st">&quot;lifeExp&quot;</span>)]
+<span class="co"># Graficar</span>
+<span class="kw">plot</span>(americano)</code></pre></div>
+<p>Veamos con un poco más de profundidad cómo está organizado el dataset. Podemos ver que cada país tiene un código <em>iso_a2</em> (dos letras que identifican a cada país)<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>, un nombre largo o <em>name_long</em> y un continente (podemos chequear toda la información en el dataset con <code>names(world)</code>). Vemos también que tenemos una columna <em>geom</em> con objetos MULTIPOLYGON de clase <code>sfc_MULTIPOLYGON</code>, `sfc. Estos geoms constituyen los bordes de los paises.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">world[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<pre><code>## Simple feature collection with 5 features and 3 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -180 ymin: -18.28799 xmax: 180 ymax: 83.23324
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+##   iso_a2      name_long     continent                           geom
+## 1     FJ           Fiji       Oceania MULTIPOLYGON (((180 -16.067...
+## 2     TZ       Tanzania        Africa MULTIPOLYGON (((33.90371 -0...
+## 3     EH Western Sahara        Africa MULTIPOLYGON (((-8.66559 27...
+## 4     CA         Canada North America MULTIPOLYGON (((-122.84 49,...
+## 5     US  United States North America MULTIPOLYGON (((-122.84 49,...</code></pre>
+</div>
+<div id="topological-relations" class="section level2">
+<h2><span class="header-section-number">7.4</span> topological-relations</h2>
+</div>
+<div id="nueva-zelanda" class="section level2">
+<h2><span class="header-section-number">7.5</span> Nueva Zelanda</h2>
+<p>En esta sección vamos a explorar el dataset <code>nz</code> como caso de estudio para demostrar la capacidad gráfica que adquirimos al trabajar en R con datos espaciales.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fondo celeste</span>
+<span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&#39;lightblue&#39;</span>)
+<span class="co"># Si queremos hacer 2 gráficos</span>
+<span class="co"># par(mfrow=c(1,2))</span>
+<span class="co"># Grafico de la isla</span>
+<span class="kw">plot</span>(nz[<span class="dv">1</span>], <span class="dt">col=</span><span class="st">&quot;gray80&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Nueva Zelanda&quot;</span>)
+<span class="kw">plot</span>(nz[<span class="dv">2</span>], <span class="dt">main=</span><span class="st">&quot;Nueva Zelanda&quot;</span>, <span class="dt">key.pos =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/nz-base-plots-1.png" width="50%" /><img src="07-Estadistica_Espacial_files/figure-html/nz-base-plots-2.png" width="50%" /></p>
+<p>La funcionalidad de base es limitada. Exploremos el paquete <code>tmap</code> que tiene una funcionalidad muy pareceida a <code>ggplot2</code>, con capas y gramática.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Mapa con bordes</span>
+bordes &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(nz) <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_borders</span>()
+<span class="co"># Agregamos fill de un solo color</span>
+con_color &lt;-<span class="st"> </span>bordes <span class="op">+</span><span class="st"> </span><span class="kw">tm_fill</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.3</span>)
+<span class="co"># Agregamos fill segun el area de la region</span>
+<span class="co"># Cuidado! no usamos aes(col= Land_area) cual ggplot2</span>
+area_region &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(nz) <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_borders</span>() <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;Land_area&quot;</span>)
+<span class="co"># mostramos los mapas juntos</span>
+<span class="kw">tmap_arrange</span>(bordes, con_color, area_region)</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/nz-tm-plots-1.png" width="672" /></p>
+<blockquote>
+<p>Ejercicio: Investigar las opciones breaks y palette en tm_fill()</p>
+</blockquote>
+<div id="cambiando-colores-con-style" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Cambiando colores con <code>style</code></h3>
+<p>El ejercicio anterior apunta a modificar a mano los valores de <code>breaks</code>. El paquete <code>tm</code> puede asignar los valores de corte de manera automática según un estilo o <code>style</code> (ver <code>?tm_polygons()</code>):</p>
+<ul>
+<li><code>style = pretty</code> (default), redondea a números enteros y los separa equidistantes.</li>
+<li><code>style = equal</code> divide los valores de entrada en cortes de igual rango. Este tipo de estilo provoca que los mapas tengan poca variadad de color si tenemos una distribución asimétrica en la variable que elegimos para colorear.</li>
+<li><code>style = quantile</code> divide en cuantiles nuestras observaciones de modo que el mismo número de observaciones entra en cada corte.</li>
+<li><code>style = jenks</code> identifica grupos con valores similares y maximiza las diferencias entre grupos.</li>
+<li><code>style = cont</code> nos proporciona un numero continuo de colores en un rango cromático. Podemos utilizarlo cuando queremos representar gradientes de terreno (gráficos tipo raster).</li>
+<li><code>style = cat</code> nos sirve para representar variables categóricas de modo que cada categoría será coloreada con un color único.</li>
+</ul>
+<p>A continuación se muestran ejemplos de los distintos estilos:</p>
+<p>Podemos cambiar el estilo de manera global con:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">area_region <span class="op">+</span><span class="st"> </span><span class="kw">tm_style</span>(<span class="st">&quot;classic&quot;</span>)</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/classic-style-1.png" width="672" /></p>
+<p>Podemos crear gráficos de calidad profesional.</p>
+<blockquote>
+<p>Ejercicio: Inspeccionar el siguiente código y comentar en cada línea su función.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">titulo_leyenda =<span class="st"> </span><span class="kw">expression</span>(<span class="st">&quot;Area (km&quot;</span><span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="st">&quot;)&quot;</span>)
+
+<span class="kw">tm_shape</span>(nz) <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_borders</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;Land_area&quot;</span>, <span class="dt">title =</span> titulo_leyenda) <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_compass</span>(<span class="dt">type =</span> <span class="st">&quot;4star&quot;</span>, <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;top&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_scale_bar</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">125</span>, <span class="dv">250</span>), <span class="dt">size =</span> <span class="dv">1</span>,
+               <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_layout</span>(<span class="dt">frame.lwd =</span> <span class="dv">5</span>, <span class="dt">legend.outside =</span> <span class="ot">TRUE</span>,
+            <span class="dt">legend.outside.position =</span> <span class="kw">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>),
+            <span class="dt">legend.bg.color =</span> <span class="ot">NA</span>, 
+            <span class="dt">legend.format =</span> <span class="kw">list</span>(<span class="dt">text.separator =</span> <span class="st">&quot;-&quot;</span>))</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/nz-profesional-1.png" width="672" /></p>
+</div>
+</div>
+<div id="proyecciones" class="section level2">
+<h2><span class="header-section-number">7.6</span> Proyecciones</h2>
+<p>Para transformar el mundo de esfera a plano, utilizamos ciertas transformaciones matemáticas o <em>proyecciones</em>. A continuación muestro algunas proyecciones conocidas, utilizando datos de GDP per cápita<a href="#fn20" class="footnoteRef" id="fnref20"><sup>20</sup></a>.</p>
+<div class="figure"><span id="fig:tres-proyecciones"></span>
+<img src="07-Estadistica_Espacial_files/figure-html/tres-proyecciones-1.png" alt="GDP per cápita. Distintas proyecciones. Con pequeñas modificaciones al español. Fuente: https://github.com/mtennekes/tmap/tree/master/demo/WorldFacets" width="672" />
+<p class="caption">
+Figure 7.1: GDP per cápita. Distintas proyecciones. Con pequeñas modificaciones al español. Fuente: <a href="https://github.com/mtennekes/tmap/tree/master/demo/WorldFacets" class="uri">https://github.com/mtennekes/tmap/tree/master/demo/WorldFacets</a>
+</p>
+</div>
+<p>La base para construir distintas proyecciones es cambiar el argumento projection en el comienzo del llamado. Para ver el código completo dirigirse al Anexo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># longitud-latitud</span>
+<span class="kw">tm_shape</span>(World, <span class="dt">projection =</span> <span class="st">&quot;longlat&quot;</span>) <span class="op">+</span><span class="st"> </span>...
+<span class="co"># robinson</span>
+<span class="kw">tm_shape</span>(World, <span class="dt">projection =</span> <span class="st">&quot;robin&quot;</span>) <span class="op">+</span><span class="st"> </span>...
+<span class="co"># eck4</span>
+<span class="kw">tm_shape</span>(World, <span class="dt">projection =</span> <span class="st">&quot;eck4&quot;</span>) <span class="op">+</span><span class="st"> </span>...</code></pre></div>
+<p>Podemos investigar otras transformaciones con <code>ggplot2</code>. Para hacerlo podemos utilizar la funcion <code>st_transform()</code> presente en <code>sf</code>. Podemos utilizar la siguiente transformación:</p>
+<blockquote>
+<p>“+proj=laea +y_0=0 +lon_0=40 +lat_0=10 +ellps=WGS84 +no_defs”</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Transformar el objeto sf World</span>
+world2 &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_transform</span>(
+    World,
+    <span class="st">&quot;+proj=laea +y_0=0 +lon_0=40 +lat_0=10 +ellps=WGS84 +no_defs&quot;</span>
+)
+
+<span class="co"># Graficar el nuevo objeto</span>
+<span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> world2) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="mapas-animados" class="section level2">
+<h2><span class="header-section-number">7.7</span> Mapas animados</h2>
+</div>
+<div id="mapas-interactivos" class="section level2">
+<h2><span class="header-section-number">7.8</span> Mapas interactivos</h2>
+</div>
+<div id="resumen-3" class="section level2">
+<h2><span class="header-section-number">7.9</span> Resumen</h2>
+</div>
+<div id="recursos-4" class="section level2">
+<h2><span class="header-section-number">7.10</span> Recursos</h2>
+<ul>
+<li>Este capítulo es un resumen del libro <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a>. Intenté resumir detalles técnicos que considero que son cruciales para usuarios avanzados pero que escapan a las intenciones de este libro introductorio.</li>
+<li>La viñeta de <code>tmap</code> <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html">aquí</a> y <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-changes-v2.html">aquí</a></li>
+<li>Más información sobre manejo de datos espaciales en R <a href="https://www.jessesadler.com/post/gis-with-r-intro/">aquí</a></li>
+<li>Información sobre modificar la leyenda en <code>tmap</code> (<a href="http://www.jla-data.net/2017/09/20/2017-09-19-tmap-legend/" class="uri">http://www.jla-data.net/2017/09/20/2017-09-19-tmap-legend/</a>)</li>
+<li>Información sobre proyecciones con <code>ggplot2</code> (<a href="http://egallic.fr/maps-with-r/" class="uri">http://egallic.fr/maps-with-r/</a>)</li>
+</ul>
+</div>
+<div id="respuestas-2" class="section level2">
+<h2><span class="header-section-number">7.11</span> Respuestas</h2>
+<p>Podemos cambiar la escala con la que se grafica utilizando <code>breaks</code> y podemos cambiar el tipo de colores utilizando el argumento <code>palette</code>. Por ejemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Original</span>
+area_region &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(nz) <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_borders</span>() <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;Land_area&quot;</span>)
+<span class="co"># Modifico breaks para mayor detalle</span>
+cortes &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">50000</span>, <span class="dv">5000</span>)
+area_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(nz) <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_borders</span>() <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;Land_area&quot;</span>, <span class="dt">breaks =</span> cortes)
+<span class="co"># modifico la paleta de colores</span>
+<span class="co"># probar tmaptools::palette_explorer()</span>
+area_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(nz) <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_borders</span>() <span class="op">+</span>
+<span class="st">               </span><span class="kw">tm_fill</span>(<span class="dt">col =</span> <span class="st">&quot;Land_area&quot;</span>,
+                       <span class="dt">breaks =</span> cortes,
+                       <span class="dt">palette =</span> <span class="st">&quot;viridis&quot;</span>)
+<span class="co"># mostramos los mapas juntos</span>
+<span class="kw">tmap_arrange</span>(area_region, area_<span class="dv">2</span>, area_<span class="dv">3</span>)</code></pre></div>
+<p><img src="07-Estadistica_Espacial_files/figure-html/tm_fil-1.png" width="672" /></p>
+</div>
+<div id="anexo-2" class="section level2 unnumbered">
+<h2>Anexo</h2>
+<p>La figura <a href="estadistica-espacial.html#fig:tres-proyecciones">7.1</a> fue construida con el siguiente codigo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;World&quot;</span>)
+
+
+longlat &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(World, <span class="dt">projection =</span> <span class="st">&quot;longlat&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gdp_cap_est&quot;</span>,
+                <span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>,
+                <span class="dt">style =</span> <span class="st">&quot;fixed&quot;</span>,
+                <span class="dt">n =</span> <span class="dv">7</span>, 
+                <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>, <span class="dv">25000</span>, <span class="dv">50000</span>, <span class="dv">1000000</span>), 
+                <span class="dt">title =</span> <span class="kw">c</span>(<span class="st">&quot;GDP per cápita&quot;</span>),
+                <span class="dt">legend.format =</span> <span class="kw">list</span>(<span class="dt">text.separator =</span> <span class="st">&quot;-&quot;</span>),
+                <span class="dt">textNA =</span> <span class="st">&quot;Sin Datos&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_style</span>(<span class="st">&quot;natural&quot;</span>, <span class="dt">earth.boundary =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">180</span>, <span class="op">-</span><span class="dv">87</span>, <span class="dv">180</span>, <span class="dv">87</span>))  <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_format</span>(<span class="st">&quot;World&quot;</span>, <span class="dt">inner.margins =</span> <span class="fl">0.02</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_legend</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>),
+              <span class="dt">bg.color =</span> <span class="st">&quot;gray95&quot;</span>, <span class="dt">frame =</span> <span class="ot">TRUE</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_credits</span>(<span class="kw">c</span>(<span class="st">&quot;coordenadas longitud-latitud&quot;</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;RIGHT&quot;</span>))
+
+
+robin &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(World, <span class="dt">projection =</span> <span class="st">&quot;robin&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gdp_cap_est&quot;</span>,
+              <span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>,
+              <span class="dt">style =</span> <span class="st">&quot;fixed&quot;</span>,
+              <span class="dt">n =</span> <span class="dv">7</span>, 
+              <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>, <span class="dv">25000</span>, <span class="dv">50000</span>, <span class="dv">1000000</span>), 
+              <span class="dt">title =</span> <span class="kw">c</span>(<span class="st">&quot;GDP per cápita&quot;</span>),
+              <span class="dt">legend.format =</span> <span class="kw">list</span>(<span class="dt">text.separator =</span> <span class="st">&quot;-&quot;</span>),
+              <span class="dt">textNA =</span> <span class="st">&quot;Sin Datos&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_style</span>(<span class="st">&quot;natural&quot;</span>, <span class="dt">earth.boundary =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">180</span>, <span class="op">-</span><span class="dv">87</span>, <span class="dv">180</span>, <span class="dv">87</span>))  <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_format</span>(<span class="st">&quot;World&quot;</span>, <span class="dt">inner.margins =</span> <span class="fl">0.02</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_legend</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>),
+            <span class="dt">bg.color =</span> <span class="st">&quot;gray95&quot;</span>, <span class="dt">frame =</span> <span class="ot">TRUE</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_credits</span>(<span class="kw">c</span>(<span class="st">&quot;Robinson (1963)&quot;</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;RIGHT&quot;</span>))
+
+eck4 &lt;-<span class="st"> </span><span class="kw">tm_shape</span>(World, <span class="dt">projection =</span> <span class="st">&quot;eck4&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_polygons</span>(<span class="st">&quot;gdp_cap_est&quot;</span>,
+                <span class="dt">palette =</span> <span class="st">&quot;Purples&quot;</span>,
+                <span class="dt">style =</span> <span class="st">&quot;fixed&quot;</span>,
+                <span class="dt">n =</span> <span class="dv">7</span>, 
+                <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">2000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>, <span class="dv">25000</span>, <span class="dv">50000</span>, <span class="dv">1000000</span>), 
+                <span class="dt">title =</span> <span class="kw">c</span>(<span class="st">&quot;GDP per cápita&quot;</span>),
+                <span class="dt">legend.format =</span> <span class="kw">list</span>(<span class="dt">text.separator =</span> <span class="st">&quot;-&quot;</span>),
+                <span class="dt">textNA =</span> <span class="st">&quot;Sin Datos&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_style</span>(<span class="st">&quot;natural&quot;</span>, <span class="dt">earth.boundary =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">180</span>, <span class="op">-</span><span class="dv">87</span>, <span class="dv">180</span>, <span class="dv">87</span>))  <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_format</span>(<span class="st">&quot;World&quot;</span>, <span class="dt">inner.margins =</span> <span class="fl">0.02</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">tm_legend</span>(<span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>),
+              <span class="dt">bg.color =</span> <span class="st">&quot;gray95&quot;</span>, <span class="dt">frame =</span> <span class="ot">TRUE</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">tm_credits</span>(<span class="kw">c</span>(<span class="st">&quot;Eckert IV (1906)&quot;</span>), <span class="dt">position =</span> <span class="kw">c</span>(<span class="st">&quot;RIGHT&quot;</span>))
+
+<span class="co"># todo junto</span>
+<span class="kw">tmap_arrange</span>(longlat, robin, eck4,  <span class="dt">nrow =</span> <span class="dv">3</span>)</code></pre></div>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="19">
+<li id="fn19"><p>Trabajar con paises es particularmente complicado. Las mejores bases de datos poseen códigos internacionales de 2 o 3 letras pero es muy común encontrar problemas con los nombres cortos (o largos) de los distintos países. Además, los datos longitudinales agregan problemas cuando la composición geopolítica cambia (por ejmplo, es común encontrar datos en donde aún tenemos USSR como un país).<a href="estadistica-espacial.html#fnref19">↩</a></p></li>
+<li id="fn20"><p>Para ver las distintas proyecciones disponibles recomiendo seguir el archivo de ayuda de la función de <code>tmaptools</code> que maneja proyecciones (<code>?get_proj4</code>). También <a href="http://en.wikipedia.org/wiki/List_of_map_projections">Wikipedia</a><a href="estadistica-espacial.html#fnref20">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="comunicacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="agradecimientos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

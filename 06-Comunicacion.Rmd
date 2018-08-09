@@ -80,6 +80,8 @@ waffle(filter(sobrev2, Pclass==3) %>% select(-Pclass),
 )
 ```
 
+En la sección \@ref(nueva-zelanda) detallamos paso a paso cómo podemos realizar mapas con calidad de publicación utilizando el paquete `tm` (por ejemplo, ver Figura \@ref(fig:nz-profesional)).
+
 
 ## RMarkdown
 
