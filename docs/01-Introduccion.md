@@ -1,5 +1,7 @@
 # Introducción
 
+
+
 La organización de este libro esta fuertemente vinculada al análisis de datos. En general, el análisis suele presentarse en tres etapas: Lectura, modelado y comunicación de resultados. 
 
 `Lectura > Modelado > Comunicación`
@@ -18,7 +20,7 @@ Una gran forma de resolver los problemas que tenemos cuando escribimos código e
 
 
 ```
-## Error: error message here
+Error: error message here
 ```
 
 Copiar y pegar el error particular es de gran ayuda. Existen diversos foros especializados. Afortunadamente existe material en español (aunque es limitado). Un gran sitio para empezar es:  
@@ -129,7 +131,7 @@ hist(ejemplo, col='orange', breaks=40,
      ylab = "Frecuencia", main = "Histograma ejemplo")
 ```
 
-<img src="01-Introduccion_files/figure-html/hist_ejemplo-1.png" width="672" />
+<img src="01-Introduccion_files/figure-html/hist_ejemplo-1.png" width="576" style="display: block; margin: auto;" />
 
 En la ventana de Rstudio se vería así:  
 
@@ -171,6 +173,7 @@ Término en inglés   Descripción
 ------------------  ----------------------------------------------------------------
 CRAN                Colección de paquetes en CRAN (Comprehensive R Archive Network) 
 dataset             set de datos                                                    
+pipes               uso técnico para el operador %>%                                
 render              generación de contenido multimedia                              
 software            programa                                                        
 subset              subconjunto o porción                                           

@@ -1,5 +1,9 @@
 # Primeros Pasos
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(comment=NA, fig.width=6, fig.asp = 0.7, fig.align = 'center')
+```
+
 Como se mencionó en el capítulo anterior, R contiene funcionalidad limitada de base. Por eso, una vez instalados los requisitos mínimos, debemos comenzar a instalar aquellos paquetes útiles. Los paquetes son grupos de funciones útiles, que pueden usarse de forma repetida y reproducible entre usuarios. En particular, recomiendo fuertemente instalar **tidyverse**, un compendio de paquetes para hacer manejo y visualización de datos [^tidylink].
 
 ## Ejecutar código

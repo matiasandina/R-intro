@@ -1,5 +1,7 @@
 # Primeros Pasos
 
+
+
 Como se mencionó en el capítulo anterior, R contiene funcionalidad limitada de base. Por eso, una vez instalados los requisitos mínimos, debemos comenzar a instalar aquellos paquetes útiles. Los paquetes son grupos de funciones útiles, que pueden usarse de forma repetida y reproducible entre usuarios. En particular, recomiendo fuertemente instalar **tidyverse**, un compendio de paquetes para hacer manejo y visualización de datos [^tidylink].
 
 ## Ejecutar código
@@ -23,7 +25,7 @@ x
 ```
 
 ```
-##  [1]  1  2  3  4  5  6  7  8  9 10
+ [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
 En general, podemos pensarlo de este modo:
@@ -39,7 +41,7 @@ x + 1
 ```
 
 ```
-##  [1]  2  3  4  5  6  7  8  9 10 11
+ [1]  2  3  4  5  6  7  8  9 10 11
 ```
 
 ```r
@@ -49,7 +51,7 @@ x * 2
 ```
 
 ```
-##  [1]  2  4  6  8 10 12 14 16 18 20
+ [1]  2  4  6  8 10 12 14 16 18 20
 ```
 
 ```r
@@ -59,8 +61,8 @@ x * 2
 ```
 
 ```
-##  [1]  1.333333  3.333333  6.666667 11.333333 17.333333 24.666667 33.333333
-##  [8] 43.333333 54.666667 67.333333
+ [1]  1.333333  3.333333  6.666667 11.333333 17.333333 24.666667 33.333333
+ [8] 43.333333 54.666667 67.333333
 ```
 
 
@@ -87,7 +89,7 @@ prueba
 ```
 
 ```
-## [1] "1"     "perro" "FALSE" "gato"  "1.5"
+[1] "1"     "perro" "FALSE" "gato"  "1.5"  
 ```
 
 ```r
@@ -96,7 +98,7 @@ class(prueba)
 ```
 
 ```
-## [1] "character"
+[1] "character"
 ```
 
 Un problema de la coerción de datos es que no es posible para todos los casos. Allí, R agrega `NA`. Por ejemplo:
@@ -108,11 +110,11 @@ as.numeric(prueba)
 ```
 
 ```
-## Warning: NAs introduced by coercion
+Warning: NAs introduced by coercion
 ```
 
 ```
-## [1] 1.0  NA  NA  NA 1.5
+[1] 1.0  NA  NA  NA 1.5
 ```
 
 Los `NAs` (del inglés *not available*) son datos faltantes. Nuestros datos reales pueden contener `NA` y normalmente es muy útil tenerlos en cuenta. Para chequear si un vector contiene `NA` podemos usar la funcion `is.na()`, por ejemplo:
@@ -124,7 +126,7 @@ prueba_num <- as.numeric(prueba)
 ```
 
 ```
-## Warning: NAs introduced by coercion
+Warning: NAs introduced by coercion
 ```
 
 ```r
@@ -133,7 +135,7 @@ is.na(prueba_num)
 ```
 
 ```
-## [1] FALSE  TRUE  TRUE  TRUE FALSE
+[1] FALSE  TRUE  TRUE  TRUE FALSE
 ```
 
 Podemos tener `NA` de tipo `character`, cuando un vector de tipo `character` tiene espacios vacíos. Por ejemplo,
@@ -147,7 +149,7 @@ is.na(vector_palabra)
 ```
 
 ```
-## [1] FALSE  TRUE FALSE
+[1] FALSE  TRUE FALSE
 ```
 
 Además, podemos contar con vectores que contienen palabras y guardan un orden de niveles como los factores (`factor`). Por ejemplo:
@@ -163,8 +165,8 @@ grupo_altura
 ```
 
 ```
-## [1] mediano    pequeño    grande     muy grande
-## Levels: pequeño mediano grande muy grande
+[1] mediano    pequeño    grande     muy grande
+Levels: pequeño mediano grande muy grande
 ```
 
 Una situación en la que nos importa el orden es al graficar los datos. Si no tenemos el grupo como `character`  (o como `factor` con orden incorrecto), obtendremos un gráfico cuyo eje `x` está ordenado alfabéticamente en vez de tener el orden correcto.  
@@ -184,7 +186,7 @@ sort(x, decreasing=T)
 ```
 
 ```
-##  [1] 10  9  8  7  6  5  4  3  2  1
+ [1] 10  9  8  7  6  5  4  3  2  1
 ```
 
 Además de la barrera del lenguaje, es muy común realizar errores de tipeo. La realidad es que no podemos enojarnos con la máquina cuando ocurren, su trabajo es ser exacta, no leernos la mente `:)`. Veamos un ejemplo:
@@ -207,7 +209,7 @@ Palabra
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'Palabra' not found
+Error in eval(expr, envir, enclos): object 'Palabra' not found
 ```
 
 

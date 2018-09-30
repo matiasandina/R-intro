@@ -1,6 +1,11 @@
 # Exploración de Datos
 
-Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica.
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(comment=NA, fig.width=6, fig.asp = 0.7, fig.align = 'center')
+```
+
+
+Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica. El análisis exploratorio es una de las prácticas más comunes para entender un set de datos y permite generar preguntas más complejas, que sólo se hacen evidentes al observar ciertos patrones en las visualizaciones exploratorias.
 
 ## Gráficos de base
 
@@ -55,7 +60,7 @@ head(iris)
 ```  
 
 
-Veamos cómo se construye capa por capa un gráfico utilizando `ggplot2` y los datos de `iris`. Para entender cómo funciona, es importante entender el argumento `aes()`, que permite indicar qué pondremos en los ejes *XY* y además permite . Veamos el ejemplo:
+Veamos cómo se construye capa por capa un gráfico utilizando `ggplot2` y los datos de `iris`. Para entender cómo funciona, es importante entender el argumento `aes()`, que permite indicar qué pondremos en los ejes y además permite agregar distintas capas extra. Veamos el ejemplo:
 
 
 ```{r, warning=F}
@@ -71,7 +76,7 @@ ggplot(data=iris,
 Este gráfico contiene los ejes que especificamos pero no contiene los datos. Para dibujarlos, debemos decirle a `ggplot` cómo hacerlo (por ejemplo, puntos).
 
 
-```{r, warning=F}
+```{r scatter-iris, warning=F, fig.cap="Gráfico de puntos usando ggplot2."}
 
 ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   geom_point()
@@ -81,7 +86,7 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 Al parecer, los datos presentan una estructura de asociación entre el largo de los sépalos y el de los pétalos (a mayor largo de sépalos, mayor largo de pétalos). Este dataset contiene un factor *Species* con tres niveles, *setosa*, *versicolor*, *virginica*. Fácilmente podemos ver si las distintas especies presentan distintas asociaciones. Una forma rápida de visualizarlo es coloreando los puntos según el nivel del factor *Species*. En `ggplot2` usamos `color = Species`.
 
-```{r, warning=F}
+```{r scatter-iris-col-species, warning=F, fig.cap="Gráfico de puntos con ggplot2, coloreado seguún especie en el dataset iris."}
 
 ggplot(iris, aes(Sepal.Length, Petal.Length, color = Species)) +
   geom_point()
@@ -89,10 +94,10 @@ ggplot(iris, aes(Sepal.Length, Petal.Length, color = Species)) +
 ```
 
 
-Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal ("lm") en `geom_smooth(method = "lm")`. Es clave notar que `geom_smooth()` posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos.
+Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal ("lm") en `geom_smooth(method = "lm")`. Es clave notar que `geom_smooth()` posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos[^ansioso-smooth].
 
 
-```{r}
+```{r scatter-iris-lm, fig.cap="Gráfico de puntos coloreado por especie Líneas de tendencia para un ajuste lineal según la especie."}
 
 ggplot(iris, aes(Sepal.Length, Petal.Length, color = Species)) +
        geom_point() +
@@ -104,7 +109,7 @@ Como pueden apreciar, incorporar la gramática de `ggplot2` permite realizar vis
 
 ### Entendiendo `aes()`
 
-En ggplot, `aes()` hace referencia al contenido estético del gráfico (del ingles *aesthetics*). Es decir, la función le dará indicios a ggplot2 sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que `aes()` crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar `aes()` al llamado de `ggplot()` estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar `aes()` en la capa correspondiente. Esto puede parecer confuso, las siguientes líneas de código generan un gráfico que se ve idéntico al que realizamos previamente:
+En ggplot, `aes()` hace referencia al contenido estético del gráfico (del ingles *aesthetics*). Es decir, la función le dará indicios a `ggplot2` sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que `aes()` crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar `aes()` al llamado de `ggplot()` estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar `aes()` en la capa correspondiente. Esto puede parecer confuso. Exploremos las siguientes líneas de código para entender por qué generan un gráfico que se ve idéntico al que realizamos en la Figura \@ref(fig:scatter-iris-col-species).
 
 ```{r}
 
@@ -114,9 +119,9 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 ```
 
-Sin embargo, podemos ver la diferencia al intentar repetir el gráfico con línea de tendencia.
+A simple vista es imposible diferenciar ambas figuras. Sin embargo, podemos ver la diferencia al intentar repetir el gráfico de la Figura \@ref(fig:scatter-iris-lm) con línea de tendencia.
 
-```{r}
+```{r scatter-global-lm, fig.cap="Gráfico de puntos coloreados según especie. Línea de tendencia para un ajuste global."}
 
 ggplot(iris, aes(Sepal.Length, Petal.Length)) +
        geom_point(aes(color = Species))+
@@ -124,7 +129,7 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 ```
 
-En este caso `geom_smooth()` no recibe la orden de agrupar segun `Species`, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos del primer gráfico de negro a magenta:
+En este caso `geom_smooth()` no recibe la orden de agrupar según `Species`, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos de la Figura \@ref(fig:scatter-iris)  de negro a magenta:
 
 ```{r, eval=F}
 
@@ -146,7 +151,7 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 ```
 
-```{r, echo=FALSE}
+```{r intentos-magenta, echo=FALSE, fig.cap="Gráficos de puntos con ggplot2. Intentamos cambiar los puntos de negro a magenta."}
 
 # Primer gráfico, izquierda
 
@@ -236,7 +241,7 @@ Este es un pequeño ejemplo de cómo los distintos `geoms` participan en la crea
 
 En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar `facets` para separar las gráficas en distintas ventanas o viñetas.
 
-```{r}
+```{r facet-wrap, fig.cap="Gráfico de puntos separado por la variable Species en viñetas."}
 
 ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   geom_point()+
@@ -258,7 +263,7 @@ En este último gráfico hemos podido representar con claridad variaciones en la
 
 ### Cowplot
 
-Los gráficos realizados en la sección previa (\@ref(explorando-geom)) muestran gráficos individuales que fueron *acomodados* distintos paneles. Para realizar esto, se ha utilizando el paquete `cowplot`. A continuación se muestra el código para realizar figura \@ref(fig:six-plot-figure)
+Algunas de las figuras realizadas en la sección previa (\@ref(explorando-geom)) muestran gráficos individuales que fueron *acomodados* distintos paneles. Para realizar esto, se ha utilizando el paquete `cowplot`. A continuación se muestra el código para realizar figura \@ref(fig:six-plot-figure).
 
 ```{r, eval=F}
 # Si es la primera vez
@@ -310,7 +315,7 @@ str(titanic_train)
 
 Cambiemos un par de cosas.
 
-```{r}
+```{r modificar-titanic}
 # Transformamos en factor
 titanic_train$Survived <- factor(titanic_train$Survived)
 # Transforamamos al castellano
@@ -324,9 +329,44 @@ titanic_train$Embarked <- ifelse(titanic_train$Embarked == "",
 ```
 
 
-Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión.  
+Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión. Las preguntas que nos hacemos para este dataset son:
 
-```{r, warning=FALSE, message=FALSE}
+* **Supervivencia:** ¿Cuál fue el número de sobrevivientes?
+* **Clase:** ¿Cuál fue la cantidad de pasajeros en cada clase?
+* **Sexo:** ¿Cuántos hombres y mujeres a bordo?
+* **Embarque:** ¿Dónde (en qué puerto) subió la gente al barco?
+* **Edad:** ¿Cuál era la distribución de edades de los pasajeros?
+* **Precio:** ¿Cuánto costaba subir al Titanic?
+
+Empecemos por la primera. Podemos obtener el número de sobrevivientes usando la función `count` del paquete `dplyr` y hacer un gráfico de barras usando `geom_bar` de `ggplot2`.
+
+
+```{r, results="hide", message=FALSE, warning=FALSE}
+# Calculamos la supervivencia segun el factor Survived
+sobrev <- titanic_train %>%
+          group_by(Survived) %>%
+          count()
+
+# Supervivencia
+# Cuál es el número de sobrevivientes?
+g1 <- ggplot(titanic_train, aes(Survived)) +
+  geom_bar()+
+  # Agregamos la cuenta de sobrevivientes
+  # Notar que debemos utilizar otro data.frame en data
+  # vamos a utilizar y=20 para posicionar los n cerca del eje x
+  geom_text(data = sobrev,
+            aes(Survived, y=25, label=n),
+            color="white")+
+  xlab("Supervivencia")+
+  ylab("Frecuencia")
+```
+
+
+> Ejercicio: Propongo detener la lectura y evaluar qué tipo de gráfico podríamos hacer para responder el resto de las preguntas.
+
+A continuación presento una de las opciónes del análisis gráfico univariado para las variables del dataset Titanic.  
+
+```{r titanic-univariado, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Gráficos de exploración univariada del dataset Titanic."}
 
 # Calculamos la supervivencia segun el factor Survived
 sobrev <- titanic_train %>%
@@ -395,11 +435,11 @@ cowplot::plot_grid(g1,g2,g3,g4,g5,g6,
 
 ```
 
-Estos gráficos son bastante típicos. En esta sección concentro nuestros esfuerzos en entender el dataset rápidamente. Es posible hacer gráficos que comuniquen mejor. Más adelante retomaremos desde este punto (ver Sección \@ref(graficos)).  
+Los gráficos de la Figura \@ref(fig:titanic-univariado) son bastante típicos. Si deseas ver detalle por detalle el código, puedes dirigirte al Anexo de este capítulo \@ref(anexo). En esta sección concentro nuestros esfuerzos en la visualización veloz de los datos. Es posible hacer gráficos que comuniquen a un público más general, por eso en el futuro retomaremos desde este punto (ver Sección \@ref(graficos)).  
 
-Ahora vamos a centrarnos en entender relaciones entre más de una variable.
+Ahora que tenemos información sobre las variables del dataset por separado podemos preguntarnos cómo se relacionan entre ellas. En la figura  \@ref(fig:surviv-bivariado) podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo "hombre en tercera clase" la peor combinación.  
 
-```{r}
+```{r surviv-bivariado, fig.cap="Supervivencia en el Titanic según género y clase."}
 ggplot(titanic_train, 
        aes(Sex, Survived))+
   # Coloreamos segun la interaccion entre los niveles de interes
@@ -420,22 +460,25 @@ ggplot(titanic_train,
   ggtitle("Supervivencia por clase")
 ```
 
-En el gráfico anterior podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo "hombre en tercera clase" la peor combinación. 
 
-> Ejercicio: Calcular % sobrevivientes
+> Ejercicio: Completar el siguiente trozo de código para calcular % sobrevivientes
 
 ```{r, eval=FALSE}
 # Calcular el porcentaje segun la clase
 titanic_train %>%
   # Agrupar por clase y sexo
+  group_by(...) %>%
   # contar los sobrevivientes
+  ... %>%
   # sumar el total de casos
   # dividir por el total y expresar en porcentaje
-  
+  mutate(total= ...,
+         porcentaje=.../total*100)  
+
 ```
 
 
-Podemos explorar cómo se relaciona la edad con la supervivencia. En el siguiente gráfico vemos que prácticamente no hay diferencias en supervivencia según las edades (quizás sí existen pequeñas diferencias para los niños menores de 10 años).  
+También podemos explorar cómo se relaciona la edad con la supervivencia. En el siguiente gráfico vemos que prácticamente no hay diferencias en supervivencia según las edades (quizás sí existen pequeñas diferencias para los niños menores de 10 años).  
 
 
 ```{r, warning=FALSE, message=FALSE}
@@ -490,7 +533,7 @@ p2 <- ggplot(titanic_train, aes(Survived, Fare)) +
   theme(legend.position = "none")+
   scale_fill_brewer(palette = "Set2")
   
-
+# todo junto!
 cowplot::plot_grid(p1,p2, labels="AUTO")
   
 
@@ -512,9 +555,7 @@ El material sobre visualización de datos es virtualmente infinito. Recomiendo f
 
 * [ggplot2 online](https://ggplot2.tidyverse.org/)
 * [Data Visualization-Kieran Healy](http://socviz.co/)
-
-[^estan-en-ingles]: Estos fueron incluídos en inglés debido a que la función `ggplot2` los utilizará en inglés y traducciones directas serían en perjuicio del usuario.
-
+* [Paquete cowplot](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)
 
 ## Respuestas
 
@@ -542,3 +583,80 @@ ggplot(titanic_train,
 
 ```
 
+***
+
+# Anexo {-} {#anexo}
+
+La Figura \@ref(fig:titanic-univariado) fue realizada con el siguiente código.
+
+```{r titanic-univariado-anexo, eval=FALSE}
+
+# Calculamos la supervivencia segun el factor Survived
+sobrev <- titanic_train %>%
+          group_by(Survived) %>%
+          count()
+
+# Supervivencia
+# Cuál es el número de sobrevivientes?
+g1 <- ggplot(titanic_train, aes(Survived)) +
+  geom_bar()+
+  # Agregamos la cuenta de sobrevivientes
+  # Notar que debemos utilizar otro data.frame en data
+  # vamos a utilizar y=20 para posicionar los n cerca del eje x
+  geom_text(data = sobrev,
+            aes(Survived, y=25, label=n),
+            color="white")+
+  xlab("Supervivencia")+
+  ylab("Frecuencia")
+
+# Clase
+# Cuál es la cantidad de pasajeros en cada clase?
+g2 <- ggplot(titanic_train,
+             aes(Pclass))+
+  geom_bar()+
+  xlab("Clase")+
+  ylab("Frecuencia")
+
+
+# Sexo
+# cuántos hombres y mujeres a bordo?
+g3 <- ggplot(titanic_train,
+             aes(Sex))+
+  geom_bar()+
+  xlab("Sexo")+
+  ylab("Frecuencia")
+
+# Lugar de embarque
+# dónde (en qué puerto) subió la gente al barco?
+g4 <- ggplot(titanic_train,
+             aes(Embarked))+
+  geom_bar()+
+  xlab("Lugar embarque")+
+  ylab("Frecuencia")
+
+# Edad de los pasajeros
+# Cuál es la distribución de edades de los pasajeros?
+g5 <- ggplot(titanic_train,
+             aes(Age))+
+  geom_histogram(binwidth = 5, color="white")+
+  xlab("Edad")+
+  ylab("Frecuencia")
+
+
+# Precio del ticket
+# Cuánto costaba subir al Titanic?
+g6 <- ggplot(titanic_train,
+             aes(Fare))+
+  geom_density(fill="gray50")+
+  xlab("Precio Ticket")+
+  ylab("Frecuencia")
+
+
+# Graficar todo junto!
+cowplot::plot_grid(g1,g2,g3,g4,g5,g6,
+                   labels="AUTO")
+
+```
+
+[^estan-en-ingles]: Estos fueron incluídos en inglés debido a que la función `ggplot2` los utilizará en inglés y traducciones directas serían en perjuicio del usuario.
+[^ansioso-smooth]: Si la ansiedad es muy fuerte, puedes explorar `?geom_smooth()` para enterarte los argumentos de la función.

@@ -1,7 +1,7 @@
 --- 
 title: "Introducción a estadística con R"
 author: "Matias Andina"
-date: "2018-08-08"
+date: "2018-09-30"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
@@ -21,6 +21,9 @@ Creo que no exajero al decir que aprender R cambió mi vida, me abrió los ojos 
 
 Escribiendo este libro me di cuenta de que no es trivial encontrar material de referencia en relación a R (o estadística) enteramente en español. Mi objetivo principal es abrir la puerta, facilitar que hispanohablantes aprendan conceptos fundamentales de estadística y R. La curva de aprendizaje es empinada, aconsejo abrocharse el cinturón de seguridad y abrazar el camino. Este libro es un experimento e invita a la experimentación. Adelante.
 
+***
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.
 
 ***
 

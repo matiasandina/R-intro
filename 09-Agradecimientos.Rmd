@@ -1,2 +1,5 @@
 # Agradecimientos {-}
 
+Quiero agradecer a mis docentes de estadística en la Universidad de Buenos Aires, principalmente a Gerardo Cueto y Adriana Perez. Ellos contribuyen día a día a capacitar biólogos en estadística y diseño experimental.   
+Emiliano Marachlian un día me sugirió amablemente que deje de batallar con mis datos en Excel, que pruebe con R. Estaré siempre agradecido por esos 40 minutos de insistencia.
+Melanie Basnak me dio el impulso que necesitaba para finalmente sentarme a escribirlo. Gracias por tanto.

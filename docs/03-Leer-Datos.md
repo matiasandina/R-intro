@@ -1,5 +1,7 @@
 # Leer Datos
 
+
+
 En este capítulo vamos a focalizarnos en las diversas formas de entrar datos a R.
 
 
@@ -15,12 +17,12 @@ head(paquetes$info[[2]])
 ```
 
 ```
-## [1] "AirPassengers           Monthly Airline Passenger Numbers 1949-1960"   
-## [2] "BJsales                 Sales Data with Leading Indicator"             
-## [3] "BOD                     Biochemical Oxygen Demand"                     
-## [4] "CO2                     Carbon Dioxide Uptake in Grass Plants"         
-## [5] "ChickWeight             Weight versus age of chicks on different diets"
-## [6] "DNase                   Elisa assay of DNase"
+[1] "AirPassengers           Monthly Airline Passenger Numbers 1949-1960"   
+[2] "BJsales                 Sales Data with Leading Indicator"             
+[3] "BOD                     Biochemical Oxygen Demand"                     
+[4] "CO2                     Carbon Dioxide Uptake in Grass Plants"         
+[5] "ChickWeight             Weight versus age of chicks on different diets"
+[6] "DNase                   Elisa assay of DNase"                          
 ```
 
 Para ver la lista completa con toda la información, entrar `paquetes` en la consola nos abrirá una ventana. Utilizar datos que vienen con la instalación R nos facilitará avanzar hacia modelado y comunicación. Por ejemplo, en muchas ocasiones utilizaremos el dataset `iris`, que contiene información sobre la longitud de pétalos y sépalos en tres plantas distintas.  

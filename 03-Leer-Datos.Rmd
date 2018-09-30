@@ -1,5 +1,9 @@
 # Leer Datos
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(comment=NA, fig.width=6, fig.asp = 0.7, fig.align = 'center')
+```
+
 En este capítulo vamos a focalizarnos en las diversas formas de entrar datos a R.
 
 

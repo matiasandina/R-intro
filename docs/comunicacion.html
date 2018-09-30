@@ -25,15 +25,15 @@
 <meta name="author" content="Matias Andina">
 
 
-<meta name="date" content="2018-08-08">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="modelos-lineales.html">
-<link rel="next" href="estadistica-espacial.html">
+<link rel="prev" href="estadistica-espacial.html">
+<link rel="next" href="agradecimientos.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,44 +47,81 @@
 
 
 
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<script src="libs/Leaflet.Sync-0.0.5/L.Map.Sync.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -158,62 +195,75 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos-1"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
 <li class="chapter" data-level="4.6" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#respuestas"><i class="fa fa-check"></i><b>4.6</b> Respuestas</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
-<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
-<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+<li class="chapter" data-level="5" data-path="introduccion.html"><a href="introduccion.html#anexo"><i class="fa fa-check"></i><b>5</b> Anexo {-}</a></li>
+<li class="chapter" data-level="6" data-path="distribuciones.html"><a href="distribuciones.html"><i class="fa fa-check"></i><b>6</b> Distribuciones</a></li>
+<li class="chapter" data-level="7" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>7</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>7.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>7.2.1</b> Simulando datos en R</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
-<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+<li class="chapter" data-level="7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>7.3</b> Esperanza</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>7.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>7.4.1</b> Entendiendo la estimación con gráficos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a></li>
-<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.6</b> Supuestos</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>5.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
-<li class="chapter" data-level="5.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>5.6.2</b> Independencia</a></li>
-<li class="chapter" data-level="5.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>5.6.3</b> Homocedasticidad.</a></li>
-<li class="chapter" data-level="5.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>5.6.4</b> Normalidad de residuos</a></li>
+<li class="chapter" data-level="7.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>7.5</b> Modelo en R</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>7.6</b> Supuestos</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>7.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>7.6.2</b> Independencia</a></li>
+<li class="chapter" data-level="7.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>7.6.3</b> Homocedasticidad.</a></li>
+<li class="chapter" data-level="7.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>7.6.4</b> Normalidad de residuos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.7</b> Análisis de supuestos en R</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>5.7.1</b> Cuando los residuos no son normales</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>7.7</b> Análisis de supuestos en R</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>7.7.1</b> Cuando los residuos no son normales</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.8</b> Visualizando residuos en R</a></li>
-<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.9</b> Descomponiendo variabilidad</a></li>
-<li class="chapter" data-level="5.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.10</b> ¿Por qué hacer una regresión?</a></li>
-<li class="chapter" data-level="5.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.11</b> Resumen</a></li>
-<li class="chapter" data-level="5.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.12</b> Recursos</a></li>
-<li class="chapter" data-level="5.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>5.13</b> Respuestas</a></li>
+<li class="chapter" data-level="7.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>7.8</b> Visualizando residuos en R</a></li>
+<li class="chapter" data-level="7.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>7.9</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="7.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>7.10</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="7.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>7.11</b> Resumen</a></li>
+<li class="chapter" data-level="7.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>7.12</b> Recursos</a></li>
+<li class="chapter" data-level="7.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>7.13</b> Respuestas</a></li>
 <li class="chapter" data-level="" data-path="modelos-lineales.html"><a href="modelos-lineales.html#anexo-1"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
-<li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
-<li class="chapter" data-level="6.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>6.2</b> Gráficos</a></li>
-<li class="chapter" data-level="6.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>6.3</b> RMarkdown</a></li>
-<li class="chapter" data-level="6.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>6.4</b> Texto</a></li>
-<li class="chapter" data-level="6.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>6.5</b> Separando líneas y párrafos</a></li>
-<li class="chapter" data-level="6.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>6.6</b> Trozos de código</a></li>
-<li class="chapter" data-level="6.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>6.7</b> Links e imágenes</a></li>
-<li class="chapter" data-level="6.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>6.8</b> Encabezado</a></li>
-<li class="chapter" data-level="6.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>6.9</b> Knit</a></li>
-<li class="chapter" data-level="6.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>6.10</b> Otros proyectos con RStudio</a></li>
-<li class="chapter" data-level="6.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>6.11</b> Notas</a></li>
-<li class="chapter" data-level="6.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-3"><i class="fa fa-check"></i><b>6.12</b> Recursos</a></li>
+<li class="chapter" data-level="8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>8</b> Estadística Espacial</a><ul>
+<li class="chapter" data-level="8.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>8.1</b> Paquetes Geo-R</a></li>
+<li class="chapter" data-level="8.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#instalar-paquetes-geo-r"><i class="fa fa-check"></i><b>8.2</b> Instalar paquetes GEO-R</a></li>
+<li class="chapter" data-level="8.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>8.3</b> Trabajando con datos espaciales</a></li>
+<li class="chapter" data-level="8.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topologia-geoespacial"><i class="fa fa-check"></i><b>8.4</b> Topología geoespacial</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#dataset-xy"><i class="fa fa-check"></i><b>8.4.1</b> Dataset xy</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>7</b> Estadística Espacial</a><ul>
-<li class="chapter" data-level="7.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>7.1</b> Paquetes Geo-R</a></li>
-<li class="chapter" data-level="7.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo"><i class="fa fa-check"></i><b>7.2</b> Paquetes GEO</a></li>
-<li class="chapter" data-level="7.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>7.3</b> Trabajando con datos espaciales</a></li>
-<li class="chapter" data-level="7.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topological-relations"><i class="fa fa-check"></i><b>7.4</b> topological-relations</a></li>
-<li class="chapter" data-level="7.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>7.5</b> Nueva Zelanda</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>7.5.1</b> Cambiando colores con <code>style</code></a></li>
+<li class="chapter" data-level="8.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>8.5</b> Nueva Zelanda</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-base"><i class="fa fa-check"></i><b>8.5.1</b> R-Geo con Base</a></li>
+<li class="chapter" data-level="8.5.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-tmap"><i class="fa fa-check"></i><b>8.5.2</b> R-Geo con tmap</a></li>
+<li class="chapter" data-level="8.5.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>8.5.3</b> Cambiando colores con <code>style</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>7.6</b> Proyecciones</a></li>
-<li class="chapter" data-level="7.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>7.7</b> Mapas animados</a></li>
-<li class="chapter" data-level="7.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>7.8</b> Mapas interactivos</a></li>
-<li class="chapter" data-level="7.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>7.9</b> Resumen</a></li>
-<li class="chapter" data-level="7.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-4"><i class="fa fa-check"></i><b>7.10</b> Recursos</a></li>
-<li class="chapter" data-level="7.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>7.11</b> Respuestas</a></li>
-<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-2"><i class="fa fa-check"></i>Anexo</a></li>
+<li class="chapter" data-level="8.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>8.6</b> Proyecciones</a></li>
+<li class="chapter" data-level="8.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-con-facets"><i class="fa fa-check"></i><b>8.7</b> Mapas con <code>facets</code></a></li>
+<li class="chapter" data-level="8.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>8.8</b> Mapas animados</a></li>
+<li class="chapter" data-level="8.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>8.9</b> Mapas interactivos</a></li>
+<li class="chapter" data-level="8.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>8.10</b> Resumen</a></li>
+<li class="chapter" data-level="8.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-3"><i class="fa fa-check"></i><b>8.11</b> Recursos</a></li>
+<li class="chapter" data-level="8.12" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>8.12</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-a"><i class="fa fa-check"></i>Anexo A</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-b"><i class="fa fa-check"></i>Anexo B</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>9</b> Comunicación</a><ul>
+<li class="chapter" data-level="9.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>9.1</b> Ciencia reproducible</a></li>
+<li class="chapter" data-level="9.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>9.2</b> Gráficos</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="comunicacion.html"><a href="comunicacion.html#waffle-plots"><i class="fa fa-check"></i><b>9.2.1</b> Waffle plots</a></li>
+<li class="chapter" data-level="9.2.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos-de-barras"><i class="fa fa-check"></i><b>9.2.2</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="9.2.3" data-path="comunicacion.html"><a href="comunicacion.html#explorando-gradientes"><i class="fa fa-check"></i><b>9.2.3</b> Explorando gradientes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="comunicacion.html"><a href="comunicacion.html#mapas"><i class="fa fa-check"></i><b>9.2.4</b> Mapas</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>9.3</b> RMarkdown</a></li>
+<li class="chapter" data-level="9.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>9.4</b> Texto</a></li>
+<li class="chapter" data-level="9.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>9.5</b> Separando líneas y párrafos</a></li>
+<li class="chapter" data-level="9.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>9.6</b> Trozos de código</a></li>
+<li class="chapter" data-level="9.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>9.7</b> Links e imágenes</a></li>
+<li class="chapter" data-level="9.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>9.8</b> Encabezado</a></li>
+<li class="chapter" data-level="9.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>9.9</b> Knit</a></li>
+<li class="chapter" data-level="9.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>9.10</b> Otros proyectos con RStudio</a></li>
+<li class="chapter" data-level="9.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>9.11</b> Notas</a></li>
+<li class="chapter" data-level="9.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-4"><i class="fa fa-check"></i><b>9.12</b> Recursos</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="divider"></li>
@@ -237,11 +287,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="comunicacion" class="section level1">
-<h1><span class="header-section-number">Capítulo 6</span> Comunicación</h1>
+<h1><span class="header-section-number">Capítulo 9</span> Comunicación</h1>
 <p>El trabajo estadístico no termina cuando entendemos la estructura de los datos. Nuestro trabajo estará incompleto a menos que logremos llevar aquello que destilamos de la evidencia a la combinación correcta de palabras e imágenes que logren recrear el mensaje en otra mente.</p>
-<p>La mayoría de los usos a continuación son explotados a su máxima expresión si se posee cierta familiaridad con los sistemas de control de versiones (por ejemplo, GIT) y plataformas online basadas en dichos sistemas (por ejemplo, GitHub). Dicho material excede a la complejidad de este libro<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>. Sin embargo, los principios generales que desarrollo a continuación son independientes de los sistemas de control de versiones.</p>
+<p>La mayoría de los usos a continuación son explotados a su máxima expresión si se posee cierta familiaridad con los sistemas de control de versiones (por ejemplo, GIT) y plataformas online basadas en dichos sistemas (por ejemplo, GitHub). Dicho material excede a la complejidad de este libro<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>. Sin embargo, los principios generales que desarrollo a continuación son independientes de los sistemas de control de versiones.</p>
 <div id="ciencia-reproducible" class="section level2">
-<h2><span class="header-section-number">6.1</span> Ciencia reproducible</h2>
+<h2><span class="header-section-number">9.1</span> Ciencia reproducible</h2>
 <p>Uno de los grandes motores detrás de la ciencia reproducible es el acceso a abierto a los datos y el código que se utilizó para analizarlos. La ventaja de realizar ciencia abierta de este modo es la disminución de errores de procedimiento que quedan escondidos en una computadora a la que nadie tiene acceso. Por ejemplo, un error de tipeo en una fórmula en Excel puede pasar desapercibido y llevar a conclusiones erróneas. Errores en planillas de Excel son muy complicados de hallar.</p>
 <p>Aunque parezca extremo, existen casos documentados de este tipo.</p>
 <ul>
@@ -250,90 +300,167 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="graficos" class="section level2">
-<h2><span class="header-section-number">6.2</span> Gráficos</h2>
-<p>En un capítulo anterior realizamos análisis exploratorios. Como nuestro objetivo era entender los datos de manera rápida (ver Sección <a href="exploracion-de-datos.html#caso-de-estudio">4.3</a>), dichos análisis no se focalizaron en comunicar visualmente hacia un <em>externo</em> o <em>consumidor</em>. Retomemos el dataset del Titanic y hagamos un gráfico tipo <em>waffle</em> (también conocidos como gráficos tipo <em>tile</em> o azulejo).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Si es la primera vez, vamos a necesitar unos cuantos paquetes</span>
-<span class="co"># install.packages(&quot;rlang&quot;)</span>
-<span class="co"># install.packages(&quot;stringi&quot;)</span>
-<span class="co"># install.packages(&quot;curl&quot;)</span>
-<span class="co"># install.packages(&quot;devtools&quot;)</span>
-<span class="co"># devtools::install_github(&quot;hrbrmstr/waffle&quot;)</span>
-<span class="co"># Paquete para hacer gráficos de tipo waffle</span>
-<span class="kw">library</span>(waffle)
-
-<span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(titanic)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculamos supervivencia</span>
-sobrev &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span>
-<span class="st">          </span><span class="kw">group_by</span>(Survived) <span class="op">%&gt;%</span>
-<span class="st">          </span><span class="kw">count</span>() <span class="op">%&gt;%</span>
-<span class="st">          </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span>
-<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">c</span>(<span class="st">&quot;No Sobrevivió&quot;, &quot;</span>Sobrevivió&quot;))
-
-<span class="co"># Waffle plot</span>
-<span class="kw">waffle</span>(sobrev, <span class="dt">rows =</span> <span class="dv">25</span>, <span class="dt">size =</span> <span class="dv">1</span>,
-       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),
-       <span class="dt">legend_pos =</span> <span class="st">&quot;bottom&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sobrevivientes del Titanic&quot;</span>,
-      <span class="dt">subtitle =</span> <span class="st">&quot;1 cuadrado = 1 persona&quot;</span>)</code></pre></div>
-<p><img src="06-Comunicacion_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<h2><span class="header-section-number">9.2</span> Gráficos</h2>
+<p>En un capítulo anterior realizamos análisis exploratorios. Como nuestro objetivo era entender los datos de manera rápida (ver Sección <a href="exploracion-de-datos.html#caso-de-estudio">4.3</a>), dichos análisis no se focalizaron en comunicar visualmente hacia un <em>externo</em> o <em>consumidor</em>. En esta sección, nuestro énfasis estará puesto en la reproducción de gráficos que comuniquen de manera efectiva a un consumidor que no se ha familiarizado con los datos.</p>
+<p>Retomemos el dataset del Titanic. Toda la información necesaria para comprender los fenómenos está en el set de datos crudos.</p>
+<pre><code>   PassengerId Survived Pclass    Sex Age SibSp Parch    Fare Embarked
+1            1        0      3   male  22     1     0  7.2500        S
+2            2        1      1 female  38     1     0 71.2833        C
+3            3        1      3 female  26     0     0  7.9250        S
+4            4        1      1 female  35     1     0 53.1000        S
+5            5        0      3   male  35     0     0  8.0500        S
+6            6        0      3   male  NA     0     0  8.4583        Q
+7            7        0      1   male  54     0     0 51.8625        S
+8            8        0      3   male   2     3     1 21.0750        S
+9            9        1      3 female  27     0     2 11.1333        S
+10          10        1      2 female  14     1     0 30.0708        C</code></pre>
+<p>Pero cuando vemos los datos crudos, es prácticamente imposible extraer información útil. Incluso con un dataset pequeño, debemos tomar activamente medidas para reorganizar los datos y realizar cálculos mentales. Siempre es conveniente explotar nuestra facilidad para extraer patrones de manera rápida, mediante procesamiento visual inconsciente. Hagamos un gráfico tipo <em>waffle</em> (también conocidos como gráficos tipo <em>tile</em> o azulejo).</p>
+<div id="waffle-plots" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Waffle plots</h3>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="co"># Si es la primera vez, vamos a necesitar unos cuantos paquetes</span></a>
+<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="co"># install.packages(&quot;rlang&quot;)</span></a>
+<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="co"># install.packages(&quot;stringi&quot;)</span></a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="co"># install.packages(&quot;curl&quot;)</span></a>
+<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="co"># install.packages(&quot;devtools&quot;)</span></a>
+<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="co"># devtools::install_github(&quot;hrbrmstr/waffle&quot;)</span></a>
+<a class="sourceLine" id="cb146-7" data-line-number="7"><span class="co"># Paquete para hacer gráficos de tipo waffle</span></a>
+<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="kw">library</span>(waffle)</a>
+<a class="sourceLine" id="cb146-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb146-10" data-line-number="10"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb146-11" data-line-number="11"><span class="kw">library</span>(titanic)</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="co"># Calculamos supervivencia</span></a>
+<a class="sourceLine" id="cb147-2" data-line-number="2">sobrev &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="st">          </span><span class="kw">group_by</span>(Survived) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="st">          </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="st">          </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-6" data-line-number="6"><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">c</span>(<span class="st">&quot;No Sobrevivió&quot;, &quot;</span>Sobrevivió&quot;))</a>
+<a class="sourceLine" id="cb147-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb147-8" data-line-number="8"><span class="co"># Waffle plot</span></a>
+<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="kw">waffle</span>(sobrev, <span class="dt">rows =</span> <span class="dv">25</span>, <span class="dt">size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb147-10" data-line-number="10">       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),</a>
+<a class="sourceLine" id="cb147-11" data-line-number="11">       <span class="dt">legend_pos =</span> <span class="st">&quot;bottom&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb147-12" data-line-number="12"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sobrevivientes del Titanic&quot;</span>,</a>
+<a class="sourceLine" id="cb147-13" data-line-number="13">      <span class="dt">subtitle =</span> <span class="st">&quot;1 cuadrado = 1 persona&quot;</span>)</a></code></pre></div>
+<p><img src="08-Comunicacion_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Este tipo de representaciones es común en los periódicos. Podemos recrear el gráfico por clase.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculamos supervivencia por clase</span>
-sobrev2 &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">group_by</span>(Pclass, Survived) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">count</span>() <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">ifelse</span>(Survived<span class="op">==</span><span class="dv">0</span>,<span class="st">&quot;No Sobrevivió&quot;, &quot;</span>Sobrevivió&quot;))
-
-<span class="kw">iron</span>(
-<span class="kw">waffle</span>(<span class="kw">filter</span>(sobrev2, Pclass<span class="op">==</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Pclass),
-       <span class="dt">rows =</span> <span class="dv">10</span>, <span class="dt">size=</span><span class="dv">1</span>,
-       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),
-       <span class="dt">legend_pos =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sobrevivientes del Titanic por clase&quot;</span>,
-      <span class="dt">subtitle =</span> <span class="st">&quot;Primera clase&quot;</span>),
-<span class="kw">waffle</span>(<span class="kw">filter</span>(sobrev2, Pclass<span class="op">==</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Pclass),
-       <span class="dt">rows =</span> <span class="dv">10</span>, <span class="dt">size=</span><span class="dv">1</span>,
-       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),
-       <span class="dt">legend_pos =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Segunda clase&quot;</span>),
-<span class="kw">waffle</span>(<span class="kw">filter</span>(sobrev2, Pclass<span class="op">==</span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Pclass),
-       <span class="dt">rows =</span> <span class="dv">10</span>, <span class="dt">size=</span><span class="dv">1</span>,
-       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),
-       <span class="dt">xlab =</span> <span class="st">&quot;1 cuadrado = 1 persona&quot;</span>,
-       <span class="dt">legend_pos =</span> <span class="st">&quot;bottom&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Tercera clase&quot;</span>)
-)</code></pre></div>
-<p><img src="06-Comunicacion_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>En la sección <a href="#nz-profesional"><strong>??</strong></a> observamos cómo podemos realizar un mapa con calidad de publicación.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="co"># Calculamos supervivencia por clase</span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2">sobrev2 &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="st">    </span><span class="kw">group_by</span>(Pclass, Survived) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="st">    </span><span class="kw">count</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="st">    </span><span class="kw">ungroup</span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-6" data-line-number="6"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">ifelse</span>(Survived<span class="op">==</span><span class="dv">0</span>,<span class="st">&quot;No Sobrevivió&quot;, &quot;</span>Sobrevivió&quot;))</a>
+<a class="sourceLine" id="cb148-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb148-8" data-line-number="8"><span class="kw">iron</span>(</a>
+<a class="sourceLine" id="cb148-9" data-line-number="9"><span class="kw">waffle</span>(<span class="kw">filter</span>(sobrev2, Pclass<span class="op">==</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Pclass),</a>
+<a class="sourceLine" id="cb148-10" data-line-number="10">       <span class="dt">rows =</span> <span class="dv">10</span>, <span class="dt">size=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb148-11" data-line-number="11">       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),</a>
+<a class="sourceLine" id="cb148-12" data-line-number="12">       <span class="dt">legend_pos =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb148-13" data-line-number="13"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sobrevivientes del Titanic&quot;</span>,</a>
+<a class="sourceLine" id="cb148-14" data-line-number="14">      <span class="dt">subtitle =</span> <span class="st">&quot;Primera clase&quot;</span>),</a>
+<a class="sourceLine" id="cb148-15" data-line-number="15"><span class="kw">waffle</span>(<span class="kw">filter</span>(sobrev2, Pclass<span class="op">==</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Pclass),</a>
+<a class="sourceLine" id="cb148-16" data-line-number="16">       <span class="dt">rows =</span> <span class="dv">10</span>, <span class="dt">size=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb148-17" data-line-number="17">       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),</a>
+<a class="sourceLine" id="cb148-18" data-line-number="18">       <span class="dt">legend_pos =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb148-19" data-line-number="19"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Segunda clase&quot;</span>),</a>
+<a class="sourceLine" id="cb148-20" data-line-number="20"><span class="kw">waffle</span>(<span class="kw">filter</span>(sobrev2, Pclass<span class="op">==</span><span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Pclass),</a>
+<a class="sourceLine" id="cb148-21" data-line-number="21">       <span class="dt">rows =</span> <span class="dv">10</span>, <span class="dt">size=</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb148-22" data-line-number="22">       <span class="dt">colors =</span> <span class="kw">c</span>(<span class="st">&quot;#1696d2&quot;</span>, <span class="st">&quot;#fdbf11&quot;</span>),</a>
+<a class="sourceLine" id="cb148-23" data-line-number="23">       <span class="dt">xlab =</span> <span class="st">&quot;1 cuadrado = 1 persona&quot;</span>,</a>
+<a class="sourceLine" id="cb148-24" data-line-number="24">       <span class="dt">legend_pos =</span> <span class="st">&quot;bottom&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb148-25" data-line-number="25"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Tercera clase&quot;</span>)</a>
+<a class="sourceLine" id="cb148-26" data-line-number="26">)</a></code></pre></div>
+<p><img src="08-Comunicacion_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="graficos-de-barras" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Gráficos de barras</h3>
+<p>Los gráficos de barras son herramientas que encontramos con frecuencia para representar variables categóricas. Veamos un ejemplo sencillo.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">ejemplo &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">grupo=</span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>],</a>
+<a class="sourceLine" id="cb149-2" data-line-number="2">                      <span class="dt">frecuencia=</span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">25</span>,<span class="dv">31</span>,<span class="dv">12</span>,<span class="dv">18</span>))</a>
+<a class="sourceLine" id="cb149-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb149-4" data-line-number="4">ejemplo</a></code></pre></div>
+<pre><code>  grupo frecuencia
+1     A         10
+2     B         25
+3     C         31
+4     D         12
+5     E         18</code></pre>
+<p>Exploremos las diferencias en estas dos representaciones. En la figura <a href="comunicacion.html#fig:geom-bar-order-2">9.1</a> podemos ver cómo modificar la percepción visual de los gráficos de barras según la importancia del mensaje. La variable explicatoria es un factor que, tal como en este caso, podría tener un orden lógico y el lector se beneficiaría de esta estructura. Ejemplos de dichos factores son los clásicos <em>muy malo, malo, neutro, bueno, muy bueno</em> o <em>infante, adulto, anciano</em>. Sin embargo, nuestro interés podría centrarse en comunicar cuáles son las categorías más/menos comunes con facilidad y podemos valernos de una reorganización de datos para ello.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="co"># Gráfico de barras</span></a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(ejemplo, <span class="kw">aes</span>(<span class="dt">x=</span>grupo,</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3">                          <span class="dt">y=</span>frecuencia)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>()</a>
+<a class="sourceLine" id="cb151-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb151-6" data-line-number="6"><span class="co"># Gráfico de barras ordenado según frecuencia</span></a>
+<a class="sourceLine" id="cb151-7" data-line-number="7">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(ejemplo, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">reorder</span>(grupo,<span class="op">-</span>frecuencia),</a>
+<a class="sourceLine" id="cb151-8" data-line-number="8">                          <span class="dt">y=</span>frecuencia))<span class="op">+</span></a>
+<a class="sourceLine" id="cb151-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_col</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb151-10" data-line-number="10"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;grupo&quot;</span>)</a>
+<a class="sourceLine" id="cb151-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb151-12" data-line-number="12">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:geom-bar-order-2"></span>
+<img src="08-Comunicacion_files/figure-html/geom-bar-order-2-1.png" alt="Gráficos de barras ordenados según eje niveles de la variable explicatoria o respuesta." width="576" />
+<p class="caption">
+Figure 9.1: Gráficos de barras ordenados según eje niveles de la variable explicatoria o respuesta.
+</p>
+</div>
+<blockquote>
+<p>Ejercicio: Explorar este concepto utilizando data de <code>precip</code>.</p>
+</blockquote>
+</div>
+<div id="explorando-gradientes" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Explorando gradientes</h3>
+<p>En muchas instancias nos interesa hacer notar el rango de variables cuantitativas, que pueden representarse con un gradiente. En este caso, vamos a explorar representaciones gráficas de matrices de correlación. Las m</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="co"># Construimos matriz de correlación</span></a>
+<a class="sourceLine" id="cb152-2" data-line-number="2">corr_datos &lt;-<span class="st"> </span><span class="kw">cor</span>(swiss)</a>
+<a class="sourceLine" id="cb152-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="co"># Utilizamos esto como base</span></a>
+<a class="sourceLine" id="cb152-5" data-line-number="5">grafico_matriz &lt;-<span class="st"> </span><span class="kw">qplot</span>(<span class="dt">data=</span>reshape2<span class="op">::</span><span class="kw">melt</span>(corr_datos),</a>
+<a class="sourceLine" id="cb152-6" data-line-number="6">      <span class="dt">x=</span>Var1, <span class="dt">y=</span>Var2,</a>
+<a class="sourceLine" id="cb152-7" data-line-number="7">      <span class="dt">fill=</span>value, <span class="dt">geom=</span><span class="st">&quot;tile&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb152-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">round</span>(value, <span class="dv">1</span>)), <span class="dt">color=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb152-9" data-line-number="9"><span class="st">  </span><span class="kw">theme_minimal</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb152-10" data-line-number="10"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb152-11" data-line-number="11"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Matriz de correlación&quot;)+</span></a>
+<a class="sourceLine" id="cb152-12" data-line-number="12"><span class="st">  theme(legend.position = &quot;</span>none<span class="st">&quot;)</span></a>
+<a class="sourceLine" id="cb152-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb152-14" data-line-number="14"><span class="st"># Exploramos variantes de fill</span></a>
+<a class="sourceLine" id="cb152-15" data-line-number="15"><span class="st">grafico_matriz +  scale_fill_continuous()</span></a>
+<a class="sourceLine" id="cb152-16" data-line-number="16"><span class="st">grafico_matriz + scale_fill_gradient(low=&quot;</span>blue<span class="st">&quot;, high=&quot;</span>red<span class="st">&quot;)</span></a>
+<a class="sourceLine" id="cb152-17" data-line-number="17"><span class="st">grafico_matriz + scale_fill_viridis_c()</span></a></code></pre></div>
+<p><img src="08-Comunicacion_files/figure-html/unnamed-chunk-5-1.png" width="33%" style="display: block; margin: auto;" /><img src="08-Comunicacion_files/figure-html/unnamed-chunk-5-2.png" width="33%" style="display: block; margin: auto;" /><img src="08-Comunicacion_files/figure-html/unnamed-chunk-5-3.png" width="33%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mapas" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> Mapas</h3>
+<p>En la sección <a href="estadistica-espacial.html#nueva-zelanda">8.5</a> detallamos paso a paso cómo podemos realizar mapas con calidad de publicación utilizando el paquete <code>tm</code> (por ejemplo, ver Figura <a href="estadistica-espacial.html#fig:nz-profesional">8.8</a>).</p>
+</div>
 </div>
 <div id="rmarkdown" class="section level2">
-<h2><span class="header-section-number">6.3</span> RMarkdown</h2>
-<p>Markdown es un lenguage de marcado ligero que permite agregar marcajes sencillos al texto plano (<code>.md</code>), para convertirlo en un poderoso conjunto de operaciones que pueden exportarse a formatos de publicación profesional como <code>.html</code>, <code>.pdf</code> y <code>.tex</code><a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a>. <em>RMarkdown</em> es la implementación de Markdown dentro de Rstudio. RMarkdown posee toda la funcionalidad de Markdown y además permite introducir trozos de código.</p>
+<h2><span class="header-section-number">9.3</span> RMarkdown</h2>
+<p>Markdown es un lenguage de marcado ligero que permite agregar marcajes sencillos al texto plano (<code>.md</code>), para convertirlo en un poderoso conjunto de operaciones que pueden exportarse a formatos de publicación profesional como <code>.html</code>, <code>.pdf</code> y <code>.tex</code><a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>. <em>RMarkdown</em> es la implementación de Markdown dentro de Rstudio. RMarkdown posee toda la funcionalidad de Markdown y además permite introducir trozos de código.</p>
 <p>Los archivos de Rmarkdown son archivos de texto con extensión <code>.Rmd</code>. Podemos crearlos dentro de Rstudio desde el mismo menú con el que abrimos scripts.</p>
 <div class="figure">
 <img src="img/rmarkdown-01.png" alt="Abrir una ventana de Rmd" />
 <p class="caption">Abrir una ventana de Rmd</p>
 </div>
-<p>Al abrirlo, un navegador nos permitirá seleccionar opciones (como el título, autor, etc). No me centraré en esa ventana debido a que todas estas opciones pueden modificarse en el encabezado del nuevo archivo <code>.Rmd</code> (ver Sección <a href="comunicacion.html#encabezado">6.8</a>).</p>
+<p>Al abrirlo, un navegador nos permitirá seleccionar opciones (como el título, autor, etc). No me centraré en esa ventana debido a que todas estas opciones pueden modificarse en el encabezado del nuevo archivo <code>.Rmd</code> (ver Sección <a href="comunicacion.html#encabezado">9.8</a>).</p>
 </div>
 <div id="texto" class="section level2">
-<h2><span class="header-section-number">6.4</span> Texto</h2>
+<h2><span class="header-section-number">9.4</span> Texto</h2>
 <p>Markdown es un lenguaje que permite escribir de manera veloz, con muy pocas distracciones. La funcionalidad para editar la presentación de texto es limitada, pero es más que suficiente para el 99% de las cosas que necesitamos al escribir. Los siguientes ejemplos están ordenados segun cómo se escriben en Rmarkdown y cómo es el render.</p>
 <p><code>Lo esencial es *invisible* a los ojos.</code> <span class="math inline">\(\rightarrow\)</span> Lo esencial es <em>invisible</em> a los ojos.<br />
 <code>Lo esencial es **invisible** a los ojos.</code> <span class="math inline">\(\rightarrow\)</span> Lo esencial es <strong>invisible</strong> a los ojos.<br />
 <code>Lo esencial es ~~in~~visible a los ojos.</code> <span class="math inline">\(\rightarrow\)</span> Lo esencial es <del>in</del>visible a los ojos.</p>
 <p>Si tienes familiaridad con <span class="math inline">\(\LaTeX\)</span> es posible utilizarlo para fórmulas matemáticas en línea con la frase que se está escribiendo. Por ejemplo, un supuesto de los modelos lineales generales es <span class="math inline">\(\mathcal{E}_i \sim \  \mathcal{N}(\mu,\,\sigma^{2})\)</span>. Utilzar <span class="math inline">\(\LaTeX\)</span> en RMarkdown es tan sencillo como englobar el código utilizando el símbolo <code>$</code>. Si queremos utilizar una ecuación, por ejemplo, utilizamos los entornos <code>\begin{equation}</code> y <code>\end{equation}</code> y escribimos sin necesidad de utilizar el símbolo <code>$</code>.</p>
-<p>Para utilizar resaltado tipo <code>código</code> en línea utilizamos palabras envueltas en <em>backticks</em> (<code>`</code>)<a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a>. Podemos utilizar código de R en la línea en la que estamos escribiendo de la forma <code>r</code>+<code>espacio</code>+<code>función deseada</code>. Por ejemplo, si combinamos con <span class="math inline">\(\LaTeX\)</span> y le preguntamos a R cuánto es <span class="math inline">\(\pi\)</span>, nos dará el resultado en la misma línea así: <span class="math inline">\(\pi\)</span> = 3.1415927<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a>.</p>
+<p>Para utilizar resaltado tipo <code>código</code> en línea utilizamos palabras envueltas en <em>backticks</em> (<code>`</code>)<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. Podemos utilizar código de R en la línea en la que estamos escribiendo de la forma <code>r</code>+<code>espacio</code>+<code>función deseada</code>. Por ejemplo, si combinamos con <span class="math inline">\(\LaTeX\)</span> y le preguntamos a R cuánto es <span class="math inline">\(\pi\)</span>, nos dará el resultado en la misma línea así: <span class="math inline">\(\pi\)</span> = 3.1415927<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>.</p>
 </div>
 <div id="separando-lineas-y-parrafos" class="section level2">
-<h2><span class="header-section-number">6.5</span> Separando líneas y párrafos</h2>
+<h2><span class="header-section-number">9.5</span> Separando líneas y párrafos</h2>
 <p>La belleza de Rmarkdown es que acomoda el texto y las figuras automáticamente, por lo que no debemos preocuparnos por el número de líneas y demás problemas que aparecen con un editor de texto tradicional. Sin embargo, en ciertas ocasiones realmente deseamos forzar un quiebre, un espacio extra. Para separar párrafos, basta con terminar la línea que se está escribiendo con dos espacios. Por ejemplo,</p>
 <p><em>No te des por vencido, ni aún vencido, no te sientas esclavo, ni aún esclavo;</em></p>
 <p>Puede transformarse en:</p>
 <p><em>No te des por vencido, ni aún vencido,</em><br />
 <em>no te sientas esclavo, ni aún esclavo;</em></p>
-<p>Si agregamos dos espacios entre las palabras deseadas<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a>.</p>
+<p>Si agregamos dos espacios entre las palabras deseadas<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>.</p>
 <p>Las listas de objetos son un caso puntual muy útil:</p>
 <pre><code># Listas no numeradas
 * item 1
@@ -382,25 +509,25 @@ sobrev2 &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</spa
 <hr />
 </div>
 <div id="trozos-de-codigo" class="section level2">
-<h2><span class="header-section-number">6.6</span> Trozos de código</h2>
+<h2><span class="header-section-number">9.6</span> Trozos de código</h2>
 <p>En Rmarkdown podemos mezclar texto y código de R. La siguiente imagen muestra cómo se ve en mi computadora:</p>
 <div class="figure">
 <img src="img/rmarkdown-code-chunk.png" alt="El párrafo previo en mi editor" />
 <p class="caption">El párrafo previo en mi editor</p>
 </div>
 <p>Cuando estos trozos se agregan al documento final, corren en la consola de R y el output se incluye en los resultados. Por ejemplo, el siguiente trozo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(cars)</code></pre></div>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">summary</span>(cars)</a></code></pre></div>
+<pre><code>     speed           dist       
+ Min.   : 4.0   Min.   :  2.00  
+ 1st Qu.:12.0   1st Qu.: 26.00  
+ Median :15.0   Median : 36.00  
+ Mean   :15.4   Mean   : 42.98  
+ 3rd Qu.:19.0   3rd Qu.: 56.00  
+ Max.   :25.0   Max.   :120.00  </code></pre>
 <p>Para insertar trozos de código podemos hacer click en insert o mediante el comando rápido Ctrl+Alt+I.</p>
 </div>
 <div id="links-e-imagenes" class="section level2">
-<h2><span class="header-section-number">6.7</span> Links e imágenes</h2>
+<h2><span class="header-section-number">9.7</span> Links e imágenes</h2>
 <p>Los links e imágenes pueden incluirse utilizando corchetes ([]) y paréntesis. Por ejemplo,</p>
 <pre><code># Imágenes
 ![descripcion de mi imagen](link)
@@ -410,7 +537,7 @@ sobrev2 &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</spa
 <img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png" /></p>
 </div>
 <div id="encabezado" class="section level2">
-<h2><span class="header-section-number">6.8</span> Encabezado</h2>
+<h2><span class="header-section-number">9.8</span> Encabezado</h2>
 <p>Los encabezados son útiles para diversos archivos, ciertamente necesarios para la organización de documentos más complejos. Rmarkdown utiliza un encabezado conocido como YAML y tiene la siguiente forma:</p>
 <pre><code>--- 
 title: &quot;Un mundo feliz&quot;
@@ -418,11 +545,11 @@ author: &quot;Aldous Huxley&quot;
 date: &quot;1932&quot;
 output: html_document
 ---</code></pre>
-<p>Por ejemplo, el encabezado de este libro es el siguiente<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>:</p>
+<p>Por ejemplo, el encabezado de este libro es el siguiente<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>:</p>
 <pre><code>--- 
 title: &quot;Introducción a estadística con R&quot;
 author: &quot;Matias Andina&quot;
-date: &quot;2018-08-08&quot;
+date: &quot;2018-09-30&quot;
 site: bookdown::bookdown_site
 documentclass: book
 ---
@@ -430,11 +557,11 @@ documentclass: book
 <p>En este caso, la fecha la he creado con un llamado a la función <code>Sys.Date()</code> (<code>r</code> + <code>espacio</code> + <code>Sys.Date()</code>) que permite que cada vez que este libro se compila, se use la fecha de sistema para el compilado., De este modo, no tengo que actualizarlo manualmente cada vez que edito el libro.</p>
 </div>
 <div id="knit" class="section level2">
-<h2><span class="header-section-number">6.9</span> Knit</h2>
+<h2><span class="header-section-number">9.9</span> Knit</h2>
 <p>Para armar el documento, debemos hacer click en <em>knit</em>. El producto final será un documento tipo <code>.html</code> que contenga todo el texto y las imágenes del archivo <code>.Rmd</code>.</p>
 </div>
 <div id="otros-proyectos-con-rstudio" class="section level2">
-<h2><span class="header-section-number">6.10</span> Otros proyectos con RStudio</h2>
+<h2><span class="header-section-number">9.10</span> Otros proyectos con RStudio</h2>
 <ul>
 <li>Presentaciones de diapositivas con Markdown y <code>R presentation</code>.</li>
 <li>Usando el paquete <code>blogdown</code>, Websites como <a href="http://matiasandina.netlify.com">este</a></li>
@@ -442,11 +569,11 @@ documentclass: book
 </ul>
 </div>
 <div id="notas" class="section level2">
-<h2><span class="header-section-number">6.11</span> Notas</h2>
+<h2><span class="header-section-number">9.11</span> Notas</h2>
 <p>Mucha tecnología cotidiana detrás de los servicios de publicación está principalmente desarrollada alrededor del idioma inglés. Problemas inesperados pueden aparecer incluso cuando hacemos todo bien utilizando R, Rstudio y Rmarkdown. Por ejemplo, mientras escribía este libro tuve un problema con el nombre de mis archivos que contenían tilde (por ejemplo, el archivo de este capítulo era “Comunicación.Rmd”). La inconveniente <code>ó</code> provocó que el link a ciertas imágenes del capítulo (<code>www. .../Comunicación/imagen-01.png</code>) no pudiera ser encontrado y dichas imágenes no aparecieran. La solición de compromiso es (como en muchas otras direcciones de internet) no utilizar caracteres que no existen en inglés (por ejemplo, la ñ, o palabras con tildes).</p>
 </div>
-<div id="recursos-3" class="section level2">
-<h2><span class="header-section-number">6.12</span> Recursos</h2>
+<div id="recursos-4" class="section level2">
+<h2><span class="header-section-number">9.12</span> Recursos</h2>
 <ul>
 <li>Cheatsheet oficial de Rmarkdown en español por Rstudio <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-spanish.pdf">aquí</a></li>
 <li>Buen material sobre visualización con ggplot2 <a href="http://urbaninstitute.github.io/urban_R_theme/">aquí</a></li>
@@ -456,13 +583,13 @@ documentclass: book
 </div>
 <div class="footnotes">
 <hr />
-<ol start="13">
-<li id="fn13"><p>Puedes aprender sobre GIT <a href="https://git-scm.com/book/es/v1/Empezando">aquí</a><a href="comunicacion.html#fnref13">↩</a></p></li>
-<li id="fn14"><p>Puedes encontrar más información sobre Markdown<a href="es.wikipedia.org/markdown">aquí</a><a href="comunicacion.html#fnref14">↩</a></p></li>
-<li id="fn15"><p>Los backtics son difícilies de encontrar en el teclado en español, puedes probar ALT+96.<a href="comunicacion.html#fnref15">↩</a></p></li>
-<li id="fn16"><p>Para lograr esto el formato debe ser <code>$\pi$ = 3.1415927</code><a href="comunicacion.html#fnref16">↩</a></p></li>
-<li id="fn17"><p>Normalmente suelo agregar un enter y escribir en la siguiente línea. Aunque no es necesrario, me ayuda a visualizar el render antes de tiempo.<a href="comunicacion.html#fnref17">↩</a></p></li>
-<li id="fn18"><p>El encabezado que muestro es una porción que es comparable con un documento clásico. El encabezado real contiene ciertas especificaciones para que este libro pueda ser publicado online y entiendo que no aportan al ejemplo.<a href="comunicacion.html#fnref18">↩</a></p></li>
+<ol start="18">
+<li id="fn18"><p>Puedes aprender sobre GIT <a href="https://git-scm.com/book/es/v1/Empezando">aquí</a><a href="comunicacion.html#fnref18" class="footnote-back">↩</a></p></li>
+<li id="fn19"><p>Puedes encontrar más información sobre Markdown<a href="es.wikipedia.org/markdown">aquí</a><a href="comunicacion.html#fnref19" class="footnote-back">↩</a></p></li>
+<li id="fn20"><p>Los backtics son difícilies de encontrar en el teclado en español, puedes probar ALT+96.<a href="comunicacion.html#fnref20" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p>Para lograr esto el formato debe ser <code>$\pi$ = 3.1415927</code><a href="comunicacion.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p>Normalmente suelo agregar un enter y escribir en la siguiente línea. Aunque no es necesrario, me ayuda a visualizar el render antes de tiempo.<a href="comunicacion.html#fnref22" class="footnote-back">↩</a></p></li>
+<li id="fn23"><p>El encabezado que muestro es una porción que es comparable con un documento clásico. El encabezado real contiene ciertas especificaciones para que este libro pueda ser publicado online y entiendo que no aportan al ejemplo.<a href="comunicacion.html#fnref23" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -470,8 +597,8 @@ documentclass: book
           </div>
         </div>
       </div>
-<a href="modelos-lineales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estadistica-espacial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estadistica-espacial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="agradecimientos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -517,7 +644,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -25,7 +25,7 @@
 <meta name="author" content="Matias Andina">
 
 
-<meta name="date" content="2018-08-08">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,44 +47,81 @@
 
 
 
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<script src="libs/Leaflet.Sync-0.0.5/L.Map.Sync.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -158,62 +195,75 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos-1"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
 <li class="chapter" data-level="4.6" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#respuestas"><i class="fa fa-check"></i><b>4.6</b> Respuestas</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
-<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
-<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+<li class="chapter" data-level="5" data-path="introduccion.html"><a href="introduccion.html#anexo"><i class="fa fa-check"></i><b>5</b> Anexo {-}</a></li>
+<li class="chapter" data-level="6" data-path="distribuciones.html"><a href="distribuciones.html"><i class="fa fa-check"></i><b>6</b> Distribuciones</a></li>
+<li class="chapter" data-level="7" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>7</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>7.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>7.2.1</b> Simulando datos en R</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
-<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+<li class="chapter" data-level="7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>7.3</b> Esperanza</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>7.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>7.4.1</b> Entendiendo la estimación con gráficos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a></li>
-<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.6</b> Supuestos</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>5.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
-<li class="chapter" data-level="5.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>5.6.2</b> Independencia</a></li>
-<li class="chapter" data-level="5.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>5.6.3</b> Homocedasticidad.</a></li>
-<li class="chapter" data-level="5.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>5.6.4</b> Normalidad de residuos</a></li>
+<li class="chapter" data-level="7.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>7.5</b> Modelo en R</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>7.6</b> Supuestos</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>7.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>7.6.2</b> Independencia</a></li>
+<li class="chapter" data-level="7.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>7.6.3</b> Homocedasticidad.</a></li>
+<li class="chapter" data-level="7.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>7.6.4</b> Normalidad de residuos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.7</b> Análisis de supuestos en R</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>5.7.1</b> Cuando los residuos no son normales</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>7.7</b> Análisis de supuestos en R</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>7.7.1</b> Cuando los residuos no son normales</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.8</b> Visualizando residuos en R</a></li>
-<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.9</b> Descomponiendo variabilidad</a></li>
-<li class="chapter" data-level="5.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.10</b> ¿Por qué hacer una regresión?</a></li>
-<li class="chapter" data-level="5.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.11</b> Resumen</a></li>
-<li class="chapter" data-level="5.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.12</b> Recursos</a></li>
-<li class="chapter" data-level="5.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>5.13</b> Respuestas</a></li>
+<li class="chapter" data-level="7.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>7.8</b> Visualizando residuos en R</a></li>
+<li class="chapter" data-level="7.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>7.9</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="7.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>7.10</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="7.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>7.11</b> Resumen</a></li>
+<li class="chapter" data-level="7.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>7.12</b> Recursos</a></li>
+<li class="chapter" data-level="7.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>7.13</b> Respuestas</a></li>
 <li class="chapter" data-level="" data-path="modelos-lineales.html"><a href="modelos-lineales.html#anexo-1"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
-<li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
-<li class="chapter" data-level="6.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>6.2</b> Gráficos</a></li>
-<li class="chapter" data-level="6.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>6.3</b> RMarkdown</a></li>
-<li class="chapter" data-level="6.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>6.4</b> Texto</a></li>
-<li class="chapter" data-level="6.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>6.5</b> Separando líneas y párrafos</a></li>
-<li class="chapter" data-level="6.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>6.6</b> Trozos de código</a></li>
-<li class="chapter" data-level="6.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>6.7</b> Links e imágenes</a></li>
-<li class="chapter" data-level="6.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>6.8</b> Encabezado</a></li>
-<li class="chapter" data-level="6.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>6.9</b> Knit</a></li>
-<li class="chapter" data-level="6.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>6.10</b> Otros proyectos con RStudio</a></li>
-<li class="chapter" data-level="6.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>6.11</b> Notas</a></li>
-<li class="chapter" data-level="6.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-3"><i class="fa fa-check"></i><b>6.12</b> Recursos</a></li>
+<li class="chapter" data-level="8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>8</b> Estadística Espacial</a><ul>
+<li class="chapter" data-level="8.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>8.1</b> Paquetes Geo-R</a></li>
+<li class="chapter" data-level="8.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#instalar-paquetes-geo-r"><i class="fa fa-check"></i><b>8.2</b> Instalar paquetes GEO-R</a></li>
+<li class="chapter" data-level="8.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>8.3</b> Trabajando con datos espaciales</a></li>
+<li class="chapter" data-level="8.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topologia-geoespacial"><i class="fa fa-check"></i><b>8.4</b> Topología geoespacial</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#dataset-xy"><i class="fa fa-check"></i><b>8.4.1</b> Dataset xy</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>7</b> Estadística Espacial</a><ul>
-<li class="chapter" data-level="7.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>7.1</b> Paquetes Geo-R</a></li>
-<li class="chapter" data-level="7.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo"><i class="fa fa-check"></i><b>7.2</b> Paquetes GEO</a></li>
-<li class="chapter" data-level="7.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>7.3</b> Trabajando con datos espaciales</a></li>
-<li class="chapter" data-level="7.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topological-relations"><i class="fa fa-check"></i><b>7.4</b> topological-relations</a></li>
-<li class="chapter" data-level="7.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>7.5</b> Nueva Zelanda</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>7.5.1</b> Cambiando colores con <code>style</code></a></li>
+<li class="chapter" data-level="8.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>8.5</b> Nueva Zelanda</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-base"><i class="fa fa-check"></i><b>8.5.1</b> R-Geo con Base</a></li>
+<li class="chapter" data-level="8.5.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-tmap"><i class="fa fa-check"></i><b>8.5.2</b> R-Geo con tmap</a></li>
+<li class="chapter" data-level="8.5.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>8.5.3</b> Cambiando colores con <code>style</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>7.6</b> Proyecciones</a></li>
-<li class="chapter" data-level="7.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>7.7</b> Mapas animados</a></li>
-<li class="chapter" data-level="7.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>7.8</b> Mapas interactivos</a></li>
-<li class="chapter" data-level="7.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>7.9</b> Resumen</a></li>
-<li class="chapter" data-level="7.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-4"><i class="fa fa-check"></i><b>7.10</b> Recursos</a></li>
-<li class="chapter" data-level="7.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>7.11</b> Respuestas</a></li>
-<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-2"><i class="fa fa-check"></i>Anexo</a></li>
+<li class="chapter" data-level="8.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>8.6</b> Proyecciones</a></li>
+<li class="chapter" data-level="8.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-con-facets"><i class="fa fa-check"></i><b>8.7</b> Mapas con <code>facets</code></a></li>
+<li class="chapter" data-level="8.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>8.8</b> Mapas animados</a></li>
+<li class="chapter" data-level="8.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>8.9</b> Mapas interactivos</a></li>
+<li class="chapter" data-level="8.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>8.10</b> Resumen</a></li>
+<li class="chapter" data-level="8.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-3"><i class="fa fa-check"></i><b>8.11</b> Recursos</a></li>
+<li class="chapter" data-level="8.12" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>8.12</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-a"><i class="fa fa-check"></i>Anexo A</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-b"><i class="fa fa-check"></i>Anexo B</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>9</b> Comunicación</a><ul>
+<li class="chapter" data-level="9.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>9.1</b> Ciencia reproducible</a></li>
+<li class="chapter" data-level="9.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>9.2</b> Gráficos</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="comunicacion.html"><a href="comunicacion.html#waffle-plots"><i class="fa fa-check"></i><b>9.2.1</b> Waffle plots</a></li>
+<li class="chapter" data-level="9.2.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos-de-barras"><i class="fa fa-check"></i><b>9.2.2</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="9.2.3" data-path="comunicacion.html"><a href="comunicacion.html#explorando-gradientes"><i class="fa fa-check"></i><b>9.2.3</b> Explorando gradientes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="comunicacion.html"><a href="comunicacion.html#mapas"><i class="fa fa-check"></i><b>9.2.4</b> Mapas</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>9.3</b> RMarkdown</a></li>
+<li class="chapter" data-level="9.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>9.4</b> Texto</a></li>
+<li class="chapter" data-level="9.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>9.5</b> Separando líneas y párrafos</a></li>
+<li class="chapter" data-level="9.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>9.6</b> Trozos de código</a></li>
+<li class="chapter" data-level="9.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>9.7</b> Links e imágenes</a></li>
+<li class="chapter" data-level="9.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>9.8</b> Encabezado</a></li>
+<li class="chapter" data-level="9.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>9.9</b> Knit</a></li>
+<li class="chapter" data-level="9.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>9.10</b> Otros proyectos con RStudio</a></li>
+<li class="chapter" data-level="9.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>9.11</b> Notas</a></li>
+<li class="chapter" data-level="9.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-4"><i class="fa fa-check"></i><b>9.12</b> Recursos</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="divider"></li>
@@ -249,9 +299,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="donde-encontrar-ayuda" class="section level2">
 <h2><span class="header-section-number">1.2</span> Dónde encontrar ayuda</h2>
 <p>Una gran forma de resolver los problemas que tenemos cuando escribimos código es goolgear el problema exacto. R normalmente nos mostrará errores de la forma:</p>
-<pre><code>## Error: error message here</code></pre>
+<pre><code>Error: error message here</code></pre>
 <p>Copiar y pegar el error particular es de gran ayuda. Existen diversos foros especializados. Afortunadamente existe material en español (aunque es limitado). Un gran sitio para empezar es:</p>
-<p><strong>StackOverflow</strong> en español! <a href="https://es.stackoverflow.com/" class="uri">https://es.stackoverflow.com/</a></p>
+<p><strong>StackOverflow</strong> en español!
+<a href="https://es.stackoverflow.com/" class="uri">https://es.stackoverflow.com/</a></p>
 </div>
 <div id="sistema-operativo" class="section level2">
 <h2><span class="header-section-number">1.3</span> Sistema Operativo</h2>
@@ -267,8 +318,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="r" class="section level2">
 <h2><span class="header-section-number">1.6</span> R</h2>
-<p>Un lenguaje de programación es una serie de reglas que están diseñadas para realizar procesos en una computadora.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> R es un lenguaje de programación. En ese sentido, no se diferencia de ningún otro (ej. C, Python). A su vez, como todo lenguaje, el set de reglas es particular y lleva tiempo incorporarlo. La mejor forma de naturalizarse con un idioma es hablarlo y, fundamentalmente en este caso, leerlo y escribirlo! Afortunadamente, el dominio de un idioma facilita el dominio de otro(s).</p>
-<p>R nació en 1993 en Auckland. Sin embargo, su origen puede rastrearse hasta un lenguaje previo llamado S, creado por John Chambers y colaboradores en <em>Bell Laboratories</em> durante la década de 1970.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> Actualmente, la diversidad de proyectos que pueden abarcarse en R es altísima, desde hacer análisis de estadística pura hasta escribir libros, como éste.</p>
+<p>Un lenguaje de programación es una serie de reglas que están diseñadas para realizar procesos en una computadora.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> R es un lenguaje de programación. En ese sentido, no se diferencia de ningún otro (ej. C, Python). A su vez, como todo lenguaje, el set de reglas es particular y lleva tiempo incorporarlo. La mejor forma de naturalizarse con un idioma es hablarlo y, fundamentalmente en este caso, leerlo y escribirlo! Afortunadamente, el dominio de un idioma facilita el dominio de otro(s).</p>
+<p>R nació en 1993 en Auckland. Sin embargo, su origen puede rastrearse hasta un lenguaje previo llamado S, creado por John Chambers y colaboradores en <em>Bell Laboratories</em> durante la década de 1970.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Actualmente, la diversidad de proyectos que pueden abarcarse en R es altísima, desde hacer análisis de estadística pura hasta escribir libros, como éste.</p>
 <p>En este libro voy a usar mayoritariamente R para hablar del lenguaje. Una excepción es la instalación del programa en sí mismo (ver Instalar R).</p>
 <p>El copyright del software R es mantenido por la fundación R ( <a href="(https://www.r-project.org/foundation/)">R Foundation</a> ) bajo una licencia pública <a href="https://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License version 2.0</a>. Algunas traducciones <em>no oficiales</em> de la licencia pueden encontrarse <a href="https://www.gnu.org/licenses/translations.html">aquí</a>.</p>
 <p>La fundación R es una organización sin fines de lucro que trabaja en pos del interés público. Fue fundada por los miembros del <em>R Development Core Team</em> para proveer. Sus objetivos son:</p>
@@ -276,7 +327,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Proveer apoyo al proyecto R y otras innovaciones en estadística computacional.</li>
 <li>Asegurar su continuo desarollo, así como también el desarrollo de futuras innovaciones en software estadístico.</li>
 <li>Proveer un punto de referencia para individuos, instituciones y empresas que deseen interactuar con la comunidad de desarrollo de R.</li>
-<li>Mantener y administrar el copyright del software R y su documentación.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></li>
+<li>Mantener y administrar el copyright del software R y su documentación.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></li>
 </ul>
 <p>Podemos pensar a R estando dividido en dos marcos conceptuales:</p>
 <ol style="list-style-type: decimal">
@@ -352,11 +403,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p class="caption">Rstudio al abrir</p>
 </div>
 <p>Podemos hacer un intento rápido para graficar el histograma de una distribución Normal con media 0 y desvío estándar 1. Puedes copiar y pegar el siguiente código en la consola.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
-ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
-<span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
-     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
-<p><img src="01-Introduccion_files/figure-html/hist_ejemplo-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, </a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</a></code></pre></div>
+<p><img src="01-Introduccion_files/figure-html/hist_ejemplo-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>En la ventana de Rstudio se vería así:</p>
 <div class="figure">
 <img src="img/Rstudio_hist.png" alt="Así se ve en Rstudio" />
@@ -414,18 +465,22 @@ ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 <td align="left">set de datos</td>
 </tr>
 <tr class="odd">
+<td align="left">pipes</td>
+<td align="left">uso técnico para el operador %&gt;%</td>
+</tr>
+<tr class="even">
 <td align="left">render</td>
 <td align="left">generación de contenido multimedia</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">software</td>
 <td align="left">programa</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">subset</td>
 <td align="left">subconjunto o porción</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">working directory</td>
 <td align="left">Directorio desde donde R está trabajando en la sesión (getwd())</td>
 </tr>
@@ -437,9 +492,9 @@ ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>Mayor descripción en lenguajes de programación <a href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n">aquí</a>.<a href="introduccion.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Historia e información sobre R [aquí](<a href="https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)">https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)</a>. Para aquellos curiosos que tienen una consola a mano y se aventuran al inglés: <code>contributors()</code><a href="introduccion.html#fnref2">↩</a></p></li>
-<li id="fn3"><p>La traducción es de mi autoría, la información original en inglés puede encontrarse <a href="https://www.r-project.org/foundation/">aquí</a>.<a href="introduccion.html#fnref3">↩</a></p></li>
+<li id="fn1"><p>Mayor descripción en lenguajes de programación <a href="https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n">aquí</a>.<a href="introduccion.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Historia e información sobre R [aquí](<a href="https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)">https://es.wikipedia.org/wiki/R_(lenguaje_de_programaci%C3%B3n)</a>. Para aquellos curiosos que tienen una consola a mano y se aventuran al inglés: <code>contributors()</code><a href="introduccion.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>La traducción es de mi autoría, la información original en inglés puede encontrarse <a href="https://www.r-project.org/foundation/">aquí</a>.<a href="introduccion.html#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -494,7 +549,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

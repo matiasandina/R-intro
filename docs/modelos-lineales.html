@@ -25,15 +25,15 @@
 <meta name="author" content="Matias Andina">
 
 
-<meta name="date" content="2018-08-08">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="exploracion-de-datos.html">
-<link rel="next" href="comunicacion.html">
+<link rel="prev" href="distribuciones.html">
+<link rel="next" href="estadistica-espacial.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,44 +47,81 @@
 
 
 
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<script src="libs/Leaflet.Sync-0.0.5/L.Map.Sync.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -158,62 +195,75 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos-1"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
 <li class="chapter" data-level="4.6" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#respuestas"><i class="fa fa-check"></i><b>4.6</b> Respuestas</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
-<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
-<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+<li class="chapter" data-level="5" data-path="introduccion.html"><a href="introduccion.html#anexo"><i class="fa fa-check"></i><b>5</b> Anexo {-}</a></li>
+<li class="chapter" data-level="6" data-path="distribuciones.html"><a href="distribuciones.html"><i class="fa fa-check"></i><b>6</b> Distribuciones</a></li>
+<li class="chapter" data-level="7" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>7</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>7.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>7.2.1</b> Simulando datos en R</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
-<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+<li class="chapter" data-level="7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>7.3</b> Esperanza</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>7.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>7.4.1</b> Entendiendo la estimación con gráficos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a></li>
-<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.6</b> Supuestos</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>5.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
-<li class="chapter" data-level="5.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>5.6.2</b> Independencia</a></li>
-<li class="chapter" data-level="5.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>5.6.3</b> Homocedasticidad.</a></li>
-<li class="chapter" data-level="5.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>5.6.4</b> Normalidad de residuos</a></li>
+<li class="chapter" data-level="7.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>7.5</b> Modelo en R</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>7.6</b> Supuestos</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>7.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>7.6.2</b> Independencia</a></li>
+<li class="chapter" data-level="7.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>7.6.3</b> Homocedasticidad.</a></li>
+<li class="chapter" data-level="7.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>7.6.4</b> Normalidad de residuos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.7</b> Análisis de supuestos en R</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>5.7.1</b> Cuando los residuos no son normales</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>7.7</b> Análisis de supuestos en R</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>7.7.1</b> Cuando los residuos no son normales</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.8</b> Visualizando residuos en R</a></li>
-<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.9</b> Descomponiendo variabilidad</a></li>
-<li class="chapter" data-level="5.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.10</b> ¿Por qué hacer una regresión?</a></li>
-<li class="chapter" data-level="5.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.11</b> Resumen</a></li>
-<li class="chapter" data-level="5.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.12</b> Recursos</a></li>
-<li class="chapter" data-level="5.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>5.13</b> Respuestas</a></li>
+<li class="chapter" data-level="7.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>7.8</b> Visualizando residuos en R</a></li>
+<li class="chapter" data-level="7.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>7.9</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="7.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>7.10</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="7.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>7.11</b> Resumen</a></li>
+<li class="chapter" data-level="7.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>7.12</b> Recursos</a></li>
+<li class="chapter" data-level="7.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>7.13</b> Respuestas</a></li>
 <li class="chapter" data-level="" data-path="modelos-lineales.html"><a href="modelos-lineales.html#anexo-1"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
-<li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
-<li class="chapter" data-level="6.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>6.2</b> Gráficos</a></li>
-<li class="chapter" data-level="6.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>6.3</b> RMarkdown</a></li>
-<li class="chapter" data-level="6.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>6.4</b> Texto</a></li>
-<li class="chapter" data-level="6.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>6.5</b> Separando líneas y párrafos</a></li>
-<li class="chapter" data-level="6.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>6.6</b> Trozos de código</a></li>
-<li class="chapter" data-level="6.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>6.7</b> Links e imágenes</a></li>
-<li class="chapter" data-level="6.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>6.8</b> Encabezado</a></li>
-<li class="chapter" data-level="6.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>6.9</b> Knit</a></li>
-<li class="chapter" data-level="6.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>6.10</b> Otros proyectos con RStudio</a></li>
-<li class="chapter" data-level="6.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>6.11</b> Notas</a></li>
-<li class="chapter" data-level="6.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-3"><i class="fa fa-check"></i><b>6.12</b> Recursos</a></li>
+<li class="chapter" data-level="8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>8</b> Estadística Espacial</a><ul>
+<li class="chapter" data-level="8.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>8.1</b> Paquetes Geo-R</a></li>
+<li class="chapter" data-level="8.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#instalar-paquetes-geo-r"><i class="fa fa-check"></i><b>8.2</b> Instalar paquetes GEO-R</a></li>
+<li class="chapter" data-level="8.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>8.3</b> Trabajando con datos espaciales</a></li>
+<li class="chapter" data-level="8.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topologia-geoespacial"><i class="fa fa-check"></i><b>8.4</b> Topología geoespacial</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#dataset-xy"><i class="fa fa-check"></i><b>8.4.1</b> Dataset xy</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>7</b> Estadística Espacial</a><ul>
-<li class="chapter" data-level="7.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>7.1</b> Paquetes Geo-R</a></li>
-<li class="chapter" data-level="7.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo"><i class="fa fa-check"></i><b>7.2</b> Paquetes GEO</a></li>
-<li class="chapter" data-level="7.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>7.3</b> Trabajando con datos espaciales</a></li>
-<li class="chapter" data-level="7.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topological-relations"><i class="fa fa-check"></i><b>7.4</b> topological-relations</a></li>
-<li class="chapter" data-level="7.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>7.5</b> Nueva Zelanda</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>7.5.1</b> Cambiando colores con <code>style</code></a></li>
+<li class="chapter" data-level="8.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>8.5</b> Nueva Zelanda</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-base"><i class="fa fa-check"></i><b>8.5.1</b> R-Geo con Base</a></li>
+<li class="chapter" data-level="8.5.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-tmap"><i class="fa fa-check"></i><b>8.5.2</b> R-Geo con tmap</a></li>
+<li class="chapter" data-level="8.5.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>8.5.3</b> Cambiando colores con <code>style</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>7.6</b> Proyecciones</a></li>
-<li class="chapter" data-level="7.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>7.7</b> Mapas animados</a></li>
-<li class="chapter" data-level="7.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>7.8</b> Mapas interactivos</a></li>
-<li class="chapter" data-level="7.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>7.9</b> Resumen</a></li>
-<li class="chapter" data-level="7.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-4"><i class="fa fa-check"></i><b>7.10</b> Recursos</a></li>
-<li class="chapter" data-level="7.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>7.11</b> Respuestas</a></li>
-<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-2"><i class="fa fa-check"></i>Anexo</a></li>
+<li class="chapter" data-level="8.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>8.6</b> Proyecciones</a></li>
+<li class="chapter" data-level="8.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-con-facets"><i class="fa fa-check"></i><b>8.7</b> Mapas con <code>facets</code></a></li>
+<li class="chapter" data-level="8.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>8.8</b> Mapas animados</a></li>
+<li class="chapter" data-level="8.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>8.9</b> Mapas interactivos</a></li>
+<li class="chapter" data-level="8.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>8.10</b> Resumen</a></li>
+<li class="chapter" data-level="8.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-3"><i class="fa fa-check"></i><b>8.11</b> Recursos</a></li>
+<li class="chapter" data-level="8.12" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>8.12</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-a"><i class="fa fa-check"></i>Anexo A</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-b"><i class="fa fa-check"></i>Anexo B</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>9</b> Comunicación</a><ul>
+<li class="chapter" data-level="9.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>9.1</b> Ciencia reproducible</a></li>
+<li class="chapter" data-level="9.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>9.2</b> Gráficos</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="comunicacion.html"><a href="comunicacion.html#waffle-plots"><i class="fa fa-check"></i><b>9.2.1</b> Waffle plots</a></li>
+<li class="chapter" data-level="9.2.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos-de-barras"><i class="fa fa-check"></i><b>9.2.2</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="9.2.3" data-path="comunicacion.html"><a href="comunicacion.html#explorando-gradientes"><i class="fa fa-check"></i><b>9.2.3</b> Explorando gradientes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="comunicacion.html"><a href="comunicacion.html#mapas"><i class="fa fa-check"></i><b>9.2.4</b> Mapas</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>9.3</b> RMarkdown</a></li>
+<li class="chapter" data-level="9.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>9.4</b> Texto</a></li>
+<li class="chapter" data-level="9.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>9.5</b> Separando líneas y párrafos</a></li>
+<li class="chapter" data-level="9.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>9.6</b> Trozos de código</a></li>
+<li class="chapter" data-level="9.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>9.7</b> Links e imágenes</a></li>
+<li class="chapter" data-level="9.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>9.8</b> Encabezado</a></li>
+<li class="chapter" data-level="9.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>9.9</b> Knit</a></li>
+<li class="chapter" data-level="9.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>9.10</b> Otros proyectos con RStudio</a></li>
+<li class="chapter" data-level="9.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>9.11</b> Notas</a></li>
+<li class="chapter" data-level="9.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-4"><i class="fa fa-check"></i><b>9.12</b> Recursos</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="divider"></li>
@@ -237,89 +287,89 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="modelos-lineales" class="section level1">
-<h1><span class="header-section-number">Capítulo 5</span> Modelos Lineales</h1>
+<h1><span class="header-section-number">Capítulo 7</span> Modelos Lineales</h1>
 <blockquote>
 <p>Esencialmente, todos los modelos son erróneos, pero algunos son útiles - George Box</p>
 </blockquote>
 <p>La realidad es multidimensional, compleja e incierta. Un modelo es una representación formal de un fenómeno, una reducción de dimensionalidad que posee utilidad práctica. Dicha representación normalmente puede ser condensada en una expresión matemática, una <em>fórmula</em>, que indica cómo una variable se relaciona con otra(s). Empíricamente, el paradigma se basa en estudiar la relación matemática entre variables aleatorias respuesta, con una distribución de probabilidades dada, y aquellas variables que la predicen, con el fin de explicar asociaciones entre variables y realizar inferencia. De modo muy general, podemos escribir:</p>
-<span class="math display" id="eq:general-fx">\[\begin{equation} 
+<p><span class="math display" id="eq:general-fx">\[\begin{equation} 
   y = f(x)  
-  \tag{5.1}
-\end{equation}\]</span>
+  \tag{7.1}
+\end{equation}\]</span></p>
 <p>Donde <span class="math inline">\(y\)</span> es la variable que modelamos, <span class="math inline">\(f\)</span> es una función de una o múltiples variable(s) explicatoria(s).</p>
 <div id="que-es-un-modelo-lineal" class="section level2">
-<h2><span class="header-section-number">5.1</span> ¿Qué es un modelo lineal?</h2>
+<h2><span class="header-section-number">7.1</span> ¿Qué es un modelo lineal?</h2>
 <p>En este capítulo trabajaremos con modelos <em>lineales</em>. Un modelo lineal suele escribirse como:</p>
-<span class="math display" id="eq:general-glm">\[\begin{equation} 
+<p><span class="math display" id="eq:general-glm">\[\begin{equation} 
 y = \beta_0 + \beta_1x_1 + \ ...\  + \beta_nx_n
-  \tag{5.2}
-\end{equation}\]</span>
+  \tag{7.2}
+\end{equation}\]</span></p>
 <p>Donde <span class="math inline">\(x_{1..n}\)</span> representa cada variable predictora y <span class="math inline">\(\beta_{1..n}\)</span> representan los coeficientes (o parámetros) a estimar. El efecto de cada coeficiente (por ejemplo, <span class="math inline">\(\beta_3\)</span>) debe interpretarse como el cambio en <span class="math inline">\(y\)</span> dado por un cambio unitario en la variable predictora asociada a ese coeficiente (<span class="math inline">\(x_3\)</span>), siempre que las demás variables <span class="math inline">\(x\)</span> se mantengan constantes. Además, tenemos una ordenada al origen (o <span class="math inline">\(\beta_0\)</span>) que representa la media general.</p>
-<p>Este modelo es <em>lineal</em> porque está escrito como una combinación lineal de las preditoras y sus coeficientes. Por ejemplo, la ecuación de Michaelis-Menten<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> es un modelo <em>no lineal</em>:</p>
-<span class="math display" id="eq:michaelis-menten">\[\begin{equation} 
+<p>Este modelo es <em>lineal</em> porque está escrito como una combinación lineal de las preditoras y sus coeficientes. Por ejemplo, la ecuación de Michaelis-Menten<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> es un modelo <em>no lineal</em>:</p>
+<p><span class="math display" id="eq:michaelis-menten">\[\begin{equation} 
 
 V_{prod} = V_{max} * \frac{[S]}{K_m [S]}
-  \tag{5.3}
-\end{equation}\]</span>
-<p>Que podemos escribir en los términos usados en <a href="modelos-lineales.html#eq:general-glm">(5.2)</a> como:</p>
-<span class="math display">\[\begin{equation} 
+  \tag{7.3}
+\end{equation}\]</span></p>
+<p>Que podemos escribir en los términos usados en <a href="modelos-lineales.html#eq:general-glm">(7.2)</a> como:</p>
+<p><span class="math display">\[\begin{equation} 
 
 y = \beta_0 *\frac{x}{\beta_1 x}
 
-\end{equation}\]</span>
+\end{equation}\]</span></p>
 </div>
 <div id="modelos-estadisticos" class="section level2">
-<h2><span class="header-section-number">5.2</span> Modelos estadísticos</h2>
-<p>Un modelo como el caracterizado por la ecuación (<a href="modelos-lineales.html#eq:general-glm">(5.2)</a>) está <em>determinado</em>, es decir, dados los valores de <span class="math inline">\(\beta, x\)</span>, los valores <span class="math inline">\(y\)</span> son únicos. En nuestro caso trabajaremos con modelos <em>estadísticos</em>, en los que cada valor que medimos proviene de mediciones en la vida real y, por lo tanto, tiene asociado un <em>error</em>.</p>
-<span class="math display" id="eq:general-glm-estadist">\[\begin{equation} 
+<h2><span class="header-section-number">7.2</span> Modelos estadísticos</h2>
+<p>Un modelo como el caracterizado por la ecuación (<a href="modelos-lineales.html#eq:general-glm">(7.2)</a>) está <em>determinado</em>, es decir, dados los valores de <span class="math inline">\(\beta, x\)</span>, los valores <span class="math inline">\(y\)</span> son únicos. En nuestro caso trabajaremos con modelos <em>estadísticos</em>, en los que cada valor que medimos proviene de mediciones en la vida real y, por lo tanto, tiene asociado un <em>error</em>.</p>
+<p><span class="math display" id="eq:general-glm-estadist">\[\begin{equation} 
 y_i = \beta_0 + \beta_1x_{1i} + \ ...\  + \beta_nx_{ni} + \epsilon_i 
-  \tag{5.4}
-\end{equation}\]</span>
+  \tag{7.4}
+\end{equation}\]</span></p>
 <p>Donde <span class="math inline">\(i\)</span> representa la observación obtenida de cada unidad experimental. Debido a que existen diferencias entre unidades experimentales, el valor de <span class="math inline">\(y_i\)</span> no será determinado por una combinación lineal de <span class="math inline">\(\beta x\)</span>, tendrá un error (<span class="math inline">\(\mathcal{E}_i\)</span>) asociado.</p>
 <div id="simulando-datos-en-r" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Simulando datos en R</h3>
+<h3><span class="header-section-number">7.2.1</span> Simulando datos en R</h3>
 <p>Podemos crear un ejemplo en R para visualizar rápidamente. Supongamos que podemos medir <em>felicidad</em> de manera cuantitativa, como una variable continua. Supongamos, además, que nuestro laboratorio quiere investigar cómo impactan distintas dosis de chocolate a la felicidad de los humanos. Para esto, tomamos una muestra de 100 voluntarios y los asignamos de manera aleatoria a 5 dosis de chocolate (20, 40, 60, 80, y 100 gramos). Los individuos consumen la dosis asignada, el chocolate aumenta su felicidad (según la fórmula <span class="math inline">\(felicidad = dosis * 2.5 + 10\)</span>), que medimos y graficamos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Paquetes que vamos a usar</span>
-<span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(ggplot2)
-<span class="co"># Permite cambiar el aspecto de ggplot a algo parecido a base</span>
-<span class="kw">library</span>(ggthemes) </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generar participantes</span>
-id &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
-<span class="co"># Generar dosis</span>
-dosis &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">20</span>), <span class="dv">20</span>))
-<span class="co"># Generar respuesta &quot;ideal&quot; </span>
-respuesta &lt;-<span class="st"> </span>dosis <span class="op">*</span><span class="st"> </span><span class="fl">2.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span>
-<span class="co"># Construir data.frame</span>
-datos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span>id,
-                    <span class="dt">dosis=</span>dosis,
-                    <span class="dt">respuesta=</span>respuesta)
-
-<span class="co"># Graficar</span>
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(dosis, respuesta))<span class="op">+</span>
-<span class="st">      </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
-<span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
-<span class="st">      </span><span class="kw">theme_base</span>()<span class="op">+</span>
-<span class="st">      </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))
-
-p</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># Paquetes que vamos a usar</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb74-3" data-line-number="3"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb74-4" data-line-number="4"><span class="co"># Permite cambiar el aspecto de ggplot a algo parecido a base</span></a>
+<a class="sourceLine" id="cb74-5" data-line-number="5"><span class="kw">library</span>(ggthemes) </a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="co"># Generar participantes</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">id &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="co"># Generar dosis</span></a>
+<a class="sourceLine" id="cb75-4" data-line-number="4">dosis &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">20</span>,<span class="dv">100</span>,<span class="dv">20</span>), <span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb75-5" data-line-number="5"><span class="co"># Generar respuesta &quot;ideal&quot; </span></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6">respuesta &lt;-<span class="st"> </span>dosis <span class="op">*</span><span class="st"> </span><span class="fl">2.5</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb75-7" data-line-number="7"><span class="co"># Construir data.frame</span></a>
+<a class="sourceLine" id="cb75-8" data-line-number="8">datos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id=</span>id,</a>
+<a class="sourceLine" id="cb75-9" data-line-number="9">                    <span class="dt">dosis=</span>dosis,</a>
+<a class="sourceLine" id="cb75-10" data-line-number="10">                    <span class="dt">respuesta=</span>respuesta)</a>
+<a class="sourceLine" id="cb75-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb75-12" data-line-number="12"><span class="co"># Graficar</span></a>
+<a class="sourceLine" id="cb75-13" data-line-number="13">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(dosis, respuesta))<span class="op">+</span></a>
+<a class="sourceLine" id="cb75-14" data-line-number="14"><span class="st">      </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb75-15" data-line-number="15"><span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb75-16" data-line-number="16"><span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb75-17" data-line-number="17"><span class="st">      </span><span class="kw">theme_base</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb75-18" data-line-number="18"><span class="st">      </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb75-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb75-20" data-line-number="20">p</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>El modelo que construimos hasta ahora tiene valores determinados. Pero, en la realidad, esperamos variabilidad en la respuesta al chocolate entre individuos. Esta variabilidad existe porque los individuos no son réplicas exactas: cada cuerpo fue construido a partir de un genoma levemente distinto, con diferentes eventos en el desarrollo y la experiencia. Incluso podemos pensar en eventos aleatorios relacionados con la ingesta y digestión del mismo trozo de chocolate! Por eso, si queremos trabajar con un modelo más realista deberíamos tener un gráfico como el siguiente:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># semilla</span>
-<span class="kw">set.seed</span>(<span class="dv">444</span>)
-<span class="co"># Agregar ruido con distribucion normal (media 0, sd = 5)</span>
-datos<span class="op">$</span>respuesta &lt;-<span class="st"> </span>datos<span class="op">$</span>respuesta <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">5</span>)
-
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(dosis, respuesta))<span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)<span class="op">+</span>
-<span class="st">       </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
-<span class="st">       </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
-<span class="st">       </span><span class="kw">theme_base</span>()<span class="op">+</span>
-<span class="st">       </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))
-
-p</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># semilla</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">444</span>)</a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="co"># Agregar ruido con distribucion normal (media 0, sd = 5)</span></a>
+<a class="sourceLine" id="cb76-4" data-line-number="4">datos<span class="op">$</span>respuesta &lt;-<span class="st"> </span>datos<span class="op">$</span>respuesta <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb76-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb76-6" data-line-number="6">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(dosis, respuesta))<span class="op">+</span></a>
+<a class="sourceLine" id="cb76-7" data-line-number="7"><span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb76-8" data-line-number="8"><span class="st">       </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb76-9" data-line-number="9"><span class="st">       </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb76-10" data-line-number="10"><span class="st">       </span><span class="kw">theme_base</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb76-11" data-line-number="11"><span class="st">       </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb76-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb76-13" data-line-number="13">p</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>En este caso podemos ver claramente que para cada valor de dosis hemos registrado más de un valor de felicidad. La naturaleza de la pregunta cambia, debemos preguntarnos:</p>
 <ul>
 <li>¿Cuál es el valor <strong>esperado</strong> de felicidad para una dada dosis de chocolate?</li>
@@ -328,101 +378,102 @@ p</code></pre></div>
 </div>
 </div>
 <div id="esperanza" class="section level2">
-<h2><span class="header-section-number">5.3</span> Esperanza</h2>
-<p>Lo que esperamos en este caso es registrar valores que estén distribuidos alrededor del valor de la media para cada concentración (ver <a href="modelos-lineales.html#eq:general-glm-estadist">(5.4)</a>). La esperanza va a estar dada por:</p>
-<span class="math display" id="eq:esperanza">\[\begin{equation} 
+<h2><span class="header-section-number">7.3</span> Esperanza</h2>
+<p>Lo que esperamos en este caso es registrar valores que estén distribuidos alrededor del valor de la media para cada concentración (ver <a href="modelos-lineales.html#eq:general-glm-estadist">(7.4)</a>). La esperanza va a estar dada por:</p>
+<p><span class="math display" id="eq:esperanza">\[\begin{equation} 
 E(Y_i) = \beta_0 + \beta_1 x_{1i}
-  \tag{5.5}
-\end{equation}\]</span>
+  \tag{7.5}
+\end{equation}\]</span></p>
 <p>Donde <span class="math inline">\(E(Y_i)\)</span> es la esperanza del caso <span class="math inline">\(i\)</span> (también escrita como <span class="math inline">\(\mu_{Y|x_i}\)</span>), <span class="math inline">\(\beta_0\)</span> es el valor esperado para dosis cero (en este caso tiene sentido experimental pensar en participantes que no comieron chocolate), y <span class="math inline">\(\beta_1\)</span> es el incremento en la esperanza dado por un incremento unitario en la variable predictora (exactamente cuánto más feliz espero ser por gramo de chocolate!). Gráficamente, esperamos:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Graficar</span>
-p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co"># Graficar</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>, <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="estimacion-del-modelo" class="section level2">
-<h2><span class="header-section-number">5.4</span> Estimación del modelo</h2>
+<h2><span class="header-section-number">7.4</span> Estimación del modelo</h2>
 <p>En este caso, los parámetros de nuestro modelo se estiman por <em>cuadrados mínimos</em>, una forma acotada de decir que buscaremos aquella recta (combinación lineal de parámetros y predictoras) tal que se minimice la suma de las distancias entre los datos y los valores predichos.</p>
 <p>Formalmente, podemos calcular el error o <em>residuo</em>, para cada punto como la diferencia entre el valor observado (<span class="math inline">\(y_i\)</span>) y predicho por nuestro modelo (<span class="math inline">\(E(Y_i)\)</span> o <span class="math inline">\(\hat{y_i}\)</span>):</p>
-<span class="math display" id="eq:residuo1">\[\begin{equation} 
+<p><span class="math display" id="eq:residuo1">\[\begin{equation} 
 e_i = y_i - E(Y_i) = y_i - \hat{y_i}
-  \tag{5.6}
-\end{equation}\]</span>
-<p>Un inconveniente de esta definición es el signo de los residuos. Como no deseamos que los resultados varíen si las observaciones están por encima o por debajo de la esperanza, podemos usar el cuadrado de los residuos para trabajar. Usando la Ecuación <a href="modelos-lineales.html#eq:esperanza">(5.5)</a> podemos expandir la Ecuación <a href="modelos-lineales.html#eq:residuo1">(5.6)</a> y plantear:</p>
-<span class="math display" id="eq:residuo2">\[\begin{equation} 
+  \tag{7.6}
+\end{equation}\]</span></p>
+<p>Un inconveniente de esta definición es el signo de los residuos. Como no deseamos que los resultados varíen si las observaciones están por encima o por debajo de la esperanza, podemos usar el cuadrado de los residuos para trabajar. Usando la Ecuación <a href="modelos-lineales.html#eq:esperanza">(7.5)</a> podemos expandir la Ecuación <a href="modelos-lineales.html#eq:residuo1">(7.6)</a> y plantear:</p>
+<p><span class="math display" id="eq:residuo2">\[\begin{equation} 
 \Sigma e_i^2 = \Sigma (y_i - E(Y_i))^2 = \Sigma (y_i - (b_0 + b_1 x))^2
-  \tag{5.7}
-\end{equation}\]</span>
+  \tag{7.7}
+\end{equation}\]</span></p>
 <p>Si minimizamos <span class="math inline">\(\Sigma e_i^2\)</span> podemos obtener estimadores para <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> (denotados como <span class="math inline">\(b_0\)</span> y <span class="math inline">\(b_1\)</span>):</p>
-<span class="math display" id="eq:parametros">\[\begin{equation} 
+<p><span class="math display" id="eq:parametros">\[\begin{equation} 
 b_1 = \frac{\Sigma (x_i - \bar{x})(y_i - \bar{y})}{\Sigma (x_i - \bar{x})^2} \\
 b_0 = \bar{y} - b_1 \bar{x}
-  \tag{5.8}
-\end{equation}\]</span>
+  \tag{7.8}
+\end{equation}\]</span></p>
 <p>Donde <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(\bar{y}\)</span> representan las respectivas medias en nuestra muestra.</p>
 <div id="entendiendo-la-estimacion-con-graficos" class="section level3">
-<h3><span class="header-section-number">5.4.1</span> Entendiendo la estimación con gráficos</h3>
-<p>Si pensamos a los residuos como distancias entre nuestra recta de predichos y las observaciones de la vida real, lo que la regresión hace es minimizar esas distancias (todas a la vez, por eso en la Ecuación <a href="modelos-lineales.html#eq:residuo2">(5.7)</a> tenemos la sumatoria).</p>
+<h3><span class="header-section-number">7.4.1</span> Entendiendo la estimación con gráficos</h3>
+<p>Si pensamos a los residuos como distancias entre nuestra recta de predichos y las observaciones de la vida real, lo que la regresión hace es minimizar esas distancias (todas a la vez, por eso en la Ecuación <a href="modelos-lineales.html#eq:residuo2">(7.7)</a> tenemos la sumatoria).</p>
 <p>Supongamos que una primera aproximación a estimar el valor de <span class="math inline">\(y\)</span> es olvidarse de la variación en <span class="math inline">\(x\)</span> por un instante y plantear una recta que contenga a la media global (<span class="math inline">\(\bar{y}\)</span>) como valor esperado para cualquier <span class="math inline">\(x\)</span> (equivalente a <span class="math inline">\(y_i = \beta_0 = \bar{y}\)</span>):</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>En este caso, vemos que los valores observados tienen una distancia grande a la media. Esto indica que <span class="math inline">\(x\)</span> efectivamente tiene un efecto sobre <span class="math inline">\(y\)</span>. Sin embargo, cerca del centro (alrededor del punto <span class="math inline">\((\bar{x},\bar{y})\)</span>), los residuos son pequeños. Intuitivamente, debemos cambiar la pendiente, pero, al rotar la recta, deberíamos hacerlo desde el punto <span class="math inline">\((\bar{x},\bar{y})\)</span>. Por ejemplo:</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Podemos ver que con esta acción hemos reducido los residuos y el ajuste es mejor. Naturalmente, es muy complicado encontrar gráficamente el par <span class="math inline">\(b_0, b_1\)</span> tal que la suma de las distancias sean <em>mínimas</em>. En la siguiente figura se muestra la gráfica de dicha recta. Apenas se se pueden apreciar los residuos, pero podemos intuir que el ajuste es mucho mejor que nuestro primer intento con la media al observar las líneas punteadas.</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="modelo-en-r" class="section level2">
-<h2><span class="header-section-number">5.5</span> Modelo en R</h2>
-<p>Ya es hora de meternos de lleno en la práctica. Volvamos a nuestro modelo de felicidad y chocolate para realizar un ajuste lineal en R usando la función <code>lm</code>. Esta función requiere argumentos de tipo <code>formula</code>. En nuestro caso, queremos estudiar la relación entre la felicidad (<code>respuesta</code>) y la dosis de chocolate (<code>dosis</code>). Por ende, la fórmula que utilizaremos es <code>respuesta ~ dosis</code>, con <code>~</code> para dividir entre respuesta y predictoras:<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># crear modelo</span>
-modelo_chocolate &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data=</span>datos,
-                       respuesta <span class="op">~</span><span class="st"> </span>dosis)
-<span class="co"># Ver resultados del modelo</span>
-<span class="kw">summary</span>(modelo_chocolate)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = respuesta ~ dosis, data = datos)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -9.204 -3.696 -1.330  3.091 11.497 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  8.59279    1.15698   7.427 4.15e-11 ***
-## dosis        2.51659    0.01744 144.283  &lt; 2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 4.933 on 98 degrees of freedom
-## Multiple R-squared:  0.9953, Adjusted R-squared:  0.9953 
-## F-statistic: 2.082e+04 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>El llamado a <code>summary()</code> nos permite ver una gran cantidad de información. También recomiendo familiarizarse con el paquete <code>broom</code>, que nos permite extraer información estadística de los modelos. Aquí está la tabla con los estimadores:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Estimadores</span>
-broom<span class="op">::</span><span class="kw">tidy</span>(modelo_chocolate)</code></pre></div>
-<pre><code>## # A tibble: 2 x 5
-##   term        estimate std.error statistic                         p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;                           &lt;dbl&gt;
-## 1 (Intercept)     8.59    1.16        7.43                       4.15e- 11
-## 2 dosis           2.52    0.0174    144                          5.93e-116</code></pre>
+<h2><span class="header-section-number">7.5</span> Modelo en R</h2>
+<p>Ya es hora de meternos de lleno en la práctica. Volvamos a nuestro modelo de felicidad y chocolate para realizar un ajuste lineal en R usando la función <code>lm</code>. Esta función requiere argumentos de tipo <code>formula</code>. En nuestro caso, queremos estudiar la relación entre la felicidad (<code>respuesta</code>) y la dosis de chocolate (<code>dosis</code>). Por ende, la fórmula que utilizaremos es <code>respuesta ~ dosis</code>, con <code>~</code> para dividir entre respuesta y predictoras:<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="co"># crear modelo</span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">modelo_chocolate &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data=</span>datos,</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3">                       respuesta <span class="op">~</span><span class="st"> </span>dosis)</a>
+<a class="sourceLine" id="cb78-4" data-line-number="4"><span class="co"># Ver resultados del modelo</span></a>
+<a class="sourceLine" id="cb78-5" data-line-number="5"><span class="kw">summary</span>(modelo_chocolate)</a></code></pre></div>
+<pre><code>
+Call:
+lm(formula = respuesta ~ dosis, data = datos)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-9.204 -3.696 -1.330  3.091 11.497 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  8.59279    1.15698   7.427 4.15e-11 ***
+dosis        2.51659    0.01744 144.283  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 4.933 on 98 degrees of freedom
+Multiple R-squared:  0.9953,    Adjusted R-squared:  0.9953 
+F-statistic: 2.082e+04 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>El llamado a <code>summary()</code> nos permite ver una gran cantidad de información.
+También recomiendo familiarizarse con el paquete <code>broom</code>, que nos permite extraer información estadística de los modelos. Aquí está la tabla con los estimadores:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="co"># Estimadores</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2">broom<span class="op">::</span><span class="kw">tidy</span>(modelo_chocolate)</a></code></pre></div>
+<pre><code># A tibble: 2 x 5
+  term        estimate std.error statistic                         p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;                           &lt;dbl&gt;
+1 (Intercept)     8.59    1.16        7.43                       4.15e- 11
+2 dosis           2.52    0.0174    144                          5.93e-116</code></pre>
 <p>A partir de la columna de estimadores (<em>estimate</em>), vemos que el consumo de chocolate incrementa la felicidad (esperamos mayor un incremento en ~2.5 unidades de felicidad por cada gramo de chocolate!). Nuestro modelo puede escribirse como:</p>
 <p><span class="math inline">\(felicidad = 2.52 * dosis + 8.59\)</span></p>
 <p>En la tabla vemos que los estimadores tienen un error asociado, un estadístico <em>t</em> y su <em>p-valor</em> asociado. Por default, estos resultados están dados para un intervalo de confianza del 95%. Podemos ver que el cero no está incluido en el intervalo de nuestros estimadores.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">confint</span>(modelo_chocolate), <span class="dv">3</span>)</code></pre></div>
-<pre><code>##             2.5 % 97.5 %
-## (Intercept) 6.297 10.889
-## dosis       2.482  2.551</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">confint</span>(modelo_chocolate), <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>            2.5 % 97.5 %
+(Intercept) 6.297 10.889
+dosis       2.482  2.551</code></pre>
 <p>También podemos acceder a porciones del modelo por separado. Puedes intentar en tu consola los siguientes comandos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># parametros</span>
-modelo_chocolate<span class="op">$</span>coefficients
-<span class="co"># predichos</span>
-modelo_chocolate<span class="op">$</span>fitted.values
-<span class="co"># residuos</span>
-modelo_chocolate<span class="op">$</span>residuals</code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="co"># parametros</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">modelo_chocolate<span class="op">$</span>coefficients</a>
+<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="co"># predichos</span></a>
+<a class="sourceLine" id="cb84-4" data-line-number="4">modelo_chocolate<span class="op">$</span>fitted.values</a>
+<a class="sourceLine" id="cb84-5" data-line-number="5"><span class="co"># residuos</span></a>
+<a class="sourceLine" id="cb84-6" data-line-number="6">modelo_chocolate<span class="op">$</span>residuals</a></code></pre></div>
 <p>Con nuestros estimadores, podríamos realizar inferencia (obtener predichos para dosis dentro del rango que no fueron testeadas). Pero, antes de avanzar, es necesario analizar el cumplimiento de los supuestos.</p>
 </div>
 <div id="supuestos" class="section level2">
-<h2><span class="header-section-number">5.6</span> Supuestos</h2>
+<h2><span class="header-section-number">7.6</span> Supuestos</h2>
 <p>Cuando construimos modelos de este tipo, asumimos ciertas cosas. Los supuestos principales en este caso son:</p>
 <ul>
 <li>Los valores de las predictoras no tienen error, son determinados por el investigador.</li>
@@ -431,215 +482,219 @@ modelo_chocolate<span class="op">$</span>residuals</code></pre></div>
 <li>Los residuos son normales.</li>
 </ul>
 <div id="error-en-x" class="section level3">
-<h3><span class="header-section-number">5.6.1</span> Error en <span class="math inline">\(x\)</span></h3>
+<h3><span class="header-section-number">7.6.1</span> Error en <span class="math inline">\(x\)</span></h3>
 <p>La minimización de distancias se realiza únicamente sobre el componente <span class="math inline">\(y\)</span>. De esto se desprende el supuesto de que el componente <span class="math inline">\(x\)</span> no tiene error asociado. Experimentalmente, esto es imposible (no es posible pesar exactamente 20.00 gr de chocolate). Sin embargo, en la gran mayoría de los casos, un error relativo pequeño en este componente, como por ejemplo el porcentaje de error de nuestra balanza, no afecta el análisis.</p>
 </div>
 <div id="independencia" class="section level3">
-<h3><span class="header-section-number">5.6.2</span> Independencia</h3>
+<h3><span class="header-section-number">7.6.2</span> Independencia</h3>
 <p>Los valores que obtenemos de cada unidad experimental deben ser independientes. Esto significa que los valores obtenidos de una unidad experimental no afectan los valores obtenidos por otra. Formalmente, <span class="math inline">\(cov(y_i,y_j) = 0 \ \ \forall \ \ i\neq j\)</span>. Una forma de facilitar independencia de observaciones es asignar los tratamientos (en este caso, la dosis de chocolate) al azar.</p>
 </div>
 <div id="homocedasticidad." class="section level3">
-<h3><span class="header-section-number">5.6.3</span> Homocedasticidad.</h3>
-<p>Podemos pensar a cada uno de los valores que obtuvimos para una dosis como una subpoblación. En este modelo, la media de cada una de estas subpoblaciones está dada por la ecuación de esperanza (ver Ecuación <a href="modelos-lineales.html#eq:esperanza">(5.5)</a>). Para cada subpoblación asumimos una distribución normal alrededor de <span class="math inline">\(E(y_i)\)</span> con idéntica varianza (<span class="math inline">\(\sigma^2\)</span>). Formalmente:</p>
-<span class="math display" id="eq:varianza-cte">\[\begin{equation} 
+<h3><span class="header-section-number">7.6.3</span> Homocedasticidad.</h3>
+<p>Podemos pensar a cada uno de los valores que obtuvimos para una dosis como una subpoblación. En este modelo, la media de cada una de estas subpoblaciones está dada por la ecuación de esperanza (ver Ecuación <a href="modelos-lineales.html#eq:esperanza">(7.5)</a>). Para cada subpoblación asumimos una distribución normal alrededor de <span class="math inline">\(E(y_i)\)</span> con idéntica varianza (<span class="math inline">\(\sigma^2\)</span>). Formalmente:</p>
+<p><span class="math display" id="eq:varianza-cte">\[\begin{equation} 
 \sigma^{2}(Y_i|x_i) = \sigma^{2}(Y_j|x_j) = \sigma^2 \ \ \forall \ \ i\neq j
-  \tag{5.9}
-\end{equation}\]</span>
+  \tag{7.9}
+\end{equation}\]</span></p>
 <p>Este supuesto no es trivial y veremos cómo detectar su cumplimiento a partir del análisis de residuos (@(ref:normalidad-de-residuos)). Si este supuesto no se cumple, la pruebas de inferencia no es confiable, en especial si hay un grupo con varianza mucho más grande que el resto. Es posible corregir la heterocedasticidad con modelos más complejos que incluyan el modelado de varianza.</p>
 </div>
 <div id="normalidad-de-residuos" class="section level3">
-<h3><span class="header-section-number">5.6.4</span> Normalidad de residuos</h3>
+<h3><span class="header-section-number">7.6.4</span> Normalidad de residuos</h3>
 <p>Este modelo tiene como supuesto que los residuos se distribuyen de manera normal. En general, utilizaremos gráficos de diagnóstico, que son importantes para evaluar los supuestos.</p>
 <p><strong>Residuos vs Predichos (Residuals vs Fitted)</strong></p>
 <p>En este gráfico buscamos ver la dispersión respecto de la recta para cada valor predicho (cuánto se alejan de nuestro ajuste). Esperamos no observar ningún tipo de patrón en los residuos. Esperamos no ver datos atípicos (datos con residuos muy grandes).</p>
 <p><strong>Q-Q Plot</strong></p>
 <p>Este gráfico muestra cómo se acumulan los residuos respecto de los cuantiles teóricos de una distribución normal. Si la distribución de residuos es normal, los veremos cercanos a la recta. Desviaciones de la recta indican que la distribución de los residuos no es normal. Por ejemplo, en el siguiente gráfico muestro la comparación de residuos provenientes de una distribución Normal y una gamma en un Q-Q plot:</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/qqnorm-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/qqnorm-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><strong>Residuos estandarizados vs Predichos</strong></p>
 <p>Este gráfico es similar al primero, pero los residuos están estandarizados. Esperamos no ver ningún patrón, con los residuos distribuidos normalmente alrededor de cero. En la siguiente figura muestro ejemplos de distintos gráficos de residuos vs predichos:</p>
 <p>En el primer caso veremos cómo son los gráficos <em>deseados</em> de residuos vs predichos. Tanto en <strong>A</strong> como en <strong>B</strong> tenemos residuos normales, la diferencia está en que para el modelo en <strong>B</strong> los predichos responden a niveles de un factor. Es importante mirar la dispersión de los residuos y que la variabilidad se mantenga constante a lo largo de todo el dominio. No hay reglas exactas para describir estos gráficos, se aprende mirando los patrones o, en este caso, la falta de ellos!</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/normal-resid-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/normal-resid-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>En el segundo caso vemos problemas clásicos como los gráficos en forma de <em>cono</em>, predichos más altos tienen mayor variabilidad. Un gráfico de este estilo indica incumplimiento del supuesto de homocedasticidad.</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/cone-resid-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/cone-resid-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Finalmente, dos casos distintos. En <strong>D</strong>, vemos residuos con un patrón de <span class="math inline">\(x^2\)</span>, indica que nuestro modelo lineal no sigue el patrón de distribución de los datos. En <strong>E</strong>, vemos cómo modifica un outlier un gráfico al gráfico de residuos mostrado en <strong>A</strong>.</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/rest-resid-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/rest-resid-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><strong>Gráfico de puntos influyentes</strong></p>
 <p>Los puntos influyentes son aquellos con gran palanca o <em>leverage</em>. Formalmente, dada la matriz de diseño de nuestro modelo <span class="math inline">\(\mathbf{X}\)</span> y la matriz de proyección <span class="math inline">\(\mathbf{H}=\mathbf{X} \ (\mathbf{X}^{\mathsf{T}}\mathbf{X})^{-1} \ \mathbf {X} ^{\mathsf{T}}\)</span>, el leverage para la observación <span class="math inline">\(i\)</span> está definido como el elemento <span class="math inline">\(i\)</span> de la diagonal de la matriz <span class="math inline">\(\mathbf{H}\)</span> (<span class="math inline">\(h_{ii}=\mathbf{H}_{ii}\)</span>).</p>
 <p>Cuando tenemos pocas variables es fácil observarlos en el ajuste lineal.</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-14-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Vemos que aquellos puntos que están muy alejados en <span class="math inline">\(x\)</span> tienen gran influencia sobre el ajuste. En particular, si estos puntos no se alinean bien con el patrón general de los datos, pueden forzar el modelo hacia un ajuste erróneo. Es conveniente tener buena cobertura, es decir, tomar registros igualmente espaciados a lo largo del rango de <span class="math inline">\(x\)</span>, para prevenir este tipo de eventos. En este caso, el punto en cuestión tiene alto residuo y alto leverage. La distancia de Cook (<span class="math inline">\(D\)</span>) es una variable derivada de los residuos y el leverage, que permite determinar si una observación es influyente y se calcula a partir de la suma de los efectos en el modelo al eliminar cada observación. Valores de ditancia de Cook altos (<span class="math inline">\(D_i &gt; 1\)</span>) indican que la observación es influyente.</p>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>Un caso famoso es el cuarteto de Anscombe, cuatro datasets muy particulares que poseen prácticamente idéntica estadística descriptiva. Sin embargo, al graficarlos, vemos que son muy distintos<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Crear los 4 graficos. </span>
-p1 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x1, y1, dataset1) 
-p2 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x2, y2, dataset2)
-p3 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x3, y3, dataset3)
-p4 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x4,  y4, dataset4)
-
-<span class="co"># Ponerlos todos juntos con gridExtra</span>
-gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</code></pre></div>
-<div class="figure"><span id="fig:anscombe"></span>
-<img src="05-Modelos_Lineales_files/figure-html/anscombe-1.png" alt="Cuarteto de Anscombe" width="672" />
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-15-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Un caso famoso es el cuarteto de Anscombe, cuatro datasets muy particulares que poseen prácticamente idéntica estadística descriptiva. Sin embargo, al graficarlos, vemos que son muy distintos<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="co"># Crear los 4 graficos. </span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2">p1 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x1, y1, dataset1) </a>
+<a class="sourceLine" id="cb85-3" data-line-number="3">p2 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x2, y2, dataset2)</a>
+<a class="sourceLine" id="cb85-4" data-line-number="4">p3 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x3, y3, dataset3)</a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">p4 &lt;-<span class="st"> </span><span class="kw">my_plot</span>(anscombe, x4,  y4, dataset4)</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb85-7" data-line-number="7"><span class="co"># Ponerlos todos juntos con gridExtra</span></a>
+<a class="sourceLine" id="cb85-8" data-line-number="8">gridExtra<span class="op">::</span><span class="kw">grid.arrange</span>(p1, p2, p3, p4)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:anscombe"></span>
+<img src="06-Modelos_Lineales_files/figure-html/anscombe-1.png" alt="Cuarteto de Anscombe" width="576" />
 <p class="caption">
-Figure 5.1: Cuarteto de Anscombe
+Figure 7.1: Cuarteto de Anscombe
 </p>
 </div>
 <p>Un caso extremo fue desarrollado hace poco por <a href="http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html">Alberto Cairo</a> y luego llevado a R en forma de paquete (<code>datasauRus</code>), cuya página puedes encontrar <a href="https://github.com/lockedata/datasauRus">aquí</a>. Abajo muestro un ejemplo básico de estos datasets. El mensaje que intento transmitir es: <strong>Siempre debemos inspeccionar gráficamente nuestro datos.</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(datasauRus)
-<span class="kw">ggplot</span>(datasaurus_dozen,
-       <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">colour=</span>dataset))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_void</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol=</span><span class="dv">3</span>)</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">library</span>(datasauRus)</a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="kw">ggplot</span>(datasaurus_dozen,</a>
+<a class="sourceLine" id="cb86-3" data-line-number="3">       <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">colour=</span>dataset))<span class="op">+</span></a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_void</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb86-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol=</span><span class="dv">3</span>)</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-17-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="analisis-de-supuestos-en-r" class="section level2">
-<h2><span class="header-section-number">5.7</span> Análisis de supuestos en R</h2>
+<h2><span class="header-section-number">7.7</span> Análisis de supuestos en R</h2>
 <p>¿Cómo podemos asegurarnos que nuestros modelos cumplen los supuestos? Podemos explorar el ajuste y analizar el cumplimiento de supuestos en R utilizando la función <code>plot</code>, que maneja bien objetos <code>lm</code>. Nuestro modelo fue armado teniendo en cuenta los supuestos, al analizar los gráficos de diagnóstico, vemos que se comporta de modo excelente.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Acomodamos las opciones gráficas para 4 gráficos en 2x2</span>
-<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
-<span class="co"># graficamos el ajuste</span>
-<span class="kw">plot</span>(modelo_chocolate)</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="co"># Acomodamos las opciones gráficas para 4 gráficos en 2x2</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co"># graficamos el ajuste</span></a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="kw">plot</span>(modelo_chocolate)</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /></p>
 <div id="cuando-los-residuos-no-son-normales" class="section level3">
-<h3><span class="header-section-number">5.7.1</span> Cuando los residuos no son normales</h3>
+<h3><span class="header-section-number">7.7.1</span> Cuando los residuos no son normales</h3>
 <p>En muchas ocasiones los gráficos de diagnóstico nos darán la idea de que no se cumplen los supuestos de normalidad de residuos (u homocedasticidad). En general, los modelos lineales son robustos a la ligera falta de normalidad. Existen distintas estratégias para manejar estos problemas que escapan los objetivos de este capítulo.</p>
 </div>
 </div>
 <div id="visualizando-residuos-en-r" class="section level2">
-<h2><span class="header-section-number">5.8</span> Visualizando residuos en R</h2>
+<h2><span class="header-section-number">7.8</span> Visualizando residuos en R</h2>
 <p>Nuestro modelo lineal asume que los errores están normalmente distribuidos alrededor de la esperanza. Formalmente, pedimos <span class="math inline">\(\mathcal{E}_i \sim \  \mathcal{N}(\mu,\,\sigma^{2})\)</span> donde <span class="math inline">\(\mu=0\)</span> y <span class="math inline">\(\sigma^{2} \approx cte\)</span>.</p>
-<p>En el <code>modelo_chocolate</code> este supuesto se cumple (lo armamos de ese modo<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a>). En esta sección quiero explorar los residuos de los modelos lineales y brindar herramientas gráficas para conceptualizar mejor lo que la regresión está haciendo con nuestros datos. Voy a modificar los datos de chocolate para que el ajuste sea peor y permita visualizar los residuos mejor (básicamente agregamos ruido en dosis).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Agregar ruido en dosis creando nueva columna</span>
-datos<span class="op">$</span>nueva_dosis &lt;-<span class="st"> </span>datos<span class="op">$</span>dosis <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">10</span>,<span class="dv">10</span>)
-<span class="co"># Calcular el nuevo modelo</span>
-nuevo_modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> datos,
-                   respuesta<span class="op">~</span>nueva_dosis)
-<span class="co"># Guardar los predichos del modelo en datos</span>
-datos<span class="op">$</span>nuevo_pred &lt;-<span class="st"> </span>nuevo_modelo<span class="op">$</span>fitted.values
-<span class="co"># Guardar los residuos</span>
-datos<span class="op">$</span>residuos &lt;-<span class="st"> </span>nuevo_modelo<span class="op">$</span>residuals 
-<span class="co"># Veamos la data</span>
-fit_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span><span class="st">      </span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_base</span>()<span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)
-
-fit_plot</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>En el <code>modelo_chocolate</code> este supuesto se cumple (lo armamos de ese modo<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>). En esta sección quiero explorar los residuos de los modelos lineales y brindar herramientas gráficas para conceptualizar mejor lo que la regresión está haciendo con nuestros datos. Voy a modificar los datos de chocolate para que el ajuste sea peor y permita visualizar los residuos mejor (básicamente agregamos ruido en dosis).</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="co"># Agregar ruido en dosis creando nueva columna</span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">datos<span class="op">$</span>nueva_dosis &lt;-<span class="st"> </span>datos<span class="op">$</span>dosis <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dv">10</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="co"># Calcular el nuevo modelo</span></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4">nuevo_modelo &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> datos,</a>
+<a class="sourceLine" id="cb88-5" data-line-number="5">                   respuesta<span class="op">~</span>nueva_dosis)</a>
+<a class="sourceLine" id="cb88-6" data-line-number="6"><span class="co"># Guardar los predichos del modelo en datos</span></a>
+<a class="sourceLine" id="cb88-7" data-line-number="7">datos<span class="op">$</span>nuevo_pred &lt;-<span class="st"> </span>nuevo_modelo<span class="op">$</span>fitted.values</a>
+<a class="sourceLine" id="cb88-8" data-line-number="8"><span class="co"># Guardar los residuos</span></a>
+<a class="sourceLine" id="cb88-9" data-line-number="9">datos<span class="op">$</span>residuos &lt;-<span class="st"> </span>nuevo_modelo<span class="op">$</span>residuals </a>
+<a class="sourceLine" id="cb88-10" data-line-number="10"><span class="co"># Veamos la data</span></a>
+<a class="sourceLine" id="cb88-11" data-line-number="11">fit_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span></a>
+<a class="sourceLine" id="cb88-12" data-line-number="12"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span><span class="st">      </span></a>
+<a class="sourceLine" id="cb88-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb88-14" data-line-number="14"><span class="st">    </span><span class="kw">theme_base</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb88-15" data-line-number="15"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb88-16" data-line-number="16"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb88-17" data-line-number="17"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)</a>
+<a class="sourceLine" id="cb88-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb88-19" data-line-number="19">fit_plot</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-19-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>En este gráfico vemos que el ajuste sigue siendo bueno, pero hay mayor cantidad de puntos alejados de la recta. En vez de la recta de ajuste, usemos sólo los predichos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Graficar</span>
-pre_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="co"># Agregamos los predichos en una nueva capa!</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_base</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)
-pre_plot</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="co"># Graficar</span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2">pre_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span></a>
+<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="st">  </span><span class="co"># Agregamos los predichos en una nueva capa!</span></a>
+<a class="sourceLine" id="cb89-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb89-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_base</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb89-7" data-line-number="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb89-8" data-line-number="8"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb89-9" data-line-number="9"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)</a>
+<a class="sourceLine" id="cb89-10" data-line-number="10">pre_plot</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Como vemos, los predichos están alineados perfectamente en la regresión. Podemos agregar los residuos de la siguiente forma:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pre_plot <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),
-               <span class="dt">alpha=</span><span class="fl">0.5</span>)</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>Lo que nuestra regresión está realizando es minimizar la suma de los residuos al cuadrado (ver Ecuación <a href="modelos-lineales.html#eq:residuo2">(5.7)</a>). Una herramienta para visualizar mejor los puntos con residuos grandes es graficarlos utilizando una escala de color y tamaño.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
-<span class="st">  </span><span class="co">#Agregamos opción de color dentro del geom_point()</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> residuos, <span class="dt">size=</span><span class="kw">abs</span>(residuos)))<span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),
-               <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_base</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="co"># Agregamos color segun los residuos</span>
-<span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))<span class="op">+</span>
-<span class="st">  </span><span class="co"># Sacamos la leyenda</span>
-<span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>,
-         <span class="dt">size =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">pre_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3">               <span class="dt">alpha=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-21-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Lo que nuestra regresión está realizando es minimizar la suma de los residuos al cuadrado (ver Ecuación <a href="modelos-lineales.html#eq:residuo2">(7.7)</a>). Una herramienta para visualizar mejor los puntos con residuos grandes es graficarlos utilizando una escala de color y tamaño.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="st">  </span><span class="co">#Agregamos opción de color dentro del geom_point()</span></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> residuos, <span class="dt">size=</span><span class="kw">abs</span>(residuos)))<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),</a>
+<a class="sourceLine" id="cb91-6" data-line-number="6">               <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_base</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb91-10" data-line-number="10"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="st">  </span><span class="co"># Agregamos color segun los residuos</span></a>
+<a class="sourceLine" id="cb91-12" data-line-number="12"><span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb91-13" data-line-number="13"><span class="st">  </span><span class="co"># Sacamos la leyenda</span></a>
+<a class="sourceLine" id="cb91-14" data-line-number="14"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb91-15" data-line-number="15">         <span class="dt">size =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/unnamed-chunk-22-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="descomponiendo-variabilidad" class="section level2">
-<h2><span class="header-section-number">5.9</span> Descomponiendo variabilidad</h2>
+<h2><span class="header-section-number">7.9</span> Descomponiendo variabilidad</h2>
 <p>Existen distintas fuentes de variabilidad. La variabilidad total en nuestro modelo viene dada por la diferencia entre los datos observados y la media general (<span class="math inline">\(y_i - \bar{y}\)</span>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Creamos un grafico base al que agregaremos varias capas</span>
-grafico_base &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta))<span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_base</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)<span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span>
-<span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;media global&quot;</span>,
-             <span class="dt">x =</span> <span class="dv">30</span>, <span class="dt">y =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta) <span class="op">+</span><span class="st"> </span><span class="dv">15</span>,
-             <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)
-
-<span class="co"># Variacion respecto de la media global</span>
-variacion_total &lt;-<span class="st"> </span>grafico_base <span class="op">+</span>
-<span class="st">      </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>nueva_dosis,
-                       <span class="dt">yend=</span><span class="kw">mean</span>(datos<span class="op">$</span>respuesta)),
-                       <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación total&quot;</span>)
-
-<span class="co"># Graficar</span>
-variacion_total</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/variacion-total-1.png" width="672" /></p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="co"># Creamos un grafico base al que agregaremos varias capas</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">grafico_base &lt;-<span class="st"> </span><span class="kw">ggplot</span>(datos, <span class="kw">aes</span>(nueva_dosis, respuesta))<span class="op">+</span></a>
+<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta))<span class="op">+</span></a>
+<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb92-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_base</span>(<span class="dt">base_size =</span> <span class="dv">12</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb92-6" data-line-number="6"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb92-7" data-line-number="7"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Dosis Chocolate (gr)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb92-8" data-line-number="8"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Felicidad&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb92-9" data-line-number="9"><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;media global&quot;</span>,</a>
+<a class="sourceLine" id="cb92-10" data-line-number="10">             <span class="dt">x =</span> <span class="dv">30</span>, <span class="dt">y =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta) <span class="op">+</span><span class="st"> </span><span class="dv">15</span>,</a>
+<a class="sourceLine" id="cb92-11" data-line-number="11">             <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)</a>
+<a class="sourceLine" id="cb92-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb92-13" data-line-number="13"><span class="co"># Variacion respecto de la media global</span></a>
+<a class="sourceLine" id="cb92-14" data-line-number="14">variacion_total &lt;-<span class="st"> </span>grafico_base <span class="op">+</span></a>
+<a class="sourceLine" id="cb92-15" data-line-number="15"><span class="st">      </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span>nueva_dosis,</a>
+<a class="sourceLine" id="cb92-16" data-line-number="16">                       <span class="dt">yend=</span><span class="kw">mean</span>(datos<span class="op">$</span>respuesta)),</a>
+<a class="sourceLine" id="cb92-17" data-line-number="17">                       <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb92-18" data-line-number="18"><span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación total&quot;</span>)</a>
+<a class="sourceLine" id="cb92-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb92-20" data-line-number="20"><span class="co"># Graficar</span></a>
+<a class="sourceLine" id="cb92-21" data-line-number="21">variacion_total</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/variacion-total-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Debido a que las predictoras tienen un efecto en los valores predichos, nuestro modelo logra efectivamente explicar una porción de la variabilidad total. Esta porción es la distancia entre la media y los valores predichos (<span class="math inline">\(\hat{y} - \bar{y}\)</span>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Variacion explicada</span>
-variacion_explicada &lt;-<span class="st"> </span>grafico_base<span class="op">+</span>
-<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">y =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta),
-                   <span class="dt">yend =</span> nuevo_pred), <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación explicada&quot;</span>)  
-<span class="co">#Graicar</span>
-variacion_explicada</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/variacion-explicada-1.png" width="672" /></p>
-<p>Sin embargo, muchos puntos tienen un valor observado distinto al valor predicho (residuos ver Ecuación <a href="modelos-lineales.html#eq:residuo1">(5.6)</a>). Decimos que es variación <em>no explicada</em> porque porque nuestro modelo predice distinto a lo observado, es decir, la variación en nuestras predictoras no puede explicar la diferencia observada.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Variacion no explicada por el modelo</span>
-variacion_no_explicada &lt;-<span class="st"> </span>grafico_base <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),
-               <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación no explicada&quot;</span>)  
-<span class="co"># Graficar    </span>
-variacion_no_explicada</code></pre></div>
-<p><img src="05-Modelos_Lineales_files/figure-html/variacion-no-explicada-1.png" width="672" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co"># Variacion explicada</span></a>
+<a class="sourceLine" id="cb93-2" data-line-number="2">variacion_explicada &lt;-<span class="st"> </span>grafico_base<span class="op">+</span></a>
+<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb93-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb93-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">y =</span> <span class="kw">mean</span>(datos<span class="op">$</span>respuesta),</a>
+<a class="sourceLine" id="cb93-6" data-line-number="6">                   <span class="dt">yend =</span> nuevo_pred), <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb93-7" data-line-number="7"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación explicada&quot;</span>)  </a>
+<a class="sourceLine" id="cb93-8" data-line-number="8"><span class="co">#Graicar</span></a>
+<a class="sourceLine" id="cb93-9" data-line-number="9">variacion_explicada</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/variacion-explicada-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Sin embargo, muchos puntos tienen un valor observado distinto al valor predicho (residuos ver Ecuación <a href="modelos-lineales.html#eq:residuo1">(7.6)</a>). Decimos que es variación <em>no explicada</em> porque porque nuestro modelo predice distinto a lo observado, es decir, la variación en nuestras predictoras no puede explicar la diferencia observada.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co"># Variacion no explicada por el modelo</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">variacion_no_explicada &lt;-<span class="st"> </span>grafico_base <span class="op">+</span></a>
+<a class="sourceLine" id="cb94-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;lightgray&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb94-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(nueva_dosis, nuevo_pred), <span class="dt">color=</span><span class="st">&quot;gray50&quot;</span>, <span class="dt">pch=</span><span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb94-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> nueva_dosis, <span class="dt">yend =</span> nuevo_pred),</a>
+<a class="sourceLine" id="cb94-6" data-line-number="6">               <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb94-7" data-line-number="7"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Variación no explicada&quot;</span>)  </a>
+<a class="sourceLine" id="cb94-8" data-line-number="8"><span class="co"># Graficar    </span></a>
+<a class="sourceLine" id="cb94-9" data-line-number="9">variacion_no_explicada</a></code></pre></div>
+<p><img src="06-Modelos_Lineales_files/figure-html/variacion-no-explicada-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Idealmente, queremos que la fracción de variabilidad explicada sea grande, cercana a la total. Esta información normalmente se condensa en el llamado <em>coeficiente de determinación</em> (<span class="math inline">\(R^2\)</span>). Formalmente, podemos construir este coeficiente a partir de la suma de cuadrados explicada y total, aunque es más sencillo calcularlo a partir de su complemento:</p>
-<span class="math display" id="eq:r-squared">\[\begin{equation}
+<p><span class="math display" id="eq:r-squared">\[\begin{equation}
 R^2 = \frac{SC_{exp}}{SC_{total}} = 1 - \frac{\Sigma(y_i - \hat{y_i})^2}{\Sigma (y_i - \bar{y})^2}
-  \tag{5.10}
-\end{equation}\]</span>
+  \tag{7.10}
+\end{equation}\]</span></p>
 <p><span class="math inline">\(R^2\)</span> toma valores entre 0 y 1, con 1 como máximo valor predictivo. Una consecuencia de cómo está definido este coeficiente es que, al agregar variables a nuestros modelos, siempre incrementaremos el <span class="math inline">\(R^2\)</span>. Por eso es siempre conveniente utilizar el <span class="math inline">\(R^2\)</span> ajustado según el número de predictoras. Afortunadamente, todos los softwares estadísticos ajustan el coeficiente automáticamente.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Podemos acceder al R^2 con</span>
-<span class="kw">summary</span>(modelo_chocolate)<span class="op">$</span>r.squared</code></pre></div>
-<pre><code>## [1] 0.9953145</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="co"># Podemos acceder al R^2 con</span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="kw">summary</span>(modelo_chocolate)<span class="op">$</span>r.squared</a></code></pre></div>
+<pre><code>[1] 0.9953145</code></pre>
 <blockquote>
 <p>Ejercicio: calcular el modelo lineal para el cuarteto de anscombe con R^2</p>
 </blockquote>
 </div>
 <div id="por-que-hacer-una-regresion" class="section level2">
-<h2><span class="header-section-number">5.10</span> ¿Por qué hacer una regresión?</h2>
+<h2><span class="header-section-number">7.10</span> ¿Por qué hacer una regresión?</h2>
 <p>Los objetivos de realizar un análisis de regresión pueden resumirse en:</p>
 <ol style="list-style-type: decimal">
-<li>Describir la relación funcional entre X e Y (rectilínea, polinomial, cuadrática, …)</li>
-<li>Determinar cuánta de la variación en Y puede ser explicada por la variación de X y cuánto permanece sin explicar.</li>
+<li>Describir la relación funcional entre X e Y (rectilínea, polinomial,
+cuadrática, …)</li>
+<li>Determinar cuánta de la variación en Y puede ser explicada por
+la variación de X y cuánto permanece sin explicar.</li>
 <li>Estimar los parámetros del modelo.</li>
-<li>Hacer inferencia sobre los parámetros del modelo (mediante pruebas de hipótesis y cálculo de intervalos de confianza).</li>
-<li>Predecir nuevos valores de Y para valores específicos de X en el dominio estudiado (interpolación dentro del rango de la(s) variable(s) predictora(s)).</li>
+<li>Hacer inferencia sobre los parámetros del modelo (mediante pruebas de
+hipótesis y cálculo de intervalos de confianza).</li>
+<li>Predecir nuevos valores de Y para valores específicos de X en
+el dominio estudiado (interpolación dentro del rango de la(s) variable(s) predictora(s)).</li>
 </ol>
 </div>
 <div id="resumen-2" class="section level2">
-<h2><span class="header-section-number">5.11</span> Resumen</h2>
+<h2><span class="header-section-number">7.11</span> Resumen</h2>
 <ul>
 <li>Los modelos lineales se escriben como combinación lineal de estimadores y predictoras.<br />
 </li>
@@ -653,87 +708,87 @@ R^2 = \frac{SC_{exp}}{SC_{total}} = 1 - \frac{\Sigma(y_i - \hat{y_i})^2}{\Sigma 
 </ul>
 </div>
 <div id="recursos-2" class="section level2">
-<h2><span class="header-section-number">5.12</span> Recursos</h2>
+<h2><span class="header-section-number">7.12</span> Recursos</h2>
 <ul>
 <li>Un gran ejemplo para visualizar residuos <a href="https://drsimonj.svbtle.com/visualising-residuals">aquí</a></li>
 <li>Una función que utiliza ggplot para crear gráficos de diagnóstico de modelos <a href="https://rpubs.com/therimalaya/43190">aquí</a></li>
 </ul>
 </div>
 <div id="respuestas-1" class="section level2">
-<h2><span class="header-section-number">5.13</span> Respuestas</h2>
+<h2><span class="header-section-number">7.13</span> Respuestas</h2>
 <p>Para calcular la regresión en el cuarteto de Anscombe podemos realizar lo siguiente.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calcular los modelos</span>
-m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y1<span class="op">~</span>x1)
-m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y2<span class="op">~</span>x2)
-m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y3<span class="op">~</span>x3)
-m4 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y4<span class="op">~</span>x4)
-<span class="co"># Ponerlos en una lista</span>
-lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">m1=</span>m1, <span class="dt">m2=</span>m2, <span class="dt">m3=</span>m3, <span class="dt">m4=</span>m4)</code></pre></div>
-<p>Utilizando el paquete <code>broom</code> en conjunto con las funciones <code>lapply</code> y <code>bind_rows</code> podemos obtener resultados de todos los modelos juntos. Vemos que el ajuste de todos los modelos es idéntico (no debería sorprendernos si recordamos <a href="modelos-lineales.html#fig:anscombe">5.1</a>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Obtener datos del ajuste</span>
-<span class="kw">bind_rows</span>(<span class="kw">lapply</span>(lista, <span class="cf">function</span>(x) broom<span class="op">::</span><span class="kw">tidy</span>(x)), <span class="dt">.id =</span> <span class="st">&#39;modelo&#39;</span>)</code></pre></div>
-<pre><code>## # A tibble: 8 x 6
-##   modelo term        estimate std.error statistic p.value
-##   &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 m1     (Intercept)    3.00      1.12       2.67 0.0257 
-## 2 m1     x1             0.500     0.118      4.24 0.00217
-## 3 m2     (Intercept)    3.00      1.13       2.67 0.0258 
-## 4 m2     x2             0.500     0.118      4.24 0.00218
-## 5 m3     (Intercept)    3.00      1.12       2.67 0.0256 
-## 6 m3     x3             0.500     0.118      4.24 0.00218
-## 7 m4     (Intercept)    3.00      1.12       2.67 0.0256 
-## 8 m4     x4             0.500     0.118      4.24 0.00216</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="co"># Calcular los modelos</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y1<span class="op">~</span>x1)</a>
+<a class="sourceLine" id="cb97-3" data-line-number="3">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y2<span class="op">~</span>x2)</a>
+<a class="sourceLine" id="cb97-4" data-line-number="4">m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y3<span class="op">~</span>x3)</a>
+<a class="sourceLine" id="cb97-5" data-line-number="5">m4 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> anscombe, y4<span class="op">~</span>x4)</a>
+<a class="sourceLine" id="cb97-6" data-line-number="6"><span class="co"># Ponerlos en una lista</span></a>
+<a class="sourceLine" id="cb97-7" data-line-number="7">lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">m1=</span>m1, <span class="dt">m2=</span>m2, <span class="dt">m3=</span>m3, <span class="dt">m4=</span>m4)</a></code></pre></div>
+<p>Utilizando el paquete <code>broom</code> en conjunto con las funciones <code>lapply</code> y <code>bind_rows</code> podemos obtener resultados de todos los modelos juntos. Vemos que el ajuste de todos los modelos es idéntico (no debería sorprendernos si recordamos <a href="modelos-lineales.html#fig:anscombe">7.1</a>).</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="co"># Obtener datos del ajuste</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="kw">bind_rows</span>(<span class="kw">lapply</span>(lista, <span class="cf">function</span>(x) broom<span class="op">::</span><span class="kw">tidy</span>(x)), <span class="dt">.id =</span> <span class="st">&#39;modelo&#39;</span>)</a></code></pre></div>
+<pre><code># A tibble: 8 x 6
+  modelo term        estimate std.error statistic p.value
+  &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 m1     (Intercept)    3.00      1.12       2.67 0.0257 
+2 m1     x1             0.500     0.118      4.24 0.00217
+3 m2     (Intercept)    3.00      1.13       2.67 0.0258 
+4 m2     x2             0.500     0.118      4.24 0.00218
+5 m3     (Intercept)    3.00      1.12       2.67 0.0256 
+6 m3     x3             0.500     0.118      4.24 0.00218
+7 m4     (Intercept)    3.00      1.12       2.67 0.0256 
+8 m4     x4             0.500     0.118      4.24 0.00216</code></pre>
 <p>Podemos obtener muchas medidas de ajuste con una estrategia similar (utilizando <code>glance</code>). En este caso, seleccionamos(con <code>select</code>) las columnas que contienen el <span class="math inline">\(R^2\)</span>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_lista &lt;-<span class="st"> </span><span class="kw">lapply</span>(lista, <span class="cf">function</span>(x) broom<span class="op">::</span><span class="kw">glance</span>(x))
-<span class="co"># Obtener el R</span>
-r_lista <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(<span class="dt">.id=</span> <span class="st">&#39;modelo&#39;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(modelo, r.squared, adj.r.squared)</code></pre></div>
-<pre><code>## # A tibble: 4 x 3
-##   modelo r.squared adj.r.squared
-##   &lt;chr&gt;      &lt;dbl&gt;         &lt;dbl&gt;
-## 1 m1         0.667         0.629
-## 2 m2         0.666         0.629
-## 3 m3         0.666         0.629
-## 4 m4         0.667         0.630</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">r_lista &lt;-<span class="st"> </span><span class="kw">lapply</span>(lista, <span class="cf">function</span>(x) broom<span class="op">::</span><span class="kw">glance</span>(x))</a>
+<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="co"># Obtener el R</span></a>
+<a class="sourceLine" id="cb100-3" data-line-number="3">r_lista <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_rows</span>(<span class="dt">.id=</span> <span class="st">&#39;modelo&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(modelo, r.squared, adj.r.squared)</a></code></pre></div>
+<pre><code># A tibble: 4 x 3
+  modelo r.squared adj.r.squared
+  &lt;chr&gt;      &lt;dbl&gt;         &lt;dbl&gt;
+1 m1         0.667         0.629
+2 m2         0.666         0.629
+3 m3         0.666         0.629
+4 m4         0.667         0.630</code></pre>
 <p>Vemos que el <span class="math inline">\(R^2\)</span> también es idéntico. Aprovecho para repetir el mensaje: <strong>Siempre es necesario graficar los datos!</strong></p>
 </div>
 <div id="anexo-1" class="section level2 unnumbered">
 <h2>Anexo</h2>
-<p>La función utilizada para realizar múltiples gráficos en <a href="modelos-lineales.html#fig:anscombe">5.1</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Graficando con ggplot y gridExtra</span>
-<span class="co"># Vamos a hacer 4 ggplots y ponerlos todos juntos con gridExtra</span>
-<span class="co"># Esta función puede ser útil para acortar los llamados de cada gráfico</span>
-
-my_plot &lt;-<span class="st"> </span><span class="cf">function</span>(dataset, x_data, y_data, dataset_name){
-  
-  x_data &lt;-<span class="st"> </span><span class="kw">enquo</span>(x_data)
-  y_data &lt;-<span class="st"> </span><span class="kw">enquo</span>(y_data)
-  dataset_name &lt;-<span class="st"> </span><span class="kw">enquo</span>(dataset_name)
-  
-  plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset,
-                  <span class="kw">aes</span>(<span class="op">!!</span>x_data, <span class="op">!!</span>y_data),
-                  <span class="dt">environment =</span> <span class="kw">environment</span>())<span class="op">+</span>
-<span class="st">           </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&#39;black&#39;</span>,<span class="dt">size=</span><span class="dv">3</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>)<span class="op">+</span>
-<span class="st">           </span><span class="kw">theme_base</span>()<span class="op">+</span>
-<span class="st">           </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span>
-<span class="st">           </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">2</span>))<span class="op">+</span>
-<span class="st">           </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">2</span>))<span class="op">+</span>
-<span class="st">           </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">3</span>,
-                       <span class="dt">slope =</span> <span class="fl">0.5</span>,
-                       <span class="dt">color =</span> <span class="st">&quot;cornflowerblue&quot;</span>)<span class="op">+</span>
-<span class="st">           </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">           </span><span class="kw">labs</span>(<span class="dt">title =</span> dataset_name)  
-}</code></pre></div>
+<p>La función utilizada para realizar múltiples gráficos en <a href="modelos-lineales.html#fig:anscombe">7.1</a></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="co"># Graficando con ggplot y gridExtra</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="co"># Vamos a hacer 4 ggplots y ponerlos todos juntos con gridExtra</span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="co"># Esta función puede ser útil para acortar los llamados de cada gráfico</span></a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb102-5" data-line-number="5">my_plot &lt;-<span class="st"> </span><span class="cf">function</span>(dataset, x_data, y_data, dataset_name){</a>
+<a class="sourceLine" id="cb102-6" data-line-number="6">  </a>
+<a class="sourceLine" id="cb102-7" data-line-number="7">  x_data &lt;-<span class="st"> </span><span class="kw">enquo</span>(x_data)</a>
+<a class="sourceLine" id="cb102-8" data-line-number="8">  y_data &lt;-<span class="st"> </span><span class="kw">enquo</span>(y_data)</a>
+<a class="sourceLine" id="cb102-9" data-line-number="9">  dataset_name &lt;-<span class="st"> </span><span class="kw">enquo</span>(dataset_name)</a>
+<a class="sourceLine" id="cb102-10" data-line-number="10">  </a>
+<a class="sourceLine" id="cb102-11" data-line-number="11">  plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dataset,</a>
+<a class="sourceLine" id="cb102-12" data-line-number="12">                  <span class="kw">aes</span>(<span class="op">!!</span>x_data, <span class="op">!!</span>y_data),</a>
+<a class="sourceLine" id="cb102-13" data-line-number="13">                  <span class="dt">environment =</span> <span class="kw">environment</span>())<span class="op">+</span></a>
+<a class="sourceLine" id="cb102-14" data-line-number="14"><span class="st">           </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&#39;black&#39;</span>,<span class="dt">size=</span><span class="dv">3</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb102-15" data-line-number="15"><span class="st">           </span><span class="kw">theme_base</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb102-16" data-line-number="16"><span class="st">           </span><span class="kw">theme</span>(<span class="dt">plot.background =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="ot">NA</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb102-17" data-line-number="17"><span class="st">           </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">2</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb102-18" data-line-number="18"><span class="st">           </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">2</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb102-19" data-line-number="19"><span class="st">           </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb102-20" data-line-number="20">                       <span class="dt">slope =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb102-21" data-line-number="21">                       <span class="dt">color =</span> <span class="st">&quot;cornflowerblue&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb102-22" data-line-number="22"><span class="st">           </span><span class="kw">expand_limits</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-23" data-line-number="23"><span class="st">           </span><span class="kw">labs</span>(<span class="dt">title =</span> dataset_name)  </a>
+<a class="sourceLine" id="cb102-24" data-line-number="24">}</a></code></pre></div>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="9">
-<li id="fn9"><p>Más información en la cinética enzimática <a href="https://es.wikipedia.org/wiki/Cin%C3%A9tica_de_Michaelis-Menten">aquí</a>.<a href="modelos-lineales.html#fnref9">↩</a></p></li>
-<li id="fn10"><p>Si no puedes localizar la tilde en tu teclado, prueba <code>ALT+126</code><a href="modelos-lineales.html#fnref10">↩</a></p></li>
-<li id="fn11"><p>La función utilizada para graficar fue construida con <code>ggplot2</code> para ahorrar trabajo, para verla ir al Anexo al final del capítulo.<a href="modelos-lineales.html#fnref11">↩</a></p></li>
-<li id="fn12"><p>Cuando creamos el modelo, explícitamente definimos variación en <span class="math inline">\(y\)</span> con la función <code>rnorm()</code>, con media 0 y sd constante. Para comprobar que el supuesto se cumple, puedes correr <code>mean(modelo_chocolate$residuals)</code> que dará como resultado un número muy pequeño, empíricamente cero. Además del qqplot, existen pruebas analíticas para normalidad: <code>shapiro.test(datos$residuos)</code> nos da un p&gt;0.05, que indica que no tenemos evidencias para decir que los residuos no siguen una distribución normal.<a href="modelos-lineales.html#fnref12">↩</a></p></li>
+<ol start="10">
+<li id="fn10"><p>Más información en la cinética enzimática <a href="https://es.wikipedia.org/wiki/Cin%C3%A9tica_de_Michaelis-Menten">aquí</a>.<a href="modelos-lineales.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>Si no puedes localizar la tilde en tu teclado, prueba <code>ALT+126</code><a href="modelos-lineales.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>La función utilizada para graficar fue construida con <code>ggplot2</code> para ahorrar trabajo, para verla ir al Anexo al final del capítulo.<a href="modelos-lineales.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>Cuando creamos el modelo, explícitamente definimos variación en <span class="math inline">\(y\)</span> con la función <code>rnorm()</code>, con media 0 y sd constante. Para comprobar que el supuesto se cumple, puedes correr <code>mean(modelo_chocolate$residuals)</code> que dará como resultado un número muy pequeño, empíricamente cero. Además del qqplot, existen pruebas analíticas para normalidad: <code>shapiro.test(datos$residuos)</code> nos da un p&gt;0.05, que indica que no tenemos evidencias para decir que los residuos no siguen una distribución normal.<a href="modelos-lineales.html#fnref13" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -741,8 +796,8 @@ my_plot &lt;-<span class="st"> </span><span class="cf">function</span>(dataset, 
           </div>
         </div>
       </div>
-<a href="exploracion-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="comunicacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="distribuciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estadistica-espacial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -788,7 +843,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

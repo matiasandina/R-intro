@@ -25,7 +25,7 @@
 <meta name="author" content="Matias Andina">
 
 
-<meta name="date" content="2018-08-08">
+<meta name="date" content="2018-09-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="leer-datos.html">
-<link rel="next" href="modelos-lineales.html">
+<link rel="next" href="anexo.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -47,44 +47,81 @@
 
 
 
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.1/leaflet-providers-plugin.js"></script>
+<script src="libs/Leaflet.Sync-0.0.5/L.Map.Sync.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -158,62 +195,75 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#recursos-1"><i class="fa fa-check"></i><b>4.5</b> Recursos</a></li>
 <li class="chapter" data-level="4.6" data-path="exploracion-de-datos.html"><a href="exploracion-de-datos.html#respuestas"><i class="fa fa-check"></i><b>4.6</b> Respuestas</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>5</b> Modelos Lineales</a><ul>
-<li class="chapter" data-level="5.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>5.1</b> ¿Qué es un modelo lineal?</a></li>
-<li class="chapter" data-level="5.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>5.2</b> Modelos estadísticos</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>5.2.1</b> Simulando datos en R</a></li>
+<li class="chapter" data-level="5" data-path="introduccion.html"><a href="introduccion.html#anexo"><i class="fa fa-check"></i><b>5</b> Anexo {-}</a></li>
+<li class="chapter" data-level="6" data-path="distribuciones.html"><a href="distribuciones.html"><i class="fa fa-check"></i><b>6</b> Distribuciones</a></li>
+<li class="chapter" data-level="7" data-path="modelos-lineales.html"><a href="modelos-lineales.html"><i class="fa fa-check"></i><b>7</b> Modelos Lineales</a><ul>
+<li class="chapter" data-level="7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#que-es-un-modelo-lineal"><i class="fa fa-check"></i><b>7.1</b> ¿Qué es un modelo lineal?</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelos-estadisticos"><i class="fa fa-check"></i><b>7.2</b> Modelos estadísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#simulando-datos-en-r"><i class="fa fa-check"></i><b>7.2.1</b> Simulando datos en R</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>5.3</b> Esperanza</a></li>
-<li class="chapter" data-level="5.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>5.4</b> Estimación del modelo</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>5.4.1</b> Entendiendo la estimación con gráficos</a></li>
+<li class="chapter" data-level="7.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#esperanza"><i class="fa fa-check"></i><b>7.3</b> Esperanza</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#estimacion-del-modelo"><i class="fa fa-check"></i><b>7.4</b> Estimación del modelo</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#entendiendo-la-estimacion-con-graficos"><i class="fa fa-check"></i><b>7.4.1</b> Entendiendo la estimación con gráficos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>5.5</b> Modelo en R</a></li>
-<li class="chapter" data-level="5.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>5.6</b> Supuestos</a><ul>
-<li class="chapter" data-level="5.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>5.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
-<li class="chapter" data-level="5.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>5.6.2</b> Independencia</a></li>
-<li class="chapter" data-level="5.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>5.6.3</b> Homocedasticidad.</a></li>
-<li class="chapter" data-level="5.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>5.6.4</b> Normalidad de residuos</a></li>
+<li class="chapter" data-level="7.5" data-path="modelos-lineales.html"><a href="modelos-lineales.html#modelo-en-r"><i class="fa fa-check"></i><b>7.5</b> Modelo en R</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-lineales.html"><a href="modelos-lineales.html#supuestos"><i class="fa fa-check"></i><b>7.6</b> Supuestos</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#error-en-x"><i class="fa fa-check"></i><b>7.6.1</b> Error en <span class="math inline">\(x\)</span></a></li>
+<li class="chapter" data-level="7.6.2" data-path="modelos-lineales.html"><a href="modelos-lineales.html#independencia"><i class="fa fa-check"></i><b>7.6.2</b> Independencia</a></li>
+<li class="chapter" data-level="7.6.3" data-path="modelos-lineales.html"><a href="modelos-lineales.html#homocedasticidad."><i class="fa fa-check"></i><b>7.6.3</b> Homocedasticidad.</a></li>
+<li class="chapter" data-level="7.6.4" data-path="modelos-lineales.html"><a href="modelos-lineales.html#normalidad-de-residuos"><i class="fa fa-check"></i><b>7.6.4</b> Normalidad de residuos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>5.7</b> Análisis de supuestos en R</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>5.7.1</b> Cuando los residuos no son normales</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-lineales.html"><a href="modelos-lineales.html#analisis-de-supuestos-en-r"><i class="fa fa-check"></i><b>7.7</b> Análisis de supuestos en R</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="modelos-lineales.html"><a href="modelos-lineales.html#cuando-los-residuos-no-son-normales"><i class="fa fa-check"></i><b>7.7.1</b> Cuando los residuos no son normales</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>5.8</b> Visualizando residuos en R</a></li>
-<li class="chapter" data-level="5.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>5.9</b> Descomponiendo variabilidad</a></li>
-<li class="chapter" data-level="5.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>5.10</b> ¿Por qué hacer una regresión?</a></li>
-<li class="chapter" data-level="5.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>5.11</b> Resumen</a></li>
-<li class="chapter" data-level="5.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>5.12</b> Recursos</a></li>
-<li class="chapter" data-level="5.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>5.13</b> Respuestas</a></li>
+<li class="chapter" data-level="7.8" data-path="modelos-lineales.html"><a href="modelos-lineales.html#visualizando-residuos-en-r"><i class="fa fa-check"></i><b>7.8</b> Visualizando residuos en R</a></li>
+<li class="chapter" data-level="7.9" data-path="modelos-lineales.html"><a href="modelos-lineales.html#descomponiendo-variabilidad"><i class="fa fa-check"></i><b>7.9</b> Descomponiendo variabilidad</a></li>
+<li class="chapter" data-level="7.10" data-path="modelos-lineales.html"><a href="modelos-lineales.html#por-que-hacer-una-regresion"><i class="fa fa-check"></i><b>7.10</b> ¿Por qué hacer una regresión?</a></li>
+<li class="chapter" data-level="7.11" data-path="modelos-lineales.html"><a href="modelos-lineales.html#resumen-2"><i class="fa fa-check"></i><b>7.11</b> Resumen</a></li>
+<li class="chapter" data-level="7.12" data-path="modelos-lineales.html"><a href="modelos-lineales.html#recursos-2"><i class="fa fa-check"></i><b>7.12</b> Recursos</a></li>
+<li class="chapter" data-level="7.13" data-path="modelos-lineales.html"><a href="modelos-lineales.html#respuestas-1"><i class="fa fa-check"></i><b>7.13</b> Respuestas</a></li>
 <li class="chapter" data-level="" data-path="modelos-lineales.html"><a href="modelos-lineales.html#anexo-1"><i class="fa fa-check"></i>Anexo</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>6</b> Comunicación</a><ul>
-<li class="chapter" data-level="6.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>6.1</b> Ciencia reproducible</a></li>
-<li class="chapter" data-level="6.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>6.2</b> Gráficos</a></li>
-<li class="chapter" data-level="6.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>6.3</b> RMarkdown</a></li>
-<li class="chapter" data-level="6.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>6.4</b> Texto</a></li>
-<li class="chapter" data-level="6.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>6.5</b> Separando líneas y párrafos</a></li>
-<li class="chapter" data-level="6.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>6.6</b> Trozos de código</a></li>
-<li class="chapter" data-level="6.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>6.7</b> Links e imágenes</a></li>
-<li class="chapter" data-level="6.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>6.8</b> Encabezado</a></li>
-<li class="chapter" data-level="6.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>6.9</b> Knit</a></li>
-<li class="chapter" data-level="6.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>6.10</b> Otros proyectos con RStudio</a></li>
-<li class="chapter" data-level="6.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>6.11</b> Notas</a></li>
-<li class="chapter" data-level="6.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-3"><i class="fa fa-check"></i><b>6.12</b> Recursos</a></li>
+<li class="chapter" data-level="8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>8</b> Estadística Espacial</a><ul>
+<li class="chapter" data-level="8.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>8.1</b> Paquetes Geo-R</a></li>
+<li class="chapter" data-level="8.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#instalar-paquetes-geo-r"><i class="fa fa-check"></i><b>8.2</b> Instalar paquetes GEO-R</a></li>
+<li class="chapter" data-level="8.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>8.3</b> Trabajando con datos espaciales</a></li>
+<li class="chapter" data-level="8.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topologia-geoespacial"><i class="fa fa-check"></i><b>8.4</b> Topología geoespacial</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#dataset-xy"><i class="fa fa-check"></i><b>8.4.1</b> Dataset xy</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html"><i class="fa fa-check"></i><b>7</b> Estadística Espacial</a><ul>
-<li class="chapter" data-level="7.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo-r"><i class="fa fa-check"></i><b>7.1</b> Paquetes Geo-R</a></li>
-<li class="chapter" data-level="7.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#paquetes-geo"><i class="fa fa-check"></i><b>7.2</b> Paquetes GEO</a></li>
-<li class="chapter" data-level="7.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#trabajando-con-datos-espaciales"><i class="fa fa-check"></i><b>7.3</b> Trabajando con datos espaciales</a></li>
-<li class="chapter" data-level="7.4" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#topological-relations"><i class="fa fa-check"></i><b>7.4</b> topological-relations</a></li>
-<li class="chapter" data-level="7.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>7.5</b> Nueva Zelanda</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>7.5.1</b> Cambiando colores con <code>style</code></a></li>
+<li class="chapter" data-level="8.5" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#nueva-zelanda"><i class="fa fa-check"></i><b>8.5</b> Nueva Zelanda</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-base"><i class="fa fa-check"></i><b>8.5.1</b> R-Geo con Base</a></li>
+<li class="chapter" data-level="8.5.2" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#r-geo-con-tmap"><i class="fa fa-check"></i><b>8.5.2</b> R-Geo con tmap</a></li>
+<li class="chapter" data-level="8.5.3" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#cambiando-colores-con-style"><i class="fa fa-check"></i><b>8.5.3</b> Cambiando colores con <code>style</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>7.6</b> Proyecciones</a></li>
-<li class="chapter" data-level="7.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>7.7</b> Mapas animados</a></li>
-<li class="chapter" data-level="7.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>7.8</b> Mapas interactivos</a></li>
-<li class="chapter" data-level="7.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>7.9</b> Resumen</a></li>
-<li class="chapter" data-level="7.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-4"><i class="fa fa-check"></i><b>7.10</b> Recursos</a></li>
-<li class="chapter" data-level="7.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>7.11</b> Respuestas</a></li>
-<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-2"><i class="fa fa-check"></i>Anexo</a></li>
+<li class="chapter" data-level="8.6" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#proyecciones"><i class="fa fa-check"></i><b>8.6</b> Proyecciones</a></li>
+<li class="chapter" data-level="8.7" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-con-facets"><i class="fa fa-check"></i><b>8.7</b> Mapas con <code>facets</code></a></li>
+<li class="chapter" data-level="8.8" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-animados"><i class="fa fa-check"></i><b>8.8</b> Mapas animados</a></li>
+<li class="chapter" data-level="8.9" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#mapas-interactivos"><i class="fa fa-check"></i><b>8.9</b> Mapas interactivos</a></li>
+<li class="chapter" data-level="8.10" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#resumen-3"><i class="fa fa-check"></i><b>8.10</b> Resumen</a></li>
+<li class="chapter" data-level="8.11" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#recursos-3"><i class="fa fa-check"></i><b>8.11</b> Recursos</a></li>
+<li class="chapter" data-level="8.12" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#respuestas-2"><i class="fa fa-check"></i><b>8.12</b> Respuestas</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-a"><i class="fa fa-check"></i>Anexo A</a></li>
+<li class="chapter" data-level="" data-path="estadistica-espacial.html"><a href="estadistica-espacial.html#anexo-b"><i class="fa fa-check"></i>Anexo B</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="comunicacion.html"><a href="comunicacion.html"><i class="fa fa-check"></i><b>9</b> Comunicación</a><ul>
+<li class="chapter" data-level="9.1" data-path="comunicacion.html"><a href="comunicacion.html#ciencia-reproducible"><i class="fa fa-check"></i><b>9.1</b> Ciencia reproducible</a></li>
+<li class="chapter" data-level="9.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos"><i class="fa fa-check"></i><b>9.2</b> Gráficos</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="comunicacion.html"><a href="comunicacion.html#waffle-plots"><i class="fa fa-check"></i><b>9.2.1</b> Waffle plots</a></li>
+<li class="chapter" data-level="9.2.2" data-path="comunicacion.html"><a href="comunicacion.html#graficos-de-barras"><i class="fa fa-check"></i><b>9.2.2</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="9.2.3" data-path="comunicacion.html"><a href="comunicacion.html#explorando-gradientes"><i class="fa fa-check"></i><b>9.2.3</b> Explorando gradientes</a></li>
+<li class="chapter" data-level="9.2.4" data-path="comunicacion.html"><a href="comunicacion.html#mapas"><i class="fa fa-check"></i><b>9.2.4</b> Mapas</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="comunicacion.html"><a href="comunicacion.html#rmarkdown"><i class="fa fa-check"></i><b>9.3</b> RMarkdown</a></li>
+<li class="chapter" data-level="9.4" data-path="comunicacion.html"><a href="comunicacion.html#texto"><i class="fa fa-check"></i><b>9.4</b> Texto</a></li>
+<li class="chapter" data-level="9.5" data-path="comunicacion.html"><a href="comunicacion.html#separando-lineas-y-parrafos"><i class="fa fa-check"></i><b>9.5</b> Separando líneas y párrafos</a></li>
+<li class="chapter" data-level="9.6" data-path="comunicacion.html"><a href="comunicacion.html#trozos-de-codigo"><i class="fa fa-check"></i><b>9.6</b> Trozos de código</a></li>
+<li class="chapter" data-level="9.7" data-path="comunicacion.html"><a href="comunicacion.html#links-e-imagenes"><i class="fa fa-check"></i><b>9.7</b> Links e imágenes</a></li>
+<li class="chapter" data-level="9.8" data-path="comunicacion.html"><a href="comunicacion.html#encabezado"><i class="fa fa-check"></i><b>9.8</b> Encabezado</a></li>
+<li class="chapter" data-level="9.9" data-path="comunicacion.html"><a href="comunicacion.html#knit"><i class="fa fa-check"></i><b>9.9</b> Knit</a></li>
+<li class="chapter" data-level="9.10" data-path="comunicacion.html"><a href="comunicacion.html#otros-proyectos-con-rstudio"><i class="fa fa-check"></i><b>9.10</b> Otros proyectos con RStudio</a></li>
+<li class="chapter" data-level="9.11" data-path="comunicacion.html"><a href="comunicacion.html#notas"><i class="fa fa-check"></i><b>9.11</b> Notas</a></li>
+<li class="chapter" data-level="9.12" data-path="comunicacion.html"><a href="comunicacion.html#recursos-4"><i class="fa fa-check"></i><b>9.12</b> Recursos</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i>Agradecimientos</a></li>
 <li class="divider"></li>
@@ -238,33 +288,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="exploracion-de-datos" class="section level1">
 <h1><span class="header-section-number">Capítulo 4</span> Exploración de Datos</h1>
-<p>Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica.</p>
+<p>Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica. El análisis exploratorio es una de las prácticas más comunes para entender un set de datos y permite generar preguntas más complejas, que sólo se hacen evidentes al observar ciertos patrones en las visualizaciones exploratorias.</p>
 <div id="graficos-de-base" class="section level2">
 <h2><span class="header-section-number">4.1</span> Gráficos de base</h2>
 <p>R posee funcionalidad gráfica de base. Con relativa facilidad podemos hacer una gráfica de dos variables (por ejemplo, una hipotética variable respuesta en el tiempo).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tiempo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
-respuesta &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>))  
-
-<span class="kw">plot</span>(tiempo,respuesta,
-     <span class="dt">type=</span><span class="st">&#39;b&#39;</span>,
-     <span class="dt">pch=</span><span class="dv">19</span>,
-     <span class="dt">col=</span><span class="st">&quot;black&quot;</span>,
-     <span class="dt">main =</span> <span class="st">&quot;Respuesta vs tiempo&quot;</span>,
-     <span class="dt">ylab =</span> <span class="st">&quot;Respuesta&quot;</span>,
-     <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">tiempo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">respuesta &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>))  </a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="kw">plot</span>(tiempo,respuesta,</a>
+<a class="sourceLine" id="cb44-5" data-line-number="5">     <span class="dt">type=</span><span class="st">&#39;b&#39;</span>,</a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">     <span class="dt">pch=</span><span class="dv">19</span>,</a>
+<a class="sourceLine" id="cb44-7" data-line-number="7">     <span class="dt">col=</span><span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb44-8" data-line-number="8">     <span class="dt">main =</span> <span class="st">&quot;Respuesta vs tiempo&quot;</span>,</a>
+<a class="sourceLine" id="cb44-9" data-line-number="9">     <span class="dt">ylab =</span> <span class="st">&quot;Respuesta&quot;</span>,</a>
+<a class="sourceLine" id="cb44-10" data-line-number="10">     <span class="dt">xlab =</span> <span class="st">&quot;Tiempo&quot;</span>)</a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-1-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Esta funcionalidad no está limitada a gráficos de puntos y líneas. Por ejemplo, el histograma que figura en el principio del libro fue realizado con la función <code>hist()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
-ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
-<span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, 
-     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw">hist</span>(ejemplo, <span class="dt">col=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">breaks=</span><span class="dv">40</span>, </a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;Histograma ejemplo&quot;</span>)</a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Los gráficos de base son geniales para explorar modelos ya que aceptan objetos de tipo <code>lm</code> (ver siguientes capítulos). Si bien es posible realizar gráficos muy bonitos con la funcionalidad de base, incluso gráficas de calidad para publicación impresa, es cierto que la gramática no es sencilla de recordar (o requiere demasiada previsión) y, en muchos casos, es limitada.</p>
 </div>
 <div id="ggplot2" class="section level2">
 <h2><span class="header-section-number">4.2</span> ggplot2</h2>
 <p>Una forma más intuitiva de construir gráficas es utilizar <em>capas</em>. El paquete <code>ggplot2</code> pertenece al <code>tidyverse</code> y es el más utilizado para realizar gráficas de alta calidad en R.</p>
-<p>El paquete se basa en una gramática de gráficos que puede ser entendida a partir de entender sus componentes<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>:</p>
+<p>El paquete se basa en una gramática de gráficos que puede ser entendida a partir de entender sus componentes<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>:</p>
 <ul>
 <li><strong>Data</strong> es aquél dataset que vamos a graficar, con toda la información pertinente para realizar el gráfico.<br />
 </li>
@@ -281,100 +331,125 @@ ejemplo &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class=
 <li><strong>Themes</strong> son conjuntos de especificaciones gráficas que permiten controlar la apariencia general de todos los elementos que no son data (por ejemplo, el color del fondo o el ancho de los ejes).</li>
 </ul>
 <p>A lo largo de la explicación utilizaré el dataset <strong>iris</strong>, que contiene medidas de las ojas de tres especies de plantas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris)</code></pre></div>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p>Veamos cómo se construye capa por capa un gráfico utilizando <code>ggplot2</code> y los datos de <code>iris</code>. Para entender cómo funciona, es importante entender el argumento <code>aes()</code>, que permite indicar qué pondremos en los ejes <em>XY</em> y además permite . Veamos el ejemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-
-<span class="kw">ggplot</span>(<span class="dt">data=</span>iris,
-       <span class="kw">aes</span>(Sepal.Length, Petal.Length))</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">head</span>(iris)</a></code></pre></div>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Veamos cómo se construye capa por capa un gráfico utilizando <code>ggplot2</code> y los datos de <code>iris</code>. Para entender cómo funciona, es importante entender el argumento <code>aes()</code>, que permite indicar qué pondremos en los ejes y además permite agregar distintas capas extra. Veamos el ejemplo:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="dt">data=</span>iris,</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">       <span class="kw">aes</span>(Sepal.Length, Petal.Length))</a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Este gráfico contiene los ejes que especificamos pero no contiene los datos. Para dibujarlos, debemos decirle a <code>ggplot</code> cómo hacerlo (por ejemplo, puntos).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:scatter-iris"></span>
+<img src="04-Exploracion_files/figure-html/scatter-iris-1.png" alt="Gráfico de puntos usando ggplot2." width="576" />
+<p class="caption">
+Figure 4.1: Gráfico de puntos usando ggplot2.
+</p>
+</div>
 <p>Al parecer, los datos presentan una estructura de asociación entre el largo de los sépalos y el de los pétalos (a mayor largo de sépalos, mayor largo de pétalos). Este dataset contiene un factor <em>Species</em> con tres niveles, <em>setosa</em>, <em>versicolor</em>, <em>virginica</em>. Fácilmente podemos ver si las distintas especies presentan distintas asociaciones. Una forma rápida de visualizarlo es coloreando los puntos según el nivel del factor <em>Species</em>. En <code>ggplot2</code> usamos <code>color = Species</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal (“lm”) en <code>geom_smooth(method = &quot;lm&quot;)</code>. Es clave notar que <code>geom_smooth()</code> posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:scatter-iris-col-species"></span>
+<img src="04-Exploracion_files/figure-html/scatter-iris-col-species-1.png" alt="Gráfico de puntos con ggplot2, coloreado seguún especie en el dataset iris." width="576" />
+<p class="caption">
+Figure 4.2: Gráfico de puntos con ggplot2, coloreado seguún especie en el dataset iris.
+</p>
+</div>
+<p>Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal (“lm”) en <code>geom_smooth(method = &quot;lm&quot;)</code>. Es clave notar que <code>geom_smooth()</code> posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color =</span> Species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">       </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:scatter-iris-lm"></span>
+<img src="04-Exploracion_files/figure-html/scatter-iris-lm-1.png" alt="Gráfico de puntos coloreado por especie Líneas de tendencia para un ajuste lineal según la especie." width="576" />
+<p class="caption">
+Figure 4.3: Gráfico de puntos coloreado por especie Líneas de tendencia para un ajuste lineal según la especie.
+</p>
+</div>
 <p>Como pueden apreciar, incorporar la gramática de <code>ggplot2</code> permite realizar visualizaciones más complejas con menor esfuerzo. La riqueza de este grupo de funciones esta en la gran variedad de funciones <code>geom</code> que podemos incorporar. A lo largo de el libro veremos varias de ellas.</p>
 <div id="entendiendo-aes" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Entendiendo <code>aes()</code></h3>
-<p>En ggplot, <code>aes()</code> hace referencia al contenido estético del gráfico (del ingles <em>aesthetics</em>). Es decir, la función le dará indicios a ggplot2 sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que <code>aes()</code> crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar <code>aes()</code> al llamado de <code>ggplot()</code> estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar <code>aes()</code> en la capa correspondiente. Esto puede parecer confuso, las siguientes líneas de código generan un gráfico que se ve idéntico al que realizamos previamente:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species)) <span class="co"># Notar diferencia! aes() aparece en geom_point()</span></code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<p>Sin embargo, podemos ver la diferencia al intentar repetir el gráfico con línea de tendencia.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>En este caso <code>geom_smooth()</code> no recibe la orden de agrupar segun <code>Species</code>, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos del primer gráfico de negro a magenta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Primer gráfico, izquierda</span>
-
-<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>()
-
-<span class="co"># Intento 1</span>
-
-<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>()
-
-<span class="co"># Intento 2</span>
-
-<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>En ggplot, <code>aes()</code> hace referencia al contenido estético del gráfico (del ingles <em>aesthetics</em>). Es decir, la función le dará indicios a <code>ggplot2</code> sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que <code>aes()</code> crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar <code>aes()</code> al llamado de <code>ggplot()</code> estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar <code>aes()</code> en la capa correspondiente. Esto puede parecer confuso. Exploremos las siguientes líneas de código para entender por qué generan un gráfico que se ve idéntico al que realizamos en la Figura <a href="exploracion-de-datos.html#fig:scatter-iris-col-species">4.2</a>.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species)) <span class="co"># Notar diferencia! aes() aparece en geom_point()</span></a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>A simple vista es imposible diferenciar ambas figuras. Sin embargo, podemos ver la diferencia al intentar repetir el gráfico de la Figura <a href="exploracion-de-datos.html#fig:scatter-iris-lm">4.3</a> con línea de tendencia.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Species))<span class="op">+</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:scatter-global-lm"></span>
+<img src="04-Exploracion_files/figure-html/scatter-global-lm-1.png" alt="Gráfico de puntos coloreados según especie. Línea de tendencia para un ajuste global." width="576" />
+<p class="caption">
+Figure 4.4: Gráfico de puntos coloreados según especie. Línea de tendencia para un ajuste global.
+</p>
+</div>
+<p>En este caso <code>geom_smooth()</code> no recibe la orden de agrupar según <code>Species</code>, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos de la Figura <a href="exploracion-de-datos.html#fig:scatter-iris">4.1</a> de negro a magenta:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># Primer gráfico, izquierda</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="st">       </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb54-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co"># Intento 1</span></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length, <span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="st">       </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb54-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb54-11" data-line-number="11"><span class="co"># Intento 2</span></a>
+<a class="sourceLine" id="cb54-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb54-13" data-line-number="13"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-14" data-line-number="14"><span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&#39;magenta&#39;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:intentos-magenta"></span>
+<img src="04-Exploracion_files/figure-html/intentos-magenta-1.png" alt="Gráficos de puntos con ggplot2. Intentamos cambiar los puntos de negro a magenta." width="576" />
+<p class="caption">
+Figure 4.5: Gráficos de puntos con ggplot2. Intentamos cambiar los puntos de negro a magenta.
+</p>
+</div>
 </div>
 <div id="explorando-geom" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Explorando <code>geom</code></h3>
 <p>Los distintas funciones <code>geom</code> nos permiten obtener resultados gráficos distintos, aunque utilicemos los mismos datos. Analicemos el largo de los sépalos por especie.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Gráfico de puntos</span>
-p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_point</span>()
-
-<span class="co"># Gráfico de puntos con ruido en el eje horizontal</span>
-p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>)
-
-<span class="co"># Boxplot</span>
-
-p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_boxplot</span>()
-
-<span class="co"># Violin </span>
-p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_violin</span>()
-
-<span class="co"># Combinando boxplot y violin</span>
-
-p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">color=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;black&quot;</span>,
-                    <span class="dt">lwd=</span><span class="fl">0.8</span>, <span class="dt">width=</span><span class="fl">0.2</span> )
-
-<span class="co"># Grafico de barras con medias + SEM</span>
-
-p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span>
-<span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,
-                   <span class="dt">width=</span><span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,
-                   <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">width=</span><span class="fl">0.5</span>)</code></pre></div>
-<div class="figure"><span id="fig:six-plot-figure"></span>
-<img src="04-Exploracion_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="672" />
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># Gráfico de puntos</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="st">       </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="co"># Gráfico de puntos con ruido en el eje horizontal</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-7" data-line-number="7"><span class="st">       </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb55-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb55-9" data-line-number="9"><span class="co"># Boxplot</span></a>
+<a class="sourceLine" id="cb55-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb55-11" data-line-number="11">p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-12" data-line-number="12"><span class="st">       </span><span class="kw">geom_boxplot</span>()</a>
+<a class="sourceLine" id="cb55-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb55-14" data-line-number="14"><span class="co"># Violin </span></a>
+<a class="sourceLine" id="cb55-15" data-line-number="15">p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-16" data-line-number="16"><span class="st">       </span><span class="kw">geom_violin</span>()</a>
+<a class="sourceLine" id="cb55-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb55-18" data-line-number="18"><span class="co"># Combinando boxplot y violin</span></a>
+<a class="sourceLine" id="cb55-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb55-20" data-line-number="20">p5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-21" data-line-number="21"><span class="st">       </span><span class="kw">geom_violin</span>(<span class="dt">fill=</span><span class="st">&#39;orange&#39;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb55-22" data-line-number="22"><span class="st">       </span><span class="kw">geom_boxplot</span>(<span class="dt">color=</span><span class="st">&quot;white&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb55-23" data-line-number="23">                    <span class="dt">lwd=</span><span class="fl">0.8</span>, <span class="dt">width=</span><span class="fl">0.2</span> )</a>
+<a class="sourceLine" id="cb55-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb55-25" data-line-number="25"><span class="co"># Grafico de barras con medias + SEM</span></a>
+<a class="sourceLine" id="cb55-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb55-27" data-line-number="27">p6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Species, Sepal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-28" data-line-number="28"><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.y =</span> mean, <span class="dt">geom =</span> <span class="st">&quot;bar&quot;</span>,</a>
+<a class="sourceLine" id="cb55-29" data-line-number="29">                   <span class="dt">width=</span><span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-30" data-line-number="30"><span class="st">      </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> mean_se, <span class="dt">geom =</span> <span class="st">&quot;errorbar&quot;</span>,</a>
+<a class="sourceLine" id="cb55-31" data-line-number="31">                   <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">width=</span><span class="fl">0.5</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:six-plot-figure"></span>
+<img src="04-Exploracion_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="576" />
 <p class="caption">
-Figure 4.1: Varias formas de mostrar los mismos datos.
+Figure 4.6: Varias formas de mostrar los mismos datos.
 </p>
 </div>
 <p>Este es un pequeño ejemplo de cómo los distintos <code>geoms</code> participan en la creación de gráficos. En <strong>A</strong> es difícil ver que los puntos están superpuestos, por eso en <strong>B</strong> usamos <code>geom_jitter()</code>, que da una buena idea de la distribución de los datos. Para resumir la información, es común utilizar gráficos de cajas o tipo violín (<strong>C,D</strong>). Notar que la combinación de <code>geoms</code> en capas permite fácilmente mezclar ambos gráficos (<strong>E</strong>). Al combinarlos, hemos cambiado cuestiones estéticas dentro de las capas para incrementar el contraste. Finalmente, otra forma común de hacer un resumen de datos es un gráfico de barras de tipo media ± SEM (<strong>E</strong>).</p>
@@ -382,37 +457,42 @@ Figure 4.1: Varias formas de mostrar los mismos datos.
 <div id="explorando-facet_wrap" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Explorando <code>facet_wrap</code></h3>
 <p>En otras secciones separamos datos categóricos utilizando color. En esta sección, veremos que es posible utilizar <code>facets</code> para separar las gráficas en distintas ventanas o viñetas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:facet-wrap"></span>
+<img src="04-Exploracion_files/figure-html/facet-wrap-1.png" alt="Gráfico de puntos separado por la variable Species en viñetas." width="576" />
+<p class="caption">
+Figure 4.7: Gráfico de puntos separado por la variable Species en viñetas.
+</p>
+</div>
 <p>Este comportamiento es súmamente útil cuando tenemos más de una variable categórica o cuando deseamos utilizar el color para simbolizar otra variable. Por ejemplo, quizás nos interesa evaluar cómo varía el ancho de los pétalos en las distintas plantas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>Petal.Width))<span class="op">+</span>
-<span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(Sepal.Length, Petal.Length)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">     </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>Petal.Width))<span class="op">+</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Species)</a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>En este último gráfico hemos podido representar con claridad variaciones en la longitud de pétalos y sépalos, el ancho de los pétalos y una variable categórica de tres niveles. Los datos indican que las plantas con menor longitud de pétalos y sépalos también poseen pétalos más angostos. Efectivamente, explotar los recursos de <code>ggplot2</code> nos permite generar poderosas herramientas de análisis y comunicación estadística.</p>
 </div>
 <div id="cowplot" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Cowplot</h3>
-<p>Los gráficos realizados en la sección previa (<a href="exploracion-de-datos.html#explorando-geom">4.2.2</a>) muestran gráficos individuales que fueron <em>acomodados</em> distintos paneles. Para realizar esto, se ha utilizando el paquete <code>cowplot</code>. A continuación se muestra el código para realizar figura <a href="exploracion-de-datos.html#fig:six-plot-figure">4.1</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Si es la primera vez</span>
-<span class="kw">install.packages</span>(<span class="st">&quot;cowplot&quot;</span>)
-<span class="co"># Graficar en grilla</span>
-cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2,p3,p4,p5,p6, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
+<p>Algunas de las figuras realizadas en la sección previa (<a href="exploracion-de-datos.html#explorando-geom">4.2.2</a>) muestran gráficos individuales que fueron <em>acomodados</em> distintos paneles. Para realizar esto, se ha utilizando el paquete <code>cowplot</code>. A continuación se muestra el código para realizar figura <a href="exploracion-de-datos.html#fig:six-plot-figure">4.6</a>.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># Si es la primera vez</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;cowplot&quot;</span>)</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co"># Graficar en grilla</span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2,p3,p4,p5,p6, <span class="dt">labels =</span> <span class="st">&quot;AUTO&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="caso-de-estudio" class="section level2">
 <h2><span class="header-section-number">4.3</span> Caso de estudio</h2>
 <p>El primer objetivo de un análisis exploratorio debe ser ganar entendimiento cualitativo de la naturaleza de los datos (tendencia central, distribución y estructura de correlación). Esto puede lograrse utilizando tablas de resumen, sin embargo, en mi opinión el análisis gráfico es superior.</p>
 <p>En este caso voy a mostrar un análisis exploratorio del dataset de Titanic, que puede ser obtenido desde CRAN.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Si es la primera vez,</span>
-<span class="kw">install.packages</span>(<span class="st">&#39;titanic&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="co"># Si es la primera vez,</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&#39;titanic&#39;</span>)</a></code></pre></div>
 <p>El dataset contiene información sobre el destino de los pasajeros del barco. Carguemos los paquetes necesarios para trabajar.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Paquete útil para reorganizar datos (parte de tidyverse)</span>
-<span class="kw">library</span>(dplyr)
-<span class="co"># Cargamos el paquete titanic</span>
-<span class="kw">library</span>(titanic)</code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># Paquete útil para reorganizar datos (parte de tidyverse)</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co"># Cargamos el paquete titanic</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="kw">library</span>(titanic)</a></code></pre></div>
 <p>Vamos a trabajar con el dataset llamado <code>titanic_train</code>. En este caso es útil conocer a las variables que estaremos manejando. Puedes acceder al nombre de las variables con el comando <code>names(titanic_train)</code>. Aquí hay una tabla con las descripciones de las variables.</p>
 <table>
 <thead>
@@ -487,172 +567,151 @@ cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2,p3,p4,p
 </tbody>
 </table>
 <p>Podemos utilizar la función <code>str()</code> para obtener una descripción rápida del tipo de datos que tenemos. Podemos ver que el dataset no necesariamente contiene las variables en las clases que queremos (por ejemplo, algunos factores están como <code>character</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(titanic_train)</code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    891 obs. of  12 variables:
-##  $ PassengerId: int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ Survived   : int  0 1 1 1 0 0 0 0 1 1 ...
-##  $ Pclass     : int  3 1 3 1 3 3 1 3 3 2 ...
-##  $ Name       : chr  &quot;Braund, Mr. Owen Harris&quot; &quot;Cumings, Mrs. John Bradley (Florence Briggs Thayer)&quot; &quot;Heikkinen, Miss. Laina&quot; &quot;Futrelle, Mrs. Jacques Heath (Lily May Peel)&quot; ...
-##  $ Sex        : chr  &quot;male&quot; &quot;female&quot; &quot;female&quot; &quot;female&quot; ...
-##  $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
-##  $ SibSp      : int  1 1 0 1 0 0 0 3 0 1 ...
-##  $ Parch      : int  0 0 0 0 0 0 0 1 2 0 ...
-##  $ Ticket     : chr  &quot;A/5 21171&quot; &quot;PC 17599&quot; &quot;STON/O2. 3101282&quot; &quot;113803&quot; ...
-##  $ Fare       : num  7.25 71.28 7.92 53.1 8.05 ...
-##  $ Cabin      : chr  &quot;&quot; &quot;C85&quot; &quot;&quot; &quot;C123&quot; ...
-##  $ Embarked   : chr  &quot;S&quot; &quot;C&quot; &quot;S&quot; &quot;S&quot; ...</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">str</span>(titanic_train)</a></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   891 obs. of  12 variables:
+ $ PassengerId: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Survived   : int  0 1 1 1 0 0 0 0 1 1 ...
+ $ Pclass     : int  3 1 3 1 3 3 1 3 3 2 ...
+ $ Name       : chr  &quot;Braund, Mr. Owen Harris&quot; &quot;Cumings, Mrs. John Bradley (Florence Briggs Thayer)&quot; &quot;Heikkinen, Miss. Laina&quot; &quot;Futrelle, Mrs. Jacques Heath (Lily May Peel)&quot; ...
+ $ Sex        : chr  &quot;male&quot; &quot;female&quot; &quot;female&quot; &quot;female&quot; ...
+ $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
+ $ SibSp      : int  1 1 0 1 0 0 0 3 0 1 ...
+ $ Parch      : int  0 0 0 0 0 0 0 1 2 0 ...
+ $ Ticket     : chr  &quot;A/5 21171&quot; &quot;PC 17599&quot; &quot;STON/O2. 3101282&quot; &quot;113803&quot; ...
+ $ Fare       : num  7.25 71.28 7.92 53.1 8.05 ...
+ $ Cabin      : chr  &quot;&quot; &quot;C85&quot; &quot;&quot; &quot;C123&quot; ...
+ $ Embarked   : chr  &quot;S&quot; &quot;C&quot; &quot;S&quot; &quot;S&quot; ...</code></pre>
 <p>Cambiemos un par de cosas.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Transformamos en factor</span>
-titanic_train<span class="op">$</span>Survived &lt;-<span class="st"> </span><span class="kw">factor</span>(titanic_train<span class="op">$</span>Survived)
-<span class="co"># Transforamamos al castellano</span>
-titanic_train<span class="op">$</span>Sex &lt;-<span class="st"> </span><span class="kw">ifelse</span>(titanic_train<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>,
-                            <span class="st">&quot;hombre&quot;</span>,
-                            <span class="st">&quot;mujer&quot;</span>)
-<span class="co"># Transformamos una varibale con valor &quot;&quot; a NA</span>
-titanic_train<span class="op">$</span>Embarked &lt;-<span class="st"> </span><span class="kw">ifelse</span>(titanic_train<span class="op">$</span>Embarked <span class="op">==</span><span class="st"> &quot;&quot;</span>,
-                                 <span class="ot">NA</span>,
-                                 titanic_train<span class="op">$</span>Embarked)</code></pre></div>
-<p>Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculamos la supervivencia segun el factor Survived</span>
-sobrev &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span>
-<span class="st">          </span><span class="kw">group_by</span>(Survived) <span class="op">%&gt;%</span>
-<span class="st">          </span><span class="kw">count</span>()
-
-<span class="co"># Supervivencia</span>
-<span class="co"># Cuál es el número de sobrevivientes?</span>
-g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(Survived)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="co"># Agregamos la cuenta de sobrevivientes</span>
-<span class="st">  </span><span class="co"># Notar que debemos utilizar otro data.frame en data</span>
-<span class="st">  </span><span class="co"># vamos a utilizar y=20 para posicionar los n cerca del eje x</span>
-<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> sobrev,
-            <span class="kw">aes</span>(Survived, <span class="dt">y=</span><span class="dv">25</span>, <span class="dt">label=</span>n),
-            <span class="dt">color=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
-
-<span class="co"># Clase</span>
-<span class="co"># Cuál es la cantidad de pasajeros en cada clase?</span>
-g2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
-             <span class="kw">aes</span>(Pclass))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Clase&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
-
-
-<span class="co"># Sexo</span>
-<span class="co"># cuántos hombres y mujeres a bordo?</span>
-g3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
-             <span class="kw">aes</span>(Sex))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Sexo&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
-
-<span class="co"># Lugar de embarque</span>
-<span class="co"># dónde (en qué puerto) subió la gente al barco?</span>
-g4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
-             <span class="kw">aes</span>(Embarked))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Lugar embarque&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
-
-<span class="co"># Edad de los pasajeros</span>
-<span class="co"># Cuál es la distribución de edades de los pasajeros?</span>
-g5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
-             <span class="kw">aes</span>(Age))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">5</span>, <span class="dt">color=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Edad&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
-
-
-<span class="co"># Precio del ticket</span>
-<span class="co"># Cuánto costaba subir al Titanic?</span>
-g6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train,
-             <span class="kw">aes</span>(Fare))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;gray50&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Precio Ticket&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)
-
-
-<span class="co"># Graficar todo junto!</span>
-cowplot<span class="op">::</span><span class="kw">plot_grid</span>(g1,g2,g3,g4,g5,g6,
-                   <span class="dt">labels=</span><span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>Estos gráficos son bastante típicos. En esta sección concentro nuestros esfuerzos en entender el dataset rápidamente. Es posible hacer gráficos que comuniquen mejor. Más adelante retomaremos desde este punto (ver Sección <a href="comunicacion.html#graficos">6.2</a>).</p>
-<p>Ahora vamos a centrarnos en entender relaciones entre más de una variable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic_train, 
-       <span class="kw">aes</span>(Sex, Survived))<span class="op">+</span>
-<span class="st">  </span><span class="co"># Coloreamos segun la interaccion entre los niveles de interes</span>
-<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color=</span><span class="kw">interaction</span>(<span class="kw">factor</span>(Sex), Survived)),
-              <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span>
-<span class="st">  </span><span class="co"># Separamos por clase</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Pclass)<span class="op">+</span>
-<span class="st">  </span><span class="co"># Nombramos al eje</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="co"># Agregamos un eje y descriptivo</span>
-<span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>),
-        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sí&quot;</span>))<span class="op">+</span>
-<span class="st">  </span><span class="co"># Sacamos la leyenda</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="co"># mejoramos los colores</span>
-<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="co"># Titulo</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Supervivencia por clase&quot;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<p>En el gráfico anterior podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo “hombre en tercera clase” la peor combinación.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># Transformamos en factor</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">titanic_train<span class="op">$</span>Survived &lt;-<span class="st"> </span><span class="kw">factor</span>(titanic_train<span class="op">$</span>Survived)</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="co"># Transforamamos al castellano</span></a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">titanic_train<span class="op">$</span>Sex &lt;-<span class="st"> </span><span class="kw">ifelse</span>(titanic_train<span class="op">$</span>Sex <span class="op">==</span><span class="st"> &quot;male&quot;</span>,</a>
+<a class="sourceLine" id="cb63-5" data-line-number="5">                            <span class="st">&quot;hombre&quot;</span>,</a>
+<a class="sourceLine" id="cb63-6" data-line-number="6">                            <span class="st">&quot;mujer&quot;</span>)</a>
+<a class="sourceLine" id="cb63-7" data-line-number="7"><span class="co"># Transformamos una varibale con valor &quot;&quot; a NA</span></a>
+<a class="sourceLine" id="cb63-8" data-line-number="8">titanic_train<span class="op">$</span>Embarked &lt;-<span class="st"> </span><span class="kw">ifelse</span>(titanic_train<span class="op">$</span>Embarked <span class="op">==</span><span class="st"> &quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb63-9" data-line-number="9">                                 <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb63-10" data-line-number="10">                                 titanic_train<span class="op">$</span>Embarked)</a></code></pre></div>
+<p>Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión. Las preguntas que nos hacemos para este dataset son:</p>
+<ul>
+<li><strong>Supervivencia:</strong> ¿Cuál fue el número de sobrevivientes?</li>
+<li><strong>Clase:</strong> ¿Cuál fue la cantidad de pasajeros en cada clase?</li>
+<li><strong>Sexo:</strong> ¿Cuántos hombres y mujeres a bordo?</li>
+<li><strong>Embarque:</strong> ¿Dónde (en qué puerto) subió la gente al barco?</li>
+<li><strong>Edad:</strong> ¿Cuál era la distribución de edades de los pasajeros?</li>
+<li><strong>Precio:</strong> ¿Cuánto costaba subir al Titanic?</li>
+</ul>
+<p>Empecemos por la primera. Podemos obtener el número de sobrevivientes usando la función <code>count</code> del paquete <code>dplyr</code> y hacer un gráfico de barras usando <code>geom_bar</code> de <code>ggplot2</code>.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co"># Calculamos la supervivencia segun el factor Survived</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">sobrev &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">          </span><span class="kw">group_by</span>(Survived) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="st">          </span><span class="kw">count</span>()</a>
+<a class="sourceLine" id="cb64-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="co"># Supervivencia</span></a>
+<a class="sourceLine" id="cb64-7" data-line-number="7"><span class="co"># Cuál es el número de sobrevivientes?</span></a>
+<a class="sourceLine" id="cb64-8" data-line-number="8">g1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(Survived)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_bar</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb64-10" data-line-number="10"><span class="st">  </span><span class="co"># Agregamos la cuenta de sobrevivientes</span></a>
+<a class="sourceLine" id="cb64-11" data-line-number="11"><span class="st">  </span><span class="co"># Notar que debemos utilizar otro data.frame en data</span></a>
+<a class="sourceLine" id="cb64-12" data-line-number="12"><span class="st">  </span><span class="co"># vamos a utilizar y=20 para posicionar los n cerca del eje x</span></a>
+<a class="sourceLine" id="cb64-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> sobrev,</a>
+<a class="sourceLine" id="cb64-14" data-line-number="14">            <span class="kw">aes</span>(Survived, <span class="dt">y=</span><span class="dv">25</span>, <span class="dt">label=</span>n),</a>
+<a class="sourceLine" id="cb64-15" data-line-number="15">            <span class="dt">color=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb64-16" data-line-number="16"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb64-17" data-line-number="17"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Frecuencia&quot;</span>)</a></code></pre></div>
 <blockquote>
-<p>Ejercicio: Calcular % sobrevivientes</p>
+<p>Ejercicio: Propongo detener la lectura y evaluar qué tipo de gráfico podríamos hacer para responder el resto de las preguntas.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calcular el porcentaje segun la clase</span>
-titanic_train <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># Agrupar por clase y sexo</span>
-<span class="st">  </span><span class="co"># contar los sobrevivientes</span>
-<span class="st">  </span><span class="co"># sumar el total de casos</span>
-<span class="st">  </span><span class="co"># dividir por el total y expresar en porcentaje</span></code></pre></div>
-<p>Podemos explorar cómo se relaciona la edad con la supervivencia. En el siguiente gráfico vemos que prácticamente no hay diferencias en supervivencia según las edades (quizás sí existen pequeñas diferencias para los niños menores de 10 años).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(titanic_train,
-       <span class="kw">aes</span>(Survived, Age, <span class="dt">fill=</span>Survived))<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_violin</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;black&quot;</span>, <span class="dt">color=</span><span class="st">&quot;white&quot;</span>,
-               <span class="dt">lwd=</span><span class="fl">1.1</span>, <span class="dt">width=</span><span class="fl">0.1</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Edad (años)&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>),
-        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sí&quot;</span>))<span class="op">+</span>
-<span class="st">  </span><span class="co"># Rotamos los ejes!</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>A continuación presento una de las opciónes del análisis gráfico univariado para las variables del dataset Titanic.</p>
+<div class="figure" style="text-align: center"><span id="fig:titanic-univariado"></span>
+<img src="04-Exploracion_files/figure-html/titanic-univariado-1.png" alt="Gráficos de exploración univariada del dataset Titanic." width="576" />
+<p class="caption">
+Figure 4.8: Gráficos de exploración univariada del dataset Titanic.
+</p>
+</div>
+<p>Los gráficos de la Figura <a href="exploracion-de-datos.html#fig:titanic-univariado">4.8</a> son bastante típicos. Si deseas ver detalle por detalle el código, puedes dirigirte al Anexo de este capítulo <a href="introduccion.html#anexo">5</a>. En esta sección concentro nuestros esfuerzos en la visualización veloz de los datos. Es posible hacer gráficos que comuniquen a un público más general, por eso en el futuro retomaremos desde este punto (ver Sección <a href="comunicacion.html#graficos">9.2</a>).</p>
+<p>Ahora que tenemos información sobre las variables del dataset por separado podemos preguntarnos cómo se relacionan entre ellas. En la figura <a href="exploracion-de-datos.html#fig:surviv-bivariado">4.9</a> podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo “hombre en tercera clase” la peor combinación.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train, </a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">       <span class="kw">aes</span>(Sex, Survived))<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="co"># Coloreamos segun la interaccion entre los niveles de interes</span></a>
+<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color=</span><span class="kw">interaction</span>(<span class="kw">factor</span>(Sex), Survived)),</a>
+<a class="sourceLine" id="cb65-5" data-line-number="5">              <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-6" data-line-number="6"><span class="st">  </span><span class="co"># Separamos por clase</span></a>
+<a class="sourceLine" id="cb65-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Pclass)<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-8" data-line-number="8"><span class="st">  </span><span class="co"># Nombramos al eje</span></a>
+<a class="sourceLine" id="cb65-9" data-line-number="9"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-10" data-line-number="10"><span class="st">  </span><span class="co"># Agregamos un eje y descriptivo</span></a>
+<a class="sourceLine" id="cb65-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>),</a>
+<a class="sourceLine" id="cb65-12" data-line-number="12">        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sí&quot;</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-13" data-line-number="13"><span class="st">  </span><span class="co"># Sacamos la leyenda</span></a>
+<a class="sourceLine" id="cb65-14" data-line-number="14"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-15" data-line-number="15"><span class="st">  </span><span class="co"># mejoramos los colores</span></a>
+<a class="sourceLine" id="cb65-16" data-line-number="16"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb65-17" data-line-number="17"><span class="st">  </span><span class="co"># Titulo</span></a>
+<a class="sourceLine" id="cb65-18" data-line-number="18"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Supervivencia por clase&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:surviv-bivariado"></span>
+<img src="04-Exploracion_files/figure-html/surviv-bivariado-1.png" alt="Supervivencia en el Titanic según género y clase." width="576" />
+<p class="caption">
+Figure 4.9: Supervivencia en el Titanic según género y clase.
+</p>
+</div>
+<blockquote>
+<p>Ejercicio: Completar el siguiente trozo de código para calcular % sobrevivientes</p>
+</blockquote>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># Calcular el porcentaje segun la clase</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">titanic_train <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="co"># Agrupar por clase y sexo</span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(...) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="st">  </span><span class="co"># contar los sobrevivientes</span></a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="st">  </span>... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7"><span class="st">  </span><span class="co"># sumar el total de casos</span></a>
+<a class="sourceLine" id="cb66-8" data-line-number="8"><span class="st">  </span><span class="co"># dividir por el total y expresar en porcentaje</span></a>
+<a class="sourceLine" id="cb66-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total=</span> ...,</a>
+<a class="sourceLine" id="cb66-10" data-line-number="10">         <span class="dt">porcentaje=</span>...<span class="op">/</span>total<span class="op">*</span><span class="dv">100</span>)  </a></code></pre></div>
+<p>También podemos explorar cómo se relaciona la edad con la supervivencia. En el siguiente gráfico vemos que prácticamente no hay diferencias en supervivencia según las edades (quizás sí existen pequeñas diferencias para los niños menores de 10 años).</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">ggplot</span>(titanic_train,</a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">       <span class="kw">aes</span>(Survived, Age, <span class="dt">fill=</span>Survived))<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_violin</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;black&quot;</span>, <span class="dt">color=</span><span class="st">&quot;white&quot;</span>,</a>
+<a class="sourceLine" id="cb67-5" data-line-number="5">               <span class="dt">lwd=</span><span class="fl">1.1</span>, <span class="dt">width=</span><span class="fl">0.1</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-8" data-line-number="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-9" data-line-number="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-10" data-line-number="10"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Edad (años)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>),</a>
+<a class="sourceLine" id="cb67-12" data-line-number="12">        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sí&quot;</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb67-13" data-line-number="13"><span class="st">  </span><span class="co"># Rotamos los ejes!</span></a>
+<a class="sourceLine" id="cb67-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Ejercicio: Analizar sobrevivientes vs edad (por clase)</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># La base de este gráfico es la misma que la del anterior</span>
-<span class="co"># Debemos cambiar el x a Pclass </span>
-<span class="co"># (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?</span>
-<span class="kw">ggplot</span>(titanic_train,
-       <span class="kw">aes</span>(<span class="dt">x=</span> ..., Age, <span class="dt">fill=</span>...))<span class="op">+</span>
-<span class="st">  </span><span class="co"># Resto de los componentes?</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># La base de este gráfico es la misma que la del anterior</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="co"># Debemos cambiar el x a Pclass </span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co"># (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?</span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="kw">ggplot</span>(titanic_train,</a>
+<a class="sourceLine" id="cb68-5" data-line-number="5">       <span class="kw">aes</span>(<span class="dt">x=</span> ..., Age, <span class="dt">fill=</span>...))<span class="op">+</span></a>
+<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="st">  </span><span class="co"># Resto de los componentes?</span></a></code></pre></div>
 <p>Veamos algunos componentes relacionados con el precio de los tickets. En general, podemos ver que, independientemente de la edad, el precio estaba por debajo de 50, con algunas notables excepciones en cero o por encima de 500 (<strong>A</strong>)!. También podemos ver que aquellos que pagaron más parecieran haber estado en el grupo de los sobrevivientes (<strong>B</strong>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Edad vs Precio ticket</span>
-p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(Age, Fare)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Edad (años)&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Precio ticket&quot;</span>)
-
-p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(Survived, Fare)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>Survived))<span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Precio ticket&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>),
-        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sí&quot;</span>))<span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)
-  
-
-cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2, <span class="dt">labels=</span><span class="st">&quot;AUTO&quot;</span>)</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co"># Edad vs Precio ticket</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(Age, Fare)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Edad (años)&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Precio ticket&quot;</span>)</a>
+<a class="sourceLine" id="cb69-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb69-7" data-line-number="7">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(titanic_train, <span class="kw">aes</span>(Survived, Fare)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>Survived))<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-9" data-line-number="9"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Supervivencia&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-10" data-line-number="10"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Precio ticket&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="st">&quot;0&quot;</span>,<span class="st">&quot;1&quot;</span>),</a>
+<a class="sourceLine" id="cb69-12" data-line-number="12">        <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sí&quot;</span>))<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-13" data-line-number="13"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb69-14" data-line-number="14"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)</a>
+<a class="sourceLine" id="cb69-15" data-line-number="15">  </a>
+<a class="sourceLine" id="cb69-16" data-line-number="16"><span class="co"># todo junto!</span></a>
+<a class="sourceLine" id="cb69-17" data-line-number="17">cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2, <span class="dt">labels=</span><span class="st">&quot;AUTO&quot;</span>)</a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="resumen-1" class="section level2">
 <h2><span class="header-section-number">4.4</span> Resumen</h2>
@@ -671,48 +730,50 @@ cowplot<span class="op">::</span><span class="kw">plot_grid</span>(p1,p2, <span 
 <ul>
 <li><a href="https://ggplot2.tidyverse.org/">ggplot2 online</a></li>
 <li><a href="http://socviz.co/">Data Visualization-Kieran Healy</a></li>
+<li><a href="https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html">Paquete cowplot</a></li>
 </ul>
 </div>
 <div id="respuestas" class="section level2">
 <h2><span class="header-section-number">4.6</span> Respuestas</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculando el porcentaje de sobrevivientes por clase y sexo</span>
-titanic_train <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Pclass, Sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(Survived) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total=</span><span class="kw">sum</span>(n),
-         <span class="dt">porcentaje=</span>n<span class="op">/</span>total<span class="op">*</span><span class="dv">100</span>)</code></pre></div>
-<pre><code>## # A tibble: 12 x 6
-## # Groups:   Pclass, Sex [6]
-##    Pclass Sex    Survived     n total porcentaje
-##     &lt;int&gt; &lt;chr&gt;  &lt;fct&gt;    &lt;int&gt; &lt;int&gt;      &lt;dbl&gt;
-##  1      1 hombre 0           77   122      63.1 
-##  2      1 hombre 1           45   122      36.9 
-##  3      1 mujer  0            3    94       3.19
-##  4      1 mujer  1           91    94      96.8 
-##  5      2 hombre 0           91   108      84.3 
-##  6      2 hombre 1           17   108      15.7 
-##  7      2 mujer  0            6    76       7.89
-##  8      2 mujer  1           70    76      92.1 
-##  9      3 hombre 0          300   347      86.5 
-## 10      3 hombre 1           47   347      13.5 
-## 11      3 mujer  0           72   144      50.0 
-## 12      3 mujer  1           72   144      50.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># La base de este gráfico es la misma que la del anterior</span>
-<span class="co"># Debemos cambiar el x a Pclass </span>
-<span class="co"># (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?</span>
-<span class="kw">ggplot</span>(titanic_train,
-       <span class="kw">aes</span>(<span class="dt">x=</span> <span class="kw">factor</span>(Pclass), Age, <span class="dt">fill=</span>Survived))<span class="op">+</span>
-<span class="st">  </span><span class="co"># Resto de los componentes? </span>
-<span class="st">  </span><span class="co"># (la principal es geom_violin(), el resto es estético)</span>
-<span class="st">  </span><span class="kw">geom_violin</span>()</code></pre></div>
-<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># Calculando el porcentaje de sobrevivientes por clase y sexo</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">titanic_train <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(Pclass, Sex) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(Survived) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total=</span><span class="kw">sum</span>(n),</a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">         <span class="dt">porcentaje=</span>n<span class="op">/</span>total<span class="op">*</span><span class="dv">100</span>)</a></code></pre></div>
+<pre><code># A tibble: 12 x 6
+# Groups:   Pclass, Sex [6]
+   Pclass Sex    Survived     n total porcentaje
+    &lt;int&gt; &lt;chr&gt;  &lt;fct&gt;    &lt;int&gt; &lt;int&gt;      &lt;dbl&gt;
+ 1      1 hombre 0           77   122      63.1 
+ 2      1 hombre 1           45   122      36.9 
+ 3      1 mujer  0            3    94       3.19
+ 4      1 mujer  1           91    94      96.8 
+ 5      2 hombre 0           91   108      84.3 
+ 6      2 hombre 1           17   108      15.7 
+ 7      2 mujer  0            6    76       7.89
+ 8      2 mujer  1           70    76      92.1 
+ 9      3 hombre 0          300   347      86.5 
+10      3 hombre 1           47   347      13.5 
+11      3 mujer  0           72   144      50.0 
+12      3 mujer  1           72   144      50.0 </code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># La base de este gráfico es la misma que la del anterior</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="co"># Debemos cambiar el x a Pclass </span></a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="co"># (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?</span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="kw">ggplot</span>(titanic_train,</a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">       <span class="kw">aes</span>(<span class="dt">x=</span> <span class="kw">factor</span>(Pclass), Age, <span class="dt">fill=</span>Survived))<span class="op">+</span></a>
+<a class="sourceLine" id="cb72-6" data-line-number="6"><span class="st">  </span><span class="co"># Resto de los componentes? </span></a>
+<a class="sourceLine" id="cb72-7" data-line-number="7"><span class="st">  </span><span class="co"># (la principal es geom_violin(), el resto es estético)</span></a>
+<a class="sourceLine" id="cb72-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_violin</span>()</a></code></pre></div>
+<p><img src="04-Exploracion_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" /></p>
+<hr />
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="8">
-<li id="fn8"><p>Estos fueron incluídos en inglés debido a que la función <code>ggplot2</code> los utilizará en inglés y traducciones directas serían en perjuicio del usuario.<a href="exploracion-de-datos.html#fnref8">↩</a></p></li>
+<li id="fn8"><p>Estos fueron incluídos en inglés debido a que la función <code>ggplot2</code> los utilizará en inglés y traducciones directas serían en perjuicio del usuario.<a href="exploracion-de-datos.html#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>Si la ansiedad es muy fuerte, puedes explorar <code>?geom_smooth()</code> para enterarte los argumentos de la función.<a href="exploracion-de-datos.html#fnref9" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -721,7 +782,7 @@ titanic_train <span class="op">%&gt;%</span>
         </div>
       </div>
 <a href="leer-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos-lineales.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="anexo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -767,7 +828,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

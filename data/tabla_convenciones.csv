@@ -5,3 +5,4 @@ dataset,set de datos
 working directory,Directorio desde donde R está trabajando en la sesión (getwd())
 render,generación de contenido multimedia
 subset,subconjunto o porción
+pipes,uso técnico para el operador %>%

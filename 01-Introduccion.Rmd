@@ -1,5 +1,9 @@
 # Introducción
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(comment=NA, fig.width=6, fig.asp = 0.7, fig.align = 'center')
+```
+
 La organización de este libro esta fuertemente vinculada al análisis de datos. En general, el análisis suele presentarse en tres etapas: Lectura, modelado y comunicación de resultados. 
 
 `Lectura > Modelado > Comunicación`

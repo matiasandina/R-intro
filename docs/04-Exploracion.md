@@ -1,6 +1,9 @@
 # Exploración de Datos
 
-Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica.
+
+
+
+Los humanos somos animales fuertemente dependientes en nuestra visión, así hemos evolucionado. Por lo tanto, no es sorpendente que la herramienta más útil para comprender datos sea utilizar una gráfica. El análisis exploratorio es una de las prácticas más comunes para entender un set de datos y permite generar preguntas más complejas, que sólo se hacen evidentes al observar ciertos patrones en las visualizaciones exploratorias.
 
 ## Gráficos de base
 
@@ -20,7 +23,7 @@ plot(tiempo,respuesta,
      xlab = "Tiempo")
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-1-1.png" width="576" style="display: block; margin: auto;" />
 
 Esta funcionalidad no está limitada a gráficos de puntos y líneas. Por ejemplo, el histograma que figura en el principio del libro fue realizado con la función `hist()`
 
@@ -32,7 +35,7 @@ hist(ejemplo, col='orange', breaks=40,
      ylab = "Frecuencia", main = "Histograma ejemplo")
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" />
 
 Los gráficos de base son geniales para explorar modelos ya que aceptan objetos de tipo  `lm` (ver siguientes capítulos). Si bien es posible realizar gráficos muy bonitos con la funcionalidad de base, incluso gráficas de calidad para publicación impresa, es cierto que la gramática no es sencilla de recordar (o requiere demasiada previsión) y, en muchos casos, es limitada.
 
@@ -58,17 +61,17 @@ head(iris)
 ```
 
 ```
-##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
 ```
 
 
-Veamos cómo se construye capa por capa un gráfico utilizando `ggplot2` y los datos de `iris`. Para entender cómo funciona, es importante entender el argumento `aes()`, que permite indicar qué pondremos en los ejes *XY* y además permite . Veamos el ejemplo:
+Veamos cómo se construye capa por capa un gráfico utilizando `ggplot2` y los datos de `iris`. Para entender cómo funciona, es importante entender el argumento `aes()`, que permite indicar qué pondremos en los ejes y además permite agregar distintas capas extra. Veamos el ejemplo:
 
 
 
@@ -79,7 +82,7 @@ ggplot(data=iris,
        aes(Sepal.Length, Petal.Length))
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" />
 
 
 Este gráfico contiene los ejes que especificamos pero no contiene los datos. Para dibujarlos, debemos decirle a `ggplot` cómo hacerlo (por ejemplo, puntos).
@@ -91,7 +94,10 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   geom_point()
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/scatter-iris-1.png" alt="Gráfico de puntos usando ggplot2." width="576" />
+<p class="caption">(\#fig:scatter-iris)Gráfico de puntos usando ggplot2.</p>
+</div>
 
 
 Al parecer, los datos presentan una estructura de asociación entre el largo de los sépalos y el de los pétalos (a mayor largo de sépalos, mayor largo de pétalos). Este dataset contiene un factor *Species* con tres niveles, *setosa*, *versicolor*, *virginica*. Fácilmente podemos ver si las distintas especies presentan distintas asociaciones. Una forma rápida de visualizarlo es coloreando los puntos según el nivel del factor *Species*. En `ggplot2` usamos `color = Species`.
@@ -102,10 +108,13 @@ ggplot(iris, aes(Sepal.Length, Petal.Length, color = Species)) +
   geom_point()
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/scatter-iris-col-species-1.png" alt="Gráfico de puntos con ggplot2, coloreado seguún especie en el dataset iris." width="576" />
+<p class="caption">(\#fig:scatter-iris-col-species)Gráfico de puntos con ggplot2, coloreado seguún especie en el dataset iris.</p>
+</div>
 
 
-Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal ("lm") en `geom_smooth(method = "lm")`. Es clave notar que `geom_smooth()` posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos.
+Podemos agregar una nueva capa con una línea de tendencia. Para hacerlo, especificamos un ajuste lineal ("lm") en `geom_smooth(method = "lm")`. Es clave notar que `geom_smooth()` posee distintos métodos cuya riqueza exploraremos en los siguientes capítulos[^ansioso-smooth].
 
 
 
@@ -115,13 +124,16 @@ ggplot(iris, aes(Sepal.Length, Petal.Length, color = Species)) +
        geom_smooth(method = "lm")
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/scatter-iris-lm-1.png" alt="Gráfico de puntos coloreado por especie Líneas de tendencia para un ajuste lineal según la especie." width="576" />
+<p class="caption">(\#fig:scatter-iris-lm)Gráfico de puntos coloreado por especie Líneas de tendencia para un ajuste lineal según la especie.</p>
+</div>
 
 Como pueden apreciar, incorporar la gramática de `ggplot2` permite realizar visualizaciones más complejas con menor esfuerzo. La riqueza de este grupo de funciones esta en la gran variedad de funciones `geom` que podemos incorporar. A lo largo de el libro veremos varias de ellas.
 
 ### Entendiendo `aes()`
 
-En ggplot, `aes()` hace referencia al contenido estético del gráfico (del ingles *aesthetics*). Es decir, la función le dará indicios a ggplot2 sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que `aes()` crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar `aes()` al llamado de `ggplot()` estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar `aes()` en la capa correspondiente. Esto puede parecer confuso, las siguientes líneas de código generan un gráfico que se ve idéntico al que realizamos previamente:
+En ggplot, `aes()` hace referencia al contenido estético del gráfico (del ingles *aesthetics*). Es decir, la función le dará indicios a `ggplot2` sobre cómo dibujar los distintos trazos, formas, colores y tamaños. Es importante notar que `aes()` crea una nueva capa en relación a las variables y agrega leyendas a los gráficos. Al incorporar `aes()` al llamado de `ggplot()` estamos compartiendo la información en todas las capas. Si deseamos que esa información sólo esté en una de las capas, debemos usar `aes()` en la capa correspondiente. Esto puede parecer confuso. Exploremos las siguientes líneas de código para entender por qué generan un gráfico que se ve idéntico al que realizamos en la Figura \@ref(fig:scatter-iris-col-species).
 
 
 ```r
@@ -129,9 +141,9 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
        geom_point(aes(color = Species)) # Notar diferencia! aes() aparece en geom_point()
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;" />
 
-Sin embargo, podemos ver la diferencia al intentar repetir el gráfico con línea de tendencia.
+A simple vista es imposible diferenciar ambas figuras. Sin embargo, podemos ver la diferencia al intentar repetir el gráfico de la Figura \@ref(fig:scatter-iris-lm) con línea de tendencia.
 
 
 ```r
@@ -140,9 +152,12 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
        geom_smooth(method="lm")
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/scatter-global-lm-1.png" alt="Gráfico de puntos coloreados según especie. Línea de tendencia para un ajuste global." width="576" />
+<p class="caption">(\#fig:scatter-global-lm)Gráfico de puntos coloreados según especie. Línea de tendencia para un ajuste global.</p>
+</div>
 
-En este caso `geom_smooth()` no recibe la orden de agrupar segun `Species`, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos del primer gráfico de negro a magenta:
+En este caso `geom_smooth()` no recibe la orden de agrupar según `Species`, por ende, todos los datos son usados para construir el ajuste lineal. Este comportamiento nos permite gran versatilidad en los gráficos. Sin embargo, también permite que el usuario cometa algunos errores. Por ejemplo, intentemos cambiar todos los puntos de la Figura \@ref(fig:scatter-iris)  de negro a magenta:
 
 
 ```r
@@ -162,7 +177,10 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
        geom_point(color='magenta')
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/intentos-magenta-1.png" alt="Gráficos de puntos con ggplot2. Intentamos cambiar los puntos de negro a magenta." width="576" />
+<p class="caption">(\#fig:intentos-magenta)Gráficos de puntos con ggplot2. Intentamos cambiar los puntos de negro a magenta.</p>
+</div>
 
 ### Explorando `geom`
 
@@ -203,8 +221,8 @@ p6 <- ggplot(iris, aes(Species, Sepal.Length)) +
                    color="red", width=0.5)
 ```
 
-<div class="figure">
-<img src="04-Exploracion_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="672" />
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/six-plot-figure-1.png" alt="Varias formas de mostrar los mismos datos." width="576" />
 <p class="caption">(\#fig:six-plot-figure)Varias formas de mostrar los mismos datos.</p>
 </div>
 
@@ -222,7 +240,10 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
   facet_wrap(~Species)
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/facet-wrap-1.png" alt="Gráfico de puntos separado por la variable Species en viñetas." width="576" />
+<p class="caption">(\#fig:facet-wrap)Gráfico de puntos separado por la variable Species en viñetas.</p>
+</div>
 
 Este comportamiento es súmamente útil cuando tenemos más de una variable categórica o cuando deseamos utilizar el color para simbolizar otra variable. Por ejemplo, quizás nos interesa evaluar cómo varía el ancho de los pétalos en las distintas plantas.
 
@@ -233,13 +254,13 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
      facet_wrap(~Species)
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;" />
 
 En este último gráfico hemos podido representar con claridad variaciones en la longitud de pétalos y sépalos, el ancho de los pétalos y una variable categórica de tres niveles. Los datos indican que las plantas con menor longitud de pétalos y sépalos también poseen pétalos más angostos. Efectivamente, explotar los recursos de `ggplot2` nos permite generar poderosas herramientas de análisis y comunicación estadística. 
 
 ### Cowplot
 
-Los gráficos realizados en la sección previa (\@ref(explorando-geom)) muestran gráficos individuales que fueron *acomodados* distintos paneles. Para realizar esto, se ha utilizando el paquete `cowplot`. A continuación se muestra el código para realizar figura \@ref(fig:six-plot-figure)
+Algunas de las figuras realizadas en la sección previa (\@ref(explorando-geom)) muestran gráficos individuales que fueron *acomodados* distintos paneles. Para realizar esto, se ha utilizando el paquete `cowplot`. A continuación se muestra el código para realizar figura \@ref(fig:six-plot-figure).
 
 
 ```r
@@ -295,19 +316,19 @@ str(titanic_train)
 ```
 
 ```
-## 'data.frame':	891 obs. of  12 variables:
-##  $ PassengerId: int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ Survived   : int  0 1 1 1 0 0 0 0 1 1 ...
-##  $ Pclass     : int  3 1 3 1 3 3 1 3 3 2 ...
-##  $ Name       : chr  "Braund, Mr. Owen Harris" "Cumings, Mrs. John Bradley (Florence Briggs Thayer)" "Heikkinen, Miss. Laina" "Futrelle, Mrs. Jacques Heath (Lily May Peel)" ...
-##  $ Sex        : chr  "male" "female" "female" "female" ...
-##  $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
-##  $ SibSp      : int  1 1 0 1 0 0 0 3 0 1 ...
-##  $ Parch      : int  0 0 0 0 0 0 0 1 2 0 ...
-##  $ Ticket     : chr  "A/5 21171" "PC 17599" "STON/O2. 3101282" "113803" ...
-##  $ Fare       : num  7.25 71.28 7.92 53.1 8.05 ...
-##  $ Cabin      : chr  "" "C85" "" "C123" ...
-##  $ Embarked   : chr  "S" "C" "S" "S" ...
+'data.frame':	891 obs. of  12 variables:
+ $ PassengerId: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ Survived   : int  0 1 1 1 0 0 0 0 1 1 ...
+ $ Pclass     : int  3 1 3 1 3 3 1 3 3 2 ...
+ $ Name       : chr  "Braund, Mr. Owen Harris" "Cumings, Mrs. John Bradley (Florence Briggs Thayer)" "Heikkinen, Miss. Laina" "Futrelle, Mrs. Jacques Heath (Lily May Peel)" ...
+ $ Sex        : chr  "male" "female" "female" "female" ...
+ $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
+ $ SibSp      : int  1 1 0 1 0 0 0 3 0 1 ...
+ $ Parch      : int  0 0 0 0 0 0 0 1 2 0 ...
+ $ Ticket     : chr  "A/5 21171" "PC 17599" "STON/O2. 3101282" "113803" ...
+ $ Fare       : num  7.25 71.28 7.92 53.1 8.05 ...
+ $ Cabin      : chr  "" "C85" "" "C123" ...
+ $ Embarked   : chr  "S" "C" "S" "S" ...
 ```
 
 Cambiemos un par de cosas.
@@ -327,7 +348,229 @@ titanic_train$Embarked <- ifelse(titanic_train$Embarked == "",
 ```
 
 
-Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión.  
+Ahora sí, empecemos a entender el dataset gráficamente, una variable a la vez. Cada visualización responde a una pregunta respecto de la variable en cuestión. Las preguntas que nos hacemos para este dataset son:
+
+* **Supervivencia:** ¿Cuál fue el número de sobrevivientes?
+* **Clase:** ¿Cuál fue la cantidad de pasajeros en cada clase?
+* **Sexo:** ¿Cuántos hombres y mujeres a bordo?
+* **Embarque:** ¿Dónde (en qué puerto) subió la gente al barco?
+* **Edad:** ¿Cuál era la distribución de edades de los pasajeros?
+* **Precio:** ¿Cuánto costaba subir al Titanic?
+
+Empecemos por la primera. Podemos obtener el número de sobrevivientes usando la función `count` del paquete `dplyr` y hacer un gráfico de barras usando `geom_bar` de `ggplot2`.
+
+
+
+```r
+# Calculamos la supervivencia segun el factor Survived
+sobrev <- titanic_train %>%
+          group_by(Survived) %>%
+          count()
+
+# Supervivencia
+# Cuál es el número de sobrevivientes?
+g1 <- ggplot(titanic_train, aes(Survived)) +
+  geom_bar()+
+  # Agregamos la cuenta de sobrevivientes
+  # Notar que debemos utilizar otro data.frame en data
+  # vamos a utilizar y=20 para posicionar los n cerca del eje x
+  geom_text(data = sobrev,
+            aes(Survived, y=25, label=n),
+            color="white")+
+  xlab("Supervivencia")+
+  ylab("Frecuencia")
+```
+
+
+> Ejercicio: Propongo detener la lectura y evaluar qué tipo de gráfico podríamos hacer para responder el resto de las preguntas.
+
+A continuación presento una de las opciónes del análisis gráfico univariado para las variables del dataset Titanic.  
+
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/titanic-univariado-1.png" alt="Gráficos de exploración univariada del dataset Titanic." width="576" />
+<p class="caption">(\#fig:titanic-univariado)Gráficos de exploración univariada del dataset Titanic.</p>
+</div>
+
+Los gráficos de la Figura \@ref(fig:titanic-univariado) son bastante típicos. Si deseas ver detalle por detalle el código, puedes dirigirte al Anexo de este capítulo \@ref(anexo). En esta sección concentro nuestros esfuerzos en la visualización veloz de los datos. Es posible hacer gráficos que comuniquen a un público más general, por eso en el futuro retomaremos desde este punto (ver Sección \@ref(graficos)).  
+
+Ahora que tenemos información sobre las variables del dataset por separado podemos preguntarnos cómo se relacionan entre ellas. En la figura  \@ref(fig:surviv-bivariado) podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo "hombre en tercera clase" la peor combinación.  
+
+
+```r
+ggplot(titanic_train, 
+       aes(Sex, Survived))+
+  # Coloreamos segun la interaccion entre los niveles de interes
+  geom_jitter(aes(color=interaction(factor(Sex), Survived)),
+              alpha=0.5)+
+  # Separamos por clase
+  facet_wrap(~Pclass)+
+  # Nombramos al eje
+  ylab("Supervivencia")+
+  # Agregamos un eje y descriptivo
+  scale_y_discrete(breaks=c("0","1"),
+        labels=c("No", "Sí"))+
+  # Sacamos la leyenda
+  theme(legend.position = "none")+
+  # mejoramos los colores
+  scale_color_brewer(palette = "Set2")+
+  # Titulo
+  ggtitle("Supervivencia por clase")
+```
+
+<div class="figure" style="text-align: center">
+<img src="04-Exploracion_files/figure-html/surviv-bivariado-1.png" alt="Supervivencia en el Titanic según género y clase." width="576" />
+<p class="caption">(\#fig:surviv-bivariado)Supervivencia en el Titanic según género y clase.</p>
+</div>
+
+
+> Ejercicio: Completar el siguiente trozo de código para calcular % sobrevivientes
+
+
+```r
+# Calcular el porcentaje segun la clase
+titanic_train %>%
+  # Agrupar por clase y sexo
+  group_by(...) %>%
+  # contar los sobrevivientes
+  ... %>%
+  # sumar el total de casos
+  # dividir por el total y expresar en porcentaje
+  mutate(total= ...,
+         porcentaje=.../total*100)  
+```
+
+
+También podemos explorar cómo se relaciona la edad con la supervivencia. En el siguiente gráfico vemos que prácticamente no hay diferencias en supervivencia según las edades (quizás sí existen pequeñas diferencias para los niños menores de 10 años).  
+
+
+
+```r
+ggplot(titanic_train,
+       aes(Survived, Age, fill=Survived))+
+  geom_violin()+
+  geom_boxplot(fill="black", color="white",
+               lwd=1.1, width=0.1)+
+  theme_bw()+
+  scale_fill_brewer(palette = "Set2")+
+  theme(legend.position = "none")+
+  xlab("Supervivencia")+
+  ylab("Edad (años)")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("No", "Sí"))+
+  # Rotamos los ejes!
+  coord_flip()
+```
+
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" />
+
+> Ejercicio: Analizar sobrevivientes vs edad (por clase)
+
+
+
+```r
+# La base de este gráfico es la misma que la del anterior
+# Debemos cambiar el x a Pclass 
+# (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?
+ggplot(titanic_train,
+       aes(x= ..., Age, fill=...))+
+  # Resto de los componentes?
+```
+
+Veamos algunos componentes relacionados con el precio de los tickets. En general, podemos ver que, independientemente de la edad, el precio estaba por debajo de 50, con algunas notables excepciones en cero o por encima de 500 (**A**)!. También podemos ver que aquellos que pagaron más parecieran haber estado en el grupo de los sobrevivientes (**B**).
+
+
+
+```r
+# Edad vs Precio ticket
+p1 <- ggplot(titanic_train, aes(Age, Fare)) +
+  geom_point()+
+  xlab("Edad (años)")+
+  ylab("Precio ticket")
+
+p2 <- ggplot(titanic_train, aes(Survived, Fare)) +
+  geom_boxplot(aes(fill=Survived))+
+  xlab("Supervivencia")+
+  ylab("Precio ticket")+
+  scale_x_discrete(breaks=c("0","1"),
+        labels=c("No", "Sí"))+
+  theme(legend.position = "none")+
+  scale_fill_brewer(palette = "Set2")
+  
+# todo junto!
+cowplot::plot_grid(p1,p2, labels="AUTO")
+```
+
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" />
+
+## Resumen
+
+En este capítulo no he realizando una descripción exhaustiva sobre análisis gráfico, mi idea fue brindar ejemplos de las posibilidades para exploración de datos, principalmente con `ggplot2`.  
+
+* Uno de los mayores beneficios de R es la plataforma gráfica, principalmente `ggplot2`.
+* `ggplot2` está basada en una gramática que permite incorporar capas a los gráficos.
+* Las capas son agregadas una encima de la otra segun los `aes()` y `geoms` que se utilicen.
+* Tanto `ggplot2` como paquetes accesorios permiten realizar gráficos de paneles de alta calidad.
+* Utilizar combinaciones de capas permite representar con claridad más dimensiones en un gráfico.
+
+## Recursos
+
+El material sobre visualización de datos es virtualmente infinito. Recomiendo fuertemente los siguientes textos:
+
+* [ggplot2 online](https://ggplot2.tidyverse.org/)
+* [Data Visualization-Kieran Healy](http://socviz.co/)
+* [Paquete cowplot](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)
+
+## Respuestas
+
+
+```r
+# Calculando el porcentaje de sobrevivientes por clase y sexo
+titanic_train %>%
+  group_by(Pclass, Sex) %>%
+  count(Survived) %>%
+  mutate(total=sum(n),
+         porcentaje=n/total*100)
+```
+
+```
+# A tibble: 12 x 6
+# Groups:   Pclass, Sex [6]
+   Pclass Sex    Survived     n total porcentaje
+    <int> <chr>  <fct>    <int> <int>      <dbl>
+ 1      1 hombre 0           77   122      63.1 
+ 2      1 hombre 1           45   122      36.9 
+ 3      1 mujer  0            3    94       3.19
+ 4      1 mujer  1           91    94      96.8 
+ 5      2 hombre 0           91   108      84.3 
+ 6      2 hombre 1           17   108      15.7 
+ 7      2 mujer  0            6    76       7.89
+ 8      2 mujer  1           70    76      92.1 
+ 9      3 hombre 0          300   347      86.5 
+10      3 hombre 1           47   347      13.5 
+11      3 mujer  0           72   144      50.0 
+12      3 mujer  1           72   144      50.0 
+```
+
+
+
+```r
+# La base de este gráfico es la misma que la del anterior
+# Debemos cambiar el x a Pclass 
+# (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?
+ggplot(titanic_train,
+       aes(x= factor(Pclass), Age, fill=Survived))+
+  # Resto de los componentes? 
+  # (la principal es geom_violin(), el resto es estético)
+  geom_violin()
+```
+
+<img src="04-Exploracion_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" />
+
+***
+
+# Anexo {-} {#anexo}
+
+La Figura \@ref(fig:titanic-univariado) fue realizada con el siguiente código.
 
 
 ```r
@@ -397,176 +640,5 @@ cowplot::plot_grid(g1,g2,g3,g4,g5,g6,
                    labels="AUTO")
 ```
 
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-21-1.png" width="672" />
-
-Estos gráficos son bastante típicos. En esta sección concentro nuestros esfuerzos en entender el dataset rápidamente. Es posible hacer gráficos que comuniquen mejor. Más adelante retomaremos desde este punto (ver Sección \@ref(graficos)).  
-
-Ahora vamos a centrarnos en entender relaciones entre más de una variable.
-
-
-```r
-ggplot(titanic_train, 
-       aes(Sex, Survived))+
-  # Coloreamos segun la interaccion entre los niveles de interes
-  geom_jitter(aes(color=interaction(factor(Sex), Survived)),
-              alpha=0.5)+
-  # Separamos por clase
-  facet_wrap(~Pclass)+
-  # Nombramos al eje
-  ylab("Supervivencia")+
-  # Agregamos un eje y descriptivo
-  scale_y_discrete(breaks=c("0","1"),
-        labels=c("No", "Sí"))+
-  # Sacamos la leyenda
-  theme(legend.position = "none")+
-  # mejoramos los colores
-  scale_color_brewer(palette = "Set2")+
-  # Titulo
-  ggtitle("Supervivencia por clase")
-```
-
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-22-1.png" width="672" />
-
-En el gráfico anterior podemos apreciar claramente que las mayor supervivencia se dio en las mujeres, y luego en las clases altas, siendo "hombre en tercera clase" la peor combinación. 
-
-> Ejercicio: Calcular % sobrevivientes
-
-
-```r
-# Calcular el porcentaje segun la clase
-titanic_train %>%
-  # Agrupar por clase y sexo
-  # contar los sobrevivientes
-  # sumar el total de casos
-  # dividir por el total y expresar en porcentaje
-```
-
-
-Podemos explorar cómo se relaciona la edad con la supervivencia. En el siguiente gráfico vemos que prácticamente no hay diferencias en supervivencia según las edades (quizás sí existen pequeñas diferencias para los niños menores de 10 años).  
-
-
-
-```r
-ggplot(titanic_train,
-       aes(Survived, Age, fill=Survived))+
-  geom_violin()+
-  geom_boxplot(fill="black", color="white",
-               lwd=1.1, width=0.1)+
-  theme_bw()+
-  scale_fill_brewer(palette = "Set2")+
-  theme(legend.position = "none")+
-  xlab("Supervivencia")+
-  ylab("Edad (años)")+
-  scale_x_discrete(breaks=c("0","1"),
-        labels=c("No", "Sí"))+
-  # Rotamos los ejes!
-  coord_flip()
-```
-
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-24-1.png" width="672" />
-
-> Ejercicio: Analizar sobrevivientes vs edad (por clase)
-
-
-
-```r
-# La base de este gráfico es la misma que la del anterior
-# Debemos cambiar el x a Pclass 
-# (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?
-ggplot(titanic_train,
-       aes(x= ..., Age, fill=...))+
-  # Resto de los componentes?
-```
-
-Veamos algunos componentes relacionados con el precio de los tickets. En general, podemos ver que, independientemente de la edad, el precio estaba por debajo de 50, con algunas notables excepciones en cero o por encima de 500 (**A**)!. También podemos ver que aquellos que pagaron más parecieran haber estado en el grupo de los sobrevivientes (**B**).
-
-
-
-```r
-# Edad vs Precio ticket
-p1 <- ggplot(titanic_train, aes(Age, Fare)) +
-  geom_point()+
-  xlab("Edad (años)")+
-  ylab("Precio ticket")
-
-p2 <- ggplot(titanic_train, aes(Survived, Fare)) +
-  geom_boxplot(aes(fill=Survived))+
-  xlab("Supervivencia")+
-  ylab("Precio ticket")+
-  scale_x_discrete(breaks=c("0","1"),
-        labels=c("No", "Sí"))+
-  theme(legend.position = "none")+
-  scale_fill_brewer(palette = "Set2")
-  
-
-cowplot::plot_grid(p1,p2, labels="AUTO")
-```
-
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-26-1.png" width="672" />
-
-## Resumen
-
-En este capítulo no he realizando una descripción exhaustiva sobre análisis gráfico, mi idea fue brindar ejemplos de las posibilidades para exploración de datos, principalmente con `ggplot2`.  
-
-* Uno de los mayores beneficios de R es la plataforma gráfica, principalmente `ggplot2`.
-* `ggplot2` está basada en una gramática que permite incorporar capas a los gráficos.
-* Las capas son agregadas una encima de la otra segun los `aes()` y `geoms` que se utilicen.
-* Tanto `ggplot2` como paquetes accesorios permiten realizar gráficos de paneles de alta calidad.
-* Utilizar combinaciones de capas permite representar con claridad más dimensiones en un gráfico.
-
-## Recursos
-
-El material sobre visualización de datos es virtualmente infinito. Recomiendo fuertemente los siguientes textos:
-
-* [ggplot2 online](https://ggplot2.tidyverse.org/)
-* [Data Visualization-Kieran Healy](http://socviz.co/)
-
 [^estan-en-ingles]: Estos fueron incluídos en inglés debido a que la función `ggplot2` los utilizará en inglés y traducciones directas serían en perjuicio del usuario.
-
-
-## Respuestas
-
-
-```r
-# Calculando el porcentaje de sobrevivientes por clase y sexo
-titanic_train %>%
-  group_by(Pclass, Sex) %>%
-  count(Survived) %>%
-  mutate(total=sum(n),
-         porcentaje=n/total*100)
-```
-
-```
-## # A tibble: 12 x 6
-## # Groups:   Pclass, Sex [6]
-##    Pclass Sex    Survived     n total porcentaje
-##     <int> <chr>  <fct>    <int> <int>      <dbl>
-##  1      1 hombre 0           77   122      63.1 
-##  2      1 hombre 1           45   122      36.9 
-##  3      1 mujer  0            3    94       3.19
-##  4      1 mujer  1           91    94      96.8 
-##  5      2 hombre 0           91   108      84.3 
-##  6      2 hombre 1           17   108      15.7 
-##  7      2 mujer  0            6    76       7.89
-##  8      2 mujer  1           70    76      92.1 
-##  9      3 hombre 0          300   347      86.5 
-## 10      3 hombre 1           47   347      13.5 
-## 11      3 mujer  0           72   144      50.0 
-## 12      3 mujer  1           72   144      50.0
-```
-
-
-
-```r
-# La base de este gráfico es la misma que la del anterior
-# Debemos cambiar el x a Pclass 
-# (cuidado, necesitamos que Pclass sea un factor). Como queda el fill?
-ggplot(titanic_train,
-       aes(x= factor(Pclass), Age, fill=Survived))+
-  # Resto de los componentes? 
-  # (la principal es geom_violin(), el resto es estético)
-  geom_violin()
-```
-
-<img src="04-Exploracion_files/figure-html/unnamed-chunk-28-1.png" width="672" />
-
+[^ansioso-smooth]: Si la ansiedad es muy fuerte, puedes explorar `?geom_smooth()` para enterarte los argumentos de la función.
